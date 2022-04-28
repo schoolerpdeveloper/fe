@@ -1,3 +1,31 @@
 *{
     font-family: "ERP Lighter", "Helvetica Neue", sans-serif;
 }
+body{
+    width: 100%;
+}
+
+.btn-green-themed{
+    background-color: #61d539 !important;
+}
+
+.outline-none{
+    outline: none !important;
+}
+
+.form-control.btn-green-themed:focus{
+    border-color: #61d539 !important;
+}
+
+.btn-green-themed.btn-check:focus+.btn.btn-green-themed, .btn.btn-green-themed:focus{
+    box-shadow: 0 0 0 0.25rem rgb(97 213 57/ 25%);
+}
+
+.text-error-danger{
+    font-family: "ERP condensed";
+    letter-spacing: 0.01rem;
+}
+
+.error-border-danger{
+    box-shadow: 0 0 5px 0.25rem rgba(213, 88, 57, 0.25) !important;
+}

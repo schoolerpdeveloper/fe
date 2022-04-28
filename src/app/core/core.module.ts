@@ -1,17 +1,14 @@
-import {
-  ModuleWithProviders,
-  NgModule,
-  Optional,
-  SkipSelf,
-} from '@angular/core';
+import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { StorageService } from '@shared/services/localstorage.service';
+import { StorageService } from './services/storage/storage.service';
+import { AutoUnSubscribeService } from './services/auto-unsubscribe/auto-un-subscribe.service';
 
 const providers = [
   { provide: 'Window', useValue: window },
-  StorageService,  
+  StorageService,
+  AutoUnSubscribeService,
 ];
 
 @NgModule({
@@ -22,7 +19,7 @@ export class CoreModule {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
     if (parentModule) {
       throw new Error(
-        'CoreModule is already loaded. Import it in the AppModule only'
+        'CoreModule is already loaded. Imported it in the AppModule only'
       );
     }
   }

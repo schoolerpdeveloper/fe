@@ -1,0 +1,53 @@
+<!-- <div class="box" [formGroup]="regForm">
+    <img class="logo" alt="logo" src="assets/images/reg.svg">
+    <p class="signin">Register</p>
+    <div class="my-3"></div>
+
+    <input name="username" type="text" placeholder="Username"
+        [ngClass]="usernamef?.touched && usernamef?.invalid ? 'border-danger' : ''" formControlName="username">
+    <div *ngIf="usernamef?.touched && usernamef?.invalid" class="text-danger">
+        <small class="d-block small text-danger error" style="height: 2.15rem;">Username Required</small>
+    </div>
+    <div class="my-2"></div>
+
+    <input name="email" type="text" placeholder="Email"
+        [ngClass]="emailf?.touched && emailf?.invalid ? 'border-danger' : ''" formControlName="email">
+    <div *ngIf="emailf?.touched && emailf?.invalid" class="text-danger">
+        <small class="d-block small text-danger error" *ngIf="emailf?.errors?.required" style="height: 2.15rem;">Email
+            Required</small>
+        <small class="d-block small text-danger error" *ngIf="emailf?.errors?.email" style="height: 2.15rem;">Please
+            type valid email address</small>
+
+    </div>
+    <div class="my-2"></div>
+    <input name="password" type="password" placeholder="Password" required
+        [ngClass]="passwordf?.touched && passwordf?.invalid ? 'border-danger' : ''" formControlName="password">
+    <div *ngIf="passwordf?.touched && passwordf?.invalid" class="text-danger">
+        <small class="d-block small text-danger error" style="height: 2.15rem;">Password Required</small>
+    </div>
+    <div class="my-2"></div>
+    <input name="password" type="text" placeholder="Retype Password" required
+        [ngClass]="confirm_passwordf?.touched && confirm_passwordf?.invalid && regForm?.errors?.confirmedValidator ? 'border-danger' : ''"
+        formControlName="confirm_password">
+    <div *ngIf="confirm_passwordf?.touched && confirm_passwordf?.invalid" class="text-danger">
+        <small class="d-block small text-danger error" *ngIf="confirm_passwordf?.errors?.required" style="height: 2.15rem;">Retype same password</small>
+        <small class="d-block small text-danger error" *ngIf="confirm_passwordf?.errors?.confirmedValidator"  style="height: 2.15rem;">Password mismatches</small>
+
+    </div>
+    <div class="my-2"></div>
+    <select class="mx-auto" formControlName="roles">
+        <option value="">Select Roles</option>
+        <option value="admin">Admin</option>
+        <option value="user">User</option>
+        <option value="accountant">Accountant</option>
+        <option value="Teacher">Teacher</option>
+    </select>
+ 
+    <div class="my-1"></div>
+
+    <button type="button" [disabled]="!regForm.valid" [class.disabled]="!regForm.valid" (click)="register()">
+        Register
+    </button>
+    <p class="foot-txt">Forgot your password?</p>
+    <p class="foot-txt" (click)="routeToLogin()">Already a memeber? <span class="bold">Sign In now</span></p>
+</div> -->

@@ -10,6 +10,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
 import interactionPlugin from '@fullcalendar/interaction'; // a plugin!
 import listPlugin from '@fullcalendar/list'; // a plugin!
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 FullCalendarModule.registerPlugins([
   // register FullCalendar plugins
@@ -20,10 +21,9 @@ FullCalendarModule.registerPlugins([
 
 const SHARED_MODS = [
   MatIconModule,
-
   MatIconModule,
   MatTooltipModule,
-  ReactiveFormsModule,
+  MatSidenavModule,
   NgxMaskModule.forRoot(),
   HotToastModule.forRoot(),
   FullCalendarModule,

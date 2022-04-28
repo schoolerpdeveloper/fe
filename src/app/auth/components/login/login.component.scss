@@ -1,0 +1,19 @@
+::placeholder {
+  color: silver;
+}
+.text-error-danger{
+    font-family: "ERP condensed";
+    letter-spacing: 0.01rem;
+}
+
+.error-border-danger{
+    box-shadow: 0 0 5px 0.25rem rgba(213, 88, 57, 0.25) !important;
+}
+
+hr {
+    margin: 1rem 0;
+    color: inherit;
+    background-color: currentColor;
+    border: 0;
+    opacity: 0.25;
+  }
