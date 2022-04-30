@@ -1,31 +1,71 @@
-*{
-    font-family: "ERP Lighter", "Helvetica Neue", sans-serif;
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined");
+
+* {
+  font-family: "ERP Lighter", "Helvetica Neue", sans-serif;
 }
-body{
-    width: 100%;
+:root {
+  /* Colors: */
+  --placeholder-color: rgb(134, 141, 150);
+  --primary-color: rgb(97, 213, 57);
+  --secondary-accent-color: rgb(249, 192, 0);
+  --primary-color-dark : rgb(71, 168, 39);
+}
+body {
+  width: 100%;
 }
 
-.btn-green-themed{
-    background-color: #61d539 !important;
+.bg-themed {
+  background-color: var(--primary-color) !important;
+}
+.btn-accent-themed{
+  background-color: var(--secondary-accent-color) !important;
+
+}
+.btn-themed {
+  background-color: var(--primary-color-dark) !important;
 }
 
-.outline-none{
-    outline: none !important;
+.outline-none {
+  outline: none !important;
 }
 
-.form-control.btn-green-themed:focus{
-    border-color: #61d539 !important;
+.form-control.btn-themed:focus {
+  border-color: var(--primary-color) !important;
 }
 
-.btn-green-themed.btn-check:focus+.btn.btn-green-themed, .btn.btn-green-themed:focus{
-    box-shadow: 0 0 0 0.25rem rgb(97 213 57/ 25%);
+.text-themed {
+  color: var(--primary-color-dark) !important;
 }
 
-.text-error-danger{
-    font-family: "ERP condensed";
-    letter-spacing: 0.01rem;
+.btn-themed.btn-check:focus + .btn.btn-themed,
+.btn.btn-themed:focus {
+  box-shadow: 0 0 0 0.25rem rgb(97 213 57/ 25%);
 }
 
-.error-border-danger{
-    box-shadow: 0 0 5px 0.25rem rgba(213, 88, 57, 0.25) !important;
+.error-border-danger {
+  box-shadow: 0 0 5px 0.25rem rgba(213, 88, 57, 0.25) !important;
+}
+.poppins-text {
+  font-family: Poppins;
+}
+
+.text-condensed {
+  font-family: "ERP condensed";
+}
+
+.btn-text-condensed{
+  font: normal normal normal 20px/24px Myriad Pro;
+}
+
+.pointer {
+  cursor: pointer !important;
+}
+.bg-themed-gradient {
+  background: linear-gradient(90deg, var(--primary-color), #46a625);
+}
+.input-themed {
+  box-shadow: 0px 3px 6px #00000029 !important;
+}
+::placeholder {
+  color: var(--placeholder-color);
 }

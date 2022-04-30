@@ -1,0 +1,57 @@
+<div class="py-2">
+  <ng-container *ngIf="label">
+    <label
+      [for]="label"
+      class="ps-2 text-capitalize"
+      [ngClass]="formField?.invalid && formField?.touched ? 'text-danger' : ''"
+      >{{ label }}</label
+    >
+  </ng-container>
+
+  <input
+    [type]="type"
+    class="form-control rounded-pill shadow border-0"
+    [value]="value"
+    [name]="fieldName"
+    [mask]="maskedString"
+    [id]="label"
+    [disabled]="isDisabled"
+    (input)="onChange($event)"
+    [showMaskTyped]="true" 
+    placeHolderCharacter="-" 
+    (blur)="touched()"
+    [placeholder]="fieldName"
+    [ngClass]="formField?.invalid && formField?.touched ? 'border-error' : ''"
+  />
+  <ng-container [ngTemplateOutlet]="appInputError"></ng-container>
+</div>
+
+<ng-template #appInputError>
+  <div class="ps-2">
+   
+    <ng-container *ngIf="formField?.invalid && formField?.touched">
+      <div class="text-danger small" *ngIf="formField?.hasError('required')">
+        * This is a required field.
+      </div>
+      <div class="text-danger small" *ngIf="formField?.hasError('email')">
+        * This email is invalid
+      </div>
+      <div class="text-danger small" *ngIf="formField?.hasError('min')">
+        * This is lower than minimum value
+      </div>
+      <div class="text-danger small" *ngIf="formField?.hasError('max')">
+        * This is greater than maximum value
+      </div>
+      <div class="text-danger small" *ngIf="formField?.hasError('minlength')">
+        * This is lower than minimum length
+      </div>
+      <div class="text-danger small" *ngIf="formField?.hasError('maxlength')">
+        * This is greater than maximum length
+      </div>
+      <div class="text-danger small" *ngIf="formField?.hasError('maskedInput')">
+        * This field is pending need to fill
+      </div>
+    </ng-container>
+  </div>
+  
+</ng-template>

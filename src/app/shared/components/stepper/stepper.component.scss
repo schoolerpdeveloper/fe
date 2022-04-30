@@ -1,0 +1,81 @@
+ul.my-stepper {
+  display: flex;
+  align-items: stretch; /* Default */
+  justify-content: space-between;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+li {
+  display: block;
+  flex: 0 1 auto; /* Default */
+  list-style-type: none;
+//   background-color: white;
+  padding: 0 0.75em;
+  z-index: 1;
+  position: relative;
+  top:1rem;
+}
+
+
+li:first-child {
+  padding-left: 0;
+}
+
+li:last-child {
+  padding-right: 0;
+}
+
+ul.my-stepper:after {
+  content: "";
+  border-bottom: 1px solid lightgray;
+  position: absolute;
+  transform: translateY(-50%);
+  top: 50%;
+  left:4%;
+  width: 93%;
+}
+.activeStepLabel{
+    color:var(--primary-color) !important;
+
+}
+.stepLabel{
+    font: normal normal normal 18px/22px Myriad Pro;
+letter-spacing: 0.11px;
+}
+.active {
+    background:var(--primary-color) !important;
+
+    box-shadow: 0px 0px 19px 10px rgba(97,213,57,0.75) !important;
+}
+
+// .my-step {
+//   width: 30px;
+//   height: 30px;
+//   background: var(--primary-color);
+//   border-radius: 50%;
+//   line-height: 1.8;
+//   vertical-align: middle;
+// }
+
+.numberCircle {
+    display: inline-block;
+    line-height: 0px;
+    border-radius: 50%;
+    border: 2px solid;
+    font-size: 0.8rem;
+    background: #CECECE;
+    border:none !important;
+    color: white;
+    box-shadow: 0px 0px 19px 10px rgb(206 206 206 / 40%);
+  }
+  
+  .numberCircle span {
+    display: inline-block;
+    padding-top: 50%;
+    padding-bottom: 50%;
+    margin-left: 8px;
+    margin-right: 8px;
+  }

@@ -1,0 +1,33 @@
+<section class="cards">
+    <ul class="my-stepper text-condensed fw-bold">
+        <ng-container *ngFor="let step of steps; let i = index">
+
+            <li (click)="selectStepByIndex(i)" class="pointer">
+
+                <div class="mx-4">
+
+                    <span class="numberCircle" [ngClass]="selectedIndex === i ? 'active' : ''">
+                        <span> {{i+1}}</span>
+                    </span>
+                </div>
+                <div class="mt-3 small stepLabel" [ngClass]="selectedIndex === i ? 'activeStepLabel' : ''"
+                    style="font-size: 0.75rem;">
+                    <ng-container *ngIf="step.stepLabel" [ngTemplateOutlet]="step.stepLabel.template">
+                    </ng-container>
+                </div>
+            </li>
+
+
+        </ng-container>
+
+    </ul>
+    <div class="card-body">
+
+        <div [ngTemplateOutlet]="selected ? selected.content : null"></div>
+    </div>
+</section>
+
+<!-- 
+      <ng-container *ngIf="step.stepLabel" [ngTemplateOutlet]="step.stepLabel.template">
+                    </ng-container>
+ -->

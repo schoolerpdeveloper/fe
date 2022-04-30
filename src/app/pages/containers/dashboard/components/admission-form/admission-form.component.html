@@ -1,0 +1,15 @@
+<form [formGroup]="userDetails">
+    <div class="row g-3">
+        <div class="col-12 col-sm-4">
+            <app-erp-input label="username" formControlName="username" fieldName="username" [parentForm]="userDetails">
+            </app-erp-input>
+        </div>
+        <div class="col-12 col-sm-4">
+            <app-erp-input label="email" formControlName="email" fieldName="email" [parentForm]="userDetails">
+            </app-erp-input>
+        </div>
+        <div class="col-12 col-sm-4">
+            <app-erp-input label="age" [useMaskedInput]="true" maskedString="0.0" type="text" formControlName="age" fieldName="age" [parentForm]="userDetails"></app-erp-input>
+        </div>
+    </div>
+</form>

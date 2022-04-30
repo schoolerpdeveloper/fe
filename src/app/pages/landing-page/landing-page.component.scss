@@ -1,0 +1,21 @@
+[cdktreenodepadding] {
+  width: 100;
+  padding-left: 0rem !important;
+}
+
+.nav-card {
+  border-left: 0.25rem solid transparent !important;
+
+  line-height: 2.25;
+}
+
+.sub-menu-card {
+  border-left: 0.25rem solid transparent !important;
+  line-height: 2.25;
+}
+
+.active {
+  border-left: 0.25rem solid var(--secondary-accent-color) !important;
+  background: var(--primary-color) !important;
+  color: white;
+}

@@ -1,25 +1,3 @@
-<!-- <div class="box" [formGroup]="loginForm">
-    <img class="logo" alt="logo" src="assets/images/login.svg"/>
-    <p class="signin">Sign in</p>
-    <div class="my-3">
-
-    </div>
-
-    <input name="username" type="text" placeholder="Username or Email" [ngClass]="usernamef?.touched && usernamef?.invalid ? 'border-danger' : ''" formControlName="username">
-    <div *ngIf="usernamef?.touched && usernamef?.invalid" class="text-danger">
-        <small class="d-block small text-danger error" style="height: 2.15rem;">Username Required</small>
-    </div>
-    <div class="my-2"></div>
-    <input name="password" type="password" placeholder="Password" required [ngClass]="passwordf?.touched && passwordf?.invalid ? 'border-danger' : ''" formControlName="password">
-    <div *ngIf="passwordf?.touched && passwordf?.invalid" class="text-danger">
-        <small class="d-block small text-danger error" style="height: 2.15rem;">Password Required</small>
-    </div>
-    <div class="my-1"></div>
-
-    <button type="button" [disabled]="!loginForm.valid" [class.disabled]="!loginForm.valid" (click)="signin()">Sign In</button>
-    <p class="foot-txt">Forgot your password?</p>
-    <p class="foot-txt">Not a memeber? <span class="bold">Sign up now</span></p>
-</div> -->
 
 
 <div class="container-fluid m-0">
@@ -29,31 +7,32 @@
             <div class="card border-0 mx-auto mt-4" style="width:25rem;" [formGroup]="loginForm">
                 <img src="assets/images/school-logo-placeholder.jpg" class="card-img-top" alt="logo">
                 <div class="">
-                    <input type="text" class="form-control border-0 shadow rounded-pill px-3" placeholder="Username"
+                    <input type="text" class="form-control border-0 input-themed rounded-pill px-3" placeholder="Username"
                         formControlName="username"
                         [ngClass]="usernamef?.touched && usernamef?.invalid ? 'error-border-danger' : ''">
                     <div class="text-danger mx-3 my-0 py-0" style="height: 1.15rem;">
                         <ng-container *ngIf="usernamef?.touched && usernamef?.invalid">
-                            <small class="d-block small text-danger text-error-danger">* Username Required</small>
+                            <small class="d-block small text-danger text-condensed">* Username Required</small>
                         </ng-container>
                     </div>
                 </div>
                 <div class="my-3">
-                    <input type="password" class="form-control border-0 shadow rounded-pill px-3" placeholder="Password"
+                    <input type="password" class="form-control border-0 input-themed rounded-pill px-3" placeholder="Password"
                         formControlName="password"
                         [ngClass]="passwordf?.touched && passwordf?.invalid ? 'error-border-danger' : ''">
                     <div class="text-danger mx-3" style="height: 1.15rem;">
                         <ng-container *ngIf="passwordf?.touched && passwordf?.invalid">
-                            <small class="d-block small text-danger text-error-danger"
+                            <small class="d-block small text-danger text-condensed"
                                 style="height: 2.15rem;">*Password Required</small>
                         </ng-container>
                     </div>
                 </div>
                 <div class="">
-                    <button type="button" class="btn rounded-pill form-control btn-green-themed"
+                    <button type="button" class="btn rounded-pill form-control btn-themed"
                         [disabled]="!loginForm.valid" [class.disabled]="!loginForm.valid" (click)="signin()">
                         <span class="text-white">Login</span>
                     </button>
+                    <div class="text-themed text-center small mt-2 text-condensed-bold pointer">Forgot Password</div>
                 </div>
             </div>
         </div>

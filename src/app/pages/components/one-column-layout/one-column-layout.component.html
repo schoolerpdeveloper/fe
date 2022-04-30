@@ -1,0 +1,9 @@
+
+<mat-drawer-container class="example-container shadow-sm">
+    <mat-drawer class="shadow-sm shadow-element" mode="side" [opened]="sideNavToggleListner | async">
+        <ng-content select=".sideNavBar"></ng-content>
+    </mat-drawer>
+    <mat-drawer-content>
+        <ng-content></ng-content>
+    </mat-drawer-content>
+</mat-drawer-container>

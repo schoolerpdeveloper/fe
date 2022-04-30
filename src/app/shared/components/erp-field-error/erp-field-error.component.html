@@ -1,0 +1,23 @@
+<div class="ps-2">
+    <ng-container *ngIf="formField?.invalid && formField?.touched">
+      <div class="text-danger small" *ngIf="formField?.hasError('required')">
+        * This is a required field.
+      </div>
+      <div class="text-danger small" *ngIf="formField?.hasError('email')">
+        * This email is invalid
+      </div>
+      <div class="text-danger small" *ngIf="formField?.hasError('min')">
+        * This is lower than minimum value
+      </div>
+      <div class="text-danger small" *ngIf="formField?.hasError('max')">
+        * This is lower than maximum value
+      </div>
+      <div class="text-danger small" *ngIf="formField?.hasError('minlength')">
+        * This is lower than minimum length
+      </div>
+      <div class="text-danger small" *ngIf="formField?.hasError('maxlength')">
+        * This is greater than maximum length
+      </div>
+    </ng-container>
+  </div>
+  
