@@ -5,7 +5,7 @@
 }
 :root {
   /* Colors: */
-  --placeholder-color: rgb(134, 141, 150);
+  --placeholder-color: #868d96;
   --primary-color: rgb(97, 213, 57);
   --secondary-accent-color: rgb(249, 192, 0);
   --primary-color-dark : rgb(71, 168, 39);
@@ -68,4 +68,7 @@ body {
 }
 ::placeholder {
   color: var(--placeholder-color);
+  opacity: 0.5;
+  font-size: 0.8rem;
+  // height: 12px;
 }

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { HotToastModule } from '@ngneat/hot-toast';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { DebounceDirective } from './directives/debounce.directive';
 import { IConfig, NgxMaskModule } from 'ngx-mask';
@@ -21,12 +21,12 @@ import {CdkTreeModule} from '@angular/cdk/tree';
 import { StepperComponent } from './components/stepper/stepper.component';
 import { ErpInputComponent } from './components/erp-input/erp-input.component';
 import { ErpFieldErrorComponent } from './components/erp-field-error/erp-field-error.component';
+import { FlatpickrModule } from 'angularx-flatpickr';
 const maskConfigFunction: () => Partial<IConfig> = () => {
   return {
     validation: false,
   };
 };
-
 
 FullCalendarModule.registerPlugins([
   // register FullCalendar plugins
@@ -44,11 +44,13 @@ const SHARED_MODS = [
   MatSidenavModule,
   MatMenuModule,
   MatStepperModule,
+  FormsModule,
   CdkStepperModule,
   NgxMaskModule.forRoot(),
   HotToastModule.forRoot(),
   FullCalendarModule,
-  CdkTreeModule
+  CdkTreeModule,
+  FlatpickrModule.forRoot(),
 ];
 
 const SHARED_DECL = [DebounceDirective,StepperComponent,ErpInputComponent, ErpFieldErrorComponent];
@@ -56,6 +58,6 @@ const SHARED_DECL = [DebounceDirective,StepperComponent,ErpInputComponent, ErpFi
 @NgModule({
   declarations: [...SHARED_DECL],
   imports: [CommonModule, ...SHARED_MODS],
-  exports: [SHARED_MODS, SHARED_DECL],
+  exports: [SHARED_DECL,SHARED_MODS],
 })
 export class SharedModule {}

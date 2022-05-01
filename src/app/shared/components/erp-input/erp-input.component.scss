@@ -1,7 +1,16 @@
 .border-error {
   box-shadow: 0 0 5px 0.25rem rgba(213, 88, 57, 0.25) !important;
 }
+.error-text-shadow{
+  text-shadow: 1px 1px rgba(213, 88, 57, 0.25) !important;
+}
 
-:host {
-  margin: 1rem;
+label,.label {
+
+  font-size: 0.9rem;
+  text-align: left;
+  font-family:ERP Lighter;
+  letter-spacing: 0px;
+  height: 1rem;
+  color: #868d96;
 }

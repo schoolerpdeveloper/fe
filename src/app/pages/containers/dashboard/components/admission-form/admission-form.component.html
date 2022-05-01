@@ -1,15 +1,136 @@
-<form [formGroup]="userDetails">
-    <div class="row g-3">
-        <div class="col-12 col-sm-4">
-            <app-erp-input label="username" formControlName="username" fieldName="username" [parentForm]="userDetails">
+<form [formGroup]="studentDetailsForm" class="card border-0 mt-4">
+    <div class="row g-3 card-body">
+        <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+            <app-erp-input label="Admission Number" formControlName="ADMN_NO" fieldName="ADMN_NO"
+                [parentForm]="studentDetailsForm">
             </app-erp-input>
         </div>
-        <div class="col-12 col-sm-4">
-            <app-erp-input label="email" formControlName="email" fieldName="email" [parentForm]="userDetails">
+        <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+            <app-erp-input type="dateTime" label="Admission Date" formControlName="ADMIN_DATE" fieldName="ADMIN_DATE"
+                [parentForm]="studentDetailsForm">
             </app-erp-input>
+
         </div>
-        <div class="col-12 col-sm-4">
-            <app-erp-input label="age" [useMaskedInput]="true" maskedString="0.0" type="text" formControlName="age" fieldName="age" [parentForm]="userDetails"></app-erp-input>
+        <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+
+            <img src="assets/images/temp-phot-assets.png" class="img-fluid" style="opacity: 0.5; height: 4rem;">
         </div>
     </div>
+    <div class="row g-3 card-body">
+        <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+            <app-erp-input label="Student First Name" formControlName="STUD_FIRST_NAME" fieldName="STUD_FIRST_NAME"
+                [parentForm]="studentDetailsForm">
+            </app-erp-input>
+
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+            <app-erp-input label="Student Last Name" formControlName="STUD_LAST_NAME" fieldName="STUD_LAST_NAME"
+                [parentForm]="studentDetailsForm">
+            </app-erp-input>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+            <app-erp-input label="Class" type="select" [selectData]="classStud" formControlName="STUD_CLASS"
+                fieldName="STUD_CLASS" [parentForm]="studentDetailsForm">
+            </app-erp-input>
+        </div>
+
+    </div>
+    <div class="row g-3 card-body">
+        <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+            <app-erp-input label="Father name" formControlName="STUD_FATH_NAME" fieldName="STUD_FATH_NAME"
+                [parentForm]="studentDetailsForm">
+            </app-erp-input>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+            <app-erp-input label="Mother name" formControlName="STUD_MTHR_NAME" fieldName="STUD_MTHR_NAME"
+                [parentForm]="studentDetailsForm">
+            </app-erp-input>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+            <app-erp-input label="Gender" type="select" [selectData]="gender" formControlName="STUD_GNDR"
+                fieldName="STUD_GNDR" [parentForm]="studentDetailsForm">
+            </app-erp-input>
+        </div>
+    </div>
+    <div class="row g-3 card-body">
+        <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+            <app-erp-input type="dateTime" label="Date of Birth" formControlName="STUD_DOB" fieldName="STUD_DOB"
+                [parentForm]="studentDetailsForm">
+            </app-erp-input>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+            <app-erp-input label="Caste" formControlName="STUD_CASTE" fieldName="STUD_CASTE"
+                [parentForm]="studentDetailsForm">
+            </app-erp-input>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+            <app-erp-input label="Sub Caste" formControlName="STUD_SUB_CASTE" fieldName="STUD_SUB_CASTE"
+                [parentForm]="studentDetailsForm">
+            </app-erp-input>
+        </div>
+    </div>
+    <div class="row g-3 card-body">
+        <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+            <app-erp-input type="dateTime" label="Community" formControlName="STUD_CMTY" fieldName="STUD_CMTY"
+                [parentForm]="studentDetailsForm">
+            </app-erp-input>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+            <app-erp-input label="Religion" formControlName="STUD_RLIG" fieldName="STUD_RLIG"
+                [parentForm]="studentDetailsForm">
+            </app-erp-input>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+            <app-erp-input label="Nationality" formControlName="STUD_NTLY" fieldName="STUD_NTLY"
+                [parentForm]="studentDetailsForm">
+            </app-erp-input>
+        </div>
+    </div>
+    <div class="row g-3 card-body">
+
+        <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+            <app-erp-input label="Mother Toungue" formControlName="STUD_MTHR_TNGE" fieldName="STUD_MTHR_TNGE"
+                [parentForm]="studentDetailsForm">
+            </app-erp-input>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+            <app-erp-input label="Language Known" formControlName="STUD_LNG_KNWN" fieldName="STUD_LNG_KNWN"
+                [parentForm]="studentDetailsForm">
+            </app-erp-input>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+            <app-erp-input label="Blood Group" formControlName="STUD_BLD_GRUP" fieldName="STUD_BLD_GRUP"
+                [parentForm]="studentDetailsForm">
+            </app-erp-input>
+        </div>
+    </div>
+    <div class="row g-3 card-body">
+        <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+
+            <app-erp-input label="Aadhar Number" [maskPlaceHolder]="'x'" formControlName="STUD_AHAR_NO"
+                [useMaskedInput]="true" maskedString="XXXX - XXXX - XXXX" fieldName="STUD_AHAR_NO"
+                [parentForm]="studentDetailsForm">
+            </app-erp-input>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+            <app-erp-input label="Student EMI Number" formControlName="STUD_EMIS_NO" fieldName="STUD_EMIS_NO"
+                [parentForm]="studentDetailsForm">
+            </app-erp-input>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+            <app-erp-input label="Student Previous School" formControlName="STUD_PREV_SCHL" fieldName="STUD_PREV_SCHL"
+                [parentForm]="studentDetailsForm">
+            </app-erp-input>
+        </div>
+        </div>
+        <div class="row g-3 card-body">
+
+            <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+                <app-erp-input label="Student Discount" formControlName="STUD_DISCOUNT" fieldName="STUD_DISCOUNT"
+                    [parentForm]="studentDetailsForm">
+                </app-erp-input>
+            </div>
+        </div>
+
 </form>

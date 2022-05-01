@@ -1,34 +1,46 @@
-<div class="py-2">
+<div class="py-0">
   <ng-container *ngIf="label">
-    <label
-      [for]="label"
-      class="ps-2 text-capitalize"
-      [ngClass]="formField?.invalid && formField?.touched ? 'text-danger' : ''"
-      >{{ label }}</label
-    >
+    <label [for]="label" class="ps-2 text-capitalize"
+      [ngClass]="formField?.invalid && formField?.touched ? 'text-danger' : ''">{{ label }}</label>
   </ng-container>
+  <ng-container *ngIf="(type === 'text')||(type === 'number') || type === 'tel' ">
+    <input [type]="type" class="form-control rounded-pill shadow border-0" [ngModel]="value" [name]="fieldName"
+      [mask]="maskedString" [id]="label" [disabled]="isDisabled" (input)="onChange($event)" [showMaskTyped]="true"
+      [placeHolderCharacter]="maskPlaceHolder" (blur)="touched()" [placeholder]="label"
+      [ngClass]="formField?.invalid && formField?.touched ? 'border-error' : ''" />
+  </ng-container>
+  <ng-container *ngIf="(type === 'select')">
+    <select class="form-select rounded-pill shadow border-0" [ngModel]="value" [name]="fieldName"
+      (input)="onChange($event)" (blur)="touched()"
+      [ngClass]="formField?.invalid && formField?.touched ? 'border-error' : ''">
+      <option value=""></option>
+      <option *ngFor="let item of selectData" value="{{item?.value}}">
+        {{item?.label}}</option>
+    </select>
+  </ng-container>
+  <ng-container *ngIf="(type === 'dateTime')">
 
-  <input
-    [type]="type"
-    class="form-control rounded-pill shadow border-0"
-    [value]="value"
-    [name]="fieldName"
-    [mask]="maskedString"
-    [id]="label"
-    [disabled]="isDisabled"
-    (input)="onChange($event)"
-    [showMaskTyped]="true" 
-    placeHolderCharacter="-" 
-    (blur)="touched()"
-    [placeholder]="fieldName"
-    [ngClass]="formField?.invalid && formField?.touched ? 'border-error' : ''"
-  />
+    <div class="input-group">
+      <input type="text" mwlFlatpickr [convertModelValue]="true" (input)="onChange($event)" (blur)="touched()"
+        class="form-control w-75 rounded-pill shadow border-0" [allowInput]="true" [(ngModel)]="value"
+        [ngClass]="formField?.invalid && formField?.touched ? 'border-error' : ''" placeholder="YYYY-MM-DD">
+      <span class="input-group-text text-condensed m-0 p-0 bg-transparent border-0 position-relative"
+      
+        style="left:-2.5rem;width:1px; color: #868d96;">
+        <mat-icon [ngClass]="formField?.invalid && formField?.touched ? 'error-text-shadow text-danger' : ''">calendar_month</mat-icon>
+      </span>
+    </div>
+
+
+
+
+  </ng-container>
   <ng-container [ngTemplateOutlet]="appInputError"></ng-container>
 </div>
 
 <ng-template #appInputError>
-  <div class="ps-2">
-   
+  <div class="m-0 p-0 ps-2" style="line-height: 1.2rem;">
+
     <ng-container *ngIf="formField?.invalid && formField?.touched">
       <div class="text-danger small" *ngIf="formField?.hasError('required')">
         * This is a required field.
@@ -53,5 +65,5 @@
       </div>
     </ng-container>
   </div>
-  
+
 </ng-template>

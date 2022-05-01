@@ -1,10 +1,4 @@
-import {
-  ChangeDetectorRef,
-  Component,
-  forwardRef,
-  Input,
-  OnInit,
-} from '@angular/core';
+import { Component, ElementRef, forwardRef, Input, Self } from '@angular/core';
 import {
   ControlValueAccessor,
   FormGroup,
@@ -16,6 +10,7 @@ import {
   AbstractControl,
   ValidationErrors,
 } from '@angular/forms';
+import { ISelectData } from '@shared/models/ISelectData';
 import { MaskService } from 'ngx-mask';
 @Component({
   selector: 'app-erp-input',
@@ -40,18 +35,19 @@ export class ErpInputComponent implements ControlValueAccessor, Validator {
   @Input() label: string = '';
   @Input() parentForm!: FormGroup;
   @Input() fieldName!: string;
-  @Input() type: 'text' | 'number' | 'tel' = 'text';
+  @Input() type: 'text' | 'number' | 'tel' | 'select' | 'dateTime' = 'text';
   @Input() maskedString: string = '';
   @Input() useMaskedInput: boolean = false;
+  @Input() selectData: ISelectData[] = [];
+  @Input() defaultSelectValue: any = '';
+  @Input() maskPlaceHolder: any = '-';
 
-  constructor(private _cdr: ChangeDetectorRef, private mask: MaskService) {}
+
+  inputElement!: ElementRef;
+  constructor(@Self() private mask: MaskService) {}
 
   get formField(): FormControl {
     return this.parentForm?.get(this.fieldName) as FormControl;
-  }
-
-  ngOnInit() {
-    // this.formField.valueChanges.pipe().subscribe((d) => console.log(d));
   }
 
   value: string = '';
@@ -82,21 +78,27 @@ export class ErpInputComponent implements ControlValueAccessor, Validator {
     this.isDisabled = isDisabled;
   }
 
+
   validate(control: AbstractControl): ValidationErrors | null {
-    let valid = true;
-    let d = '';
-    if (this.useMaskedInput) {
-      d = this.mask.applyMask(control.value, this.maskedString);
-      valid = d.length === this.maskedString.length ? true : false;
-    }
-    return valid
-      ? null
-      : {
-          ...(d.length === 0 && { required: true }),
-          ...(d.length > 0 && { maskedInput: true }),
-        };
+    if (this.useMaskedInput) return this.initMaskInputValidator(control); // this will work along with if field required
+    return null;
   }
 
+  initMaskInputValidator(control: AbstractControl): ValidationErrors | null {
+    const data = (): string =>
+      this.mask.applyMask(control.value, this.maskedString);
+      const isRequired = () => control.hasValidator(Validators.required)
+      let temp = {
+        ...data().length === 0 && isRequired() && {required:true},
+        ...((data().length > 0) && (data().length < this.maskedString.length)) && { maskedInput:true},
+      };
+      console.log(temp,control.errors)
+
+      return Object.keys(temp).length === 0 ? null : temp;
+ 
+  }
+
+  /**Look for validator changes */
   registerOnValidatorChange?(fn: () => void): void {
     this.discloseValidatorChange = fn;
   }

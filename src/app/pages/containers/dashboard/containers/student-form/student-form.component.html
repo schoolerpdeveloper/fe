@@ -1,10 +1,14 @@
 <div class="card m-4 shadow border-0 shimmers" style="border-radius: 48px;">
     <div class="card-body">
-        <div class="text-end"><button type="button"
+        <div class="text-end">
+            <button type="button"
                 class="btn-accent-themed border-0 text-white text-condensed rounded-pill px-3 py-1 btn-small small">
-                <span><mat-icon class="my-auto align-middle">chevron_left</mat-icon></span>
+                <span>
+                    <mat-icon class="my-auto align-middle">chevron_left</mat-icon>
+                </span>
                 Back to dashboard
-            </button></div>
+            </button>
+        </div>
     </div>
 
     <div class="card-body">
@@ -14,31 +18,36 @@
                 <ng-template cdkStepLabel>
                     Student Details
                 </ng-template>
-                <div class="card-body"><app-admission-form></app-admission-form></div>
+                <div class="card-body m-0 p-0 animate__animated animate__fadeInUp animate__slow">
+                    <app-admission-form></app-admission-form>
+                </div>
             </cdk-step>
             <cdk-step>
                 <ng-template cdkStepLabel>
                     Parent Details
                 </ng-template>
-                <div class="card-body">This is any content of Parent Details</div>
+                <div class="card-body m-0 p-0 animate__animated animate__fadeInUp animate__slow">This is any content of
+                    Parent Details</div>
             </cdk-step>
             <cdk-step>
                 <ng-template cdkStepLabel>
                     Sibling Details
                 </ng-template>
-                <div class="card-body">This is any content of Sibling Details</div>
+                <div class="card-body m-0 p-0 animate__animated animate__fadeInUp animate__slow"> This is any content of
+                    Sibling Details</div>
             </cdk-step>
             <cdk-step>
                 <ng-template cdkStepLabel>
                     Transport Details
                 </ng-template>
-                <div class="card-body">This is any content of Transport Details</div>
+                <div class="card-body m-0 p-0 animate__animated animate__fadeInUp animate__slow">This is any content of Transport Details</div>
             </cdk-step>
             <cdk-step>
                 <ng-template cdkStepLabel>
                     Fees Details
                 </ng-template>
-                <div class="card-body">This is any content of Fees Details</div>
+                <div class="card-body m-0 p-0 animate__animated animate__fadeInUp animate__slow"> This is any content of
+                    Fees Details</div>
             </cdk-step>
 
         </app-stepper>
