@@ -10,6 +10,10 @@ import { MainDashboardComponent } from './containers/main-dashboard/main-dashboa
 import { SharedModule } from '@shared/shared.module';
 import { AdmissionFormComponent } from './components/admission-form/admission-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ParentFormComponent } from './components/parent-form/parent-form.component';
+import { SibilingFormComponent} from './components/sibiling-form/sibiling-form.component';
+import { TransportFormComponent } from './components/transport-form/transport-form.component';
+import { FeesFormComponent } from './components/fees-form/fees-form.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +22,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     StudentFormComponent,
     MainDashboardComponent,
     AdmissionFormComponent,
+    ParentFormComponent,
+    SibilingFormComponent,
+    TransportFormComponent,
+    FeesFormComponent,
   ],
   imports: [CommonModule, DashboardRoutingModule, SharedModule,ReactiveFormsModule],
 })

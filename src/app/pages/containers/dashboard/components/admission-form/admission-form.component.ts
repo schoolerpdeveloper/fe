@@ -12,12 +12,14 @@ import {
 })
 export class AdmissionFormComponent implements OnInit {
   studentDetailsForm!: FormGroup;
-  classStud = new Array(10).fill(0).map((i,ind)=>({label:`class ${ind+1}`,value:`${ind+1}`}));
-  gender = ['Male','Female','Other'].map(i=>({label:i,value:i}))
+  classStud = new Array(10)
+    .fill(0)
+    .map((i, ind) => ({ label: `class ${ind + 1}`, value: `${ind + 1}` }));
+  gender = ['Male', 'Female', 'Other'].map((i) => ({ label: i, value: i }));
 
-  studentDetailModel!:IStudentDetails;
+  studentDetailModel!: IStudentDetails;
   constructor(private fb: FormBuilder) {
-    this.studentDetailModel = {...studentDetailsModel,...{STUD_CLASS:'5',STUD_FIRST_NAME:'Srini',STUD_LAST_NAME:'Ragu'}};
+    this.studentDetailModel = { ...studentDetailsModel };
   }
 
   ngOnInit(): void {
@@ -26,7 +28,6 @@ export class AdmissionFormComponent implements OnInit {
 
   initStudentDetailsForm() {
     let studentDetails: IStudentDetails = { ...this.studentDetailModel };
-    
     this.studentDetailsForm = this.fb.group({
       ADMIN_DATE: [studentDetails.ADMIN_DATE, [Validators.required]],
       ADMN_NO: [studentDetails.ADMN_NO, [Validators.required]],
@@ -46,12 +47,10 @@ export class AdmissionFormComponent implements OnInit {
       STUD_LNG_KNWN: [studentDetails.STUD_LNG_KNWN, [Validators.required]],
       STUD_BLD_GRUP: [studentDetails.STUD_BLD_GRUP, [Validators.required]],
       STUD_AHAR_NO: [studentDetails.STUD_AHAR_NO, [Validators.required]],
-      STUD_EMIS_NO:  [studentDetails.STUD_EMIS_NO, [Validators.required]],
+      STUD_EMIS_NO: [studentDetails.STUD_EMIS_NO, [Validators.required]],
       STUD_PREV_SCHL: [studentDetails.STUD_PREV_SCHL, [Validators.required]],
       STUD_DISCOUNT: [studentDetails.STUD_DISCOUNT, [Validators.required]],
       STUD_IS_ACTIVE: [studentDetails.STUD_DISCOUNT, [Validators.required]],
-      // CRET_TS: null,
-      // LAST_UPDT_TS: null,
     });
   }
 }

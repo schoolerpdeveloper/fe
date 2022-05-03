@@ -1,0 +1,21 @@
+<p>sibiling-form works!</p>
+<form [formGroup]="sibilingDetailsForm" class="card border-0 mt-4">
+    <div class="row g-3 card-body">
+        <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+
+            <app-erp-input label="Sibiling Admission Number" formControlName="SBLN_ADMN_NO" fieldName="ADMN_NO"
+                [parentForm]="sibilingDetailsForm">
+            </app-erp-input>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+            <app-erp-input label="Sibiling Relation" type="select" [selectData]="sibling" formControlName="SBLN_RELA"
+                fieldName="SBLN_RELA" [parentForm]="sibilingDetailsForm">
+            </app-erp-input>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+            <app-erp-input label="sibiling Class" type="select" [selectData]="classStud" formControlName="SBLN_CLASS"
+                fieldName="SBLN_CLASS" [parentForm]="sibilingDetailsForm">
+            </app-erp-input>
+        </div>
+    </div>
+</form>
