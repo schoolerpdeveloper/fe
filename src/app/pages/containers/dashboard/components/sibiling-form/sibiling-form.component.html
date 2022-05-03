@@ -1,9 +1,14 @@
-<p>sibiling-form works!</p>
+
 <form [formGroup]="sibilingDetailsForm" class="card border-0 mt-4">
     <div class="row g-3 card-body">
         <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+            <label>Student Admission</label>
+            <app-student-search [ngSelectData]="_studentDetails" [searchDisabled]="false"
+                (selectedValueEvent)="captureAdmissionNo($event)"></app-student-search>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-xl-4">
 
-            <app-erp-input label="Sibiling Admission Number" formControlName="SBLN_ADMN_NO" fieldName="ADMN_NO"
+            <app-erp-input label="Sibiling Admission Number" formControlName="SBLN_ADMN_NO" fieldName="SBLN_ADMN_NO"
                 [parentForm]="sibilingDetailsForm">
             </app-erp-input>
         </div>
@@ -12,10 +17,34 @@
                 fieldName="SBLN_RELA" [parentForm]="sibilingDetailsForm">
             </app-erp-input>
         </div>
-        <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+        <!-- <div class="col-12 col-sm-12 col-md-12 col-xl-4">
             <app-erp-input label="sibiling Class" type="select" [selectData]="classStud" formControlName="SBLN_CLASS"
                 fieldName="SBLN_CLASS" [parentForm]="sibilingDetailsForm">
             </app-erp-input>
+        </div> -->
+    </div>
+    <div class="row g-3 card-body">
+        <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+            <app-erp-input label="Sibiling Name" type="text" formControlName="SBLN_NAME" fieldName="SBLN_NAME"
+                [parentForm]="sibilingDetailsForm">
+            </app-erp-input>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+            <app-erp-input label="Sibiling Class" type="select" [selectData]="classStud" formControlName="SBLN_CLASS"
+                fieldName="SBLN_CLASS" [parentForm]="sibilingDetailsForm">
+            </app-erp-input>
+
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+            <app-erp-input label="Sibiling DOB" type="dateTime" formControlName="SBLN_DOB" fieldName="SBLN_DOB"
+                [parentForm]="sibilingDetailsForm">
+            </app-erp-input>
         </div>
     </div>
+    <div class="row g-3 card-body">
+        <app-erp-input label="Sibiling Comments" type="textarea" formControlName="SBLN_COMMENTS" fieldName="SBLN_COMMENTS"
+            [parentForm]="sibilingDetailsForm">
+        </app-erp-input>
+    </div>
+
 </form>

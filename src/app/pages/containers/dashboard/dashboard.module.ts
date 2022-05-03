@@ -26,6 +26,8 @@ import { FeesFormComponent } from './components/fees-form/fees-form.component';
     SibilingFormComponent,
     TransportFormComponent,
     FeesFormComponent,
+    
+    
   ],
   imports: [CommonModule, DashboardRoutingModule, SharedModule,ReactiveFormsModule],
 })

@@ -7,4 +7,8 @@ export const siblingDetailsModel: ISiblingDetails = {
   SBLN_ADMN_NO: null,
   SBLN_DISCO: null,
   LAST_UPDT_TS: null,
+  SBLN_NAME:null,
+  SBLN_DOB:null,
+  SBLN_CLASS:null,
+  SBLN_COMMENTS:null
 };

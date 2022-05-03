@@ -1,0 +1,40 @@
+
+@import "~@ng-select/ng-select/themes/default.theme.css";
+:host ::ng-deep {
+  ng-select{
+    line-height: 2.5rem !important;
+    font-family: 'ERP Condensed' !important;
+    box-shadow:  0 .5rem 1rem rgba(0,0,0,.15)!important;
+    border-radius: 10rem;
+
+  }
+  .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-input{
+    width: 99%;
+
+  }
+  .ng-select .ng-clear-wrapper{
+    width: 35px;
+  }
+  ng-dropdown-panel{
+    background: white;
+    padding: 0.5rem
+  }
+
+  app-list{
+    width: calc(100% - 0.8rem);
+  }
+  .ng-select.searchDisabled .ng-select-container .ng-value-container .ng-input > input {
+    background: #e9ecef
+  }
+
+  .ng-select .ng-select-container .ng-value-container .ng-input > input {
+    line-height: 2.2rem;
+    width: calc(100% - 0.8rem);
+    // border: 1px solid rgb(219, 219, 219);
+    // border-radius: 10rem;
+    padding-left: 0.9rem;
+  }
+  .ng-value-container .ng-value{
+    padding-left: 0.9rem;
+  }
+}

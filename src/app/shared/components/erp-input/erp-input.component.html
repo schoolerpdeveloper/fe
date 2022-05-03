@@ -3,10 +3,10 @@
     <label [for]="label" class="ps-2 text-capitalize"
       [ngClass]="formField?.invalid && formField?.touched ? 'text-danger' : ''">{{ label }}</label>
   </ng-container>
-  <ng-container *ngIf="(type === 'text')||(type === 'number') || type === 'tel' ">
+  <ng-container *ngIf="(type === 'text')||(type === 'number') || (type === 'tel')">
     <input [type]="type" class="form-control rounded-pill shadow border-0" [ngModel]="value" [name]="fieldName"
-      [mask]="maskedString" [id]="label" [disabled]="isDisabled" (input)="onChange($event)" [showMaskTyped]="true"
-      [placeHolderCharacter]="maskPlaceHolder" (blur)="touched()" [placeholder]="label"
+      [prefix]="prefix" [mask]="maskedString" [id]="label" [disabled]="isDisabled" (input)="onChange($event)"
+      [showMaskTyped]="true" [placeHolderCharacter]="maskPlaceHolder" (blur)="touched()" [placeholder]="label"
       [ngClass]="formField?.invalid && formField?.touched ? 'border-error' : ''" />
   </ng-container>
   <ng-container *ngIf="(type === 'select')">
@@ -14,7 +14,7 @@
       (input)="onChange($event)" (blur)="touched()"
       [ngClass]="formField?.invalid && formField?.touched ? 'border-error' : ''">
       <option value=""></option>
-      <option *ngFor="let item of selectData" value="{{item?.value}}">
+      <option *ngFor="let item of _selectData" value="{{item?.value}}">
         {{item?.label}}</option>
     </select>
   </ng-container>
@@ -25,15 +25,21 @@
         class="form-control w-75 rounded-pill shadow border-0" [allowInput]="true" [(ngModel)]="value"
         [ngClass]="formField?.invalid && formField?.touched ? 'border-error' : ''" placeholder="YYYY-MM-DD">
       <span class="input-group-text text-condensed m-0 p-0 bg-transparent border-0 position-relative"
-      
         style="left:-2.5rem;width:1px; color: #868d96;">
-        <mat-icon [ngClass]="formField?.invalid && formField?.touched ? 'error-text-shadow text-danger' : ''">calendar_month</mat-icon>
+        <mat-icon [ngClass]="formField?.invalid && formField?.touched ? 'error-text-shadow text-danger' : ''">
+          calendar_month</mat-icon>
       </span>
     </div>
 
 
 
 
+  </ng-container>
+  <ng-container *ngIf="(type === 'textarea')">
+    <textarea class="form-control rounded-pill shadow border-0" [ngModel]="value" [name]="fieldName"
+      [mask]="maskedString" [id]="label" [disabled]="isDisabled" (input)="onChange($event)" [showMaskTyped]="true"
+      [placeHolderCharacter]="maskPlaceHolder" (blur)="touched()" [placeholder]="label"
+      [ngClass]="formField?.invalid && formField?.touched ? 'border-error' : ''"></textarea>
   </ng-container>
   <ng-container [ngTemplateOutlet]="appInputError"></ng-container>
 </div>

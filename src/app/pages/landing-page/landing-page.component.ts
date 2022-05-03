@@ -2,7 +2,9 @@ import { ArrayDataSource } from '@angular/cdk/collections';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { RouterEnum } from 'src/app/enums/router.enum';
+import { loadPagess, loadStudents } from '../pages_store/actions/pages.actions';
 import { ExampleFlatNode, TREE_DATA } from './menu';
 
 @Component({
@@ -14,10 +16,11 @@ export class LandingPageComponent implements OnInit {
   sideNavToggleCommander: boolean = true;
   currentSelectedNode: any = {};
 
-  constructor(private router: Router) {}
+  constructor(private router: Router,private store:Store) {}
 
   ngOnInit(): void {
     this.initToDashboard();
+    this.initAllStudentDetails();
   }
 
   initToDashboard() {
@@ -64,5 +67,9 @@ export class LandingPageComponent implements OnInit {
       parent = this.getParentNode(parent);
     }
     return true;
+  }
+
+  initAllStudentDetails(){
+    this.store.dispatch((loadStudents()))
   }
 }

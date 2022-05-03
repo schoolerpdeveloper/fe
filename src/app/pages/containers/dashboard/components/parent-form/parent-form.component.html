@@ -1,1 +1,87 @@
-<p>parent-form works!</p>
+<form [formGroup]="parentDetailsForm" class="card border-0 mt-4">
+    <div class="row g-3 card-body">
+        <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+            <label>Student Admission</label>
+            <app-student-search [ngSelectData]="_studentDetails" [searchDisabled]="false"
+                (selectedValueEvent)="captureAdmissionNo($event)"></app-student-search>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+            <app-erp-input label="PRNT_CD" formControlName="PRNT_CD" fieldName="PRNT_CD"
+                [parentForm]="parentDetailsForm">
+            </app-erp-input>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+            <app-erp-input label="Parent Education" formControlName="PRNT_EDUC" fieldName="PRNT_EDUC"
+                [parentForm]="parentDetailsForm">
+            </app-erp-input>
+        </div>
+    </div>
+    <div class="row g-3 card-body">
+        <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+            <app-erp-input label="Parent Occupation" type="select" [selectData]="occupation" formControlName="PRNT_OCCU"
+                fieldName="PRNT_OCCU" [parentForm]="parentDetailsForm">
+            </app-erp-input>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+            <app-erp-input label="Parent Aadhar Number" formControlName="PRNT_AADH_NO" [maskPlaceHolder]="'x'"
+                [useMaskedInput]="true" maskedString="XXXX - XXXX - XXXX" fieldName="PRNT_AADH_NO"
+                [parentForm]="parentDetailsForm">
+            </app-erp-input>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+            <app-erp-input label="Parent Mobile Number" type="tel" formControlName="PRNT_PHNE_NO"
+                [maskPlaceHolder]="'-'" [prefix]="'+91'" [useMaskedInput]="true" maskedString="(XXX) X XXX XXX"
+                fieldName="PRNT_PHNE_NO" [parentForm]="parentDetailsForm">
+            </app-erp-input>
+        </div>
+    </div>
+</form>
+<form [formGroup]="parentAddressForm" class="card border-0 mt-4">
+    <div class="row g-3 card-body">
+        <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+
+            <app-erp-input label="Address 1" formControlName="PRNT_ADRS_ADD1" fieldName="PRNT_ADRS_ADD1"
+                [parentForm]="parentAddressForm">
+            </app-erp-input>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+
+            <app-erp-input label="Address 2" formControlName="PRNT_ADRS_ADD2" fieldName="PRNT_ADRS_ADD2"
+                [parentForm]="parentAddressForm">
+            </app-erp-input>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+
+            <app-erp-input label="Address 3" formControlName="PRNT_ADRS_ADD3" fieldName="PRNT_ADRS_ADD3"
+                [parentForm]="parentAddressForm">
+            </app-erp-input>
+        </div>
+    </div>
+    <div class="row g-3 card-body">
+        <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+
+            <app-erp-input label="City" formControlName="PRNT_ADRS_ADD4" fieldName="PRNT_ADRS_ADD4"
+                [parentForm]="parentAddressForm">
+            </app-erp-input>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+
+            <app-erp-input label="District" formControlName="PRNT_ADRS_DIST" fieldName="PRNT_ADRS_DIST"
+                [parentForm]="parentAddressForm">
+            </app-erp-input>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+            <app-erp-input label="District" formControlName="PRNT_ADRS_ADD5" fieldName="PRNT_ADRS_ADD5"
+                [parentForm]="parentAddressForm">
+            </app-erp-input>
+        </div>
+    </div>
+    <div class="row g-3 card-body">
+        <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+
+            <app-erp-input label="City" formControlName="PRNT_ADRS_PSTL_CD" fieldName="PRNT_ADRS_PSTL_CD"
+                [parentForm]="parentAddressForm">
+            </app-erp-input>
+        </div>
+</div>
+</form>

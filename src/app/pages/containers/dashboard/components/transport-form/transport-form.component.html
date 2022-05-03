@@ -1,1 +1,49 @@
-<p>transport-form works!</p>
+<form [formGroup]="transportDetailsForm" class="card border-0 mt-4">
+    <div class="row g-3 card-body">
+        <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+            <label>Student Admission</label>
+            <app-student-search [ngSelectData]="_studentDetails" [searchDisabled]="false"
+                (selectedValueEvent)="captureAdmissionNo($event)"></app-student-search>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+            <app-erp-input label="BUS_RUTE_CD" formControlName="BUS_RUTE_CD" fieldName="BUS_RUTE_CD"
+                [parentForm]="transportDetailsForm">
+            </app-erp-input>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+            <app-erp-input label="Route Number" formControlName="BUS_RUTE_NO" fieldName="BUS_RUTE_NO"
+                [parentForm]="transportDetailsForm">
+            </app-erp-input>
+        </div>
+    </div>
+    <div class="row g-3 card-body">
+        <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+            <app-erp-input label="Driver Name" formControlName="BUS_RUTE_DRIVER_NAME" fieldName="BUS_RUTE_DRIVER_NAME"
+                [parentForm]="transportDetailsForm">
+            </app-erp-input>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+            <app-erp-input label="Driver Number" formControlName="BUS_RUTE_DRIVER_NO" fieldName="BUS_RUTE_DRIVER_NO"
+                type="tel" [maskPlaceHolder]="'-'" [prefix]="'+91'" [useMaskedInput]="true"
+                maskedString="(XXX) X XXX XXX" [parentForm]="transportDetailsForm">
+            </app-erp-input>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+            <app-erp-input label="BUS_RUTE_INCH_NAME" formControlName="BUS_RUTE_INCH_NAME" fieldName="BUS_RUTE_INCH_NAME"
+                [parentForm]="transportDetailsForm">
+            </app-erp-input>
+        </div>
+    </div>
+    <div class="row g-3 card-body">
+        <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+            <app-erp-input label="BUS_RUTE_INCH_NO" formControlName="BUS_RUTE_INCH_NO" fieldName="BUS_RUTE_INCH_NO"
+                [parentForm]="transportDetailsForm">
+            </app-erp-input>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+            <app-erp-input label="Insurance Details" formControlName="BUS_RUTE_INS_DTL" fieldName="BUS_RUTE_INS_DTL"
+                [parentForm]="transportDetailsForm">
+            </app-erp-input>
+        </div>
+    </div>
+</form>

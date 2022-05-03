@@ -22,6 +22,11 @@ import { StepperComponent } from './components/stepper/stepper.component';
 import { ErpInputComponent } from './components/erp-input/erp-input.component';
 import { ErpFieldErrorComponent } from './components/erp-field-error/erp-field-error.component';
 import { FlatpickrModule } from 'angularx-flatpickr';
+import { HttpClientModule } from '@angular/common/http';
+import { StudentSearchComponent } from './components/student-search/student-search.component';
+import { ListComponent } from './components/list/list.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { NgOptionHighlightModule } from '@ng-select/ng-option-highlight';
 const maskConfigFunction: () => Partial<IConfig> = () => {
   return {
     validation: false,
@@ -45,15 +50,19 @@ const SHARED_MODS = [
   MatMenuModule,
   MatStepperModule,
   FormsModule,
+  HttpClientModule,
   CdkStepperModule,
+  NgSelectModule,
+  NgOptionHighlightModule,
   NgxMaskModule.forRoot(),
   HotToastModule.forRoot(),
+  ReactiveFormsModule,
   FullCalendarModule,
   CdkTreeModule,
   FlatpickrModule.forRoot(),
 ];
 
-const SHARED_DECL = [DebounceDirective,StepperComponent,ErpInputComponent, ErpFieldErrorComponent];
+const SHARED_DECL = [DebounceDirective,StepperComponent,ErpInputComponent, ErpFieldErrorComponent,StudentSearchComponent,ListComponent];
 
 @NgModule({
   declarations: [...SHARED_DECL],

@@ -1,0 +1,10 @@
+<ng-select [ngClass]="_searchDisabled ? 'searchDisabled' : ''" [items]="_studentDetails" [formControl]="myControl"
+(change)="captureSelected($event)" [virtualScroll]="true" bindLabel="ADMN_NO" bindValue="ADMN_NO">
+
+    <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
+        <div class="my-2">
+            <app-list [data]="item" [listConf]="listconfig" [searchTermValue]="search"></app-list>
+        </div>
+    </ng-template>
+
+</ng-select>

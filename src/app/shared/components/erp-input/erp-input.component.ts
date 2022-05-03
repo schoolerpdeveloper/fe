@@ -35,12 +35,16 @@ export class ErpInputComponent implements ControlValueAccessor, Validator {
   @Input() label: string = '';
   @Input() parentForm!: FormGroup;
   @Input() fieldName!: string;
-  @Input() type: 'text' | 'number' | 'tel' | 'select' | 'dateTime' = 'text';
+  @Input() type: 'text' | 'number' | 'tel' | 'select' | 'dateTime' | 'textarea' = 'text';
   @Input() maskedString: string = '';
   @Input() useMaskedInput: boolean = false;
-  @Input() selectData: ISelectData[] = [];
+  public _selectData: ISelectData[] =[];
+  @Input() set selectData (value: ISelectData[]){
+    this._selectData = value ? value : []
+  }
   @Input() defaultSelectValue: any = '';
   @Input() maskPlaceHolder: any = '-';
+  @Input() prefix:string=''
 
 
   inputElement!: ElementRef;
@@ -51,17 +55,19 @@ export class ErpInputComponent implements ControlValueAccessor, Validator {
   }
 
   value: string = '';
+ 
 
   changed(value: any) {} // Called on a value change
   touched() {} // Called if you care if the form was touched
   discloseValidatorChange = () => {}; // Called on a validator change or re-validation;
   isDisabled!: boolean;
 
-  onChange(event: Event) {
+  onChange(event: any) {
     let value: string = '';
-    value = (<HTMLInputElement>event?.target)?.value
-      ? (<HTMLInputElement>event?.target)?.value
-      : '';
+    value = event?.target?.value ? event.target.value : ''
+    // value = (<HTMLInputElement | HTMLSelectElement>event?.target)?.value
+    //   ? (<HTMLInputElement | HTMLSelectElement>event?.target)?.value
+    //   : '';
     this.changed(value);
     // this._cdr.markForCheck()
   }

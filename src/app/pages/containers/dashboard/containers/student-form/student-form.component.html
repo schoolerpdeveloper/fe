@@ -27,16 +27,17 @@
                     Parent Details
                 </ng-template>
                 <div class="card-body m-0 p-0 animate__animated animate__fadeInUp animate__slow">
-                    This is any content of
-                    Parent Details
+
+                    <app-parent-form [_studentDetails]="loadStudentDetails"></app-parent-form>
+
                 </div>
             </cdk-step>
             <cdk-step>
                 <ng-template cdkStepLabel>
                     Sibling Details
                 </ng-template>
-                <div class="card-body m-0 p-0 animate__animated animate__fadeInUp animate__slow"> 
-                    <app-sibiling-form></app-sibiling-form>
+                <div class="card-body m-0 p-0 animate__animated animate__fadeInUp animate__slow">
+                    <app-sibiling-form [_studentDetails]="loadStudentDetails"></app-sibiling-form>
 
                 </div>
             </cdk-step>
@@ -44,14 +45,19 @@
                 <ng-template cdkStepLabel>
                     Transport Details
                 </ng-template>
-                <div class="card-body m-0 p-0 animate__animated animate__fadeInUp animate__slow">This is any content of Transport Details</div>
+                <div class="card-body m-0 p-0 animate__animated animate__fadeInUp animate__slow">
+                    <app-transport-form [_studentDetails]="loadStudentDetails"></app-transport-form>
+
+                </div>
             </cdk-step>
             <cdk-step>
                 <ng-template cdkStepLabel>
                     Fees Details
                 </ng-template>
-                <div class="card-body m-0 p-0 animate__animated animate__fadeInUp animate__slow"> This is any content of
-                    Fees Details</div>
+                <div class="card-body m-0 p-0 animate__animated animate__fadeInUp animate__slow">
+                    <app-fees-form [_studentDetails]="loadStudentDetails"></app-fees-form>
+                    
+                </div>
             </cdk-step>
 
         </app-stepper>
