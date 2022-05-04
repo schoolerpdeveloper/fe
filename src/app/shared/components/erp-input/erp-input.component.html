@@ -7,7 +7,8 @@
     <input [type]="type" class="form-control rounded-pill shadow border-0" [ngModel]="value" [name]="fieldName"
       [prefix]="prefix" [mask]="maskedString" [id]="label" [disabled]="isDisabled" (input)="onChange($event)"
       [showMaskTyped]="true" [placeHolderCharacter]="maskPlaceHolder" (blur)="touched()" [placeholder]="label"
-      [ngClass]="formField?.invalid && formField?.touched ? 'border-error' : ''" />
+      [ngClass]="{'border-error' :formField?.invalid && formField?.touched,'maskPlaceHolderStyle' :useMaskedInput,'maskedFieldDataPlaced':maskedFieldDataPlaced }" />
+    <!-- [ngClass]="useMaskedInput ? 'maskPlaceHolderStyle' :''" -->
   </ng-container>
   <ng-container *ngIf="(type === 'select')">
     <select class="form-select rounded-pill shadow border-0" [ngModel]="value" [name]="fieldName"

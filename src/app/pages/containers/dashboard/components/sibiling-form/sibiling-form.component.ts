@@ -31,17 +31,17 @@ export class SibilingFormComponent implements OnInit {
   }
 
   initSibilingDetailsForm() {
-    let studentDetails: ISiblingDetails = { ...this.sibilingDetailModel };
+    let sibilingDetail: ISiblingDetails = { ...this.sibilingDetailModel };
     this.sibilingDetailsForm = this.fb.group({
       // ID: ['',[Validators.required]],
-      ADMN_NO: ['', []],
-      SBLN_RELA: ['', []],
-      SBLN_NAME: ['', []],
-      SBLN_ADMN_NO: ['', []],
-      SBLN_DISCO: ['', []],
-      SBLN_DOB: ['', []],
-      SBLN_CLASS: ['', []],
-      SBLN_COMMENTS: ['', []],
+      ADMN_NO: [sibilingDetail.ADMN_NO, []],
+      SBLN_RELA: [sibilingDetail.SBLN_RELA, []],
+      SBLN_NAME: [sibilingDetail.SBLN_NAME, []],
+      SBLN_ADMN_NO: [sibilingDetail.SBLN_ADMN_NO, []],
+      SBLN_DISCO: [sibilingDetail.SBLN_DISCO, []],
+      SBLN_DOB: [sibilingDetail.SBLN_DOB, []],
+      SBLN_CLASS: [sibilingDetail.SBLN_CLASS, []],
+      SBLN_COMMENTS: [sibilingDetail.SBLN_COMMENTS, []],
     });
   }
   captureAdmissionNo(e: any) {

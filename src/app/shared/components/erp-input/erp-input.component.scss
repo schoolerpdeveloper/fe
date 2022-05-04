@@ -1,20 +1,30 @@
 .border-error {
   box-shadow: 0 0 5px 0.25rem rgba(213, 88, 57, 0.25) !important;
 }
-.error-text-shadow{
+.error-text-shadow {
   text-shadow: 1px 1px rgba(213, 88, 57, 0.25) !important;
 }
 
-label,.label {
-
+label,
+.label {
   font-size: 0.9rem;
   text-align: left;
-  font-family:ERP Lighter;
+  font-family: ERP Lighter;
   letter-spacing: 0px;
   height: 1rem;
   color: #868d96;
 }
 
-textarea.rounded-pill{
+textarea.rounded-pill {
   border-radius: 1rem !important;
+}
+input{
+  color:#616161;
+}
+.border-error.maskPlaceHolderStyle {
+  color: var(--bs-danger);
+}
+
+.border-error.maskPlaceHolderStyle.maskedFieldDataPlaced {
+  color: unset;
 }

@@ -1,18 +1,20 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Self } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AutoUnSubscribeService } from '@core/services/auto-unsubscribe/auto-un-subscribe.service';
 import { Store } from '@ngrx/store';
 import {
   IParentDetails,
   parentDetailsModel,
 } from '@shared/models/parentDetails';
 import { IStudentDetails } from '@shared/models/studentDetails';
-import { tap } from 'rxjs';
+import { takeUntil, tap } from 'rxjs';
 import { selectAllStudents } from 'src/app/pages/pages_store/selectors/pages.selectors';
 
 @Component({
   selector: 'app-parent-form',
   templateUrl: './parent-form.component.html',
   styleUrls: ['./parent-form.component.scss'],
+  viewProviders:[AutoUnSubscribeService]
 })
 export class ParentFormComponent implements OnInit {
   parentDetailsForm!: FormGroup;
@@ -30,24 +32,26 @@ export class ParentFormComponent implements OnInit {
     'others',
   ].map((i) => ({ label: i, value: i }));
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,@Self() private destroy$:AutoUnSubscribeService) {
     this.parentDetailModel = { ...parentDetailsModel };
   }
 
   ngOnInit(): void {
     this.initParentAddressForm();
     this.initParentForm();
-  }
+    this.parentDetailsForm.valueChanges.pipe(takeUntil(this.destroy$))
+    }
 
   initParentForm() {
+    let parentDetails = { ...this.parentDetailModel };
     this.parentDetailsForm = this.fb.group({
-      ADMN_NO: ['', []],
-      PRNT_CD: ['', []],
-      PRNT_EDUC: ['', []],
-      PRNT_OCCU: ['', []],
-      PRNT_AADH_NO: ['', [Validators.required]],
-      PRNT_PHNE_NO: ['', [Validators.required]],
-      PRNT_EMAIL_ID: ['', []],
+      ADMN_NO: [parentDetails.ADMN_NO, []],
+      PRNT_CD: [parentDetails.PRNT_CD, []],
+      PRNT_EDUC: [parentDetails.PRNT_EDUC, []],
+      PRNT_OCCU: [parentDetails.PRNT_OCCU, []],
+      PRNT_AADH_NO: [parentDetails.PRNT_AADH_NO, [Validators.required]],
+      PRNT_PHNE_NO: [parentDetails.PRNT_PHNE_NO, [Validators.required]],
+      PRNT_EMAIL_ID: [parentDetails.PRNT_EMAIL_ID, []],
     });
   }
   initParentAddressForm() {

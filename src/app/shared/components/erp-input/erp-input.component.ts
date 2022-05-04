@@ -45,6 +45,7 @@ export class ErpInputComponent implements ControlValueAccessor, Validator {
   @Input() defaultSelectValue: any = '';
   @Input() maskPlaceHolder: any = '-';
   @Input() prefix:string=''
+  maskedFieldDataPlaced:boolean = false;
 
 
   inputElement!: ElementRef;
@@ -94,11 +95,11 @@ export class ErpInputComponent implements ControlValueAccessor, Validator {
     const data = (): string =>
       this.mask.applyMask(control.value, this.maskedString);
       const isRequired = () => control.hasValidator(Validators.required)
+      this.maskedFieldDataPlaced = data().length ? true : false;
       let temp = {
         ...data().length === 0 && isRequired() && {required:true},
         ...((data().length > 0) && (data().length < this.maskedString.length)) && { maskedInput:true},
       };
-      console.log(temp,control.errors)
 
       return Object.keys(temp).length === 0 ? null : temp;
  
