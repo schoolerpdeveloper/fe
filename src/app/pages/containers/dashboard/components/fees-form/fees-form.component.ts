@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { feesDetailModel, IFeesDeatils } from '@shared/models/feesDetails';
 import { IStudentDetails } from '@shared/models/studentDetails';
@@ -7,6 +7,7 @@ import { IStudentDetails } from '@shared/models/studentDetails';
   selector: 'app-fees-form',
   templateUrl: './fees-form.component.html',
   styleUrls: ['./fees-form.component.scss'],
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class FeesFormComponent implements OnInit {
   feesFormModel: IFeesDeatils;

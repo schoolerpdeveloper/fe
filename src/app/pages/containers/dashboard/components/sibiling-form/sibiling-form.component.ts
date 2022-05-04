@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
   ISiblingDetails,
@@ -10,6 +10,8 @@ import { IStudentDetails } from '@shared/models/studentDetails';
   selector: 'app-sibiling-form',
   templateUrl: './sibiling-form.component.html',
   styleUrls: ['./sibiling-form.component.scss'],
+  changeDetection:ChangeDetectionStrategy.OnPush
+
 })
 export class SibilingFormComponent implements OnInit {
   sibilingDetailsForm!: FormGroup;

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
   IStudentDetails,
@@ -9,6 +9,7 @@ import {
   selector: 'app-admission-form',
   templateUrl: './admission-form.component.html',
   styleUrls: ['./admission-form.component.scss'],
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class AdmissionFormComponent implements OnInit {
   studentDetailsForm!: FormGroup;

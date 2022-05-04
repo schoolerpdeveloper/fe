@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { IStudentDetails } from '@shared/models/studentDetails';
 import {
@@ -10,6 +10,7 @@ import {
   selector: 'app-transport-form',
   templateUrl: './transport-form.component.html',
   styleUrls: ['./transport-form.component.scss'],
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class TransportFormComponent implements OnInit {
   transportDetailsForm!: FormGroup;

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Self } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit, Self } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AutoUnSubscribeService } from '@core/services/auto-unsubscribe/auto-un-subscribe.service';
 import { Store } from '@ngrx/store';
@@ -14,7 +14,9 @@ import { selectAllStudents } from 'src/app/pages/pages_store/selectors/pages.sel
   selector: 'app-parent-form',
   templateUrl: './parent-form.component.html',
   styleUrls: ['./parent-form.component.scss'],
-  viewProviders:[AutoUnSubscribeService]
+  viewProviders:[AutoUnSubscribeService],
+  changeDetection:ChangeDetectionStrategy.OnPush
+
 })
 export class ParentFormComponent implements OnInit {
   parentDetailsForm!: FormGroup;
