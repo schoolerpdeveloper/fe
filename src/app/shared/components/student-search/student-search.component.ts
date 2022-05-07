@@ -78,7 +78,6 @@ export class StudentSearchComponent {
   public loadNextSetOfRecords() {}
 
   captureSelected($event:any){
-    console.log($event)
     this.selectedValueEvent.emit($event)
   }
 }

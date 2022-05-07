@@ -19,3 +19,9 @@
   background: var(--primary-color) !important;
   color: white;
 }
+
+.main-pages-containers{
+  overflow-y: auto;
+  height: calc(100vh - 5rem);
+  background-color: #F6F6F6 ;
+}

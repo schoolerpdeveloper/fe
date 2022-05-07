@@ -22,6 +22,8 @@ export class StepperComponent extends CdkStepper {
   @Input()
   activeClass = 'active';
 
+  rippleColor:string = 'rgba(150,217,79,0.2)'
+
   selectStepByIndex(index: number): void {
     this.selectedIndex = index;
   }

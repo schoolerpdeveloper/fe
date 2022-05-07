@@ -35,7 +35,7 @@ export class ErpInputComponent implements ControlValueAccessor, Validator {
   @Input() label: string = '';
   @Input() parentForm!: FormGroup;
   @Input() fieldName!: string;
-  @Input() type: 'text' | 'number' | 'tel' | 'select' | 'dateTime' | 'textarea' = 'text';
+  @Input() type: 'text' | 'number' | 'tel' | 'select' | 'dateTime' | 'textarea' |'search' = 'text';
   @Input() maskedString: string = '';
   @Input() useMaskedInput: boolean = false;
   public _selectData: ISelectData[] =[];

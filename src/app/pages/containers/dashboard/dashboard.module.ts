@@ -14,6 +14,7 @@ import { ParentFormComponent } from './components/parent-form/parent-form.compon
 import { SibilingFormComponent} from './components/sibiling-form/sibiling-form.component';
 import { TransportFormComponent } from './components/transport-form/transport-form.component';
 import { FeesFormComponent } from './components/fees-form/fees-form.component';
+import { StudentListCardComponent } from './components/student-list-card/student-list-card.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { FeesFormComponent } from './components/fees-form/fees-form.component';
     SibilingFormComponent,
     TransportFormComponent,
     FeesFormComponent,
+    StudentListCardComponent,
     
     
   ],

@@ -1,0 +1,95 @@
+
+
+.details-card {
+    height: 175px
+}
+.card{
+    background: white;
+    font-family: "ERP condensed";
+    font-weight: 100;
+    letter-spacing: 0.025rem;
+}
+
+.slanting-banner {
+    clip-path: polygon(60px 0, 0 0, 0 60px);
+    height: 85px;
+    width: 60px;
+    border-top-left-radius: var(--custom-border-radius) !important;
+    word-break: break-all;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    // letter-spacing: 0.05rem;
+
+}
+.themed-primary{
+    background: var(--primary-color);
+}
+.themed-accent{
+    background: var(--secondary-accent-color);
+}
+.themed-danger{
+    background: #f50057;
+}
+
+
+.custom-card-rounded {
+    border-radius: var(--custom-border-radius) !important;
+}
+
+.paid-rotate {
+    font-size: 12px;
+    transform-origin: 0 0;
+    transform: rotate(314deg);
+    margin-top: -20px;
+    margin-left: 5px;
+}
+
+.paid-rotate-str {
+    font-size: 12px;
+    transform-origin: 0 0;
+    transform: rotate(314deg);
+    margin-top: 5px;
+    margin-left: -2px;
+    margin-left: 0px;
+    font-family:ERP Condensed;
+    letter-spacing: 0.045rem;
+}
+
+.borderless td,
+.borderless th {
+    border: none;
+    font-size: 12px !important;
+    padding: unset;
+}
+.borderless th {
+    width: 150px;
+    word-break: break-all;
+}
+
+
+[data-letters]:before {
+    content: attr(data-letters);
+    display: inline-block;
+    font-size: 2.25em;
+    width: 50px;
+    height: 50px;
+    line-height: 2 !important;
+    text-transform: capitalize;
+    text-align: center;
+    vertical-align: middle;
+    color: white;
+    border-radius: 50%;
+}
+
+mat-icon {
+
+    padding: 0.5rem 0.5rem;
+    display: inline;
+    color: var(--primary-color);
+}
+
+.details-content {
+    line-height: 1.5;
+    font-size: 12px !important;
+}

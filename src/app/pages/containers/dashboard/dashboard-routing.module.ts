@@ -12,7 +12,7 @@ const routes: Routes = [
     component: DashboardComponent,
     children: [
       { path: RouterEnum.DASHBOARD_MAIN, component: MainDashboardComponent},
-      { path: 'studentManagement', component: StudentManagementComponent },
+      { path: 'student-management', component: StudentManagementComponent },
       // { path: 'admission/:action', component: StudentFormComponent },
       { path: 'admission/new', component: StudentFormComponent },
       { path: 'admission/edit/:id', component: StudentFormComponent },

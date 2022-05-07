@@ -1,27 +1,36 @@
-<!-- <div class="grid-container">
-  <h1 class="mat-h1">Dashboard</h1>
-  <mat-grid-list cols="2" rowHeight="350px">
-    <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
-      <mat-card class="dashboard-card">
-        <mat-card-header>
-          <mat-card-title>
-            {{card.title}}
-            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
-              <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu" xPosition="before">
-              <button mat-menu-item>Expand</button>
-              <button mat-menu-item>Remove</button>
-            </mat-menu>
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="dashboard-card-content">
-          <div>Card Content Here</div>
-        </mat-card-content>
-      </mat-card>
-    </mat-grid-tile>
-  </mat-grid-list>
-</div> -->
+<div class="card m-4 border-0 bg-transparent">
+  <div class="card-body bg-transparent" id="search_and_filters">
+    <div class="d-flex justify-content-between flex-wrap">
+      <div class="px-2">Student Lists</div>
+      <div class="flex-grow-1">
 
-mgmt
+      </div>
+      <div class="">
+        <app-erp-input type="search" class="" [formControl]="search"></app-erp-input>
+      </div>
+    </div>
 
+  </div>
+  <div class="card-body" id="view_change_slot">
+    <div class="d-flex flex-wrap justify-content-end">
+      <div class="my-auto pointer">
+
+        <mat-icon class="fs-6" (click)="viewAs('grid')">dashboard</mat-icon>
+      </div>
+      <div class="my-auto pointer">
+
+        <mat-icon class="fs-4" (click)="viewAs('list')">list</mat-icon>
+      </div>
+    </div>
+  </div>
+  <div class="card-body p-0 m-0">
+    <div class="row">
+      <div class="col g-4" [ngClass]="{'col':currentViewAs === 'grid','col-12':currentViewAs === 'list'}" *ngFor="let grid of grids">
+        <app-student-list-card></app-student-list-card>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer bg-transparent border-0 d-flex justify-content-end">
+    <app-erp-paginator [erpPaging]="initPaginator"></app-erp-paginator>
+  </div>
+</div>

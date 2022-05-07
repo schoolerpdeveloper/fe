@@ -27,6 +27,9 @@ import { StudentSearchComponent } from './components/student-search/student-sear
 import { ListComponent } from './components/list/list.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { NgOptionHighlightModule } from '@ng-select/ng-option-highlight';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatRippleModule} from '@angular/material/core';
+import { ErpPaginatorComponent } from './components/erp-paginator/erp-paginator.component';
 const maskConfigFunction: () => Partial<IConfig> = () => {
   return {
     validation: false,
@@ -52,6 +55,8 @@ const SHARED_MODS = [
   FormsModule,
   HttpClientModule,
   CdkStepperModule,
+  MatPaginatorModule,
+  MatRippleModule,
   NgSelectModule,
   NgOptionHighlightModule,
   NgxMaskModule.forRoot(),
@@ -62,7 +67,7 @@ const SHARED_MODS = [
   FlatpickrModule.forRoot(),
 ];
 
-const SHARED_DECL = [DebounceDirective,StepperComponent,ErpInputComponent, ErpFieldErrorComponent,StudentSearchComponent,ListComponent];
+const SHARED_DECL = [DebounceDirective,StepperComponent,ErpInputComponent, ErpFieldErrorComponent,StudentSearchComponent,ListComponent,ErpPaginatorComponent];
 
 @NgModule({
   declarations: [...SHARED_DECL],
