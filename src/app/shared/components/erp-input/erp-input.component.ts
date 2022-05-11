@@ -35,18 +35,25 @@ export class ErpInputComponent implements ControlValueAccessor, Validator {
   @Input() label: string = '';
   @Input() parentForm!: FormGroup;
   @Input() fieldName!: string;
-  @Input() type: 'text' | 'number' | 'tel' | 'select' | 'dateTime' | 'textarea' |'search' = 'text';
+  @Input() type:
+    | 'text'
+    | 'number'
+    | 'tel'
+    | 'select'
+    | 'dateTime'
+    | 'textarea'
+    | 'search'
+    | 'switch' = 'text';
   @Input() maskedString: string = '';
   @Input() useMaskedInput: boolean = false;
-  public _selectData: ISelectData[] =[];
-  @Input() set selectData (value: ISelectData[]){
-    this._selectData = value ? value : []
+  public _selectData: ISelectData[] = [];
+  @Input() set selectData(value: ISelectData[]) {
+    this._selectData = value ? value : [];
   }
   @Input() defaultSelectValue: any = '';
   @Input() maskPlaceHolder: any = '-';
-  @Input() prefix:string=''
-  maskedFieldDataPlaced:boolean = false;
-
+  @Input() prefix: string = '';
+  maskedFieldDataPlaced: boolean = false;
 
   inputElement!: ElementRef;
   constructor(@Self() private mask: MaskService) {}
@@ -56,7 +63,6 @@ export class ErpInputComponent implements ControlValueAccessor, Validator {
   }
 
   value: string = '';
- 
 
   changed(value: any) {} // Called on a value change
   touched() {} // Called if you care if the form was touched
@@ -65,11 +71,12 @@ export class ErpInputComponent implements ControlValueAccessor, Validator {
 
   onChange(event: any) {
     let value: string = '';
-    value = event?.target?.value ? event.target.value : ''
-    // value = (<HTMLInputElement | HTMLSelectElement>event?.target)?.value
-    //   ? (<HTMLInputElement | HTMLSelectElement>event?.target)?.value
-    //   : '';
-    this.changed(value);
+
+    value = event?.target?.value ? event.target.value : '';
+    value = this.type === 'switch' ? this.value : value;
+
+    this.changed(this.value);
+
     // this._cdr.markForCheck()
   }
   writeValue(value: any): void {
@@ -85,7 +92,6 @@ export class ErpInputComponent implements ControlValueAccessor, Validator {
     this.isDisabled = isDisabled;
   }
 
-
   validate(control: AbstractControl): ValidationErrors | null {
     if (this.useMaskedInput) return this.initMaskInputValidator(control); // this will work along with if field required
     return null;
@@ -94,15 +100,15 @@ export class ErpInputComponent implements ControlValueAccessor, Validator {
   initMaskInputValidator(control: AbstractControl): ValidationErrors | null {
     const data = (): string =>
       this.mask.applyMask(control.value, this.maskedString);
-      const isRequired = () => control.hasValidator(Validators.required)
-      this.maskedFieldDataPlaced = data().length ? true : false;
-      let temp = {
-        ...data().length === 0 && isRequired() && {required:true},
-        ...((data().length > 0) && (data().length < this.maskedString.length)) && { maskedInput:true},
-      };
+    const isRequired = () => control.hasValidator(Validators.required);
+    this.maskedFieldDataPlaced = data().length ? true : false;
+    let temp = {
+      ...(data().length === 0 && isRequired() && { required: true }),
+      ...(data().length > 0 &&
+        data().length < this.maskedString.length && { maskedInput: true }),
+    };
 
-      return Object.keys(temp).length === 0 ? null : temp;
- 
+    return Object.keys(temp).length === 0 ? null : temp;
   }
 
   /**Look for validator changes */

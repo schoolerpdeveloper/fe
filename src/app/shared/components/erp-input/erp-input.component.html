@@ -33,15 +33,17 @@
     </div>
   </ng-container>
   <ng-container *ngIf="(type === 'search')">
-    
+
     <div class="input-group">
-      <input type="text" (input)="onChange($event)" (blur)="touched()" [(ngModel)]="value" class="form-control rounded-pill shadow border-0"
-        placeholder="Search">
+      <input type="text" (input)="onChange($event)" (blur)="touched()" [(ngModel)]="value"
+        class="form-control rounded-pill shadow border-0" placeholder="Search">
       <span class="input-group-text text-condensed m-0 p-0 bg-transparent border-0 position-relative"
         style="left:-2.5rem;width:1px; color: #868d96;z-index: 99;cursor: pointer;">
-        <mat-icon [ngClass]="formField?.invalid && formField?.touched ? 'error-text-shadow text-danger' : ''" *ngIf="!value">
+        <mat-icon [ngClass]="formField?.invalid && formField?.touched ? 'error-text-shadow text-danger' : ''"
+          *ngIf="!value">
           search</mat-icon>
-        <mat-icon [ngClass]="formField?.invalid && formField?.touched ? 'error-text-shadow text-danger' : ''" *ngIf="value" (click)="value='';onChange($event);">
+        <mat-icon [ngClass]="formField?.invalid && formField?.touched ? 'error-text-shadow text-danger' : ''"
+          *ngIf="value" (click)="value='';onChange($event);">
           close</mat-icon>
       </span>
     </div>
@@ -52,11 +54,16 @@
       [placeHolderCharacter]="maskPlaceHolder" (blur)="touched()" [placeholder]="label"
       [ngClass]="formField?.invalid && formField?.touched ? 'border-error' : ''"></textarea>
   </ng-container>
+  <ng-container *ngIf="(type === 'switch')">
+    <div class="form-check form-switch ms-2">
+      <input class="form-check-input" type="checkbox" [(ngModel)]="value" [name]="fieldName" (change)="onChange($event)"
+        role="switch" (blur)="touched()" [disabled]="isDisabled"  [id]="label">
+    </div>
+  </ng-container>
   <ng-container [ngTemplateOutlet]="appInputError"></ng-container>
 </div>
 <ng-template #appInputError>
   <div class="m-0 p-0 ps-2" style="line-height: 1.2rem;">
-
     <ng-container *ngIf="formField?.invalid && formField?.touched">
       <div class="text-danger small" *ngIf="formField?.hasError('required')">
         * This is a required field.

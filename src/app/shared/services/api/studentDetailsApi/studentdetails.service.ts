@@ -28,10 +28,16 @@ export class StudentdetailsService {
     id: string | number,
     data: IStudentDetails
   ): Observable<IStudentDetails> {
-    return this.http.put(`${this.url}/studentdetails/${id}`, data);
+    let temp = {...data};
+    delete temp.ADMN_NO;
+    return this.http.put(`${this.url}/studentdetails/${id}`, temp);
   }
 
   deleteSingleStudentDetails(id: string | number): Observable<IStudentDetails> {
     return this.http.delete(`${this.url}/studentdetails/${id}`);
+  }
+
+  studentListService(){
+    return this.http.get(`${this.url}/studentutil`)
   }
 }

@@ -7,6 +7,8 @@ export const selectPagesState = createFeatureSelector<fromPages.State>(
 export const selectAllStudents  = createSelector(selectPagesState,(state:fromPages.State)=>state.studentDetails);
 export const slectLoading  = createSelector(selectPagesState,(state:fromPages.State)=>state.loading)
 export const selectSingleStudents  = createSelector(selectPagesState,(state:fromPages.State)=>state.singleStudentDetails)
+export const selectStudentLists  = createSelector(selectPagesState,(state:fromPages.State)=>state.studentLists)
+
 
 // export const   = createSelector(selectPagesState,(state:fromPages.State)=>state.loading)
 

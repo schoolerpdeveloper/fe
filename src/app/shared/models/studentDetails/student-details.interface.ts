@@ -26,3 +26,16 @@ export interface IStudentDetails {
     CRET_TS?:         null;
     LAST_UPDT_TS?:    null;
 }
+
+
+export interface IStudentList{
+    STUD_FIRST_NAME?:   string;
+    STUD_LAST_NAME?:    string;
+    ADMN_NO?:           string;
+    STUD_CLASS?:        string;
+    CLASS_NAME?:        string;
+    BUS_RUTE_CD?:       string;
+    FEES_PAID?:         number;
+    TOTAL_FEES_AMOUNT?: string;
+    IS_ACTIVE?:string;
+}
