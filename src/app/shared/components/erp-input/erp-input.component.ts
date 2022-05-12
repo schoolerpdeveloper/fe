@@ -43,6 +43,8 @@ export class ErpInputComponent implements ControlValueAccessor, Validator {
     | 'dateTime'
     | 'textarea'
     | 'search'
+    | 'searchSelect'
+    | 'searchMultiSelect'
     | 'switch' = 'text';
   @Input() maskedString: string = '';
   @Input() useMaskedInput: boolean = false;
@@ -107,6 +109,7 @@ export class ErpInputComponent implements ControlValueAccessor, Validator {
       ...(data().length > 0 &&
         data().length < this.maskedString.length && { maskedInput: true }),
     };
+    console.log(temp,this.maskedString,data(),control.value)
 
     return Object.keys(temp).length === 0 ? null : temp;
   }

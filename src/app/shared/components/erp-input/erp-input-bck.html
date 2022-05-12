@@ -1,0 +1,57 @@
+<ng-container *ngIf="(type === 'text')||(type === 'number') || (type === 'tel')">
+    <input [type]="type" class="form-control rounded-pill shadow border-0" [(ngModel)]="value" (ngModelChange)="onChange($event)" [name]="fieldName"
+      [prefix]="prefix" [mask]="maskedString" [id]="label" [disabled]="isDisabled" [showMaskTyped]="true" [placeHolderCharacter]="maskPlaceHolder" (blur)="touched()" [placeholder]="label"
+      [ngClass]="{'border-error' :formField?.invalid && formField?.touched,'maskPlaceHolderStyle' :useMaskedInput,'maskedFieldDataPlaced':maskedFieldDataPlaced }" />
+    <!-- [ngClass]="useMaskedInput ? 'maskPlaceHolderStyle' :''" -->
+  </ng-container>
+  <ng-container *ngIf="(type === 'select')">
+    <select class="form-select rounded-pill shadow border-0" [ngModel]="value" [name]="fieldName"
+      (input)="onChange($event)" (blur)="touched()"
+      [ngClass]="formField?.invalid && formField?.touched ? 'border-error' : ''">
+      <option value=""></option>
+      <option *ngFor="let item of _selectData" value="{{item?.value}}">
+        {{item?.label}}</option>
+    </select>
+  </ng-container>
+  <ng-container *ngIf="(type === 'dateTime')">
+
+    <div class="input-group">
+      <input type="text" mwlFlatpickr [convertModelValue]="true" (input)="onChange($event)" (blur)="touched()"
+        class="form-control w-75 rounded-pill shadow border-0" [allowInput]="true" [(ngModel)]="value"
+        [ngClass]="formField?.invalid && formField?.touched ? 'border-error' : ''" placeholder="YYYY-MM-DD">
+      <span class="input-group-text text-condensed m-0 p-0 bg-transparent border-0 position-relative"
+        style="left:-2.5rem;width:1px; color: #868d96;">
+        <mat-icon [ngClass]="formField?.invalid && formField?.touched ? 'error-text-shadow text-danger' : ''">
+          calendar_month</mat-icon>
+      </span>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="(type === 'search')">
+
+    <div class="input-group">
+      <input type="text" (input)="onChange($event)" (blur)="touched()" [(ngModel)]="value"
+        class="form-control rounded-pill shadow border-0" placeholder="Search">
+      <span class="input-group-text text-condensed m-0 p-0 bg-transparent border-0 position-relative"
+        style="left:-2.5rem;width:1px; color: #868d96;z-index: 99;cursor: pointer;">
+        <mat-icon [ngClass]="formField?.invalid && formField?.touched ? 'error-text-shadow text-danger' : ''"
+          *ngIf="!value">
+          search</mat-icon>
+        <mat-icon [ngClass]="formField?.invalid && formField?.touched ? 'error-text-shadow text-danger' : ''"
+          *ngIf="value" (click)="value='';onChange($event);">
+          close</mat-icon>
+      </span>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="(type === 'textarea')">
+    <textarea class="form-control rounded-pill shadow border-0" [ngModel]="value" [name]="fieldName"
+      [mask]="maskedString" [id]="label" [disabled]="isDisabled" (input)="onChange($event)" [showMaskTyped]="true"
+      [placeHolderCharacter]="maskPlaceHolder" (blur)="touched()" [placeholder]="label"
+      [ngClass]="formField?.invalid && formField?.touched ? 'border-error' : ''"></textarea>
+  </ng-container>
+  <ng-container *ngIf="(type === 'switch')">
+    <div class="form-check form-switch ms-2">
+      <input class="form-check-input" type="checkbox" [(ngModel)]="value" [name]="fieldName" (change)="onChange($event)"
+        role="switch" (blur)="touched()" [disabled]="isDisabled"  [id]="label">
+    </div>
+  </ng-container>
+  <ng-container [ngTemplateOutlet]="appInputError"></ng-container>
