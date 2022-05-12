@@ -15,9 +15,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatStepperModule } from '@angular/material/stepper';
-import {CdkStepperModule} from '@angular/cdk/stepper';
+import { CdkStepperModule } from '@angular/cdk/stepper';
 
-import {CdkTreeModule} from '@angular/cdk/tree';
+import { CdkTreeModule } from '@angular/cdk/tree';
 import { StepperComponent } from './components/stepper/stepper.component';
 import { ErpInputComponent } from './components/erp-input/erp-input.component';
 import { ErpFieldErrorComponent } from './components/erp-field-error/erp-field-error.component';
@@ -27,9 +27,10 @@ import { StudentSearchComponent } from './components/student-search/student-sear
 import { ListComponent } from './components/list/list.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { NgOptionHighlightModule } from '@ng-select/ng-option-highlight';
-import {MatPaginatorModule} from '@angular/material/paginator';
-import {MatRippleModule} from '@angular/material/core';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatRippleModule } from '@angular/material/core';
 import { ErpPaginatorComponent } from './components/erp-paginator/erp-paginator.component';
+import { MatDialogModule } from '@angular/material/dialog';
 const maskConfigFunction: () => Partial<IConfig> = () => {
   return {
     validation: false,
@@ -65,13 +66,22 @@ const SHARED_MODS = [
   FullCalendarModule,
   CdkTreeModule,
   FlatpickrModule.forRoot(),
+  MatDialogModule,
 ];
 
-const SHARED_DECL = [DebounceDirective,StepperComponent,ErpInputComponent, ErpFieldErrorComponent,StudentSearchComponent,ListComponent,ErpPaginatorComponent];
+const SHARED_DECL = [
+  DebounceDirective,
+  StepperComponent,
+  ErpInputComponent,
+  ErpFieldErrorComponent,
+  StudentSearchComponent,
+  ListComponent,
+  ErpPaginatorComponent,
+];
 
 @NgModule({
   declarations: [...SHARED_DECL],
   imports: [CommonModule, ...SHARED_MODS],
-  exports: [SHARED_DECL,SHARED_MODS],
+  exports: [SHARED_DECL, SHARED_MODS],
 })
 export class SharedModule {}

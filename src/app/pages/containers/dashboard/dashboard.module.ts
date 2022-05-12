@@ -15,6 +15,7 @@ import { SibilingFormComponent} from './components/sibiling-form/sibiling-form.c
 import { TransportFormComponent } from './components/transport-form/transport-form.component';
 import { FeesFormComponent } from './components/fees-form/fees-form.component';
 import { StudentListCardComponent } from './components/student-list-card/student-list-card.component';
+import { ConfiguredModalComponent } from './components/configured-modal/configured-modal.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { StudentListCardComponent } from './components/student-list-card/student
     TransportFormComponent,
     FeesFormComponent,
     StudentListCardComponent,
+    ConfiguredModalComponent,
     
     
   ],

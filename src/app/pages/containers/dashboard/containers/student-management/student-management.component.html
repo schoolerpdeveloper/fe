@@ -11,7 +11,7 @@
     </div>
 
   </div>
-  <div class="card-body my-0 py-0" id="view_change_slot">
+  <div class="card-body my-0" id="view_change_slot">
     <div class="d-flex flex-wrap justify-content-end">
       <div class="my-auto pointer">
 
@@ -27,7 +27,10 @@
     <div class="grid-container">
       <ng-container *ngFor="let grid of (grids|slice:startIndex:endIndex)">
 
-        <app-student-list-card [_studentDetailsList]="grid" (disableStudentDetails)="studentDisableEventCapture($event)"></app-student-list-card>
+        <app-student-list-card
+        (routeConfiguration)="routeConfigurationCaptured($event)"
+        (openModalWindow)="openModalWindowCapture($event)"
+         [_studentDetailsList]="grid" (disableStudentDetails)="studentDisableEventCapture($event)"></app-student-list-card>
   
       </ng-container>
     </div>
@@ -37,7 +40,10 @@
       <ng-container *ngFor="let grid of (grids|slice:startIndex:endIndex)">
       <div class="col-12 g-4">
 
-        <app-student-list-card [_studentDetailsList]="grid" (disableStudentDetails)="studentDisableEventCapture($event)"></app-student-list-card>
+        <app-student-list-card 
+        (routeConfiguration)="routeConfigurationCaptured($event)"
+        (openModalWindow)="openModalWindowCapture($event)"
+        [_studentDetailsList]="grid" (disableStudentDetails)="studentDisableEventCapture($event)"></app-student-list-card>
       </div>
     </ng-container>
     </div>

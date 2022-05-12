@@ -28,6 +28,9 @@ export class StudentListCardComponent implements OnInit {
   }
   toggleSwitch: boolean = true;
   @Output() disableStudentDetails = new EventEmitter<{ [key: string]: any }>();
+  @Output() routeConfiguration = new EventEmitter<{ [key: string]: any }>();
+  @Output() openModalWindow = new EventEmitter<{ [key: string]: any }>();
+
 
   constructor() {}
 
@@ -59,5 +62,11 @@ export class StudentListCardComponent implements OnInit {
       id: this.studentDetailsList.ADMN_NO,
       status: this.toggleSwitch === true ? 'A' : 'I',
     });
+  }
+  openModalWindowEvent(d:{[key:string]:any}){
+    this.openModalWindow.emit({...d});
+  }
+  routeToFees(d:{[key:string]:any}){
+    this.routeConfiguration.emit({...d})
   }
 }

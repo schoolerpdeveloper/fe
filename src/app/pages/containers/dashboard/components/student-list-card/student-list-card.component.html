@@ -1,10 +1,15 @@
 <div class="card border-0 custom-card-rounded details-card" [ngClass]="!toggleSwitch ? 'disabled':''">
     <div class="card-body m-0 p-0 d-flex" style="width:15rem">
-        <div class="slanting-banner poppins-text" [ngClass]="payColorClass">
-            
-            <span class="paid-rotate-str text-white">
+        <div class="slanting-banner poppins-text pointer" [ngClass]="payColorClass">
+          
+            <span class="paid-rotate-str text-white d-block">
                 <ng-container *ngIf="toggleSwitch === false"> Inactive</ng-container>
-                <ng-container *ngIf="toggleSwitch === true"> {{paidString}}</ng-container>
+                <ng-container *ngIf="toggleSwitch === true"> 
+                    <button type="button" class="pointer border-0 bg-transparent text-white" style="pointer-events:painted; z-index: 999;"
+                    (click)="routeToFees({routeTo:'fees'});">
+                        {{paidString}}
+                    </button>
+                </ng-container>
 
             </span>
         </div>
@@ -19,7 +24,8 @@
                     height="75" width="75" class="img-fluid rounded-circle mx-auto" alt="..."> -->
             </div>
             <div class="w-75 ms-2">
-                <h5 class="card-title fw-bold poppins-text text-break">{{studentDetailsList?.STUD_FIRST_NAME}} {{studentDetailsList?.STUD_LAST_NAME}}</h5>
+                <h5 class="card-title fw-bold poppins-text text-break">{{studentDetailsList?.STUD_FIRST_NAME}}
+                    {{studentDetailsList?.STUD_LAST_NAME}}</h5>
                 <div class="card-text text-secondary">
 
                     <table class="table borderless m-0 p-0 text-secondary">
@@ -32,12 +38,14 @@
                             {{studentDetailsList?.BUS_RUTE_CD}}
                             <!-- <span class="info d-inline"><mat-icon>info</mat-icon></span> -->
                         </td>
-                        <td class="align-middle"><span class="small pointer"><mat-icon style="font-size:1rem ;" class="border-0 bg-transparent">info</mat-icon></span></td>
+                        <td class="align-middle"><span class="small pointer" (click)="openModalWindowEvent({modal:'route'})">
+                                <mat-icon style="font-size:1rem ;" class="border-0 bg-transparent">info</mat-icon>
+                            </span></td>
                     </table>
                 </div>
 
 
-                
+
             </div>
             <!-- <div>
                 <mat-icon>more_vert</mat-icon>
@@ -46,10 +54,10 @@
         <div class="d-flex justify-content-between mx-2 w-75 mx-auto">
             <div class="">
                 <!-- <i class="fa fa-phone shadow"></i> -->
-                <mat-icon  fontSet="material-icons-outlined" class="rounded-circle shadow">forum</mat-icon>
+                <mat-icon fontSet="material-icons-outlined" class="rounded-circle shadow">forum</mat-icon>
             </div>
             <div>
-                <mat-icon fontSet="material-icons-outlined"  class="rounded-circle shadow">phone</mat-icon>
+                <mat-icon fontSet="material-icons-outlined" class="rounded-circle shadow">phone</mat-icon>
 
                 <!-- <i class="fa fa-message shadow"></i> -->
             </div>
@@ -65,7 +73,8 @@
                     </mat-icon>
                 </ng-container>
                 <ng-container *ngIf="!toggleSwitch">
-                    <mat-icon fontSet="material-icons-outlined" class="rounded-circle shadow disabled" (click)="toggle()">
+                    <mat-icon fontSet="material-icons-outlined" class="rounded-circle shadow disabled"
+                        (click)="toggle()">
                         toggle_off
                     </mat-icon>
                 </ng-container>
