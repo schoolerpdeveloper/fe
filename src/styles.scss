@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined");
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "~@ng-select/ng-select/themes/default.theme.css";
 * {
   font-family: "ERP Lighter", "Helvetica Neue", sans-serif;
 }
@@ -26,7 +27,14 @@ body {
 .btn-themed {
   background-color: var(--primary-color-dark) !important;
 }
-
+.btn-outline-themed:active{
+  background-color: var(--primary-color-dark) !important;
+  color:white !important;
+}
+.btn-outline-themed{
+  color:  var(--primary-color-dark) !important;
+  border-color:  var(--primary-color-dark) !important;
+}
 .outline-none {
   outline: none !important;
 }

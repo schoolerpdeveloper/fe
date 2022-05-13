@@ -1,0 +1,16 @@
+<ng-container *ngIf="showButton">
+
+    <button class="btn btn-sm border-0 shadow rounded-pill" (click)="showNgSelect()" style="width:20rem;">
+
+        <mat-icon fontSet="material-icons-outlined" class="align-middle">filter_alt_off</mat-icon>
+        <span class="align-middle">{{buttonText}}</span>
+    </button>
+</ng-container>
+<ng-container *ngIf="!showButton">
+
+    <ng-select class="border-0" [(ngModel)]="selectedItem" [multiple]="true" (change)="toggleSelect($event)">
+        <ng-container *ngFor="let itm of stringsInput">
+            <ng-option>{{itm}}</ng-option>
+        </ng-container>
+    </ng-select>
+</ng-container>

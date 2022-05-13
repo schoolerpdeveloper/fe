@@ -76,6 +76,7 @@ export class ErpInputComponent implements ControlValueAccessor, Validator {
 
     value = event?.target?.value ? event.target.value : '';
     value = this.type === 'switch' ? this.value : value;
+    
 
     this.changed(this.value);
 
@@ -109,7 +110,6 @@ export class ErpInputComponent implements ControlValueAccessor, Validator {
       ...(data().length > 0 &&
         data().length < this.maskedString.length && { maskedInput: true }),
     };
-    console.log(temp,this.maskedString,data(),control.value)
 
     return Object.keys(temp).length === 0 ? null : temp;
   }

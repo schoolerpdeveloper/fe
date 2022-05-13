@@ -31,6 +31,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatRippleModule } from '@angular/material/core';
 import { ErpPaginatorComponent } from './components/erp-paginator/erp-paginator.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ErpDropdownDirective } from './directives/erp-dropdown.directive';
+import { ErpDropdownComponent } from './components/erp-dropdown/erp-dropdown.component';
+import { SearchableStringFilterComponent } from './components/searchable-string-filter/searchable-string-filter.component';
 const maskConfigFunction: () => Partial<IConfig> = () => {
   return {
     validation: false,
@@ -77,6 +80,8 @@ const SHARED_DECL = [
   StudentSearchComponent,
   ListComponent,
   ErpPaginatorComponent,
+  SearchableStringFilterComponent
+  
 ];
 
 @NgModule({

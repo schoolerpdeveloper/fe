@@ -35,9 +35,10 @@ export class ErpDropdownDirective implements OnDestroy{
   openDropdown(): void {
     this.isDropdownOpen = true;
     this.overlayRef = this.overlay.create({
-      hasBackdrop: true,
-      backdropClass: 'cdk-overlay-transparent-backdrop',
+      // hasBackdrop: true,
+      // backdropClass: 'cdk-overlay-transparent-backdrop',
       // scrollStrategy: this.overlay.scrollStrategies.open(),
+      panelClass:'bg-success my-cdk-panel',
       positionStrategy: this.overlay
         .position()
         .flexibleConnectedTo(this.elementRef)
@@ -47,7 +48,7 @@ export class ErpDropdownDirective implements OnDestroy{
             originY: 'bottom',
             overlayX: 'end',
             overlayY: 'top',
-            offsetY: -90
+            offsetY: 0
           }
         ])
     });

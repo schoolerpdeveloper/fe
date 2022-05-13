@@ -2,11 +2,17 @@
   <div class="card-body bg-transparent my-0 py-0" id="search_and_filters">
     <div class="d-flex justify-content-between flex-wrap">
       <div class="px-2">Student Lists</div>
-      <div class="flex-grow-1">
+      <div class="d-flex">
 
-      </div>
-      <div class="">
-        <app-erp-input type="search" class="" [formControl]="search"></app-erp-input>
+        <div class="">
+          <app-string-only-filter [stringsInput]="classes" [buttonText]="'Filter By Class'" (selectedValues)="selectedVal($event,'class')"></app-string-only-filter>
+        </div>
+        <div class="mx-3" style="width:20rem">
+          <app-string-only-filter [stringsInput]="feeses" [buttonText]="'Filter By Fees'" (selectedValues)="selectedVal($event,'fees')"></app-string-only-filter>
+        </div>
+        <div class="">
+          <app-erp-input style="width:20rem" type="search" class="" [formControl]="search"></app-erp-input>
+        </div>
       </div>
     </div>
 
@@ -14,38 +20,48 @@
   <div class="card-body my-0" id="view_change_slot">
     <div class="d-flex flex-wrap justify-content-end">
       <div class="my-auto pointer">
+        <button type="button" class="btn btn-sm btn-outline-themed">
+          <mat-icon class="align-middle">add</mat-icon> New Admission
+        </button>
+      </div>
+      <div class="my-auto pointer mx-3">
+        <button type="button" class="btn btn-sm btn-outline-themed" (click)="viewAs('grid')">
 
-        <mat-icon class="fs-6" (click)="viewAs('grid')">dashboard</mat-icon>
+          <mat-icon class="fs-4 align-middle">dashboard</mat-icon>
+        </button>
       </div>
       <div class="my-auto pointer">
+        <button type="button" class="btn btn-sm btn-outline-themed" (click)="viewAs('list')">
+          <mat-icon class="fs-4 align-middle">list</mat-icon>
+        </button>
 
-        <mat-icon class="fs-4" (click)="viewAs('list')">list</mat-icon>
       </div>
+
     </div>
   </div>
   <div class="card-body" *ngIf="currentViewAs === 'grid'">
     <div class="grid-container">
-      <ng-container *ngFor="let grid of (grids|slice:startIndex:endIndex)">
+      <ng-container
+        *ngFor="let grid of (grids| filterByClassFeesNames:filteredClasses:filteredFees:filteredName | slice:startIndex:endIndex)">
 
-        <app-student-list-card
-        (routeConfiguration)="routeConfigurationCaptured($event)"
-        (openModalWindow)="openModalWindowCapture($event)"
-         [_studentDetailsList]="grid" (disableStudentDetails)="studentDisableEventCapture($event)"></app-student-list-card>
-  
+        <app-student-list-card (routeConfiguration)="routeConfigurationCaptured($event)"
+          (openModalWindow)="openModalWindowCapture($event)" [_studentDetailsList]="grid"
+          (disableStudentDetails)="studentDisableEventCapture($event)"></app-student-list-card>
+
       </ng-container>
     </div>
   </div>
   <div class="card-body" *ngIf="currentViewAs === 'list'">
     <div class="row">
-      <ng-container *ngFor="let grid of (grids|slice:startIndex:endIndex)">
-      <div class="col-12 g-4">
+      <ng-container
+        *ngFor="let grid of (grids|filterByClassFeesNames:filteredClasses:filteredFees:filteredName|slice:startIndex:endIndex )">
+        <div class="col-12 g-4">
 
-        <app-student-list-card 
-        (routeConfiguration)="routeConfigurationCaptured($event)"
-        (openModalWindow)="openModalWindowCapture($event)"
-        [_studentDetailsList]="grid" (disableStudentDetails)="studentDisableEventCapture($event)"></app-student-list-card>
-      </div>
-    </ng-container>
+          <app-student-list-card (routeConfiguration)="routeConfigurationCaptured($event)"
+            (openModalWindow)="openModalWindowCapture($event)" [_studentDetailsList]="grid"
+            (disableStudentDetails)="studentDisableEventCapture($event)"></app-student-list-card>
+        </div>
+      </ng-container>
     </div>
   </div>
   <div class="card-footer bg-transparent border-0 d-flex justify-content-end" *ngIf="grids.length">

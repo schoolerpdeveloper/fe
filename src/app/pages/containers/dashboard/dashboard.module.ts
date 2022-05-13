@@ -16,6 +16,7 @@ import { TransportFormComponent } from './components/transport-form/transport-fo
 import { FeesFormComponent } from './components/fees-form/fees-form.component';
 import { StudentListCardComponent } from './components/student-list-card/student-list-card.component';
 import { ConfiguredModalComponent } from './components/configured-modal/configured-modal.component';
+import { FilterByClassAndFeesPipe } from './pipes/filter-by-class-and-fees.pipe';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { ConfiguredModalComponent } from './components/configured-modal/configur
     FeesFormComponent,
     StudentListCardComponent,
     ConfiguredModalComponent,
+    FilterByClassAndFeesPipe,
     
     
   ],

@@ -38,4 +38,5 @@ export interface IStudentList{
     FEES_PAID?:         number;
     TOTAL_FEES_AMOUNT?: string;
     IS_ACTIVE?:string;
+    FEES_STATUS?:string;
 }
