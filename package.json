@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "postinstall": "ngcc",
-    "start": "ng serve --proxy-config proxy.conf.json --hmr",
+    "start": "ng serve --hmr",
     "build": "ng build --base-href ./ --build-optimizer=true --vendor-chunk=true",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"

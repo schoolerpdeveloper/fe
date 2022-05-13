@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import * as fromPages from '../reducers/pages.reducer';
+import * as fromPages from '../reducers/index.reducer';
 
 export const selectPagesState = createFeatureSelector<fromPages.State>(
   fromPages.pagesFeatureKey
@@ -10,5 +10,4 @@ export const selectSingleStudents  = createSelector(selectPagesState,(state:from
 export const selectStudentLists  = createSelector(selectPagesState,(state:fromPages.State)=>state.studentLists)
 
 
-// export const   = createSelector(selectPagesState,(state:fromPages.State)=>state.loading)
 

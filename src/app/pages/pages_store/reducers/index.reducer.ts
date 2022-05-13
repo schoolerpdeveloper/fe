@@ -3,13 +3,12 @@ import {
   createFeature,
   createReducer,
   on,
-} from '@ngrx/store';
-import { IStudentDetails } from '@shared/models/studentDetails';
-import { IStudentList } from '@shared/models/studentDetails/student-details.interface';
+} from "@ngrx/store";
+import { IStudentDetails } from "@shared/models/studentDetails";
+import { IStudentList } from "@shared/models/studentDetails/student-details.interface";
+import { ITransportDeatils } from "@shared/models/transportDetails";
+import { TransportActions } from "../actions/transport.actions";
 import {
-  loadPagess,
-  loadPagessSuccess,
-  loadPagessFailure,
   loadStudents,
   loadStudentSuccess,
   loadStudentFailure,
@@ -18,15 +17,17 @@ import {
   loadSingleStudentFailure,
   loadStudentList,
   loadStudentListSuccess,
-} from '../actions/pages.actions';
+} from "../actions/student.actions";
 
-export const pagesFeatureKey = 'pages';
+export const pagesFeatureKey = "pages";
 
 export interface State {
   studentDetails: IStudentDetails[];
   singleStudentDetails: IStudentDetails;
   loading: boolean;
   studentLists: IStudentList[];
+  busRouteCodes:string|number,
+  busRouteCodeDetails:ITransportDeatils[]
 }
 
 export const initialState: State = {
@@ -34,6 +35,8 @@ export const initialState: State = {
   singleStudentDetails: {},
   loading: false,
   studentLists: [],
+  busRouteCodes:'',
+  busRouteCodeDetails:[]
 };
 
 export const pageReducer = createReducer(
@@ -63,9 +66,24 @@ export const pageReducer = createReducer(
   on(loadStudentListSuccess, (state, { studentLists }) => ({
     ...state,
     loading: false,
-    studentLists:studentLists,
+    studentLists: studentLists,
   })),
   on(loadSingleStudentFailure, (state, { error }) => ({
+    ...state,
+    loading: false,
+  })),
+// bus Route handlings
+  on(TransportActions.loadBusRouteId, (state, { busRouteCode }) => ({
+    ...state,
+    loading: true,
+    busRouteCodes:busRouteCode
+  })),
+  on(TransportActions.loadBusRouteIdSuccess, (state, { data }) => ({
+    ...state,
+    loading: false,
+    busRouteCodeDetails:data
+  })),
+  on(TransportActions.loadBusRouteIdFailure, (state, { error }) => ({
     ...state,
     loading: false,
   }))

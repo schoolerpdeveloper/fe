@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { RouterEnum } from 'src/app/enums/router.enum';
-import { loadPagess, loadStudents } from '../pages_store/actions/pages.actions';
+import { loadStudents } from '../pages_store/actions/student.actions';
 import { ExampleFlatNode, TREE_DATA } from './menu';
 
 @Component({
@@ -57,6 +57,7 @@ export class LandingPageComponent implements OnInit {
   logNode(node: any) {
     this.currentSelectedNode = { ...node };
     node.isExpanded = !node.isExpanded;
+    if(node?.url)this.router.navigateByUrl(node?.url);
   }
   shouldRender(node: ExampleFlatNode) {
     let parent = this.getParentNode(node);

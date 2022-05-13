@@ -6,6 +6,7 @@ export const enum RouterEnum {
     DASHBOARD = 'dashboard',
     STUDENTFORM = 'student-form',
     CONTAINER = 'pages',
-    DASHBOARD_MAIN= 'main'
+    DASHBOARD_MAIN= 'main',
+    STUDENT_MANAGEMENT='student-management'
 
 }

@@ -1,9 +1,10 @@
 :host ::ng-deep {
   button{
     background: white;
+    line-height: 2;
   }
   ng-select {
-    font-family: "ERP Condensed" !important;
+    font-family: "ERP Lighter" !important;
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
     border-radius: 50px;
     max-width:20rem;
@@ -21,6 +22,9 @@
     background: white;
     padding: 0.5rem;
     border: none;
+  }
+  .ng-select-container.ng-has-value .ng-value-container .ng-value{
+    border-radius: 2rem;
   }
   .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected,
   .ng-dropdown-panel

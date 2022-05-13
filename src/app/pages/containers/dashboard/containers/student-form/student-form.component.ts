@@ -3,7 +3,7 @@ import { AutoUnSubscribeService } from '@core/services/auto-unsubscribe/auto-un-
 import { Store } from '@ngrx/store';
 import { IStudentDetails } from '@shared/models/studentDetails';
 import { takeUntil } from 'rxjs';
-import { selectAllStudents } from 'src/app/pages/pages_store/selectors/pages.selectors';
+import { selectAllStudents } from 'src/app/pages/pages_store/selectors/student.selectors';
 
 @Component({
   selector: 'app-student-form',

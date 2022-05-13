@@ -1,9 +1,9 @@
 <ng-container *ngIf="showButton">
 
-    <button class="btn btn-sm border-0 shadow rounded-pill" (click)="showNgSelect()" style="width:20rem;">
+    <button class="btn btn-sm border-0 shadow-sm rounded-pill" (click)="showNgSelect()" style="width:20rem;">
 
-        <mat-icon fontSet="material-icons-outlined" class="align-middle">filter_alt_off</mat-icon>
-        <span class="align-middle">{{buttonText}}</span>
+        <mat-icon fontSet="material-icons-outlined" class="align-middle text-shaded">filter_alt_off</mat-icon>
+        <span class="align-middle text-shaded">{{buttonText}}</span>
     </button>
 </ng-container>
 <ng-container *ngIf="!showButton">

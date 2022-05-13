@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StorageService } from './services/storage/storage.service';
 import { AutoUnSubscribeService } from './services/auto-unsubscribe/auto-un-subscribe.service';
+import { HttpClientModule } from '@angular/common/http';
 
 const providers = [
   { provide: 'Window', useValue: window },
@@ -13,7 +14,7 @@ const providers = [
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule,HttpClientModule],
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {

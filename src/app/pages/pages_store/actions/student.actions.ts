@@ -1,17 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { IStudentList } from '@shared/models/studentDetails/student-details.interface';
 
-export const loadPagess = createAction('[Pages] Load Pagess');
 
-export const loadPagessSuccess = createAction(
-  '[Pages] Load Pagess Success',
-  props<{ data: any }>()
-);
-
-export const loadPagessFailure = createAction(
-  '[Pages] Load Pagess Failure',
-  props<{ error: any }>()
-);
 
 export const loadStudents = createAction('[Pages] Load Students');
 
@@ -55,3 +45,5 @@ export const loadStudentListFailure = createAction(
   '[Page] Load Student List Failure Features',
   props<{ error: any }>()
 );
+
+

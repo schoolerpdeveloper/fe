@@ -58,3 +58,18 @@ export function paginate(
         pages: pages
     };
 }
+
+
+export function mapfeesCalcAndClasses(temp: any) {
+    let value = { ...temp };
+    let totalFees = value?.TOTAL_FEES_AMOUNT ? Number(value.TOTAL_FEES_AMOUNT) : 1;
+    let fees_Percent = value?.FEES_PAID ? (value?.FEES_PAID / totalFees) * 100 : 0;
+    fees_Percent = Math.round(fees_Percent);
+    let paidString = "NOT PAID";
+
+    if (fees_Percent > 0 && fees_Percent < 100) paidString = "PAID " + fees_Percent + "%";
+    else if (fees_Percent === 100) paidString = "FULLY PAID";
+
+    value.FEES_STATUS = paidString;
+    return value;
+  }

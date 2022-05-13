@@ -27,13 +27,13 @@ body {
 .btn-themed {
   background-color: var(--primary-color-dark) !important;
 }
-.btn-outline-themed:active{
+.btn-outline-themed:active {
   background-color: var(--primary-color-dark) !important;
-  color:white !important;
+  color: white !important;
 }
-.btn-outline-themed{
-  color:  var(--primary-color-dark) !important;
-  border-color:  var(--primary-color-dark) !important;
+.btn-outline-themed {
+  color: var(--primary-color-dark) !important;
+  border-color: var(--primary-color-dark) !important;
 }
 .outline-none {
   outline: none !important;
@@ -41,6 +41,10 @@ body {
 
 .form-control.btn-themed:focus {
   border-color: var(--primary-color) !important;
+}
+
+.badge-themed {
+  color: var(--primary-color-dark) !important;
 }
 
 .text-themed {
@@ -125,4 +129,14 @@ label,
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */
   user-select: none; /* Standard syntax */
+}
+
+.text-shaded {
+  color: rgb(156 163 175) !important;
+}
+
+.border-shaded {
+  border: 1px solid rgba(221, 221, 221, 0.6) !important;
+  // box-shadow: ;
+  box-shadow: 1px 2px 7px 1px rgba(221, 221, 221, 0.6)  !important;
 }

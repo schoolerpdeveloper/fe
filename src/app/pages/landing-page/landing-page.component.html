@@ -17,8 +17,15 @@
                     <ng-container *ngIf="currentSelectedNode.name !== node.name ">
                     {{node.name}}
                     </ng-container> -->
-                    <span><mat-icon class="align-middle mx-1" fontSet="material-icons-outlined" style="font-size: 18px;height:unset;width:unset" *ngIf="node.icon">{{node.icon}}</mat-icon>{{node.name}}</span>
-                   
+                    <span style="font-size:14px">
+                        <mat-icon class="align-middle mx-1" fontSet="material-icons-outlined"
+                            style="font-size: 14px;height:unset;width:unset" *ngIf="node.icon"
+                            [ngClass]="currentSelectedNode.name === node.name ? 'icon-color-active' : ''">
+                            {{node.icon}}
+                        </mat-icon>
+                        {{node.name}}
+                    </span>
+
                 </div>
             </cdk-tree-node>
             <!-- This is the tree node template for expandable nodes -->
@@ -28,7 +35,12 @@
                     [ngClass]="currentSelectedNode.name === node.name ? 'active' : ''" cdkTreeNodeToggle
                     [attr.aria-label]="'Toggle ' + node.name" (click)="logNode(node)"
                     [style.visibility]="node.expandable ? 'visible' : 'hidden'">
-                    <span><mat-icon class="align-middle mx-1" fontSet="material-icons-outlined" style="font-size: 18px;height:unset;width:unset" *ngIf="node.icon">{{node.icon}}</mat-icon>{{node.name}}</span>
+                    <span class="fs-6">
+                        <mat-icon class="align-middle mx-1" fontSet="material-icons-outlined"
+                        [ngClass]="currentSelectedNode.name === node.name ? 'icon-color-active' : ''"
+                            style="font-size: 18px;height:unset;width:unset" *ngIf="node.icon">{{node.icon}}</mat-icon>
+                        {{node.name}}
+                    </span>
                 </div>
             </cdk-tree-node>
         </cdk-tree>

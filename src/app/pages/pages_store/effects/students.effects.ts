@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, concatMap, tap } from 'rxjs/operators';
 import { Observable, EMPTY, of } from 'rxjs';
 
-import * as PagesActions from '../actions/pages.actions';
+import * as PagesActions from '../actions/student.actions';
 import { studentDetails } from 'src/app/utility/mock/mock.data';
 import { StudentdetailsService } from '@shared/services/api/studentDetailsApi/studentdetails.service';
 import { NotificationService } from '@shared/services/notification.service';
@@ -11,7 +11,7 @@ import { HttpClient } from '@angular/common/http';
 import { IStudentList } from '@shared/models/studentDetails/student-details.interface';
 
 @Injectable()
-export class PagesEffects {
+export class StudentEffects {
   getAllStudents$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(PagesActions.loadStudents),
@@ -82,6 +82,8 @@ export class PagesEffects {
       }) // end of concatmap
     ); // end of action$
   });
+
+
 
   constructor(
     private actions$: Actions,
