@@ -3,11 +3,11 @@ import {
   createFeature,
   createReducer,
   on,
-} from "@ngrx/store";
-import { IStudentDetails } from "@shared/models/studentDetails";
-import { IStudentList } from "@shared/models/studentDetails/student-details.interface";
-import { ITransportDeatils } from "@shared/models/transportDetails";
-import { TransportActions } from "../actions/transport.actions";
+} from '@ngrx/store';
+import { IStudentDetails } from '@shared/models/studentDetails';
+import { IStudentList } from '@shared/models/studentDetails/student-details.interface';
+import { ITransportDeatils } from '@shared/models/transportDetails';
+import { TransportActions } from '../actions/transport.actions';
 import {
   loadStudents,
   loadStudentSuccess,
@@ -17,17 +17,23 @@ import {
   loadSingleStudentFailure,
   loadStudentList,
   loadStudentListSuccess,
-} from "../actions/student.actions";
+  loadAllDetailsRelatedToStudent,
+} from '../actions/student.actions';
+import { IParentDetails } from '@shared/models/parentDetails';
+import { ISiblingDetails } from '@shared/models/siblingDeatils';
 
-export const pagesFeatureKey = "pages";
+export const pagesFeatureKey = 'pages';
 
 export interface State {
   studentDetails: IStudentDetails[];
   singleStudentDetails: IStudentDetails;
   loading: boolean;
   studentLists: IStudentList[];
-  busRouteCodes:string|number,
-  busRouteCodeDetails:ITransportDeatils[]
+  busRouteCodes: string | number;
+  busRouteCodeDetails: ITransportDeatils[];
+  parentDetails: IParentDetails[];
+  sibilingDetails: ISiblingDetails[];
+  allDetailsOfStudents: { [key: string]: any };
 }
 
 export const initialState: State = {
@@ -35,8 +41,11 @@ export const initialState: State = {
   singleStudentDetails: {},
   loading: false,
   studentLists: [],
-  busRouteCodes:'',
-  busRouteCodeDetails:[]
+  busRouteCodes: '',
+  busRouteCodeDetails: [],
+  parentDetails: [],
+  sibilingDetails: [],
+  allDetailsOfStudents: {},
 };
 
 export const pageReducer = createReducer(
@@ -52,11 +61,13 @@ export const pageReducer = createReducer(
     loading: false,
   })),
   on(loadSingleStudents, (state, action) => ({ ...state, loading: true })),
-  on(loadSingleStudentSuccess, (state, { data }) => ({
-    ...state,
-    singleStudentDetails: data,
-    loading: false,
-  })),
+  on(loadSingleStudentSuccess, (state, {data}) => {
+    return {
+      ...state,
+      singleStudentDetails: data,
+      loading: false,
+    };
+  }),
   on(loadSingleStudentFailure, (state, { error }) => ({
     ...state,
     singleStudentDetails: {},
@@ -72,16 +83,16 @@ export const pageReducer = createReducer(
     ...state,
     loading: false,
   })),
-// bus Route handlings
+  // bus Route handlings
   on(TransportActions.loadBusRouteId, (state, { busRouteCode }) => ({
     ...state,
     loading: true,
-    busRouteCodes:busRouteCode
+    busRouteCodes: busRouteCode,
   })),
   on(TransportActions.loadBusRouteIdSuccess, (state, { data }) => ({
     ...state,
     loading: false,
-    busRouteCodeDetails:data
+    busRouteCodeDetails: data,
   })),
   on(TransportActions.loadBusRouteIdFailure, (state, { error }) => ({
     ...state,

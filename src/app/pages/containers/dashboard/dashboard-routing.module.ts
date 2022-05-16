@@ -5,14 +5,19 @@ import { StudentFormComponent } from './containers/student-form/student-form.com
 import { StudentManagementComponent } from './containers/student-management/student-management.component';
 import { MainDashboardComponent } from './containers/main-dashboard/main-dashboard.component';
 import { RouterEnum } from 'src/app/enums/router.enum';
+import { SingleStudentManagementComponent } from './containers/single-student-management/single-student-management.component';
 
 const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
     children: [
-      { path: RouterEnum.DASHBOARD_MAIN, component: MainDashboardComponent},
+      { path: RouterEnum.DASHBOARD_MAIN, component: MainDashboardComponent },
       { path: 'student-management', component: StudentManagementComponent },
+      {
+        path: 'student-management/:admissionNo',
+        component: SingleStudentManagementComponent,
+      },
       // { path: 'admission/:action', component: StudentFormComponent },
       { path: 'admission/new', component: StudentFormComponent },
       { path: 'admission/edit/:id', component: StudentFormComponent },

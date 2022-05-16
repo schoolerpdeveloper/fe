@@ -46,4 +46,7 @@ export const loadStudentListFailure = createAction(
   props<{ error: any }>()
 );
 
-
+export const loadAllDetailsRelatedToStudent= createAction(
+  '[Page] Load All Details Related To Students',
+  props<{admissioNo:string| number}>()
+)
