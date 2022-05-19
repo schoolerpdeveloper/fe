@@ -10,12 +10,14 @@ import { TransportSelector } from 'src/app/pages/pages_store/selectors/transport
 })
 export class ConfiguredModalComponent implements OnInit {
 
-  routeDetails$ = this.store.select(TransportSelector.selectBusRouteCodeDetails)
+  routeDetails$ = this.store.select(TransportSelector.selectBusRouteCodeDetails);
+  loader:boolean = true;
   
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,private store:Store) {
   }
 
   ngOnInit(): void {
+    this.loader = Object.keys(this.data).length ? false :true;
   }
 
 }

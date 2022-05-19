@@ -34,6 +34,12 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ErpDropdownDirective } from './directives/erp-dropdown.directive';
 import { ErpDropdownComponent } from './components/erp-dropdown/erp-dropdown.component';
 import { SearchableStringFilterComponent } from './components/searchable-string-filter/searchable-string-filter.component';
+import { AppLoadingDirective } from './directives/app-loading.directive';
+import { LoaderComponent } from './components/loader/loader.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { SkeletonLoaderComponent } from './components/skeleton-loader/skeleton-loader.component';
+import { SkeletonLoaderDirective } from './directives/skeleton-loader.directive';
+
 const maskConfigFunction: () => Partial<IConfig> = () => {
   return {
     validation: false,
@@ -62,6 +68,7 @@ const SHARED_MODS = [
   MatPaginatorModule,
   MatRippleModule,
   NgSelectModule,
+  MatProgressSpinnerModule,
   NgOptionHighlightModule,
   NgxMaskModule.forRoot(),
   HotToastModule.forRoot(),
@@ -80,8 +87,10 @@ const SHARED_DECL = [
   StudentSearchComponent,
   ListComponent,
   ErpPaginatorComponent,
-  SearchableStringFilterComponent
-  
+  SearchableStringFilterComponent,
+  AppLoadingDirective,
+  LoaderComponent,
+  SkeletonLoaderComponent, SkeletonLoaderDirective
 ];
 
 @NgModule({

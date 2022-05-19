@@ -44,7 +44,7 @@ export class ParentEffects {
     return this.actions$.pipe(
       ofType(ParentActions.updateParentDetails),
       switchMap((action)=>this.api.updateParentDetails(action.data).pipe(
-        
+        map((d)=>ParentActions.updateParentDetails(d))
       ))
     )
   })
