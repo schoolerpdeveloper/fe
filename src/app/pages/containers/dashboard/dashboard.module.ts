@@ -18,6 +18,11 @@ import { StudentListCardComponent } from './components/student-list-card/student
 import { ConfiguredModalComponent } from './components/configured-modal/configured-modal.component';
 import { FilterByClassAndFeesPipe } from './pipes/filter-by-class-and-fees.pipe';
 import { SingleStudentManagementComponent } from './containers/single-student-management/single-student-management.component';
+import { StudentDetailCardComponent } from './components/student-detail-card/student-detail-card.component';
+import { StudentBasedParentCardComponent } from './components/student-based-parent-card/student-based-parent-card.component';
+import { StudentBasedSibilingCardComponent } from './components/student-based-sibiling-card/student-based-sibiling-card.component';
+import { StudentBasedTransportCardComponent } from './components/student-based-transport-card/student-based-transport-card.component';
+import { StudentBasedFeesCardComponent } from './components/student-based-fees-card/student-based-fees-card.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +39,11 @@ import { SingleStudentManagementComponent } from './containers/single-student-ma
     ConfiguredModalComponent,
     FilterByClassAndFeesPipe,
     SingleStudentManagementComponent,
+    StudentDetailCardComponent,
+    StudentBasedParentCardComponent,
+    StudentBasedSibilingCardComponent,
+    StudentBasedTransportCardComponent,
+    StudentBasedFeesCardComponent,
     
     
   ],

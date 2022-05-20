@@ -1,1 +1,22 @@
-<p>single-student-management works!</p>
+<div class="container mt-3">
+    <!-- for graphs -->
+    <div class="row"></div>
+    <div class="row">
+        <div class="col-12 col-sm-4 col-md-3">
+         <app-student-detail-card [studentlist]="studentlist"></app-student-detail-card>
+        </div>
+        <div class="col-12 col-sm-8 col-md-9">
+            <div class="grid-container">
+                <app-student-based-parent-card [parentDetails]="parentDetails"></app-student-based-parent-card>
+                <app-student-based-parent-card [parentDetails]="parentDetails"></app-student-based-parent-card>
+
+                <app-student-based-parent-card [parentDetails]="parentDetails"></app-student-based-parent-card>
+                <app-student-based-parent-card [parentDetails]="parentDetails"></app-student-based-parent-card>
+        
+
+            </div>
+        </div>
+
+    </div>
+
+</div>

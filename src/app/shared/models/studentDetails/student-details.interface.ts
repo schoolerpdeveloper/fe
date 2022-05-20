@@ -25,6 +25,7 @@ export interface IStudentDetails {
     STUD_IS_ACTIVE?:  boolean;
     CRET_TS?:         null;
     LAST_UPDT_TS?:    null;
+    IS_ACTIVE?:string;
 }
 
 

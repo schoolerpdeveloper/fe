@@ -45,7 +45,8 @@ const maskConfigFunction: () => Partial<IConfig> = () => {
     validation: false,
   };
 };
-
+import {CdkAccordionModule} from '@angular/cdk/accordion';
+import { SimpleAccordianComponent } from './components/simple-accordian/simple-accordian.component';
 FullCalendarModule.registerPlugins([
   // register FullCalendar plugins
   dayGridPlugin,
@@ -65,6 +66,7 @@ const SHARED_MODS = [
   FormsModule,
   HttpClientModule,
   CdkStepperModule,
+  CdkAccordionModule,
   MatPaginatorModule,
   MatRippleModule,
   NgSelectModule,
@@ -90,11 +92,12 @@ const SHARED_DECL = [
   SearchableStringFilterComponent,
   AppLoadingDirective,
   LoaderComponent,
+  SimpleAccordianComponent,
   SkeletonLoaderComponent, SkeletonLoaderDirective
 ];
 
 @NgModule({
-  declarations: [...SHARED_DECL],
+  declarations: [...SHARED_DECL, SimpleAccordianComponent],
   imports: [CommonModule, ...SHARED_MODS],
   exports: [SHARED_DECL, SHARED_MODS],
 })

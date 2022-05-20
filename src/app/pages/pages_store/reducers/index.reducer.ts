@@ -24,6 +24,7 @@ import { ISiblingDetails } from '@shared/models/siblingDeatils';
 import { IClassConfigUtility } from '@shared/models/utilityInterfaces/classConfig.model';
 import { UtilityActions } from '../actions/util.actions';
 import { initialState } from './app.state';
+import { ParentActions } from '../actions/parent.actions';
 
 export const pageReducer = createReducer(
   initialState,
@@ -78,6 +79,20 @@ export const pageReducer = createReducer(
     ...state,
     transportLoading: false,
   })),
+  //parents
+  on(ParentActions.loadAdmissionBasedParents, (state, action) => ({
+    ...state,
+    parentLoading: true,
+  })),
+  on(ParentActions.loadAdmissionBasedParentsSucess, (state, { data }) => ({
+    ...state,
+    parentLoading: false,
+    parentDetails: data,
+  })),
+  on(ParentActions.loadAdmissionBasedParentsFailure, (state, { error }) => ({
+    ...state,
+    parentLoading: false,
+  })),
   on(UtilityActions.loadClassConfig, (state) => ({
     ...state,
     utilLoading: true,
@@ -92,3 +107,5 @@ export const pageReducer = createReducer(
     utilLoading: false,
   }))
 );
+
+

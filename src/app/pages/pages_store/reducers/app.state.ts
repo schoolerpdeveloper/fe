@@ -16,7 +16,10 @@ export interface State {
   busRouteCodes: string | number;
   busRouteCodeDetails: ITransportDeatils[];
   parentDetails: IParentDetails[];
+  singleParentDetail: IParentDetails;
+  singleSibilingDetail: ISiblingDetails;
   sibilingDetails: ISiblingDetails[];
+  parentLoading:boolean;
   allDetailsOfStudents: { [key: string]: any };
   classConfigUtility: IClassConfigUtility[];
 }
@@ -31,11 +34,14 @@ export const initialState: State = {
   sibilingDetails: [],
   allDetailsOfStudents: {},
   classConfigUtility: [],
+  singleParentDetail:{},
+  singleSibilingDetail:{},
   /**boolean flags maintained for each file */
   loading: false,
   studentLoading: false,
   transportLoading: false,
   utilLoading: false,
+  parentLoading: false,
   /**boolean flags maintained for each file */
 };
 
