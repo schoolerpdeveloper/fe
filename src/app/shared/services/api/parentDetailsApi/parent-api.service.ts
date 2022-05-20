@@ -17,7 +17,7 @@ export class ParentApiService {
   }
 
   getStudentParentDetails(admissionNumber:number|string): Observable<any> {
-    return this.http.get(`${this.url}/parentdetails/${admissionNumber}`);
+    return this.http.get(`${this.url}/parentdetails/admission/${admissionNumber}`);
   }
   
   getParentDetails(id:number|string): Observable<any> {

@@ -13,9 +13,9 @@ const routes: Routes = [
     component: DashboardComponent,
     children: [
       { path: RouterEnum.DASHBOARD_MAIN, component: MainDashboardComponent },
-      { path: 'student-management', component: StudentManagementComponent },
+      { path: RouterEnum.STUDENT_MANAGEMENT, component: StudentManagementComponent },
       {
-        path: 'student-management/:admissionNo',
+        path: `${RouterEnum.STUDENT_MANAGEMENT}/:admissionNo`,
         component: SingleStudentManagementComponent,
       },
       // { path: 'admission/:action', component: StudentFormComponent },

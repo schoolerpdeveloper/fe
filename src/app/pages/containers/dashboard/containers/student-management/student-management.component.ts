@@ -16,8 +16,8 @@ import {
   updateStudentDetails,
 } from 'src/app/pages/pages_store/actions/student.actions';
 import {
-  dataLoading,
   selectStudentLists,
+  studentDataLoading,
 } from 'src/app/pages/pages_store/selectors/student.selectors';
 import { IStudentList } from '@shared/models/studentDetails/student-details.interface';
 import {
@@ -28,6 +28,9 @@ import { ConfiguredModalComponent } from '../../components/configured-modal/conf
 import { mapfeesCalcAndClasses } from 'src/app/utility/utility';
 import { TransportActions } from 'src/app/pages/pages_store/actions/transport.actions';
 import { Observable, of } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { RouterEnum } from 'src/app/enums/router.enum';
+import { query } from '@angular/animations';
 
 @Component({
   selector: 'app-student-management',
@@ -56,16 +59,16 @@ export class StudentManagementComponent {
   constructor(
     private destroy$: AutoUnSubscribeService,
     private store: Store,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
     this.store
-      .select(dataLoading)
+      .select(studentDataLoading)
       .pipe(
         takeUntil(this.destroy$),
-        debounceTime(200),
-        distinctUntilChanged(),
         tap((d: boolean) => (this.isLoading = d))
       )
       .subscribe();
@@ -116,7 +119,8 @@ export class StudentManagementComponent {
   }
 
   routeConfigurationCaptured(event: any) {
-    console.log(event);
+    if (event.routeTo === 'student_view' && event.studentDetails.ADMN_NO)
+      this.router.navigate([RouterEnum.CONTAINER,RouterEnum.DASHBOARD, RouterEnum.STUDENT_MANAGEMENT,event.studentDetails.ADMN_NO]);
   }
   loadData() {
     this.store.dispatch(loadStudentList());

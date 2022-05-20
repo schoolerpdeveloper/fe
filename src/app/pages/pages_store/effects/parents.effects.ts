@@ -7,15 +7,16 @@ import { catchError, map, switchMap } from 'rxjs/operators';
 
 import { ParentActions } from '../actions/parent.actions';
 import { of } from 'rxjs';
+import { IParentDetails } from '@shared/models/parentDetails';
 
 @Injectable()
 export class ParentEffects {
   studentBasedParentDetails$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ParentActions.loadAdmissionBasedParents),
-      switchMap((action) =>
-        this.api.getStudentParentDetails(action.admissionNo).pipe(
-          map((d) => ParentActions.loadAdmissionBasedParentsSucess(d)),
+      switchMap(({admissionNo}) =>
+        this.api.getStudentParentDetails(admissionNo).pipe(
+          map((d:IParentDetails[]) => ParentActions.loadAdmissionBasedParentsSucess({data:d})),
           catchError((err) => {
             this.errorNotifier(err);
             return of(ParentActions.loadAdmissionBasedParentsFailure(err));

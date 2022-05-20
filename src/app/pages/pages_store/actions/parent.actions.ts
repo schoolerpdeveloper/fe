@@ -24,7 +24,7 @@ export namespace ParentActions {
 
   export const loadAdmissionBasedParentsSucess = createAction(
     '[Pages] Load Admission Based Parents Success',
-    props<{ data: any }>()
+    props<{ data: IParentDetails[] }>()
   );
 
   export const loadAdmissionBasedParentsFailure = createAction(

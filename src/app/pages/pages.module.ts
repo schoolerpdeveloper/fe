@@ -9,7 +9,9 @@ import { OneColumnLayoutComponent } from './components/one-column-layout/one-col
 import { SharedModule } from '@shared/shared.module';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import { pageReducer, pagesFeatureKey } from './pages_store/reducers/index.reducer';
+import { pageReducer } from './pages_store/reducers/index.reducer';
+import { pagesFeatureKey } from './pages_store/reducers/app.state';
+
 import { StudentEffects } from './pages_store/effects/students.effects';
 import { StudentdetailsService } from '@shared/services/api/studentDetailsApi/studentdetails.service';
 import { SibilingEffects } from './pages_store/effects/sibiling.effects';

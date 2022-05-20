@@ -31,7 +31,6 @@ export class StudentListCardComponent implements OnInit {
   @Output() routeConfiguration = new EventEmitter<{ [key: string]: any }>();
   @Output() openModalWindow = new EventEmitter<{ [key: string]: any }>();
 
-
   constructor() {}
 
   private feesPercentCalc(value: IStudentList) {
@@ -63,10 +62,21 @@ export class StudentListCardComponent implements OnInit {
       status: this.toggleSwitch === true ? 'A' : 'I',
     });
   }
-  openModalWindowEvent(d:{[key:string]:any}){
-    this.openModalWindow.emit({...d});
+  openModalWindowEvent(d: { [key: string]: any }) {
+    this.openModalWindow.emit({ ...d });
   }
-  routeToFees(d:{[key:string]:any}){
-    this.routeConfiguration.emit({...d})
+  routeToFees(studentDetailsList: any) {
+    let d = {
+      routeTo: 'fees',
+      ...(studentDetailsList && { studentDetails: studentDetailsList }),
+    };
+    this.routeConfiguration.emit({ ...d });
+  }
+  routeToView(studentDetailsList: any) {
+    let d = {
+      routeTo: 'student_view',
+      ...(studentDetailsList && { studentDetails: studentDetailsList }),
+    };
+    this.routeConfiguration.emit({ ...d });
   }
 }

@@ -6,7 +6,7 @@
                 <ng-container *ngIf="toggleSwitch === false"> Inactive</ng-container>
                 <ng-container *ngIf="toggleSwitch === true">
                     <button type="button" class="pointer border-0 bg-transparent text-white"
-                        style="pointer-events:painted; z-index: 999;" (click)="routeToFees({routeTo:'fees'});">
+                        style="pointer-events:painted; z-index: 999;" (click)="routeToFees(studentDetailsList);">
                         {{paidString}}
                     </button>
                 </ng-container>
@@ -62,10 +62,9 @@
 
                 <!-- <i class="fa fa-message shadow"></i> -->
             </div>
-            <div>
+            <div class="pointer">
                 <!-- <i class="fa fa-eye shadow"></i> -->
-                <mat-icon fontSet="material-icons-outlined" class="rounded-circle shadow">visibility</mat-icon>
-
+                <mat-icon fontSet="material-icons-outlined" class="rounded-circle shadow" (click)="routeToView(studentDetailsList)">visibility</mat-icon>
             </div>
             <div class="pointer">
                 <ng-container *ngIf="toggleSwitch">

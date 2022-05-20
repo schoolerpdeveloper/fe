@@ -141,6 +141,13 @@ label,
   box-shadow: 1px 2px 7px 1px rgba(221, 221, 221, 0.6) !important;
 }
 
+/** themed cdk overlay dilog */
+.cdk-overlay-dark-backdrop {
+  background: rgb(89 93 86 / 90%) !important;
+}
+/** end of themed cdk overlay dilog */
+
+
 /** skeleton styles**/
 .skeleton-card {
   position: relative;

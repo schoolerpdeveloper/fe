@@ -8,8 +8,11 @@ import { studentDetails } from 'src/app/utility/mock/mock.data';
 import { StudentdetailsService } from '@shared/services/api/studentDetailsApi/studentdetails.service';
 import { NotificationService } from '@shared/services/notification.service';
 import { HttpClient } from '@angular/common/http';
-import { IStudentList } from '@shared/models/studentDetails/student-details.interface';
+import { IStudentDetails, IStudentList } from '@shared/models/studentDetails/student-details.interface';
 import { loadSingleStudentSuccess } from '../actions/student.actions';
+import { SibilingActions } from '../actions/sibiling.actions';
+import { ParentActions } from '../actions/parent.actions';
+import { TransportActions } from '../actions/transport.actions';
 
 @Injectable()
 export class StudentEffects {
@@ -85,29 +88,7 @@ export class StudentEffects {
   });
 
 
-  loadAllStudentsRelatedDetails$ = createEffect(()=>{
-    return this.actions$.pipe(
-      ofType(PagesActions.loadAllDetailsRelatedToStudent),
-      switchMap(({admissioNo})=>{
-        return this.studentApi.getSingleStudentDetails(admissioNo).pipe(
-          map((data:any)=>{
-           return PagesActions.loadSingleStudentSuccess({data:data})
-          }),
-          catchError((err)=>{
-            this.errorNotifier(err);
-            return of(PagesActions.loadSingleStudentFailure(err))
-          })
-        )
-      })
-      // switchMap((action)=>{
-      //   return this.studentApi.getSingleStudentDetails(action.admissioNo).pipe(tap(data)=>{
-      //     of(loadSingleStudentSuccess({data:data}))
-      //   })
-      // }),
-      // concatMap((data)=>{
-      //   console.log(data)
-      // })
-    )},{dispatch:true})
+
 
   constructor(
     private actions$: Actions,

@@ -21,82 +21,74 @@ import {
 } from '../actions/student.actions';
 import { IParentDetails } from '@shared/models/parentDetails';
 import { ISiblingDetails } from '@shared/models/siblingDeatils';
-
-export const pagesFeatureKey = 'pages';
-
-export interface State {
-  studentDetails: IStudentDetails[];
-  singleStudentDetails: IStudentDetails;
-  loading: boolean;
-  studentLists: IStudentList[];
-  busRouteCodes: string | number;
-  busRouteCodeDetails: ITransportDeatils[];
-  parentDetails: IParentDetails[];
-  sibilingDetails: ISiblingDetails[];
-  allDetailsOfStudents: { [key: string]: any };
-}
-
-export const initialState: State = {
-  studentDetails: [],
-  singleStudentDetails: {},
-  loading: false,
-  studentLists: [],
-  busRouteCodes: '',
-  busRouteCodeDetails: [],
-  parentDetails: [],
-  sibilingDetails: [],
-  allDetailsOfStudents: {},
-};
+import { IClassConfigUtility } from '@shared/models/utilityInterfaces/classConfig.model';
+import { UtilityActions } from '../actions/util.actions';
+import { initialState } from './app.state';
 
 export const pageReducer = createReducer(
   initialState,
-  on(loadStudents, (state) => ({ ...state, loading: true })),
+  on(loadStudents, (state) => ({ ...state, studentLoading: true })),
   on(loadStudentSuccess, (state, { data }) => ({
     ...state,
     studentDetails: data,
-    loading: false,
+    studentLoading: false,
   })),
   on(loadStudentFailure, (state, { error }) => ({
     ...state,
-    loading: false,
+    studentLoading: false,
   })),
-  on(loadSingleStudents, (state, action) => ({ ...state, loading: true })),
-  on(loadSingleStudentSuccess, (state, {data}) => {
+  on(loadSingleStudents, (state, action) => ({
+    ...state,
+    studentLoading: true,
+  })),
+  on(loadSingleStudentSuccess, (state, { data }) => {
     return {
       ...state,
       singleStudentDetails: data,
-      loading: false,
+      studentLoading: false,
     };
   }),
   on(loadSingleStudentFailure, (state, { error }) => ({
     ...state,
     singleStudentDetails: {},
-    loading: false,
+    studentLoading: false,
   })),
-  on(loadStudentList, (state, action) => ({ ...state, loading: true })),
+  on(loadStudentList, (state, action) => ({ ...state, studentLoading: true })),
   on(loadStudentListSuccess, (state, { studentLists }) => ({
     ...state,
-    loading: false,
+    studentLoading: false,
     studentLists: studentLists,
   })),
   on(loadSingleStudentFailure, (state, { error }) => ({
     ...state,
-    loading: false,
+    studentLoading: false,
   })),
   // bus Route handlings
   on(TransportActions.loadBusRouteId, (state, { busRouteCode }) => ({
     ...state,
-    loading: true,
+    transportLoading: true,
     busRouteCodes: busRouteCode,
   })),
   on(TransportActions.loadBusRouteIdSuccess, (state, { data }) => ({
     ...state,
-    loading: false,
+    transportLoading: false,
     busRouteCodeDetails: data,
   })),
   on(TransportActions.loadBusRouteIdFailure, (state, { error }) => ({
     ...state,
-    loading: false,
+    transportLoading: false,
+  })),
+  on(UtilityActions.loadClassConfig, (state) => ({
+    ...state,
+    utilLoading: true,
+  })),
+  on(UtilityActions.onClassConfigSuccess, (state, { data }) => ({
+    ...state,
+    classConfigUtility: data,
+    utilLoading: false,
+  })),
+  on(UtilityActions.onClassConfigFailure, (state) => ({
+    ...state,
+    utilLoading: false,
   }))
 );
-// export const reducer2 = createReducer(initialState);
