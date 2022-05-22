@@ -1,4 +1,5 @@
 import { IParentDetails } from '@shared/models/parentDetails';
+import { IParentDetailsAddress } from '@shared/models/parentDetailsAdress';
 import { ISiblingDetails } from '@shared/models/siblingDeatils';
 import { IStudentDetails } from '@shared/models/studentDetails';
 import { IStudentList } from '@shared/models/studentDetails/student-details.interface';
@@ -16,10 +17,13 @@ export interface State {
   busRouteCodes: string | number;
   busRouteCodeDetails: ITransportDeatils[];
   parentDetails: IParentDetails[];
+  addressDetails: IParentDetailsAddress[];
   singleParentDetail: IParentDetails;
   singleSibilingDetail: ISiblingDetails;
+  singleAddressDetails: IParentDetailsAddress;
   sibilingDetails: ISiblingDetails[];
-  parentLoading:boolean;
+  parentLoading: boolean;
+  siblingLoading: boolean;
   allDetailsOfStudents: { [key: string]: any };
   classConfigUtility: IClassConfigUtility[];
 }
@@ -34,14 +38,17 @@ export const initialState: State = {
   sibilingDetails: [],
   allDetailsOfStudents: {},
   classConfigUtility: [],
-  singleParentDetail:{},
-  singleSibilingDetail:{},
+  addressDetails: [],
+  singleAddressDetails: {},
+  singleParentDetail: {},
+  singleSibilingDetail: {},
   /**boolean flags maintained for each file */
   loading: false,
   studentLoading: false,
   transportLoading: false,
   utilLoading: false,
   parentLoading: false,
+  siblingLoading: false,
   /**boolean flags maintained for each file */
 };
 

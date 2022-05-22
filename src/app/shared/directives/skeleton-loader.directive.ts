@@ -3,7 +3,7 @@ import { SkeletonLoaderComponent } from '@shared/components/skeleton-loader/skel
 
 @Directive({ selector: '[skeleton]' })
 export class SkeletonLoaderDirective {
-  @Input('skeleton') isLoading = false;
+  @Input('skeleton') isLoading:boolean | null | undefined = false;
   @Input('skeletonRepeat') size = 1;
   @Input('skeletonWidth') width: string='0';
   @Input('skeletonHeight') height: string='0';

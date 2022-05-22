@@ -1,9 +1,10 @@
 <mat-toolbar class="shadow-sm">
 
     <div>
-        <button type="button" class="bg-transparent border-0" (click)="toggleEvent();">
-            <img src="assets/images/graduation-hat.png" class="img-thumbnail border-0">            
-            <span class="fs-5 text-bold-condensed fw-bold text-themed ms-2 my-auto"> {{greetText}}</span>
+        <button type="button" class="bg-transparent border-0 d-flex" (click)="toggleEvent();">
+            <div class=""><mat-icon class="text-themed align-middle">menu</mat-icon></div>
+            <!-- <img src="assets/images/graduation-hat.png" class="img-thumbnail border-0">             -->
+            <div class="fs-5 text-bold-condensed fw-bold text-themed ms-2 my-auto"> {{greetText}}</div>
         </button>
 
     </div>
@@ -37,7 +38,7 @@
         </div>
     </div>
     <div class="position-fixed" *ngIf="toggleDropDownSheet">
-        <div class="position-relative top-0 start-0" style="left:1rem !important">
+        <div class="position-relative top-0 start-0" style="left:1rem !important;z-index: 9999;">
             <div class="card" style="width:10rem;">
                 <div class="card-body mb-1 pointer">Profile</div>
                 <div class="card-body m-0 p-0 ps-3 mb-1 pointer">Logout</div>

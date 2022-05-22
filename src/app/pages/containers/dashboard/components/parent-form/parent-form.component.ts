@@ -1,29 +1,54 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit, Self } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit,
+  Output,
+  Self,
+  EventEmitter,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AutoUnSubscribeService } from '@core/services/auto-unsubscribe/auto-un-subscribe.service';
-import { Store } from '@ngrx/store';
 import {
   IParentDetails,
   parentDetailsModel,
 } from '@shared/models/parentDetails';
+import {
+  IParentDetailsAddress,
+  parentDetailsAddressModel,
+} from '@shared/models/parentDetailsAdress';
 import { IStudentDetails } from '@shared/models/studentDetails';
-import { takeUntil, tap } from 'rxjs';
-import { selectAllStudents } from 'src/app/pages/pages_store/selectors/student.selectors';
+import { combineLatest } from 'rxjs';
+import { debounceTime, delay, startWith, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-parent-form',
   templateUrl: './parent-form.component.html',
   styleUrls: ['./parent-form.component.scss'],
-  viewProviders:[AutoUnSubscribeService],
-  changeDetection:ChangeDetectionStrategy.OnPush
-
+  viewProviders: [AutoUnSubscribeService],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ParentFormComponent implements OnInit {
   parentDetailsForm!: FormGroup;
-  parentAddressForm!: FormGroup;
 
   @Input() _studentDetails: IStudentDetails[] = [];
   parentDetailModel: IParentDetails = {};
+
+  @Input() set parentDetail(value: IParentDetails) {
+    this.parentDetailModel = value
+      ? {
+          ...value,
+          ...(value.PRNT_OCCU
+            ? { PRNT_OCCU: value.PRNT_OCCU.toLowerCase() }
+            : {}),
+        }
+      : this.parentDetailModel;
+  }
+
+  @Input() showField: boolean = false;
+  @Output() parentDetailsFormStatus = new EventEmitter<{
+    [key: string]: any;
+  }>();
 
   occupation = [
     'engineer',
@@ -31,17 +56,33 @@ export class ParentFormComponent implements OnInit {
     'plumber',
     'electrician',
     'business',
+    'teacher',
+    'driver',
     'others',
   ].map((i) => ({ label: i, value: i }));
 
-  constructor(private fb: FormBuilder,@Self() private destroy$:AutoUnSubscribeService) {
+  constructor(
+    private fb: FormBuilder,
+    @Self() private destroy$: AutoUnSubscribeService
+  ) {
     this.parentDetailModel = { ...parentDetailsModel };
   }
 
   ngOnInit(): void {
-    this.initParentAddressForm();
     this.initParentForm();
-    this.parentDetailsForm.valueChanges.pipe(takeUntil(this.destroy$))
+
+    this.parentDetailsForm.valueChanges
+      .pipe(startWith(this.parentDetailModel))
+      .subscribe((data) => {
+        let temp = {
+          parentDetails: {
+            data: data,
+            valid: this.parentDetailsForm.valid,
+          },
+        };
+        this.parentDetailsFormStatus.emit(temp);
+      });
+
     }
 
   initParentForm() {
@@ -56,20 +97,7 @@ export class ParentFormComponent implements OnInit {
       PRNT_EMAIL_ID: [parentDetails.PRNT_EMAIL_ID, []],
     });
   }
-  initParentAddressForm() {
-    this.parentAddressForm = this.fb.group({
-      ADMN_NO: ['', []],
-      PRNT_ADRS_CD: ['', []],
-      PRNT_ADRS_ADD1: ['', []],
-      PRNT_ADRS_ADD2: ['', []],
-      PRNT_ADRS_ADD3: ['', []],
-      PRNT_ADRS_ADD4: ['', []],
-      PRNT_ADRS_ADD5: ['', []],
-      PRNT_ADRS_DIST: ['', []],
-      PRNT_ADRS_PSTL_CD: ['', [Validators.required]],
-  
-    });
-  }
+
   captureAdmissionNo(e: any) {
     if (e.ADMN_NO) this.parentDetailsForm.patchValue({ ADMN_NO: e.ADMN_NO });
   }

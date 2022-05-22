@@ -120,7 +120,12 @@ export class StudentManagementComponent {
 
   routeConfigurationCaptured(event: any) {
     if (event.routeTo === 'student_view' && event.studentDetails.ADMN_NO)
-      this.router.navigate([RouterEnum.CONTAINER,RouterEnum.DASHBOARD, RouterEnum.STUDENT_MANAGEMENT,event.studentDetails.ADMN_NO]);
+      this.router.navigate([
+        RouterEnum.CONTAINER,
+        RouterEnum.DASHBOARD,
+        RouterEnum.STUDENT_MANAGEMENT,
+        event.studentDetails.ADMN_NO,
+      ]);
   }
   loadData() {
     this.store.dispatch(loadStudentList());
@@ -132,6 +137,7 @@ export class StudentManagementComponent {
       data: {
         modalTitle: 'Transport Details',
         studentDetails: event.studentDetails,
+        loadTable:true,
       },
     });
     this.store.dispatch(

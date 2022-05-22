@@ -1,33 +1,37 @@
-<!-- <div class="card border-0">
-    <div class="card-header  poppins-text fw-bold">Sibiling Details</div>
+<div class="card bg-transparent border border-light shadow-sm p-2 custom-card-rounded" style="max-width:20rem">
+    <div class="card-text ps-3 border-0 rounded-pill bg-white  poppins-text fw-bold" style="font-size: 14px;">Sibiling Details</div>
+
     <cdk-accordion class="bg-transparent">
         <cdk-accordion-item *ngFor="let item of _siblingdetails; let index = index;" #accordionItem="cdkAccordionItem"
-            class="card py-2 border border-light custom-card-rounded" tabindex="0"
+            class="card py-2 my-2 border border-light custom-card-rounded" tabindex="0"
             [attr.id]="'accordion-header-' + index" [attr.aria-expanded]="accordionItem.expanded"
             [attr.aria-controls]="'accordion-body-' + index">
             <div class="example-accordion-item-header">
                 <div class="d-flex align-middle">
-                    <div [attr.data-letters]="item?.PRNT_NAME | slice:0:1" class="rounded-circle text-center"
+                    <div [attr.data-letters]="item?.SBLN_NAME ? item?.SBLN_NAME : 'X' | slice:0:1" class="rounded-circle text-center my-auto"
                         style="width: 4.5rem;"></div>
                     <div class="" style="flex:1">
-                        <div class="fs-6 fw-bold poppins-text">{{item?.PRNT_NAME}}</div>
-                        <small class="d-block">{{item?.PRNT_PHNE_NO}}</small>
-                        <div class="grid-container small">
-                            <div class="">
-                                <a class="text-themed" role="button" (click)="accordionItem.toggle()">More</a>
-
-                            </div>
-                            <div class="mt-1">
-                                <a class="text-themed text-decoration-none" role="button" href="tel:5554280940">
-                                    <mat-icon fontSet="material-icons-outlined" class="d-block small" role="button">phone
-                                    </mat-icon>
-
+                        <div class="fs-6 fw-bold poppins-text">{{item?.SBLN_NAME ? item?.SBLN_NAME : 'Need to Add Name' }}</div>
+                        <small class="d-block">{{item?.SBLN_RELA ? item?.SBLN_RELA : 'Need to Add Relation'}}</small>
+                        <div class="grid-container small my-2">
+                            <div class="my-auto">
+                                <!-- <a class="text-themed" role="button" >More</a> -->
+                                <a class="text-themed text-decoration-none btn btn-sm rounded-circle shadow"
+                                    role="button" (click)="accordionItem.toggle()">
+                                    <mat-icon fontSet="material-icons-outlined" class="">more_horiz</mat-icon>
                                 </a>
-
                             </div>
-                            <div class="mt-1">
-                                <mat-icon fontSet="material-icons-outlined" class="d-block small" role="button">edit
-                                </mat-icon>
+                            <div class="mt-1 pointer">
+                                <a class="text-themed text-decoration-none btn btn-sm rounded-circle shadow"
+                                    role="button">
+                                    <mat-icon fontSet="material-icons-outlined" class="">edit</mat-icon>
+                                </a>
+                            </div>
+                            <div class="mt-1 pointer">
+                                <a class="text-themed text-decoration-none btn btn-sm rounded-circle shadow"
+                                    role="button">
+                                    <mat-icon fontSet="material-icons-outlined" class="">add</mat-icon>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -39,27 +43,31 @@
                 <table class="table text-secondary">
                     <tr>
                         <th>Name</th>
-                        <td>{{item?.PRNT_NAME}}</td>
+                        <td>{{item?.SBLN_NAME}}</td>
                     </tr>
                     <tr>
 
-                        <th>Phone Number</th>
-                        <td>{{item?.PRNT_PHNE_NO}}</td>
+                        <th>Admission</th>
+                        <td>{{item?.SBLN_ADMN_NO}}</td>
                     </tr>
                     <tr>
 
-                        <th>Name</th>
-                        <td>{{item?.PRNT_NAME}}</td>
+                        <th>Class</th>
+                        <td>{{item?.SBLN_CLASS}}</td>
                     </tr>
                     <tr>
 
-                        <th>Email Address</th>
-                        <td>{{item?.PRNT_EMAIL_ID}}</td>
+                        <th>Discount</th>
+                        <td>{{item?.SBLN_DISCO}}</td>
                     </tr>
-                    
+                    <tr>
+
+                        <th>Comments</th>
+                        <td class="text-break">{{item?.SBLN_COMMENTS}}</td>
+                    </tr>
                 </table>
             </div>
         </cdk-accordion-item>
     </cdk-accordion>
 
-</div> -->
+</div>

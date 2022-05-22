@@ -25,6 +25,8 @@ import { IClassConfigUtility } from '@shared/models/utilityInterfaces/classConfi
 import { UtilityActions } from '../actions/util.actions';
 import { initialState } from './app.state';
 import { ParentActions } from '../actions/parent.actions';
+import { SibilingActions } from '../actions/sibiling.actions';
+import { AddressActions } from '../actions/address.actions';
 
 export const pageReducer = createReducer(
   initialState,
@@ -92,6 +94,34 @@ export const pageReducer = createReducer(
   on(ParentActions.loadAdmissionBasedParentsFailure, (state, { error }) => ({
     ...state,
     parentLoading: false,
+  })),
+  //address
+  on(AddressActions.loadAdmissionBasedAddress, (state, action) => ({
+    ...state,
+    parentLoading: true,
+  })),
+  on(AddressActions.loadAdmissionBasedAddressSucess, (state, { data }) => ({
+    ...state,
+    parentLoading: false,
+    addressDetails: data,
+  })),
+  on(AddressActions.loadAdmissionBasedAddressFailure, (state, { error }) => ({
+    ...state,
+    parentLoading: false,
+  })),
+  //sibiling
+  on(SibilingActions.loadAdmissionBasedSibilings, (state, action) => ({
+    ...state,
+    siblingLoading: true,
+  })),
+  on(SibilingActions.loadAdmissionBasedSibilingsSucess, (state, { data }) => ({
+    ...state,
+    siblingLoading: false,
+    sibilingDetails: data,
+  })),
+  on(SibilingActions.loadAdmissionBasedSibilingsFailure, (state, { error }) => ({
+    ...state,
+    siblingLoading: false,
   })),
   on(UtilityActions.loadClassConfig, (state) => ({
     ...state,

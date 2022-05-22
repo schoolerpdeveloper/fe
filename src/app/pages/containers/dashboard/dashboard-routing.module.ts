@@ -12,14 +12,35 @@ const routes: Routes = [
     path: '',
     component: DashboardComponent,
     children: [
-      { path: RouterEnum.DASHBOARD_MAIN, component: MainDashboardComponent },
-      { path: RouterEnum.STUDENT_MANAGEMENT, component: StudentManagementComponent },
+      {
+        path: RouterEnum.DASHBOARD_MAIN,
+        component: MainDashboardComponent,
+        data: {
+          // animation: 'isRight',
+        },
+      },
+      {
+        path: RouterEnum.STUDENT_MANAGEMENT,
+        component: StudentManagementComponent,
+        data: { 
+          // animation: 'isRight' 
+        },
+      },
       {
         path: `${RouterEnum.STUDENT_MANAGEMENT}/:admissionNo`,
         component: SingleStudentManagementComponent,
+        data: {
+          //  animation: 'isRight'
+           },
       },
       // { path: 'admission/:action', component: StudentFormComponent },
-      { path: 'admission/new', component: StudentFormComponent },
+      {
+        path: 'admission/new',
+        component: StudentFormComponent,
+        data: { 
+          // animation: 'isRight'
+         },
+      },
       { path: 'admission/edit/:id', component: StudentFormComponent },
       {
         path: '**',

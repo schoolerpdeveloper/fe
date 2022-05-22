@@ -23,6 +23,7 @@ import { StudentBasedParentCardComponent } from './components/student-based-pare
 import { StudentBasedSibilingCardComponent } from './components/student-based-sibiling-card/student-based-sibiling-card.component';
 import { StudentBasedTransportCardComponent } from './components/student-based-transport-card/student-based-transport-card.component';
 import { StudentBasedFeesCardComponent } from './components/student-based-fees-card/student-based-fees-card.component';
+import { AddressFormComponent } from './components/address-form/address-form.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { StudentBasedFeesCardComponent } from './components/student-based-fees-c
     StudentBasedSibilingCardComponent,
     StudentBasedTransportCardComponent,
     StudentBasedFeesCardComponent,
+    AddressFormComponent,
     
     
   ],

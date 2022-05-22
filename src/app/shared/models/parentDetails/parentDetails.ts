@@ -10,6 +10,5 @@ export const parentDetailsModel: IParentDetails = {
   PRNT_PHNE_NO: null,
   PRNT_EMAIL_ID: null,
   LAST_UPDT_TS: null,
-  PRNT_NAME: null,
-  PRNT_RLTN: null,
+  FIRST_NAME: null,
 };

@@ -1,12 +1,34 @@
-<h2 mat-dialog-title class="text-lowercase text-capitalize">{{data?.modalTitle}} for {{data?.studentDetails?.STUD_FIRST_NAME | lowercase}}</h2>
+<h2 mat-dialog-title class="text-lowercase text-capitalize">{{data?.modalTitle}}</h2>
 <mat-dialog-content>
-  <ng-container [ngTemplateOutlet]="routeInfo" [ngTemplateOutletContext]="{ data: routeDetails$ | async }">
+  <ng-container *ngIf="data?.loadTable" [ngTemplateOutlet]="routeInfo"
+    [ngTemplateOutletContext]="{ data: routeDetails$ | async }">
+  </ng-container>
+  <ng-container *ngIf="data?.loadForms">
+    <ng-container *ngIf="data?.formType === 'parent'" [ngTemplateOutlet]="parentInfo"
+      [ngTemplateOutletContext]="{ data: data}"></ng-container>
   </ng-container>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancel</button>
+  
+  <button mat-button [disabled]="!validState" class="btn btn-themed text-white" [class.disabled]="!validState"
+    type="button" (click)="submit(data)">Submit</button>
 </mat-dialog-actions>
 
+
+<ng-template #parentSubmit>
+  
+</ng-template>
+
+<ng-template #parentInfo>
+<pre>{{data | json }}</pre>
+  <app-parent-form [parentDetail]="data?.data"
+    (parentDetailsFormStatus)="parentDetailsFormStatusHandle($event)">
+  </app-parent-form>
+  <app-address-form [addressDetails]="data?.data?.addressForm"
+    (addressDetails)="parentAddressFormStatusHandle($event)">
+  </app-address-form>
+</ng-template>
 
 <ng-template #routeInfo let-data="data">
   <div class="card rounded-5 border-0">

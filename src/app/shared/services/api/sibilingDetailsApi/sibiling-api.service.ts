@@ -17,7 +17,7 @@ export class SibilingApiService {
   }
 
   getStudentsiblingdetails(admissionNumber: number | string): Observable<any> {
-    return this.http.get(`${this.url}/siblingdetails/${admissionNumber}`);
+    return this.http.get(`${this.url}/siblingdetails/admission/${admissionNumber}`);
   }
 
   getsiblingdetails(id: number | string): Observable<any> {

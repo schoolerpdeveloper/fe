@@ -1,7 +1,7 @@
 export interface IParentDetailsAddress {
   ID?: string | null;
   ADMN_NO?: string | null;
-  PRNT_ADRS_CD?: string | null;
+  PRNT_ADRS_CD?: string|number | null;
   PRNT_ADRS_ADD1?: string | null;
   PRNT_ADRS_ADD2?: string | null;
   PRNT_ADRS_ADD3?: string | null;

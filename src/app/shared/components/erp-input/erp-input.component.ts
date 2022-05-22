@@ -55,6 +55,8 @@ export class ErpInputComponent implements ControlValueAccessor, Validator {
   @Input() defaultSelectValue: any = '';
   @Input() maskPlaceHolder: any = '-';
   @Input() prefix: string = '';
+  @Input() readonly: boolean = false;
+
   maskedFieldDataPlaced: boolean = false;
 
   inputElement!: ElementRef;

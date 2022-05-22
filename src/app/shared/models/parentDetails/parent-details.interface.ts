@@ -8,6 +8,5 @@ export interface IParentDetails {
   PRNT_PHNE_NO?: string | null;
   PRNT_EMAIL_ID?: string | null;
   LAST_UPDT_TS?: string | null;
-  PRNT_NAME?: string | null;
-  PRNT_RLTN?: string | null;
+  FIRST_NAME?:string|null
 }
