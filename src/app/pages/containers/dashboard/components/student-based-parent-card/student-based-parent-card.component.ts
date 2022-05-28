@@ -9,6 +9,12 @@ import {
 } from '@angular/core';
 import { IParentDetails } from '@shared/models/parentDetails';
 import { IParentDetailsAddress } from '@shared/models/parentDetailsAdress';
+import { IParentAddressDetails } from '@shared/models/parentDetailsAdress/parent-details-address.interface';
+export enum PARENT_REL_TYPE {
+  Father = 1,
+  Mother = 2,
+  Gaurdian = 3,
+}
 @Component({
   selector: 'app-student-based-parent-card',
   templateUrl: './student-based-parent-card.component.html',
@@ -19,30 +25,24 @@ import { IParentDetailsAddress } from '@shared/models/parentDetailsAdress';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StudentBasedParentCardComponent implements OnInit {
-  _parentDetails: Array<IParentDetails> = [];
-  _parentAddressDetails: {[key:string]:any} = {};
+  @Input() admissionNo: string | number = '';
+
+  _parentAddressDetails: IParentAddressDetails[] = [];
 
   @Output() parentFormAction = new EventEmitter<{
-    action: 'add' | 'update';
-    data: any
+    action: 'add' | 'update' | 'delete';
+    data: any;
   }>();
 
   @Input() set parentDetails(value: IParentDetails[]) {
-    if (!value) this._parentDetails = [];
-    else {
-      this._parentDetails = [...value];
-    }
+    // if (value) {
+    //   this._parentDetails = [...value];
+    // }
   }
 
-  @Input() set parentAddressDetails(value: IParentDetailsAddress[]) {
-    if (!value) this._parentAddressDetails = {};
-    else {
-      let temp:any= {};
-      value.map(i=>{
-        let code = i?.PRNT_ADRS_CD
-        if(code)temp[code] = i;
-      });
-      this._parentAddressDetails = temp;
+  @Input() set parentAddressDetails(value: IParentAddressDetails[]) {
+    if (value) {
+      this._parentAddressDetails = [...value]
     }
   }
 
@@ -50,17 +50,33 @@ export class StudentBasedParentCardComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  updateDetails(data: IParentDetails) {
-    let temp:any = {
-      parentDetails:{...data},
-    }
-    if(data?.PRNT_CD && this._parentAddressDetails[data?.PRNT_CD]){
-      temp['addressForm'] = this._parentAddressDetails[data?.PRNT_CD]
-    }
-    this.parentFormAction.emit({ action: 'update', data:temp });
+  updateDetails(detail: any) {
+    this.parentFormAction.emit({ action: 'update', data: { ...detail } });
   }
-  addDetails() {
-    let data = null;
-    this.parentFormAction.emit({ action: 'add', data });
+
+  addDetails(detail: any) {
+    if (!detail) {
+      detail = {
+        ADMN_NO: this.admissionNo,
+        addressDetails: { ADMN_NO: this.admissionNo },
+      };
+    }
+    this.parentFormAction.emit({
+      action: 'add',
+      data: {
+        ADMN_NO: detail.ADMN_NO,
+        ...{ detail },
+        address_details: { ADMN_NO: detail.ADMN_NO },
+      },
+    });
+  }
+  deleteDetails(detail: any) {
+    this.parentFormAction.emit({ action: 'delete', data: { ...detail } });
+  }
+
+  relationInfo(code: string | number | undefined) {
+    code = code ? Number(code) : 0;
+    if (!code) return;
+    return PARENT_REL_TYPE[code];
   }
 }

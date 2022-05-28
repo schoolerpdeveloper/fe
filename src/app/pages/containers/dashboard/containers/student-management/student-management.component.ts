@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {
   debounceTime,
   distinctUntilChanged,
+  filter,
   map,
   takeUntil,
   tap,
@@ -31,6 +32,7 @@ import { Observable, of } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RouterEnum } from 'src/app/enums/router.enum';
 import { query } from '@angular/animations';
+import { TransportSelector } from 'src/app/pages/pages_store/selectors/transport.selector';
 
 @Component({
   selector: 'app-student-management',
@@ -56,6 +58,8 @@ export class StudentManagementComponent {
   filteredFees: string[] = [];
   filteredName: string = '';
   isLoading: boolean = true;
+  routeDetails = {};
+  modalWindowFlag:boolean = false;
   constructor(
     private destroy$: AutoUnSubscribeService,
     private store: Store,
@@ -80,7 +84,23 @@ export class StudentManagementComponent {
         tap((d: string) => (this.filteredName = d))
       )
       .subscribe();
-
+    this.store.select(TransportSelector.selectBusRouteCodeDetails).pipe(
+      tap(d=>{
+        this.routeDetails = d[0];
+      }),
+      filter(d=>this.modalWindowFlag)
+    ).subscribe(d=>{
+      this.dialog.open(ConfiguredModalComponent, {
+        width: '500px',
+        data: {
+          modalTitle: 'Transport Details',
+          data: this.routeDetails,
+          loadForms: false,
+          loadTable:true
+        },
+      });
+      this.modalWindowFlag = false;
+    })
     this.store
       .select(selectStudentLists)
       .pipe(
@@ -132,21 +152,11 @@ export class StudentManagementComponent {
   }
 
   openModalWindowCapture(event: any) {
-    const dialogRef = this.dialog.open(ConfiguredModalComponent, {
-      width: '520px',
-      data: {
-        modalTitle: 'Transport Details',
-        studentDetails: event.studentDetails,
-        loadTable:true,
-      },
-    });
     this.store.dispatch(
       TransportActions.loadBusRouteId({ busRouteCode: event.busRoutecode })
     );
-
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`);
-    });
+    this.modalWindowFlag = true
+    //const dialogRef = 
   }
   studentDisableEventCapture(event: any) {
     this.store.dispatch(
@@ -154,5 +164,14 @@ export class StudentManagementComponent {
         data: { IS_ACTIVE: event.status, ADMN_NO: event.id },
       })
     );
+  }
+  newAdmission(){
+    this.router.navigate([
+      RouterEnum.CONTAINER,
+      RouterEnum.DASHBOARD,
+      RouterEnum.STUDENTADMISSION,
+      'new'
+    ],{
+    })
   }
 }

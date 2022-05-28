@@ -27,6 +27,7 @@ import { initialState } from './app.state';
 import { ParentActions } from '../actions/parent.actions';
 import { SibilingActions } from '../actions/sibiling.actions';
 import { AddressActions } from '../actions/address.actions';
+import { FeesAction } from '../actions/fees.actions';
 
 export const pageReducer = createReducer(
   initialState,
@@ -81,6 +82,19 @@ export const pageReducer = createReducer(
     ...state,
     transportLoading: false,
   })),
+  on(TransportActions.loadAllBusRoute, (state, action) => ({
+    ...state,
+    transportLoading: true,
+  })),
+  on(TransportActions.loadAllBusRouteSuccess, (state, { data }) => ({
+    ...state,
+    transportLoading: false,
+    busRouteCodeDetails: data,
+  })),
+  on(TransportActions.loadAllBusRouteFailure, (state, action) => ({
+    ...state,
+    transportLoading: false,
+  })),
   //parents
   on(ParentActions.loadAdmissionBasedParents, (state, action) => ({
     ...state,
@@ -95,6 +109,15 @@ export const pageReducer = createReducer(
     ...state,
     parentLoading: false,
   })),
+  on(ParentActions.loadParentDetailAddress, (state, action) => {
+    return { ...state, parentLoading: true };
+  }),
+  on(ParentActions.loadParentDetailAddressSuccess, (state, { data }) => {
+    return { ...state, parentLoading: false, parentAddressDetails: data };
+  }),
+  on(ParentActions.loadParentDetailAddressFailure, (state, action) => {
+    return { ...state, parentLoading: false };
+  }),
   //address
   on(AddressActions.loadAdmissionBasedAddress, (state, action) => ({
     ...state,
@@ -119,10 +142,13 @@ export const pageReducer = createReducer(
     siblingLoading: false,
     sibilingDetails: data,
   })),
-  on(SibilingActions.loadAdmissionBasedSibilingsFailure, (state, { error }) => ({
-    ...state,
-    siblingLoading: false,
-  })),
+  on(
+    SibilingActions.loadAdmissionBasedSibilingsFailure,
+    (state, { error }) => ({
+      ...state,
+      siblingLoading: false,
+    })
+  ),
   on(UtilityActions.loadClassConfig, (state) => ({
     ...state,
     utilLoading: true,
@@ -135,7 +161,17 @@ export const pageReducer = createReducer(
   on(UtilityActions.onClassConfigFailure, (state) => ({
     ...state,
     utilLoading: false,
+  })),
+  on(FeesAction.loadStudentBasedFees, (state) => ({
+    ...state,
+    feesLoading: true,
+  })),
+  on(FeesAction.loadStudentBasedFeesFailure, (state, { err }) => ({
+    ...state,
+    feesLoading: false,
+  })),
+  on(FeesAction.loadStudentBasedFeesSuccess, (state, { data }) => ({
+    ...state,
+    feesDetails: data,
   }))
 );
-
-

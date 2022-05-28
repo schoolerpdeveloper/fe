@@ -44,6 +44,22 @@ export class AddressEffects {
       )
     );
   });
+  addAddressDetails$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AddressActions.addAddressDetails),
+      switchMap((action) =>
+        this.api.updateAddress(action.data).pipe(
+          tap((d) => {
+            this.notifier.successNotification('Added Successfully');
+          }),
+          catchError((err) => {
+            this.errorNotifier(err);
+            return EMPTY;
+          })
+        )
+      )
+    );
+  });
   addParentAddressDetails$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AddressActions.addAddressDetails),

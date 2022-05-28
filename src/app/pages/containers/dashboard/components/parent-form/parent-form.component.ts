@@ -60,6 +60,11 @@ export class ParentFormComponent implements OnInit {
     'driver',
     'others',
   ].map((i) => ({ label: i, value: i }));
+  relations = [
+    { label: 'Father', value: 1 },
+    { label: 'Mother', value: 2 },
+    { label: 'Gaurdian', value: 3 },
+  ];
 
   constructor(
     private fb: FormBuilder,
@@ -72,8 +77,14 @@ export class ParentFormComponent implements OnInit {
     this.initParentForm();
 
     this.parentDetailsForm.valueChanges
-      .pipe(startWith(this.parentDetailModel))
+      .pipe(
+        startWith(this.parentDetailModel),
+        debounceTime(500),
+        takeUntil(this.destroy$)
+      )
+
       .subscribe((data) => {
+        console.log(data)
         let temp = {
           parentDetails: {
             data: data,
@@ -82,14 +93,15 @@ export class ParentFormComponent implements OnInit {
         };
         this.parentDetailsFormStatus.emit(temp);
       });
-
-    }
+  }
 
   initParentForm() {
     let parentDetails = { ...this.parentDetailModel };
     this.parentDetailsForm = this.fb.group({
       ADMN_NO: [parentDetails.ADMN_NO, []],
-      PRNT_CD: [parentDetails.PRNT_CD, []],
+      PRNT_CD: [parentDetails.PRNT_CD, [Validators.required]],
+      FIRST_NAME: [parentDetails.FIRST_NAME, []],
+      ...(parentDetails.ID && { ID: [parentDetails.ID, []] }),
       PRNT_EDUC: [parentDetails.PRNT_EDUC, []],
       PRNT_OCCU: [parentDetails.PRNT_OCCU, []],
       PRNT_AADH_NO: [parentDetails.PRNT_AADH_NO, [Validators.required]],

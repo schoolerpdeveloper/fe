@@ -1,33 +1,48 @@
 <h2 mat-dialog-title class="text-lowercase text-capitalize">{{data?.modalTitle}}</h2>
 <mat-dialog-content>
-  <ng-container *ngIf="data?.loadTable" [ngTemplateOutlet]="routeInfo"
-    [ngTemplateOutletContext]="{ data: routeDetails$ | async }">
+  <ng-container *ngIf="data?.loadTable" [ngTemplateOutlet]="routeInfo" [ngTemplateOutletContext]="{ data: data.data }">
   </ng-container>
   <ng-container *ngIf="data?.loadForms">
     <ng-container *ngIf="data?.formType === 'parent'" [ngTemplateOutlet]="parentInfo"
-      [ngTemplateOutletContext]="{ data: data}"></ng-container>
+      [ngTemplateOutletContext]="{ data: null}"></ng-container>
+
+    <ng-container *ngIf="data?.formType === 'sibiling'" [ngTemplateOutlet]="sibInfo"
+      [ngTemplateOutletContext]="{ data: null}"></ng-container>
+    <ng-container *ngIf="data?.formType === 'student'" [ngTemplateOutlet]="studInfo"
+      [ngTemplateOutletContext]="{ data: null}"></ng-container>
   </ng-container>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancel</button>
-  
-  <button mat-button [disabled]="!validState" class="btn btn-themed text-white" [class.disabled]="!validState"
-    type="button" (click)="submit(data)">Submit</button>
+
+  <ng-container *ngIf="submitButton">
+    <button mat-button [mat-dialog-close]="data" class="btn btn-themed text-white" type="button">Submit</button>
+  </ng-container>
 </mat-dialog-actions>
 
 
 <ng-template #parentSubmit>
-  
+
 </ng-template>
 
 <ng-template #parentInfo>
-<pre>{{data | json }}</pre>
-  <app-parent-form [parentDetail]="data?.data"
-    (parentDetailsFormStatus)="parentDetailsFormStatusHandle($event)">
+  <app-parent-form [parentDetail]="data?.data" (parentDetailsFormStatus)="parentDetailsFormStatusHandle($event)">
   </app-parent-form>
-  <app-address-form [addressDetails]="data?.data?.addressForm"
-    (addressDetails)="parentAddressFormStatusHandle($event)">
+  <app-address-form [addressDetails]="data?.data?.address_details"
+    (addressFormStatus)="parentAddressFormStatusHandle($event)">
   </app-address-form>
+</ng-template>
+
+<ng-template #sibInfo>
+  <app-sibiling-form [sibilingDetail]="data?.data" (sibDetailsFormStatus)="sibDetailsFormStatusHandle($event)">
+  </app-sibiling-form>
+
+</ng-template>
+
+<ng-template #studInfo>
+  <app-admission-form [studentDetails]="data?.data" (studentDetailsFormStatus)="studentDetailsFormStatusHandle($event)">
+  </app-admission-form>
+
 </ng-template>
 
 <ng-template #routeInfo let-data="data">
@@ -46,7 +61,10 @@
       <tr>
 
         <th>Driver Number</th>
-        <td>{{data?.BUS_RUTE_DRIVER_NAME}}</td>
+        <td>
+
+          {{data?.BUS_RUTE_DRIVER_NO}}
+        </td>
       </tr>
       <tr>
 
@@ -56,6 +74,30 @@
           <td *ngIf="data?.IS_ACTIVE !== 1"><small class="badge bg-themed text-white">Inactive</small></td>
         </ng-container>
       </tr>
+      <tr *ngIf="data?.bus_route_details.length">
+        <th>Total Stops</th>
+        <td>
+          {{data?.bus_route_details.length}}
+        </td>
+        <td class="text-themed small pointer" (click)="loadMore = !loadMore">{{loadMore ? 'Collapse' : 'Expand'}}</td>
+      </tr>
     </table>
+    <ul class="list-group" *ngIf="loadMore" [@collapsibleAnimation]="loadMore ? 'open': 'close'">
+      <ng-container *ngFor="let item of data?.bus_route_details">
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+          <div class="ms-2 me-auto small poppins-text">
+            <div class="fw-bold text-secondary poppins-text">{{item?.rute_stop_name}}</div>
+            <div style="font-size: 12px;" class="poppins-text">
+              Stop Number : {{item?.rute_stop_no}}
+            </div>
+          </div>
+          <span class="badge bg-themed rounded-pill" *ngIf="item?.stats_cd === 'A'">Active</span>
+          <span class="badge bg-danger rounded-pill" *ngIf="item?.stats_cd !== 'A'">Inactive</span>
+
+        </li>
+     
+      </ng-container>
+
+    </ul>
   </div>
 </ng-template>

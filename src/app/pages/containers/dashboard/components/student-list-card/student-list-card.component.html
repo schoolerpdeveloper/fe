@@ -30,15 +30,16 @@
 
                     <table class="table borderless m-0 p-0 text-secondary">
                         <th class="fw-normal text" style="width:100px">Admission Id</th>
-                        <td>{{studentDetailsList?.ADMN_NO}}</td>
+                        <td class="text-breakup text-wrap" style="max-width: 8.5rem;">{{studentDetailsList?.ADMN_NO}}</td>
                     </table>
                     <table class="table borderless m-0 p-0 text-secondary">
                         <th class="fw-normal" style="width:100px">Bus Route</th>
-                        <td class="">#
+                        <td class="text-breakup text-wrap" style="max-width: 8.5rem;">#
                             {{studentDetailsList?.BUS_RUTE_CD}}
-                            <!-- <span class="info d-inline"><mat-icon>info</mat-icon></span> -->
+                            <!-- <span class="info d-inline"><mat-icon>info</mat-icon>PARENT-PICKUP-DROP</span> -->
                         </td>
-                        <td class="align-middle"><span class="small pointer"
+                        <td class="align-middle" *ngIf="studentDetailsList?.BUS_RUTE_CD != 'PARENT-PICKUP-DROP'"><span
+                                class="small pointer"
                                 (click)="openModalWindowEvent({modal:'route',busRoutecode:studentDetailsList?.BUS_RUTE_CD,studentDetails:studentDetailsList})">
                                 <mat-icon style="font-size:1rem ;" class="border-0 bg-transparent">info</mat-icon>
                             </span></td>
@@ -64,7 +65,8 @@
             </div>
             <div class="pointer">
                 <!-- <i class="fa fa-eye shadow"></i> -->
-                <mat-icon fontSet="material-icons-outlined" class="rounded-circle shadow" (click)="routeToView(studentDetailsList)">visibility</mat-icon>
+                <mat-icon fontSet="material-icons-outlined" class="rounded-circle shadow"
+                    (click)="routeToView(studentDetailsList)">visibility</mat-icon>
             </div>
             <div class="pointer">
                 <ng-container *ngIf="toggleSwitch">

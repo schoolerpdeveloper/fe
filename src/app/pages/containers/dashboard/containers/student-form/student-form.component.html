@@ -13,7 +13,7 @@
 
     <div class="card-body">
 
-        <app-stepper #cdkStepper [orientation]="'vertical'">
+        <app-stepper #cdkStepper [orientation]="'vertical'" (selectionChange)="selected($event)" (interactedStream)="interactedStreamStepper($event)">
             <cdk-step>
                 <ng-template cdkStepLabel>
                     Student Details
@@ -46,11 +46,11 @@
                     Transport Details
                 </ng-template>
                 <div class="card-body m-0 p-0 animate__animated animate__fadeInUp animate__slow">
-                    <app-transport-form [_studentDetails]="loadStudentDetails"></app-transport-form>
+                    <app-transport-form [_studentDetails]="loadStudentDetails" [routes]="routeDetails"></app-transport-form>
 
                 </div>
             </cdk-step>
-            <cdk-step>
+            <!-- <cdk-step>
                 <ng-template cdkStepLabel> 
                     Fees Details
                 </ng-template>
@@ -58,7 +58,7 @@
                     <app-fees-form [_studentDetails]="loadStudentDetails"></app-fees-form>
 
                 </div>
-            </cdk-step>
+            </cdk-step> -->
 
         </app-stepper>
     </div>

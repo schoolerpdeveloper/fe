@@ -18,7 +18,8 @@ import { SibilingEffects } from './pages_store/effects/sibiling.effects';
 import { ParentEffects } from './pages_store/effects/parents.effects';
 import { TransportEffects } from './pages_store/effects/transport.effects';
 import { AddressEffects } from './pages_store/effects/address.effects';
-
+import { UtilEffects } from './pages_store/effects/util.effects';
+import { FeesEffects } from './pages_store/effects/fees.effects';
 
 @NgModule({
   declarations: [
@@ -32,13 +33,16 @@ import { AddressEffects } from './pages_store/effects/address.effects';
     PagesRoutingModule,
     SharedModule,
     StoreModule.forFeature(pagesFeatureKey, pageReducer),
-    EffectsModule.forFeature([StudentEffects,SibilingEffects,ParentEffects,TransportEffects,AddressEffects])
-  ],providers:[
-    StudentdetailsService
-  ]
+    EffectsModule.forFeature([
+      StudentEffects,
+      SibilingEffects,
+      ParentEffects,
+      TransportEffects,
+      AddressEffects,
+      UtilEffects,
+      FeesEffects,
+    ]),
+  ],
+  providers: [StudentdetailsService],
 })
-export class PagesModule {
- 
- }
-
-
+export class PagesModule {}

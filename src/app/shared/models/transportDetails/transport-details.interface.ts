@@ -11,4 +11,5 @@ export interface ITransportDeatils
     BUS_RUTE_INCH_NO?:     null | string;
     BUS_RUTE_INS_DTL?:     null | string;
     LAST_UPDT_TS?:         null | string;
+    bus_route_details?:[]
 }

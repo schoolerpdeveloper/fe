@@ -45,4 +45,14 @@ export const loadSibilingsIdFailure = createAction(
   '[Pages] Load Admission Based On Sibilings ID Failure',
   props<{ error: any }>()
 );
+
+export const updateSibiling = createAction(
+  '[Pages] Update Sibiling details',props<{data:any}>()
+)
+export const deleteSibiling = createAction(
+  '[Pages] Delete Sibiling details',props<{data:any}>()
+)
+export const addSibiling = createAction(
+  '[Pages] Add Sibiling details',props<{data:any}>()
+)
 }

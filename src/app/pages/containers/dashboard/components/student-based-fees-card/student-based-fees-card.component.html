@@ -1,1 +1,78 @@
-<p>student-based-fees-card works!</p>
+<div class="card bg-transparent border border-light shadow-sm p-2 custom-card-rounded" style="max-width:20rem">
+    <div class="card-text ps-3 border-0 rounded-pill bg-white  poppins-text fw-bold" style="font-size: 14px;">Fees
+        Details</div>
+
+    <div class="mt-1 pointer mx-auto" *ngIf="_feesDetails.length<=0">
+        <span class="btn btn-sm rounded-pill shadow border border border-light border-themed">
+            No Fees Details
+        </span>
+    </div>
+    <cdk-accordion class="bg-transparent">
+        <cdk-accordion-item *ngFor="let item of _feesDetails; let index = index;" #accordionItem="cdkAccordionItem"
+            class="card py-2 my-2 border border-light custom-card-rounded" tabindex="0"
+            [attr.id]="'accordion-header-' + index" [attr.aria-expanded]="accordionItem.expanded"
+            [attr.aria-controls]="'accordion-body-' + index">
+            <div class="example-accordion-item-header row ps-1">
+                <div class="col-12 col-sm-3 my-auto">
+                    <div class="card border-0">
+
+                        <div class="text-center fs-4 fw-bold poppins-text">{{item?.FEES_DATE | date:'d'}}</div>
+                        <div class="text-center small poppins-text text-secondary fw-bold">{{item?.FEES_DATE | date:'MMM
+                            YY'}}</div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-9">
+                    <div class="fs-6 poppins-text text-secondary"># {{item?.FEES_BILL_NO}}</div>
+                    <div class="small text-themed fw-bold my-1">{{ item?.FEES_AMOUNT | currency:'INR':"symbol"}}</div>
+
+                    <div class="d-flex justify-content-between p-0 pe-2">
+
+                        <div class="my-auto" (click)="accordionItem.toggle()">
+                            <a class="text-themed text-decoration-none btn btn-sm rounded-circle shadow" role="button">
+                                <mat-icon fontSet="material-icons-outlined" class="">more_horiz</mat-icon>
+                            </a>
+                        </div>
+                        <div class="my-auto">
+                            <!-- <a class="text-themed" role="button" >More</a> -->
+                            <a class="text-themed text-decoration-none btn btn-sm rounded-circle shadow" role="button">
+                                <mat-icon fontSet="material-icons-outlined" class="">print</mat-icon>
+                            </a>
+                        </div>
+                        <div class="badge badge-pill bg-accent-themed my-auto">Paid 5%</div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="example-accordion-item-body card-body shadow-sm custom-card-rounded" role="region"
+                [style.display]="accordionItem.expanded ? '' : 'none'" [attr.id]="'accordion-body-' + index"
+                [attr.aria-labelledby]="'accordion-header-' + index">
+                <table class="table text-secondary">
+                    <tr>
+                        <th>Bill No.</th>
+                        <td>{{item?.FEES_BILL_NO}}</td>
+                    </tr>
+                    <tr>
+                        <th>Amount</th>
+                        <td>{{item?.FEES_AMOUNT | currency:'INR':"symbol"}}</td>
+                    </tr>
+                    <tr>
+                        <th>Balance</th>
+                        <td>{{item?.FEES_BALANCE | currency:'INR':"symbol"}}</td>
+                    </tr>
+                    <tr>
+                        <th>Discount</th>
+                        <td>{{item?.FEES_DISCOUNT | currency:'INR':"symbol"}}</td>
+                    </tr>
+                    <tr>
+                        <th>Fees Addition</th>
+                        <td>{{item?.FEES_ADDTION}}</td>
+                    </tr>
+                    <tr>
+                        <th>Notes</th>
+                        <td class="text-break">{{item?.FEES_NOTES}}</td>
+                    </tr>
+                </table>
+            </div>
+        </cdk-accordion-item>
+    </cdk-accordion>
+</div>

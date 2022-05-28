@@ -28,4 +28,12 @@ export class SibilingApiService {
     let id = details.ID;
     return this.http.put(`${this.url}/siblingdetails/${id}`, details);
   }
+  deletesiblingdetails(details: ISiblingDetails): Observable<any> {
+    let id = details.ID;
+    return this.http.delete(`${this.url}/siblingdetails/${id}`);
+  }
+  addsiblingdetails(details: ISiblingDetails): Observable<any> {
+    console.log(details)
+    return this.http.post(`${this.url}/siblingdetails`, details);
+  }
 }

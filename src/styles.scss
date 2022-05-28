@@ -21,6 +21,9 @@ body {
 .bg-themed {
   background-color: var(--primary-color) !important;
 }
+.bg-accent-themed {
+  background-color: var(--secondary-accent-color) !important;
+}
 .btn-accent-themed {
   background-color: var(--secondary-accent-color) !important;
 }

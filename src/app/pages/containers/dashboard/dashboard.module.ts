@@ -24,6 +24,7 @@ import { StudentBasedSibilingCardComponent } from './components/student-based-si
 import { StudentBasedTransportCardComponent } from './components/student-based-transport-card/student-based-transport-card.component';
 import { StudentBasedFeesCardComponent } from './components/student-based-fees-card/student-based-fees-card.component';
 import { AddressFormComponent } from './components/address-form/address-form.component';
+import { ModalWindowSubmitPipePipe } from './components/configured-modal/modal-window-submit-pipe.pipe';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { AddressFormComponent } from './components/address-form/address-form.com
     StudentBasedTransportCardComponent,
     StudentBasedFeesCardComponent,
     AddressFormComponent,
+    ModalWindowSubmitPipePipe,
     
     
   ],

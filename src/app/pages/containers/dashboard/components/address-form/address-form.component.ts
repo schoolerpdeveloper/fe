@@ -42,12 +42,18 @@ export class AddressFormComponent implements OnInit {
     this.initParentAddressForm();
     this.parentAddressForm.valueChanges
       .pipe(
-        startWith(this.parentAddressModel),
         debounceTime(500),
         takeUntil(this.destroy$)
       )
-      .subscribe((d) => {
-        this.addressFormStatus.emit(d);
+      .subscribe((data) => {
+        console.log(data,this.parentAddressModel)
+        let temp = {
+          addressForm: {
+            data:{...this.parentAddressModel,...data},
+            valid: this.parentAddressForm.valid,
+          },
+        };
+        this.addressFormStatus.emit(temp);
       });
   }
 

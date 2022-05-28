@@ -21,6 +21,9 @@ import { distinctUntilChanged, Subject, takeUntil } from 'rxjs';
 export class StepperComponent extends CdkStepper {
   @Input()
   activeClass = 'active';
+  @Output() formIndex = new EventEmitter();
+
+  
 
   rippleColor:string = 'rgba(150,217,79,0.2)'
 

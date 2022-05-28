@@ -55,7 +55,7 @@ export class ErpInputComponent implements ControlValueAccessor, Validator {
   @Input() defaultSelectValue: any = '';
   @Input() maskPlaceHolder: any = '-';
   @Input() prefix: string = '';
-  @Input() readonly: boolean = false;
+  @Input() isDisabled: boolean = false;
 
   maskedFieldDataPlaced: boolean = false;
 
@@ -71,7 +71,6 @@ export class ErpInputComponent implements ControlValueAccessor, Validator {
   changed(value: any) {} // Called on a value change
   touched() {} // Called if you care if the form was touched
   discloseValidatorChange = () => {}; // Called on a validator change or re-validation;
-  isDisabled!: boolean;
 
   onChange(event: any) {
     let value: string = '';

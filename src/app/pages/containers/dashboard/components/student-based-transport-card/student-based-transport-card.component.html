@@ -1,65 +1,68 @@
-<!-- <div class="card border-0">
-    <div class="card-header  poppins-text fw-bold">Transport Details</div>
+<div class="card bg-transparent border border-light shadow-sm p-2 custom-card-rounded" style="max-width:20rem">
+    <div class="card-text ps-3 border-0 rounded-pill bg-white  poppins-text fw-bold" style="font-size: 14px;">Transport
+        Details</div>
+
+    <div class="mt-1 pointer mx-auto" *ngIf="_transportDetails.length<=0">
+        <span class="btn btn-sm rounded-pill shadow border border border-light border-themed">
+            No Stoppage Details
+        </span>
+    </div>
     <cdk-accordion class="bg-transparent">
         <cdk-accordion-item *ngFor="let item of _transportDetails; let index = index;" #accordionItem="cdkAccordionItem"
-            class="card py-2 border border-light custom-card-rounded" tabindex="0"
+            class="card py-2 my-2 border border-light custom-card-rounded" tabindex="0"
             [attr.id]="'accordion-header-' + index" [attr.aria-expanded]="accordionItem.expanded"
             [attr.aria-controls]="'accordion-body-' + index">
             <div class="example-accordion-item-header">
                 <div class="d-flex align-middle">
-                    <div [attr.data-letters]="item?.SBLN_NAME ? item?.SBLN_NAME : 'X' | slice:0:1" class="rounded-circle text-center"
-                        style="width: 4.5rem;"></div>
+                    <div class="my-auto ms-3" style="width: 4.5rem;">
+
+                        <div class="card rounded-circle border-0 text-center bus-icon my-auto">
+                            <mat-icon fontSet="material-icons-outlined" class="mx-0 px-0" style="font-size: 24px;color:white;line-height: 0;">directions_bus</mat-icon>
+                        </div>
+                    </div>
+                    <!-- <div [attr.data-letters]="item?.FIRST_NAME | slice:0:1" class="rounded-circle text-center my-auto"
+                        style="width: 4.5rem;"></div> -->
                     <div class="" style="flex:1">
-                        <div class="fs-6 fw-bold poppins-text">{{item?.SBLN_NAME ? item?.SBLN_NAME : 'Need to Add Name' }}</div>
-                        <small class="d-block">{{item?.SBLN_RELA ? item?.SBLN_RELA : 'Need to Add Relation'}}</small>
-                        <div class="grid-container small">
-                            <div class="">
-                                <a class="text-themed" role="button" (click)="accordionItem.toggle()">More</a>
+                        <div class="fs-6 poppins-text text-secondary">{{item.BUS_RUTE_NO}}</div>
+                        <div class="small text-themed fw-bold my-1">{{ item?.BUS_RUTE_DRIVER_NAME}}</div>
+                        <div class="small text-themed fw-bold my-1"> {{ item?.BUS_RUTE_DRIVER_NO}}</div>
 
-                            </div>
-                            <div class="mt-1">
-                             
+                        <div class="d-flex justify-content-between p-0 pe-2">
 
+                            <div class="my-auto" (click)="accordionItem.toggle()">
+                                <a class="text-themed text-decoration-none btn btn-sm rounded-circle shadow"
+                                    role="button">
+                                    <mat-icon fontSet="material-icons-outlined" class="">more_horiz</mat-icon>
+                                </a>
                             </div>
-                            <div class="mt-1">
-                                <mat-icon fontSet="material-icons-outlined" class="d-block small" role="button">edit
-                                </mat-icon>
-                            </div>
+
+                      
+                            <div class="badge badge-pill bg-themed my-auto"> Stop No : {{stoppageNo}}</div>
+
                         </div>
                     </div>
                 </div>
+
             </div>
             <div class="example-accordion-item-body card-body shadow-sm custom-card-rounded" role="region"
                 [style.display]="accordionItem.expanded ? '' : 'none'" [attr.id]="'accordion-body-' + index"
                 [attr.aria-labelledby]="'accordion-header-' + index">
-                <table class="table text-secondary">
+                <table class="table text-secondary table-sm">
                     <tr>
-                        <th>Name</th>
-                        <td>{{item?.SBLN_NAME}}</td>
+                        <th>Route Name</th>
+                        <td>{{item?.BUS_RUTE_NO}}</td>
                     </tr>
                     <tr>
 
-                        <th>Admission</th>
-                        <td>{{item?.SBLN_ADMN_NO}}</td>
+                        <th>Driver Name</th>
+                        <td>{{item?.BUS_RUTE_DRIVER_NAME}}</td>
                     </tr>
                     <tr>
 
-                        <th>Class</th>
-                        <td>{{item?.SBLN_CLASS}}</td>
-                    </tr>
-                    <tr>
-
-                        <th>Discount</th>
-                        <td>{{item?.SBLN_DISCO}}</td>
-                    </tr>
-                    <tr>
-
-                        <th>Comments</th>
-                        <td class="text-break">{{item?.SBLN_COMMENTS}}</td>
+                        <th>Driver Number</th>
+                        <td>{{item.BUS_RUTE_DRIVER_NO}}</td>
                     </tr>
                 </table>
             </div>
         </cdk-accordion-item>
     </cdk-accordion>
-
-</div> -->

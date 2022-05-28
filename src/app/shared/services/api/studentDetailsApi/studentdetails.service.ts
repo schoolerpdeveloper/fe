@@ -27,17 +27,22 @@ export class StudentdetailsService {
   updateSingleStudentDetails(
     id: string | number,
     data: IStudentDetails
-  ): Observable<IStudentDetails> {
-    let temp = {...data};
+  ): Observable<any> {
+    let temp = { ...data };
     delete temp.ADMN_NO;
     return this.http.put(`${this.url}/studentdetails/${id}`, temp);
   }
-
-  deleteSingleStudentDetails(id: string | number): Observable<IStudentDetails> {
+  addSingleStudentDetails(data: IStudentDetails): Observable<any> {
+    return this.http.post(`${this.url}/studentdetails`, data);
+  }
+  deleteSingleStudentDetails(
+    data: IStudentDetails
+  ): Observable<IStudentDetails> {
+    let id = data.ADMN_NO;
     return this.http.delete(`${this.url}/studentdetails/${id}`);
   }
 
-  studentListService(){
-    return this.http.get(`${this.url}/studentutil`)
+  studentListService() {
+    return this.http.get(`${this.url}/studentutil`);
   }
 }

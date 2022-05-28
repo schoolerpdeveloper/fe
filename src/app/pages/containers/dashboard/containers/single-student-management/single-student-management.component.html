@@ -1,41 +1,51 @@
 <div class="container mt-1">
     <div class="card-body my-0 py-2 mx-3 position-sticky" id="view_change_slot">
         <!-- <div class="d-flex flex-wrap justify-content-start"> -->
-        <!-- <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                  <li class="breadcrumb-item" aria-current="page">
-                    <a href="#" class="text-decoration-none text-themed" (click)="navigateToList()">Student List</a>
-                    </li>
-                  <li class="breadcrumb-item active" aria-current="page">
-                     <select class="input-sm border-0 bg-transparent px-3">
-                         <ng-container *ngFor="let item of (selectAllStudents$ | async)">
-                             <option value="item">item</option>
-                         </ng-container>
-                     </select>
-                  </li>
-                </ol>
-              </nav> -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item" aria-current="page">
+                    <a class="text-decoration-none text-themed pointer" (click)="navigateToList()">Student List</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    <select class="input-sm border-0 bg-transparent px-3" (change)="captureAdmissionNo($event)">
+                        <option value=""></option>
+                        <ng-container *ngFor="let item of (selectAllStudents$ | async)">
+                            <option [attr.value]="item" [attr.selected]="item === admissionNo ? true :null" >{{item}}</option>
+                        </ng-container>
+                    </select>
+                </li>
+            </ol>
+        </nav>
     </div>
     <!-- </div> -->
     <!-- for graphs -->
     <div class="row"></div>
     <div class="row">
-        <div class="col-12 col-sm-12 col-md-3 col-lg-4">
+        <div class="col-12 col-sm-12 col-md-3">
             <app-student-detail-card [studentlist]="studentlist"
+            (studentFormAction)="studentFormEvtHandler($event)"
                 *skeleton="(studentLoading$ | async);height: '475px';width: '306px';className:'skeleton-card'">
             </app-student-detail-card>
         </div>
-        <div class="col-12 col-sm-12 col-md-9 col-lg-8">
+        <div class="col-12 col-sm-12 col-md-9">
             <div class="grid-container">
-                <app-student-based-parent-card [parentDetails]="parentdetails"
-                    [parentAddressDetails]="parentAddressdetails"
+                <app-student-based-parent-card [admissionNo]="admissionNo" [parentAddressDetails]="parentAddressdetails"
                     *skeleton="(parentLoading$ | async);height: '160px';width: '18rem';className:'skeleton-card'"
                     (parentFormAction)="parentFormEvtHandler($event)">
                 </app-student-based-parent-card>
-                <app-student-based-sibiling-card [sibilingDetails]="sibilingdetails"
-                    *skeleton="(parentLoading$ | async);height: '160px';width: '18rem';className:'skeleton-card'">
+                <app-student-based-sibiling-card [sibilingDetails]="sibilingdetails" [admissionNo]="admissionNo"
+                    (sibilingFormAction)="sibilingFormEvtHandler($event)"
+                    *skeleton="(sibLoading$ | async);height: '160px';width: '18rem';className:'skeleton-card'">
                 </app-student-based-sibiling-card>
+                <app-student-based-fees-card [feesDetails]="feesdetails"
+                *skeleton="(sibLoading$ | async);height: '160px';width: '18rem';className:'skeleton-card'">
+                </app-student-based-fees-card>
+                <app-student-based-transport-card [transportDetails]="transportdetails" [admissionNo]="admissionNo" [stoppageNo]="stoppageNo"
+                *skeleton="(sibLoading$ | async);height: '160px';width: '18rem';className:'skeleton-card'">
+                </app-student-based-transport-card>
                 <!-- 
+                     [parentDetails]="parentdetails"
+                    [parentAddressDetails]="parentAddressdetails"
                 <app-student-based-parent-card [parentDetails]="parentDetails"></app-student-based-parent-card>
                 <app-student-based-parent-card [parentDetails]="parentDetails"></app-student-based-parent-card> -->
 

@@ -1,11 +1,21 @@
-
 <div class="card bg-transparent border-light shadow-sm p-2 custom-card-rounded" style="max-width:20rem">
 
-    <div class="card-text ps-3 border-0 rounded-pill bg-white  poppins-text fw-bold" style="font-size: 14px;">Parent Details</div>
+    <div class="card-text ps-3 border-0 rounded-pill bg-white  poppins-text fw-bold" style="font-size: 14px;">Parent
+        Details</div>
+
+    <div class="text-center" *ngIf="_parentAddressDetails.length===0">
+        <div class="mt-1 pointer mx-auto">
+            <a class="text-themed text-decoration-none btn btn-sm rounded-pill shadow"
+                role="button" (click)="addDetails(null)">
+                <mat-icon fontSet="material-icons-outlined" class="">add</mat-icon>
+                <span class="pe-2">Add Parent/Gaurdian</span>
+            </a>
+        </div>
+    </div>
     <cdk-accordion class="bg-transparent">
-        <cdk-accordion-item *ngFor="let item of _parentDetails; let index = index;" #accordionItem="cdkAccordionItem"
-            class="card py-2 my-2 border border-light custom-card-rounded" tabindex="0"
-            [attr.id]="'accordion-header-' + index" [attr.aria-expanded]="accordionItem.expanded"
+        <cdk-accordion-item *ngFor="let item of _parentAddressDetails; let index = index;"
+            #accordionItem="cdkAccordionItem" class="card py-2 my-2 border border-light custom-card-rounded"
+            tabindex="0" [attr.id]="'accordion-header-' + index" [attr.aria-expanded]="accordionItem.expanded"
             [attr.aria-controls]="'accordion-body-' + index">
             <div class="example-accordion-item-header">
                 <div class="d-flex align-middle">
@@ -13,7 +23,7 @@
                         style="width: 4.5rem;"></div>
                     <div class="" style="flex:1">
                         <div class="fs-6 fw-bold poppins-text">{{item?.FIRST_NAME}}</div>
-                        <small class="d-block">{{item?.PRNT_CD }}</small>
+                        <small class="d-block poppins-text small fw-bold text-secondary">{{relationInfo(item?.PRNT_CD)}}</small>
                         <div class="grid-container small my-2">
                             <div class="my-auto">
                                 <!-- <a class="text-themed" role="button" >More</a> -->
@@ -39,8 +49,14 @@
                             </div>
                             <div class="mt-1 pointer">
                                 <a class="text-themed text-decoration-none btn btn-sm rounded-circle shadow"
-                                    role="button" (click)="addDetails()">
+                                    role="button" (click)="addDetails(item)">
                                     <mat-icon fontSet="material-icons-outlined" class="">add</mat-icon>
+                                </a>
+                            </div>
+                            <div class="mt-1 pointer">
+                                <a class="text-themed text-decoration-none btn btn-sm rounded-circle shadow"
+                                    role="button" (click)="deleteDetails(item)">
+                                    <mat-icon fontSet="material-icons-outlined" class="">delete</mat-icon>
                                 </a>
                             </div>
                         </div>

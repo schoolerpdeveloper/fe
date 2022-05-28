@@ -1,6 +1,14 @@
 <div class="card bg-transparent border border-light shadow-sm p-2 custom-card-rounded" style="max-width:20rem">
     <div class="card-text ps-3 border-0 rounded-pill bg-white  poppins-text fw-bold" style="font-size: 14px;">Sibiling Details</div>
-
+    <div class="text-center" *ngIf="_siblingdetails.length===0">
+        <div class="mt-1 pointer mx-auto">
+            <a class="text-themed text-decoration-none btn btn-sm rounded-pill shadow"
+                role="button" (click)="addDetails(null)">
+                <mat-icon fontSet="material-icons-outlined" class="">add</mat-icon>
+                <span class="pe-2">Add Sibiling</span>
+            </a>
+        </div>
+    </div>
     <cdk-accordion class="bg-transparent">
         <cdk-accordion-item *ngFor="let item of _siblingdetails; let index = index;" #accordionItem="cdkAccordionItem"
             class="card py-2 my-2 border border-light custom-card-rounded" tabindex="0"
@@ -8,7 +16,7 @@
             [attr.aria-controls]="'accordion-body-' + index">
             <div class="example-accordion-item-header">
                 <div class="d-flex align-middle">
-                    <div [attr.data-letters]="item?.SBLN_NAME ? item?.SBLN_NAME : 'X' | slice:0:1" class="rounded-circle text-center my-auto"
+                    <div [attr.data-letters]="item?.SBLN_NAME| slice:0:1" class="rounded-circle text-center my-auto"
                         style="width: 4.5rem;"></div>
                     <div class="" style="flex:1">
                         <div class="fs-6 fw-bold poppins-text">{{item?.SBLN_NAME ? item?.SBLN_NAME : 'Need to Add Name' }}</div>
@@ -23,14 +31,20 @@
                             </div>
                             <div class="mt-1 pointer">
                                 <a class="text-themed text-decoration-none btn btn-sm rounded-circle shadow"
-                                    role="button">
+                                    role="button" (click)="updateDetails(item)">
                                     <mat-icon fontSet="material-icons-outlined" class="">edit</mat-icon>
                                 </a>
                             </div>
                             <div class="mt-1 pointer">
                                 <a class="text-themed text-decoration-none btn btn-sm rounded-circle shadow"
-                                    role="button">
+                                    role="button" (click)="addDetails(null)">
                                     <mat-icon fontSet="material-icons-outlined" class="">add</mat-icon>
+                                </a>
+                            </div>
+                            <div class="mt-1 pointer">
+                                <a class="text-themed text-decoration-none btn btn-sm rounded-circle shadow"
+                                    role="button" (click)="deleteDetails(item)">
+                                    <mat-icon fontSet="material-icons-outlined" class="">delete</mat-icon>
                                 </a>
                             </div>
                         </div>

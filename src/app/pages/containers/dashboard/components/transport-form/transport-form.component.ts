@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit,
+} from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { IStudentDetails } from '@shared/models/studentDetails';
 import {
@@ -10,11 +15,20 @@ import {
   selector: 'app-transport-form',
   templateUrl: './transport-form.component.html',
   styleUrls: ['./transport-form.component.scss'],
-  changeDetection:ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TransportFormComponent implements OnInit {
   transportDetailsForm!: FormGroup;
   @Input() _studentDetails: IStudentDetails[] = [];
+  _routes: ITransportDeatils[] = [];
+  _routesSelect:any= [];
+
+  @Input() set routes(value: ITransportDeatils[]) {
+    if (value && Array.isArray(value) && value.length){
+      this._routes = [...value];
+      this._routesSelect = value.map((i:any)=>({label:i.BUS_RUTE_CD,value:i.BUS_RUTE_CD}))
+    }
+  }
   classStud = new Array(10)
     .fill(0)
     .map((i, ind) => ({ label: `class ${ind + 1}`, value: `${ind + 1}` }));

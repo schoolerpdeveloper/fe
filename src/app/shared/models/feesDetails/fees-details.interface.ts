@@ -1,11 +1,15 @@
 export interface IFeesDeatils {
-  ADMN_NO?: null | string;
-  FEES_DATE?: null | string;
-  FEES_BILL_NO?: null | number;
-  FEES_AMOUNT?: null | number;
-  FEES_BALANCE?: null | number;
-  FEES_DISCOUNT?: null | number;
-  FEES_NOTES?: null | null;
-  ID?: null | string;
-  LAST_UPDT_TS?: null | string;
+  ID?: number | null;
+  ADMN_NO?: string | null;
+  FEES_DATE?: Date | null;
+  FEES_BILL_NO?: number | null;
+  FEES_AMOUNT?: number | null;
+  FEES_BALANCE?: number | null;
+  FEES_DISCOUNT?: number | null;
+  FEES_NOTES?: string | null;
+  FEES_DED?: string | null;
+  FEES_DED_CMNT?: string | null;
+  FEES_ADDTION?: string | null;
+  FEES_ADDTION_CMNT?: string | null;
+  LAST_UPDT_TS?: Date | null;
 }

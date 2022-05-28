@@ -71,7 +71,7 @@
     </div>
     <div class="row g-3 card-body">
         <div class="col-12 col-sm-12 col-md-12 col-xl-4">
-            <app-erp-input type="dateTime" label="Community" formControlName="STUD_CMTY" fieldName="STUD_CMTY"
+            <app-erp-input type="text" label="Community" formControlName="STUD_CMTY" fieldName="STUD_CMTY"
                 [parentForm]="studentDetailsForm">
             </app-erp-input>
         </div>
@@ -123,19 +123,19 @@
                 [parentForm]="studentDetailsForm">
             </app-erp-input>
         </div>
-        </div>
-        <div class="row g-3 card-body">
+    </div>
+    <div class="row g-3 card-body">
 
-            <div class="col-12 col-sm-12 col-md-12 col-xl-4">
-                <app-erp-input label="Student Discount" formControlName="STUD_DISCOUNT" fieldName="STUD_DISCOUNT"
-                    [parentForm]="studentDetailsForm">
-                </app-erp-input>
-            </div>
-            <div class="col-12 col-sm-12 col-md-12 col-xl-4">
-                <app-erp-input type="switch" label="Student Active" formControlName="STUD_IS_ACTIVE" fieldName="STUD_IS_ACTIVE"
-                    [parentForm]="studentDetailsForm">
-                </app-erp-input>
-            </div>
+        <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+            <app-erp-input label="Student Discount" formControlName="STUD_DISCOUNT" fieldName="STUD_DISCOUNT"
+                [parentForm]="studentDetailsForm">
+            </app-erp-input>
         </div>
+        <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+            <app-erp-input type="switch" label="Student Active" formControlName="STUD_IS_ACTIVE"
+                fieldName="STUD_IS_ACTIVE" [parentForm]="studentDetailsForm">
+            </app-erp-input>
+        </div>
+    </div>
 
 </form>

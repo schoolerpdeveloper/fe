@@ -6,15 +6,15 @@ import { ITransportDeatils } from "./transportDetails";
 
 export interface IModalWindowConf {
     modalTitle: string;
-    formType: 'parent' | 'sibiling' | 'transport' | 'fees' | '';
+    formType: 'parent' | 'sibiling' | 'transport' | 'fees' | 'student';
     data:
       | IParentDetails
       | ISiblingDetails
       | IStudentDetails
       | ITransportDeatils
       | IFeesDeatils
-      | null;
+      | null
     loadForms: boolean;
-    action:'add'|'update'
+    action:'add'|'update'|'delete'
   }
   

@@ -8,6 +8,8 @@ export const selectAllParents  = createSelector(selectPagesState,(state:fromPage
 export const slectLoading  = createSelector(selectPagesState,(state:fromPages.State)=>state.loading)
 export const selectSingleParent  = createSelector(selectPagesState,(state:fromPages.State)=>state.singleParentDetail)
 export const selectParentDetails  = createSelector(selectPagesState,(state:fromPages.State)=>state.parentDetails)
+export const selectParentAddressDetails  = createSelector(selectPagesState,(state:fromPages.State)=>state.parentAddressDetails)
+
 export const parentDataLoading = createSelector(selectPagesState,(state:fromPages.State)=>state.parentLoading)
 
 

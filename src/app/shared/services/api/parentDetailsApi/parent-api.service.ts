@@ -55,10 +55,17 @@ export class ParentApiService {
   }
 
   updateParentDetails(parentDetails: IParentDetails): Observable<any> {
-    let id = parentDetails.ADMN_NO;
+    let id = parentDetails.ID;
     return this.http.put(`${this.url}/parentdetails/${id}`, parentDetails);
   }
-  
+  addParentDetails(parentDetails: IParentDetails): Observable<any> {
+
+    return this.http.post(`${this.url}/parentdetails`, parentDetails);
+  }
+  deleteParentDetails(parentDetails: IParentDetails): Observable<any> {
+    let id = parentDetails.ID;
+    return this.http.delete(`${this.url}/parentdetails/${id}`);
+  }
   updateAddress(addressDetails:IParentDetailsAddress):Observable<any>{
     let id = addressDetails?.ID;
     return this.http.put(`${this.url}/addressdetails/${id}`, addressDetails);
@@ -68,7 +75,7 @@ export class ParentApiService {
   }
   getStudentBasedParentAddressDetails(admissionNumber: number | string): Observable<any> {
     return this.http.get(
-      `${this.url}/addressdetails/admission/${admissionNumber}`
+      `${this.url}/parentdetails/admission/${admissionNumber}?address`
     );
   }
 }

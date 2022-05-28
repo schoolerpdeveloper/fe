@@ -11,6 +11,4 @@ export const parentDetailsAddressModel: IParentDetailsAddress = {
   "PRNT_ADRS_ADD5": null,
   "PRNT_ADRS_DIST": null,
   "PRNT_ADRS_PSTL_CD": null,
-  "LAST_UPDT_TS": null,
-  "CRET_TS": null
 };

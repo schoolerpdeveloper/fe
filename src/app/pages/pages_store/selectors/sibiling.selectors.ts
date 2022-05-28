@@ -8,6 +8,6 @@ export const selectAllSibilings  = createSelector(selectPagesState,(state:fromPa
 export const slectLoading  = createSelector(selectPagesState,(state:fromPages.State)=>state.loading)
 export const selectSingleParent  = createSelector(selectPagesState,(state:fromPages.State)=>state.singleSibilingDetail)
 export const selectSibilingDetails  = createSelector(selectPagesState,(state:fromPages.State)=>state.sibilingDetails)
-export const sibilingDataLoading = createSelector(selectPagesState,(state:fromPages.State)=>state.siblingLoading)
+export const selectSibilingDataLoading = createSelector(selectPagesState,(state:fromPages.State)=>state.siblingLoading)
 
 
