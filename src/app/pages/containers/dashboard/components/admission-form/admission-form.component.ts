@@ -107,7 +107,7 @@ export class AdmissionFormComponent implements OnInit {
       STUD_EMIS_NO: [studentDetails.STUD_EMIS_NO, []],
       STUD_PREV_SCHL: [studentDetails.STUD_PREV_SCHL, []],
       STUD_DISCOUNT: [studentDetails.STUD_DISCOUNT, []],
-      STUD_IS_ACTIVE: [studentDetails.STUD_DISCOUNT, []],
+      STUD_IS_ACTIVE: [studentDetails.IS_ACTIVE, []],
     });
   }
 }

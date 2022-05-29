@@ -1,5 +1,6 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   Input,
@@ -25,6 +26,10 @@ import { debounceTime, startWith, takeUntil } from 'rxjs';
 export class AddressFormComponent implements OnInit {
   parentAddressForm!: FormGroup;
   parentAddressModel: IParentDetailsAddress;
+  @Input() set admissionNo(value: string|number |undefined |null) {
+    if (value) this.parentAddressForm.patchValue({ ADMN_NO: value });
+    this.cdr.markForCheck()
+  }
   @Output() addressFormStatus = new EventEmitter<{
     [key: string]: any;
   }>();
@@ -33,6 +38,7 @@ export class AddressFormComponent implements OnInit {
   }
   constructor(
     private fb: FormBuilder,
+    private cdr:ChangeDetectorRef,
     @Self() private destroy$: AutoUnSubscribeService
   ) {
     this.parentAddressModel = { ...parentDetailsAddressModel };

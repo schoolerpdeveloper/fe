@@ -1,5 +1,5 @@
 <div class="card bg-transparent border border-light shadow-sm p-2 custom-card-rounded" style="max-width:20rem">
-    <div class="card-text ps-3 border-0 rounded-pill bg-white  poppins-text fw-bold" style="font-size: 14px;">Transport
+    <div class="card-text ps-3 border-0 rounded-pill text-center text-secondary poppins-text small fw-bold" style="font-size: 14px;">Transport
         Details</div>
 
     <div class="mt-1 pointer mx-auto" *ngIf="_transportDetails.length<=0">
@@ -24,10 +24,11 @@
                         style="width: 4.5rem;"></div> -->
                     <div class="" style="flex:1">
                         <div class="fs-6 poppins-text text-secondary">{{item.BUS_RUTE_NO}}</div>
-                        <div class="small text-themed fw-bold my-1">{{ item?.BUS_RUTE_DRIVER_NAME}}</div>
-                        <div class="small text-themed fw-bold my-1"> {{ item?.BUS_RUTE_DRIVER_NO}}</div>
+                        <div class="small text-themed fw-bold mt-1">{{ item?.BUS_RUTE_DRIVER_NAME}}</div>
+                        <a href="tel:{{item?.BUS_RUTE_DRIVER_NO}}" class="small text-muted poppins-text"> {{ item?.BUS_RUTE_DRIVER_NO}}</a>
 
                         <div class="d-flex justify-content-between p-0 pe-2">
+                            <div class="badge badge-pill bg-themed my-auto"> Stop No : {{stoppageNo}}</div>
 
                             <div class="my-auto" (click)="accordionItem.toggle()">
                                 <a class="text-themed text-decoration-none btn btn-sm rounded-circle shadow"
@@ -37,7 +38,6 @@
                             </div>
 
                       
-                            <div class="badge badge-pill bg-themed my-auto"> Stop No : {{stoppageNo}}</div>
 
                         </div>
                     </div>

@@ -1,5 +1,6 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   Input,
@@ -26,7 +27,10 @@ import { startWith, debounceTime, takeUntil } from 'rxjs';
 export class SibilingFormComponent implements OnInit {
   sibilingDetailsForm!: FormGroup;
   @Input() _studentDetails: IStudentDetails[] = [];
-
+  @Input() set admissionNo(value: string|number |undefined |null) {
+    if (value) this.sibilingDetailsForm.patchValue({ ADMN_NO: value });
+    this.cdr.markForCheck()
+  }
   classStud = new Array(10)
     .fill(0)
     .map((i, ind) => ({ label: `class ${ind + 1}`, value: `${ind + 1}` }));
@@ -42,6 +46,7 @@ export class SibilingFormComponent implements OnInit {
     this.sibilingDetailModel = value ? {...value} : this.sibilingDetailModel
   }
   constructor(private fb: FormBuilder,
+    private cdr:ChangeDetectorRef,
     @Self() private destroy$: AutoUnSubscribeService) {
     this.sibilingDetailModel = { ...siblingDetailsModel };
   }
