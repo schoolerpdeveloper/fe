@@ -60,6 +60,7 @@ export class SibilingFormComponent implements OnInit {
     label: i,
     value: index + 1,
   }));
+
   sibilingDetailModel: ISiblingDetails = {};
   @Output() sibDetailsFormStatus = new EventEmitter<{
     [key: string]: any;
@@ -74,6 +75,7 @@ export class SibilingFormComponent implements OnInit {
     private store: Store,
     @Self() private destroy$: AutoUnSubscribeService
   ) {
+
     this.sibilingDetailModel = { ...siblingDetailsModel };
   }
 
