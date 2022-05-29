@@ -1,7 +1,9 @@
 <div class="py-0">
   <ng-container *ngIf="label">
     <label [for]="label" class="ps-2 text-capitalize"
-      [ngClass]="formField?.invalid && formField?.touched ? 'text-danger' : ''">{{ label }}</label>
+      [ngClass]="formField?.invalid && formField?.touched ? 'text-danger' : ''">
+      {{ label }} <span class="text-danger" *ngIf="_localRequiredState">*</span>
+    </label>
   </ng-container>
   
   <ng-container *ngIf="(type === 'text')||(type === 'number') || (type === 'tel')">

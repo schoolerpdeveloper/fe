@@ -13,10 +13,10 @@ li {
   flex: 0 1 auto; /* Default */
   list-style-type: none;
 //   background-color: white;
-  padding: 0 0.75em;
+  padding: 0 0.25em;
   z-index: 1;
   position: relative;
-  top:1rem;
+  top:1.8rem;
 }
 
 
@@ -34,7 +34,7 @@ ul.my-stepper:after {
   position: absolute;
   transform: translateY(-50%);
   top: 50%;
-  left:4%;
+  left:3%;
   width: 93%;
 }
 .activeStepLabel{

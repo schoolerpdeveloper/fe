@@ -7,8 +7,8 @@ import {
   AnimationEvent,
   keyframes,
 } from '@angular/animations';
-import { CdkStepper, StepContentPositionState } from '@angular/cdk/stepper';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { CdkStepper, StepContentPositionState, StepperOptions } from '@angular/cdk/stepper';
+import { Component, EventEmitter, InjectionToken, Input, OnInit, Output } from '@angular/core';
 import { distinctUntilChanged, Subject, takeUntil } from 'rxjs';
 
 @Component({
@@ -23,7 +23,8 @@ export class StepperComponent extends CdkStepper {
   activeClass = 'active';
   @Output() formIndex = new EventEmitter();
 
-  
+
+
 
   rippleColor:string = 'rgba(150,217,79,0.2)'
 

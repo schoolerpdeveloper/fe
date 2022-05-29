@@ -46,7 +46,6 @@ export class AddressFormComponent implements OnInit {
         takeUntil(this.destroy$)
       )
       .subscribe((data) => {
-        console.log(data,this.parentAddressModel)
         let temp = {
           addressForm: {
             data:{...this.parentAddressModel,...data},
@@ -60,7 +59,7 @@ export class AddressFormComponent implements OnInit {
   initParentAddressForm() {
     let parentAddr = { ...this.parentAddressModel };
     this.parentAddressForm = this.fb.group({
-      ADMN_NO: [parentAddr.ADMN_NO, []],
+      ADMN_NO: [parentAddr.ADMN_NO, [Validators.required]],
       PRNT_ADRS_CD: [parentAddr.PRNT_ADRS_CD, []],
       PRNT_ADRS_ADD1: [parentAddr.PRNT_ADRS_ADD1, []],
       PRNT_ADRS_ADD2: [parentAddr.PRNT_ADRS_ADD2, []],

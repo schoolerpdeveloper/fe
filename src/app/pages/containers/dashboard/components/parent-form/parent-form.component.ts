@@ -98,7 +98,7 @@ export class ParentFormComponent implements OnInit {
   initParentForm() {
     let parentDetails = { ...this.parentDetailModel };
     this.parentDetailsForm = this.fb.group({
-      ADMN_NO: [parentDetails.ADMN_NO, []],
+      ADMN_NO: [parentDetails.ADMN_NO, [Validators.required]],
       PRNT_CD: [parentDetails.PRNT_CD, [Validators.required]],
       FIRST_NAME: [parentDetails.FIRST_NAME, []],
       ...(parentDetails.ID && { ID: [parentDetails.ID, []] }),

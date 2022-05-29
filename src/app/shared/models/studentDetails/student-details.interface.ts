@@ -41,4 +41,5 @@ export interface IStudentList {
   TOTAL_FEES_AMOUNT?: string;
   IS_ACTIVE?: string;
   FEES_STATUS?: string;
+  percentage?:string;
 }

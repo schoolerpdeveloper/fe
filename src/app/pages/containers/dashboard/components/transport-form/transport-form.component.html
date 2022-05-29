@@ -2,24 +2,25 @@
     <div class="row g-4 card-body">
         <div class="col-12 col-sm-12 col-md-12 col-xl-4">
             <app-erp-input label="Admission Number" formControlName="ADMN_NO" fieldName="ADMN_NO" [isDisabled]="true"
-            [parentForm]="transportDetailsForm">
-        </app-erp-input>
+                [parentForm]="transportDetailsForm">
+            </app-erp-input>
             <!-- <label>Student Admission</label> -->
             <!-- <app-student-search [ngSelectData]="_studentDetails" [searchDisabled]="false"
                 (selectedValueEvent)="captureAdmissionNo($event)"></app-student-search> -->
         </div>
         <div class="col-12 col-sm-12 col-md-12 col-xl-4">
-            <app-erp-input type="select" [selectData]="_routesSelect" label="Route Name" formControlName="BUS_RUTE_CD" fieldName="BUS_RUTE_CD"
-                [parentForm]="transportDetailsForm">
+            <app-erp-input type="select" [selectData]="_routesSelect" label="Route Name" formControlName="BUS_RUTE_CD"
+                fieldName="BUS_RUTE_CD" [parentForm]="transportDetailsForm">
             </app-erp-input>
         </div>
         <div class="col-12 col-sm-12 col-md-12 col-xl-4">
-            <app-erp-input label="Route Number" formControlName="BUS_RUTE_NO" fieldName="BUS_RUTE_NO"
-                [parentForm]="transportDetailsForm">
+            <app-erp-input type="select" [selectData]="_stoppage" label="Stoppage Name" formControlName="RUTE_STOP_NO"
+                fieldName="RUTE_STOP_NO" [parentForm]="transportDetailsForm">
             </app-erp-input>
+          
         </div>
     </div>
-    <div class="row g-3 card-body">
+    <!-- <div class="row g-3 card-body">
         <div class="col-12 col-sm-12 col-md-12 col-xl-4">
             <app-erp-input label="Driver Name" formControlName="BUS_RUTE_DRIVER_NAME" fieldName="BUS_RUTE_DRIVER_NAME"
                 [parentForm]="transportDetailsForm">
@@ -48,5 +49,5 @@
                 [parentForm]="transportDetailsForm">
             </app-erp-input>
         </div>
-    </div>
+    </div> -->
 </form>

@@ -32,6 +32,7 @@ import { MaskService } from 'ngx-mask';
   ],
 })
 export class ErpInputComponent implements ControlValueAccessor, Validator {
+  _localRequiredState:boolean = false;
   @Input() label: string = '';
   @Input() parentForm!: FormGroup;
   @Input() fieldName!: string;
@@ -97,6 +98,7 @@ export class ErpInputComponent implements ControlValueAccessor, Validator {
   }
 
   validate(control: AbstractControl): ValidationErrors | null {
+    this._localRequiredState = control.hasValidator(Validators.required)
     if (this.useMaskedInput) return this.initMaskInputValidator(control); // this will work along with if field required
     return null;
   }

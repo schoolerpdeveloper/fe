@@ -46,58 +46,66 @@
 </ng-template>
 
 <ng-template #routeInfo let-data="data">
-  <div class="card rounded-5 border-0">
-    <table class="table-sm table-striped">
-      <tr>
-
-        <th>Route Number</th>
-        <td>{{data?.BUS_RUTE_NO | mask : 'SSXX-SXXXX'}}</td>
-      </tr>
-      <tr>
-
-        <th>Driver Name</th>
-        <td>{{data?.BUS_RUTE_DRIVER_NAME}}</td>
-      </tr>
-      <tr>
-
-        <th>Driver Number</th>
-        <td>
-
-          {{data?.BUS_RUTE_DRIVER_NO}}
-        </td>
-      </tr>
-      <tr>
-
-        <th>Route Status</th>
-        <ng-container *ngIf="data?.IS_ACTIVE">
-          <td *ngIf="data?.IS_ACTIVE === 1"><small class="badge bg-themed text-white">Active</small></td>
-          <td *ngIf="data?.IS_ACTIVE !== 1"><small class="badge bg-themed text-white">Inactive</small></td>
-        </ng-container>
-      </tr>
-      <tr *ngIf="data?.bus_route_details.length">
-        <th>Total Stops</th>
-        <td>
-          {{data?.bus_route_details.length}}
-        </td>
-        <td class="text-themed small pointer" (click)="loadMore = !loadMore">{{loadMore ? 'Collapse' : 'Expand'}}</td>
-      </tr>
-    </table>
-    <ul class="list-group" *ngIf="loadMore" [@collapsibleAnimation]="loadMore ? 'open': 'close'">
-      <ng-container *ngFor="let item of data?.bus_route_details">
-        <li class="list-group-item d-flex justify-content-between align-items-start">
-          <div class="ms-2 me-auto small poppins-text">
-            <div class="fw-bold text-secondary poppins-text">{{item?.rute_stop_name}}</div>
-            <div style="font-size: 12px;" class="poppins-text">
-              Stop Number : {{item?.rute_stop_no}}
+  <ng-container *ngIf="data?.IS_ACTIVE">
+    <div class="card rounded-5 border-0">
+      <table class="table-sm table-striped">
+        <tr>
+  
+          <th>Route Number</th>
+          <td>{{data?.BUS_RUTE_NO | mask : 'SSXX-SXXXX'}}</td>
+        </tr>
+        <tr>
+  
+          <th>Driver Name</th>
+          <td>{{data?.BUS_RUTE_DRIVER_NAME}}</td>
+        </tr>
+        <tr>
+  
+          <th>Driver Number</th>
+          <td>
+  
+            {{data?.BUS_RUTE_DRIVER_NO}}
+          </td>
+        </tr>
+        <tr>
+  
+          <th>Route Status</th>
+          <ng-container *ngIf="data?.IS_ACTIVE">
+            <td *ngIf="data?.IS_ACTIVE == 1"><small class="badge bg-themed text-white">Active</small></td>
+            <td *ngIf="data?.IS_ACTIVE != 1"><small class="badge bg-danger text-white">Inactive</small></td>
+          </ng-container>
+        </tr>
+        <tr *ngIf="data?.bus_route_details.length">
+          <th>Total Stops</th>
+          <td>
+            {{data?.bus_route_details.length}}
+          </td>
+          <td class="text-themed small pointer" (click)="loadMore = !loadMore">{{loadMore ? 'Collapse' : 'Expand'}}</td>
+        </tr>
+      </table>
+      <ul class="list-group" *ngIf="loadMore" [@collapsibleAnimation]="loadMore ? 'open': 'close'">
+        <ng-container *ngFor="let item of data?.bus_route_details">
+          <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto small poppins-text">
+              <div class="fw-bold text-secondary poppins-text">{{item?.rute_stop_name}}</div>
+              <div style="font-size: 12px;" class="poppins-text">
+                Stop Number : {{item?.rute_stop_no}}
+              </div>
             </div>
-          </div>
-          <span class="badge bg-themed rounded-pill" *ngIf="item?.stats_cd === 'A'">Active</span>
-          <span class="badge bg-danger rounded-pill" *ngIf="item?.stats_cd !== 'A'">Inactive</span>
+            <span class="badge bg-themed rounded-pill" *ngIf="item?.stats_cd === 'A'">Active</span>
+            <span class="badge bg-danger rounded-pill" *ngIf="item?.stats_cd !== 'A'">Inactive</span>
+  
+          </li>
+       
+        </ng-container>
+  
+      </ul>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="!data?.IS_ACTIVE">
+    <p class="poppins-text text-center text-warning">Route Information was not available</p>
 
-        </li>
-     
-      </ng-container>
+  </ng-container>
 
-    </ul>
-  </div>
+
 </ng-template>

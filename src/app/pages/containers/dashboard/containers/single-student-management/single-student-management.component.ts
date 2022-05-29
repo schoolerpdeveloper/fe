@@ -22,7 +22,10 @@ import { SibilingActions } from 'src/app/pages/pages_store/actions/sibiling.acti
 import * as StudentAction from 'src/app/pages/pages_store/actions/student.actions';
 import { TransportActions } from 'src/app/pages/pages_store/actions/transport.actions';
 import { UtilityActions } from 'src/app/pages/pages_store/actions/util.actions';
-import { selectAllFees, selectFeesDataLoading } from 'src/app/pages/pages_store/selectors/fees.selector';
+import {
+  selectAllFees,
+  selectFeesDataLoading,
+} from 'src/app/pages/pages_store/selectors/fees.selector';
 import {
   parentDataLoading,
   selectParentAddressDetails,
@@ -57,12 +60,11 @@ export class SingleStudentManagementComponent implements OnInit {
   parentAddressdetails: IParentAddressDetails[] = [];
   feesdetails: IFeesDeatils[] = [];
   sibilingdetails: ISiblingDetails[] = [];
-  transportdetails:ITransportDeatils[]=[];
+  transportdetails: ITransportDeatils[] = [];
   studentLoading$ = this.store.select(studentDataLoading);
   parentLoading$ = this.store.select(parentDataLoading);
   sibLoading$ = this.store.select(selectSibilingDataLoading);
   feesLoading$ = this.store.select(selectFeesDataLoading);
-
 
   selectAllStudents$ = this.store.select(selectAllStudents).pipe(
     tap((d) => console.log(d)),
@@ -83,13 +85,15 @@ export class SingleStudentManagementComponent implements OnInit {
   ngOnInit(): void {
     this.store
       .select(selectSingleStudents)
-      .pipe(takeUntil(this.destroy$),
-      tap((data:IStudentDetails)=>{
-        if(data?.BUS_RUTE_CD) this.loadBusRouteDetails(data.BUS_RUTE_CD)
-      }))
+      .pipe(
+        takeUntil(this.destroy$),
+        tap((data: IStudentDetails) => {
+          if (data?.BUS_RUTE_CD) this.loadBusRouteDetails(data.BUS_RUTE_CD);
+        })
+      )
       .subscribe((d) => {
         this.studentlist = { ...d };
-        this.stoppageNo = d?.RUTE_STOP_NO ? d?.RUTE_STOP_NO :-1
+        this.stoppageNo = d?.RUTE_STOP_NO ? d?.RUTE_STOP_NO : -1;
       });
     this.store
       .select(selectParentAddressDetails)
@@ -114,14 +118,14 @@ export class SingleStudentManagementComponent implements OnInit {
       .subscribe((d) => {
         this.feesdetails = [...d];
       });
-      this.store
+    this.store
       .select(TransportSelector.selectBusRouteCodeDetails)
       .pipe(takeUntil(this.destroy$))
       .subscribe((d) => {
         this.transportdetails = [...d];
       });
-      this.store.dispatch(UtilityActions.loadClassConfig());
-      this.initAllSingleStudentDetails();
+    this.store.dispatch(UtilityActions.loadClassConfig());
+    this.initAllSingleStudentDetails();
   }
   initAllSingleStudentDetails() {
     this.loadSingleStudents();
@@ -148,9 +152,9 @@ export class SingleStudentManagementComponent implements OnInit {
     );
   }
 
-  loadTransportDetails(routeCode:number|string){
+  loadTransportDetails(routeCode: number | string) {
     this.store.dispatch(
-      TransportActions.loadBusRouteId({ busRouteCode: routeCode})
+      TransportActions.loadBusRouteId({ busRouteCode: routeCode })
     );
   }
 
@@ -313,18 +317,34 @@ export class SingleStudentManagementComponent implements OnInit {
         )
       : {};
 
-    if (
-      data.action === 'update' &&
-      parentDetails?.['ID'] &&
-      address_details?.ID
-    ) {
-      this.store.dispatch(
-        ParentActions.updateParentDetails({ data: parentDetails })
-      );
-      this.store.dispatch(
-        AddressActions.updateAddressDetails({ data: address_details })
-      );
+    if (data.action === 'update') {
+      if (parentDetails?.['ID'])
+        this.store.dispatch(
+          ParentActions.updateParentDetails({ data: parentDetails })
+        );
+      if (address_details?.ID) {
+        this.store.dispatch(
+          AddressActions.updateAddressDetails({ data: address_details })
+        );
+      } else if (address_details?.ID === null) {
+        this.store.dispatch(
+          AddressActions.addAddressDetails({ data: address_details })
+        );
+      }
     }
+
+    // if (
+    //   data.action === 'update' &&
+    //   parentDetails?.['ID'] &&
+    //   address_details?.ID
+    // ) {
+    //   this.store.dispatch(
+    //     ParentActions.updateParentDetails({ data: parentDetails })
+    //   );
+    //   this.store.dispatch(
+    //     AddressActions.updateAddressDetails({ data: address_details })
+    //   );
+    // }
 
     if (data.action === 'delete') {
       this.store.dispatch(

@@ -61,7 +61,7 @@
               <th>Status</th>
               <ng-container *ngIf="studentlist?.IS_ACTIVE">
                 <td *ngIf="studentlist?.IS_ACTIVE === 'A'"><small class="badge bg-themed text-white">Active</small></td>
-                <td *ngIf="studentlist?.IS_ACTIVE !== 'A'"><small class="badge bg-themed text-white">Inactive</small></td>
+                <td *ngIf="studentlist?.IS_ACTIVE !== 'A'"><small class="badge bg-danger text-white">Inactive</small></td>
               </ng-container>
             </tr>
           </table>

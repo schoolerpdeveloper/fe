@@ -8,6 +8,7 @@ import { delay, filter, map, } from 'rxjs/operators';
 
 import { RouterEnum } from 'src/app/enums/router.enum';
 import { loadStudents } from '../pages_store/actions/student.actions';
+import { UtilityActions } from '../pages_store/actions/util.actions';
 import { ExampleFlatNode, TREE_DATA } from './menu';
 
 @Component({
@@ -24,6 +25,7 @@ export class LandingPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.initToDashboard();
+    this.initClasses();
     this.initAllStudentDetails();
     this.loading$ = this.router.events.pipe(
       delay(1000),
@@ -88,4 +90,9 @@ export class LandingPageComponent implements OnInit {
   initAllStudentDetails(){
     this.store.dispatch((loadStudents()))
   }
+  initClasses(){
+
+    this.store.dispatch(UtilityActions.loadClassConfig());
+  }
+
 }

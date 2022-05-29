@@ -34,6 +34,7 @@ export class StudentListCardComponent implements OnInit {
   constructor() {}
 
   private feesPercentCalc(value: IStudentList) {
+    console.log(value)
     let totalFees = value?.TOTAL_FEES_AMOUNT
       ? Number(value.TOTAL_FEES_AMOUNT)
       : 1;

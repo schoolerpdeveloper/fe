@@ -2,7 +2,7 @@
     <div class="card-body m-0 p-0 d-flex" style="width:15rem">
         <div class="slanting-banner poppins-text pointer" [ngClass]="payColorClass">
 
-            <span class="paid-rotate-str text-white d-block">
+            <span class="paid-rotate-str text-white d-block" style="box-shadow:none !important;" >
                 <ng-container *ngIf="toggleSwitch === false"> Inactive</ng-container>
                 <ng-container *ngIf="toggleSwitch === true">
                     <button type="button" class="pointer border-0 bg-transparent text-white"
@@ -41,7 +41,7 @@
                         <td class="align-middle" *ngIf="studentDetailsList?.BUS_RUTE_CD != 'PARENT-PICKUP-DROP'"><span
                                 class="small pointer"
                                 (click)="openModalWindowEvent({modal:'route',busRoutecode:studentDetailsList?.BUS_RUTE_CD,studentDetails:studentDetailsList})">
-                                <mat-icon style="font-size:1rem ;" class="border-0 bg-transparent">info</mat-icon>
+                                <mat-icon style="font-size:1rem;box-shadow:none !important;" class="border-0 bg-transparent">info</mat-icon>
                             </span></td>
                     </table>
                 </div>

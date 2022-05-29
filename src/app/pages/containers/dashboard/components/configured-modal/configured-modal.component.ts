@@ -19,13 +19,11 @@ import {
   styleUrls: ['./configured-modal.component.scss'],
   animations: [
     trigger('collapsibleAnimation', [
-      transition(':enter', [
-        animate(700),
-      ]),
+      transition(':enter', [animate(700)]),
       transition(':leave', [
-        animate(300, style({ background:'transparent' })),
+        animate(300, style({ background: 'transparent' })),
       ]),
-      state('*', style({ background:'transparent' })),
+      state('*', style({ background: 'transparent' })),
     ]),
   ],
 })
@@ -54,7 +52,11 @@ export class ConfiguredModalComponent implements OnInit {
     this.data.data = e.parentDetails.data;
   }
   parentAddressFormStatusHandle(e: any) {
-    this.data.data.address_details = e.addressForm.data;
+    this.data.data.address_details = {
+      ...e.addressForm.data,
+      ADMN_NO: this.data.data.ADMN_NO,
+      PRNT_ADRS_CD: this.data.data.PRNT_CD,
+    };
   }
   sibDetailsFormStatusHandle(e: any) {
     // this
