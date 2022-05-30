@@ -8,6 +8,6 @@ export const selectAllStudents  = createSelector(selectPagesState,(state:fromPag
 export const slectLoading  = createSelector(selectPagesState,(state:fromPages.State)=>state.loading)
 export const selectSingleStudents  = createSelector(selectPagesState,(state:fromPages.State)=>state.singleStudentDetails)
 export const selectStudentLists  = createSelector(selectPagesState,(state:fromPages.State)=>state.studentLists)
-export const dataLoading = createSelector(selectPagesState,(state:fromPages.State)=>state.loading)
+
 
 

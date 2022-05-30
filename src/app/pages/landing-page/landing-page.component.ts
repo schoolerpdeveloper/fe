@@ -1,11 +1,8 @@
 import { ArrayDataSource } from '@angular/cdk/collections';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { Component, OnInit } from '@angular/core';
-import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable, of } from 'rxjs';
-import { delay, filter, map, } from 'rxjs/operators';
-
 import { RouterEnum } from 'src/app/enums/router.enum';
 import { loadStudents } from '../pages_store/actions/student.actions';
 import { ExampleFlatNode, TREE_DATA } from './menu';
@@ -18,24 +15,12 @@ import { ExampleFlatNode, TREE_DATA } from './menu';
 export class LandingPageComponent implements OnInit {
   sideNavToggleCommander: boolean = true;
   currentSelectedNode: any = {};
-  loading$: Observable<boolean> = of(false);
 
   constructor(private router: Router,private store:Store) {}
 
   ngOnInit(): void {
     this.initToDashboard();
     this.initAllStudentDetails();
-    this.loading$ = this.router.events.pipe(
-      delay(1000),
-      filter(
-        (e) =>
-          e instanceof NavigationStart ||
-          e instanceof NavigationEnd ||
-          e instanceof NavigationCancel ||
-          e instanceof NavigationError
-      ),
-      map((e) => e instanceof NavigationStart)
-    );
   }
 
   initToDashboard() {

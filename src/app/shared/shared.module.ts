@@ -34,11 +34,15 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ErpDropdownDirective } from './directives/erp-dropdown.directive';
 import { ErpDropdownComponent } from './components/erp-dropdown/erp-dropdown.component';
 import { SearchableStringFilterComponent } from './components/searchable-string-filter/searchable-string-filter.component';
-import { AppLoadingDirective } from './directives/app-loading.directive';
-import { LoaderComponent } from './components/loader/loader.component';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import { SkeletonLoaderComponent } from './components/skeleton-loader/skeleton-loader.component';
-import { SkeletonLoaderDirective } from './directives/skeleton-loader.directive';
+import { LinechartComponent } from './components/charts/linechart/linechart.component';
+import { BarchartComponent } from './components/charts/barchart/barchart.component';
+import { DoughnutchartComponent } from './components/charts/doughnutchart/doughnutchart.component';
+
+import { NgChartsModule } from 'ng2-charts';
+// import { CircleProgressComponent } from './components/charts/circle-progress/circle-progress.component';
+import { TableComponent } from './components/table/table.component';
+import { FilterPipe } from './pipes/search.pipe';
+
 
 const maskConfigFunction: () => Partial<IConfig> = () => {
   return {
@@ -68,7 +72,6 @@ const SHARED_MODS = [
   MatPaginatorModule,
   MatRippleModule,
   NgSelectModule,
-  MatProgressSpinnerModule,
   NgOptionHighlightModule,
   NgxMaskModule.forRoot(),
   HotToastModule.forRoot(),
@@ -77,6 +80,8 @@ const SHARED_MODS = [
   CdkTreeModule,
   FlatpickrModule.forRoot(),
   MatDialogModule,
+  NgChartsModule,
+
 ];
 
 const SHARED_DECL = [
@@ -88,14 +93,16 @@ const SHARED_DECL = [
   ListComponent,
   ErpPaginatorComponent,
   SearchableStringFilterComponent,
-  AppLoadingDirective,
-  LoaderComponent,
-  SkeletonLoaderComponent, SkeletonLoaderDirective
+  LinechartComponent, BarchartComponent, DoughnutchartComponent, 
+  TableComponent,
+  FilterPipe
+  // CircleProgressComponent
+  
 ];
 
 @NgModule({
-  declarations: [...SHARED_DECL],
+  declarations: [...SHARED_DECL, ],
   imports: [CommonModule, ...SHARED_MODS],
-  exports: [SHARED_DECL, SHARED_MODS],
+  exports: [CommonModule,SHARED_DECL, SHARED_MODS],
 })
 export class SharedModule {}

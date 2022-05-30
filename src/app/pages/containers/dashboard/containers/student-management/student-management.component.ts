@@ -15,10 +15,7 @@ import {
   loadStudentList,
   updateStudentDetails,
 } from 'src/app/pages/pages_store/actions/student.actions';
-import {
-  dataLoading,
-  selectStudentLists,
-} from 'src/app/pages/pages_store/selectors/student.selectors';
+import { selectStudentLists } from 'src/app/pages/pages_store/selectors/student.selectors';
 import { IStudentList } from '@shared/models/studentDetails/student-details.interface';
 import {
   MatDialog,
@@ -27,7 +24,6 @@ import {
 import { ConfiguredModalComponent } from '../../components/configured-modal/configured-modal.component';
 import { mapfeesCalcAndClasses } from 'src/app/utility/utility';
 import { TransportActions } from 'src/app/pages/pages_store/actions/transport.actions';
-import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-student-management',
@@ -52,7 +48,6 @@ export class StudentManagementComponent {
   filteredClasses: string[] = [];
   filteredFees: string[] = [];
   filteredName: string = '';
-  isLoading: boolean = true;
   constructor(
     private destroy$: AutoUnSubscribeService,
     private store: Store,
@@ -60,15 +55,6 @@ export class StudentManagementComponent {
   ) {}
 
   ngOnInit() {
-    this.store
-      .select(dataLoading)
-      .pipe(
-        takeUntil(this.destroy$),
-        debounceTime(200),
-        distinctUntilChanged(),
-        tap((d: boolean) => (this.isLoading = d))
-      )
-      .subscribe();
     this.search.valueChanges
       .pipe(
         takeUntil(this.destroy$),
@@ -100,7 +86,7 @@ export class StudentManagementComponent {
         }
       });
 
-    this.loadData();
+    this.store.dispatch(loadStudentList());
   }
   selectedVal(e: any, str: 'fees' | 'class') {
     if (str === 'fees') this.filteredFees = [...e];
@@ -118,22 +104,17 @@ export class StudentManagementComponent {
   routeConfigurationCaptured(event: any) {
     console.log(event);
   }
-  loadData() {
-    this.store.dispatch(loadStudentList());
-  }
 
   openModalWindowCapture(event: any) {
     const dialogRef = this.dialog.open(ConfiguredModalComponent, {
       width: '520px',
       data: {
-        modalTitle: 'Transport Details',
-        studentDetails: event.studentDetails,
+        modalTitle:'Transport Details',
+        studentDetails:event.studentDetails
       },
     });
-    this.store.dispatch(
-      TransportActions.loadBusRouteId({ busRouteCode: event.busRoutecode })
-    );
-
+    this.store.dispatch(TransportActions.loadBusRouteId({ busRouteCode: event.busRoutecode }));
+    
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
     });
