@@ -43,14 +43,16 @@ import { NgChartsModule } from 'ng2-charts';
 import { TableComponent } from './components/table/table.component';
 import { FilterPipe } from './pipes/search.pipe';
 
-
 const maskConfigFunction: () => Partial<IConfig> = () => {
   return {
     validation: false,
   };
 };
-import {CdkAccordionModule} from '@angular/cdk/accordion';
+import { CdkAccordionModule } from '@angular/cdk/accordion';
 import { SimpleAccordianComponent } from './components/simple-accordian/simple-accordian.component';
+import { LoaderComponent } from '@ngneat/hot-toast/lib/components/indicator/icons/loader/loader.component';
+import { SkeletonLoaderComponent } from './components/skeleton-loader/skeleton-loader.component';
+import { SkeletonLoaderDirective } from './directives/skeleton-loader.directive';
 FullCalendarModule.registerPlugins([
   // register FullCalendar plugins
   dayGridPlugin,
@@ -83,7 +85,6 @@ const SHARED_MODS = [
   FlatpickrModule.forRoot(),
   MatDialogModule,
   NgChartsModule,
-
 ];
 
 const SHARED_DECL = [
@@ -95,24 +96,22 @@ const SHARED_DECL = [
   ListComponent,
   ErpPaginatorComponent,
   SearchableStringFilterComponent,
-  AppLoadingDirective,
   LoaderComponent,
   SimpleAccordianComponent,
-  SkeletonLoaderComponent, SkeletonLoaderDirective
-];
-
-@NgModule({
-  declarations: [...SHARED_DECL, SimpleAccordianComponent,
-  LinechartComponent, BarchartComponent, DoughnutchartComponent, 
+  SkeletonLoaderComponent,
+  SkeletonLoaderDirective,
+  SimpleAccordianComponent,
+  LinechartComponent,
+  BarchartComponent,
+  DoughnutchartComponent,
   TableComponent,
-  FilterPipe
+  FilterPipe,
   // CircleProgressComponent
-  
 ];
 
 @NgModule({
-  declarations: [...SHARED_DECL, ],
+  declarations: [...SHARED_DECL],
   imports: [CommonModule, ...SHARED_MODS],
-  exports: [CommonModule,SHARED_DECL, SHARED_MODS],
+  exports: [CommonModule, SHARED_MODS, SHARED_DECL],
 })
 export class SharedModule {}
