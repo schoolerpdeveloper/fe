@@ -23,7 +23,7 @@ export const studentDetailsModel :IStudentDetails = {
     "STUD_AHAR_NO": null,
     "STUD_EMIS_NO": null,
     "STUD_PREV_SCHL": null,
-    "STUD_DISCOUNT": 0.0,
+    "STUD_DISCOUNT": null,
     "STUD_IS_ACTIVE": false,
     "CRET_TS": null,
     "LAST_UPDT_TS": null

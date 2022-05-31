@@ -1,77 +1,53 @@
-<!-- 
+<!-- <div class="box" [formGroup]="regForm">
+    <img class="logo" alt="logo" src="assets/images/reg.svg">
+    <p class="signin">Register</p>
+    <div class="my-3"></div>
 
-<div class="container-fluid m-0">
-    <div class="row">
-
-        <div class="col-sm-12 col-md-6">
-            <div class="card border-0 mx-auto mt-4" style="width:25rem;" [formGroup]="loginForm">
-                <img src="assets/images/school-logo-placeholder.png" class="card-img" alt="logo">
-                <p class="poppins-text text-center fs-6">Register</p>
-                <div class="">
-                    <input type="text" class="form-control border-0 input-themed rounded-pill px-3" placeholder="Username"
-                        formControlName="username"
-                        [ngClass]="usernamef?.touched && usernamef?.invalid ? 'error-border-danger' : ''">
-                    <div class="text-danger mx-3 my-0 py-0" style="height: 1.15rem;">
-                        <ng-container *ngIf="usernamef?.touched && usernamef?.invalid">
-                            <small class="d-block small text-danger text-condensed">* Username Required</small>
-                        </ng-container>
-                    </div>
-                </div>
-                <div class="my-1">
-                    <input type="password" class="form-control border-0 input-themed rounded-pill px-3" placeholder="Password"
-                        formControlName="password"
-                        [ngClass]="passwordf?.touched && passwordf?.invalid ? 'error-border-danger' : ''">
-                    <div class="text-danger mx-3" style="height: 1.15rem;">
-                        <ng-container *ngIf="passwordf?.touched && passwordf?.invalid">
-                            <small class="d-block small text-danger text-condensed"
-                                style="height: 2.15rem;">*Password Required</small>
-                        </ng-container>
-                    </div>
-                </div>
-                <div class="my-1">
-                    <input type="password" class="form-control border-0 input-themed rounded-pill px-3" placeholder="Password"
-                        formControlName="password"
-                        [ngClass]="passwordf?.touched && passwordf?.invalid ? 'error-border-danger' : ''">
-                    <div class="text-danger mx-3" style="height: 1.15rem;">
-                        <ng-container *ngIf="passwordf?.touched && passwordf?.invalid">
-                            <small class="d-block small text-danger text-condensed"
-                                style="height: 2.15rem;">*Password Required</small>
-                        </ng-container>
-                    </div>
-                </div>
-                <div class="my-1">
-                    <input type="password" class="form-control border-0 input-themed rounded-pill px-3" placeholder="Password"
-                        formControlName="password"
-                        [ngClass]="passwordf?.touched && passwordf?.invalid ? 'error-border-danger' : ''">
-                    <div class="text-danger mx-3" style="height: 1.15rem;">
-                        <ng-container *ngIf="passwordf?.touched && passwordf?.invalid">
-                            <small class="d-block small text-danger text-condensed"
-                                style="height: 2.15rem;">*Password Required</small>
-                        </ng-container>
-                    </div>
-                </div>
-                <div class="">
-                    <button type="button" class="btn rounded-pill form-control btn-themed"
-                        [disabled]="!loginForm.valid" [class.disabled]="!loginForm.valid" (click)="signin()">
-                        <span class="text-white">Register</span>
-                    </button>
-                    <div class="text-themed text-center small mt-2 text-condensed-bold pointer">Forgot Password</div>
-                </div>
-            </div>
-        </div>
-        <div class="d-none d-md-block col-md-6 m-0 p-0">
-            <img src="assets/images/banner.png" class="img-fluid w-100" style="height: 90%;">
-        </div>
+    <input name="username" type="text" placeholder="Username"
+        [ngClass]="usernamef?.touched && usernamef?.invalid ? 'border-danger' : ''" formControlName="username">
+    <div *ngIf="usernamef?.touched && usernamef?.invalid" class="text-danger">
+        <small class="d-block small text-danger error" style="height: 2.15rem;">Username Required</small>
     </div>
+    <div class="my-2"></div>
+
+    <input name="email" type="text" placeholder="Email"
+        [ngClass]="emailf?.touched && emailf?.invalid ? 'border-danger' : ''" formControlName="email">
+    <div *ngIf="emailf?.touched && emailf?.invalid" class="text-danger">
+        <small class="d-block small text-danger error" *ngIf="emailf?.errors?.required" style="height: 2.15rem;">Email
+            Required</small>
+        <small class="d-block small text-danger error" *ngIf="emailf?.errors?.email" style="height: 2.15rem;">Please
+            type valid email address</small>
+
+    </div>
+    <div class="my-2"></div>
+    <input name="password" type="password" placeholder="Password" required
+        [ngClass]="passwordf?.touched && passwordf?.invalid ? 'border-danger' : ''" formControlName="password">
+    <div *ngIf="passwordf?.touched && passwordf?.invalid" class="text-danger">
+        <small class="d-block small text-danger error" style="height: 2.15rem;">Password Required</small>
+    </div>
+    <div class="my-2"></div>
+    <input name="password" type="text" placeholder="Retype Password" required
+        [ngClass]="confirm_passwordf?.touched && confirm_passwordf?.invalid && regForm?.errors?.confirmedValidator ? 'border-danger' : ''"
+        formControlName="confirm_password">
+    <div *ngIf="confirm_passwordf?.touched && confirm_passwordf?.invalid" class="text-danger">
+        <small class="d-block small text-danger error" *ngIf="confirm_passwordf?.errors?.required" style="height: 2.15rem;">Retype same password</small>
+        <small class="d-block small text-danger error" *ngIf="confirm_passwordf?.errors?.confirmedValidator"  style="height: 2.15rem;">Password mismatches</small>
+
+    </div>
+    <div class="my-2"></div>
+    <select class="mx-auto" formControlName="roles">
+        <option value="">Select Roles</option>
+        <option value="admin">Admin</option>
+        <option value="user">User</option>
+        <option value="accountant">Accountant</option>
+        <option value="Teacher">Teacher</option>
+    </select>
+ 
+    <div class="my-1"></div>
+
+    <button type="button" [disabled]="!regForm.valid" [class.disabled]="!regForm.valid" (click)="register()">
+        Register
+    </button>
+    <p class="foot-txt">Forgot your password?</p>
+    <p class="foot-txt" (click)="routeToLogin()">Already a memeber? <span class="bold">Sign In now</span></p>
 </div> -->
-
-<div class="card text-primary my-auto text-center" style="height: 100vh;">
-    <div>
-        
-        <img src="assets/images/school-logo-placeholder.jpg" height="200" width="200">
-    </div>
-    <div>
-        Currently Master Admin are only allowed add details
-
-    </div>
-</div>

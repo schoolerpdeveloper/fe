@@ -13,20 +13,19 @@ const routes: Routes = [
     component: DashboardComponent,
     children: [
       {
-        path: RouterEnum.STUDENT_MANAGEMENT,
-        component: StudentManagementComponent,
-        data: { 
-          // animation: 'isRight' 
-        },
-      },
-      {
         path: RouterEnum.DASHBOARD_MAIN,
         component: MainDashboardComponent,
         data: {
           // animation: 'isRight',
         },
       },
-     
+      {
+        path: RouterEnum.STUDENT_MANAGEMENT,
+        component: StudentManagementComponent,
+        data: { 
+          // animation: 'isRight' 
+        },
+      },
       {
         path: `${RouterEnum.STUDENT_MANAGEMENT}/:admissionNo`,
         component: SingleStudentManagementComponent,
@@ -45,7 +44,7 @@ const routes: Routes = [
       { path: 'admission/edit/:id', component: StudentFormComponent },
       {
         path: '**',
-        redirectTo: `/${RouterEnum.CONTAINER}/${RouterEnum.DASHBOARD}/${RouterEnum.STUDENT_MANAGEMENT}`,
+        redirectTo: `/${RouterEnum.CONTAINER}/${RouterEnum.DASHBOARD}/${RouterEnum.DASHBOARD_MAIN}`,
         pathMatch: 'full',
       }, // fallback route - app -> pages-> dashboard -> main
     ],

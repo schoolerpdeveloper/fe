@@ -1,5 +1,5 @@
 <div class="card bg-transparent border border-light shadow-sm p-2 custom-card-rounded" style="max-width:20rem">
-    <div class="card-text ps-3 border-0 rounded-pill text-center text-secondary poppins-text small fw-bold" style="font-size: 14px;">Sibiling Details</div>
+    <div class="card-text ps-3 border-0 rounded-pill bg-white  poppins-text fw-bold" style="font-size: 14px;">Sibiling Details</div>
     <div class="text-center" *ngIf="_siblingdetails.length===0">
         <div class="mt-1 pointer mx-auto">
             <a class="text-themed text-decoration-none btn btn-sm rounded-pill shadow"
@@ -22,10 +22,11 @@
                         <div class="fs-6 fw-bold poppins-text">{{item?.SBLN_NAME ? item?.SBLN_NAME : 'Need to Add Name' }}</div>
                         <small class="d-block">{{item?.SBLN_RELA ? item?.SBLN_RELA : 'Need to Add Relation'}}</small>
                         <div class="grid-container small my-2">
-                            <div class="mt-1 pointer">
+                            <div class="my-auto">
+                                <!-- <a class="text-themed" role="button" >More</a> -->
                                 <a class="text-themed text-decoration-none btn btn-sm rounded-circle shadow"
-                                    role="button" (click)="addDetails(null)">
-                                    <mat-icon fontSet="material-icons-outlined" class="">add</mat-icon>
+                                    role="button" (click)="accordionItem.toggle()">
+                                    <mat-icon fontSet="material-icons-outlined" class="">more_horiz</mat-icon>
                                 </a>
                             </div>
                             <div class="mt-1 pointer">
@@ -34,18 +35,16 @@
                                     <mat-icon fontSet="material-icons-outlined" class="">edit</mat-icon>
                                 </a>
                             </div>
-                           
+                            <div class="mt-1 pointer">
+                                <a class="text-themed text-decoration-none btn btn-sm rounded-circle shadow"
+                                    role="button" (click)="addDetails(null)">
+                                    <mat-icon fontSet="material-icons-outlined" class="">add</mat-icon>
+                                </a>
+                            </div>
                             <div class="mt-1 pointer">
                                 <a class="text-themed text-decoration-none btn btn-sm rounded-circle shadow"
                                     role="button" (click)="deleteDetails(item)">
                                     <mat-icon fontSet="material-icons-outlined" class="">delete</mat-icon>
-                                </a>
-                            </div>
-                            <div class="my-auto">
-                                <!-- <a class="text-themed" role="button" >More</a> -->
-                                <a class="text-themed text-decoration-none btn btn-sm rounded-circle shadow"
-                                    role="button" (click)="accordionItem.toggle()">
-                                    <mat-icon fontSet="material-icons-outlined" class="">more_horiz</mat-icon>
                                 </a>
                             </div>
                         </div>
