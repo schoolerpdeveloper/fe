@@ -50,25 +50,25 @@
     <div class="card rounded-5 border-0">
       <table class="table-sm table-striped">
         <tr>
-  
+
           <th>Route Number</th>
           <td>{{data?.BUS_RUTE_NO | mask : 'SSXX-SXXXX'}}</td>
         </tr>
         <tr>
-  
+
           <th>Driver Name</th>
           <td>{{data?.BUS_RUTE_DRIVER_NAME}}</td>
         </tr>
         <tr>
-  
+
           <th>Driver Number</th>
           <td>
-  
+
             {{data?.BUS_RUTE_DRIVER_NO}}
           </td>
         </tr>
         <tr>
-  
+
           <th>Route Status</th>
           <ng-container *ngIf="data?.IS_ACTIVE">
             <td *ngIf="data?.IS_ACTIVE == 1"><small class="badge bg-themed text-white">Active</small></td>
@@ -94,11 +94,11 @@
             </div>
             <span class="badge bg-themed rounded-pill" *ngIf="item?.stats_cd === 'A'">Active</span>
             <span class="badge bg-danger rounded-pill" *ngIf="item?.stats_cd !== 'A'">Inactive</span>
-  
+
           </li>
-       
+
         </ng-container>
-  
+
       </ul>
     </div>
   </ng-container>
