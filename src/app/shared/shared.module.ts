@@ -50,7 +50,6 @@ const maskConfigFunction: () => Partial<IConfig> = () => {
 };
 import { CdkAccordionModule } from '@angular/cdk/accordion';
 import { SimpleAccordianComponent } from './components/simple-accordian/simple-accordian.component';
-import { LoaderComponent } from '@ngneat/hot-toast/lib/components/indicator/icons/loader/loader.component';
 import { SkeletonLoaderComponent } from './components/skeleton-loader/skeleton-loader.component';
 import { SkeletonLoaderDirective } from './directives/skeleton-loader.directive';
 FullCalendarModule.registerPlugins([
@@ -96,8 +95,7 @@ const SHARED_DECL = [
   ListComponent,
   ErpPaginatorComponent,
   SearchableStringFilterComponent,
-  LoaderComponent,
-  SimpleAccordianComponent,
+  
   SkeletonLoaderComponent,
   SkeletonLoaderDirective,
   SimpleAccordianComponent,
@@ -105,13 +103,13 @@ const SHARED_DECL = [
   BarchartComponent,
   DoughnutchartComponent,
   TableComponent,
-  FilterPipe,
+  FilterPipe
   // CircleProgressComponent
 ];
 
 @NgModule({
   declarations: [...SHARED_DECL],
   imports: [CommonModule, ...SHARED_MODS],
-  exports: [CommonModule, SHARED_MODS, SHARED_DECL],
+  exports: [CommonModule,SHARED_MODS,...SHARED_DECL],
 })
 export class SharedModule {}
