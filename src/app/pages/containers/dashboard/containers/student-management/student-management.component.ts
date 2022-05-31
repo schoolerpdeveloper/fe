@@ -123,7 +123,7 @@ export class StudentManagementComponent {
         }
       });
 
-    this.loadData();
+    this.store.dispatch(loadStudentList());
   }
   selectedVal(e: any, str: 'fees' | 'class') {
     if (str === 'fees') this.filteredFees = [...e];
@@ -146,9 +146,6 @@ export class StudentManagementComponent {
         RouterEnum.STUDENT_MANAGEMENT,
         event.studentDetails.ADMN_NO,
       ]);
-  }
-  loadData() {
-    this.store.dispatch(loadStudentList());
   }
 
   openModalWindowCapture(event: any) {

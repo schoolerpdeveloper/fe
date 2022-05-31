@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { PagesRoutingModule } from './pages-routing.module';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -20,6 +19,12 @@ import { TransportEffects } from './pages_store/effects/transport.effects';
 import { AddressEffects } from './pages_store/effects/address.effects';
 import { UtilEffects } from './pages_store/effects/util.effects';
 import { FeesEffects } from './pages_store/effects/fees.effects';
+import { FeesManagementDashboardComponent } from './containers/fees-management/fees-dashboard/fees-dashboard.component';
+import { FeesReportTableComponent } from './containers/fees-management/student-fees-report/student-fees-report.component';
+import { FeesReportsComponent } from './containers/fees-management/fees-reports/fees-reports.component';
+import { ClassWiseFeesReportsComponent } from './containers/fees-management/class-fees-report/class-fees-report.component';
+import { StudentPaymentsInfoComponent } from './containers/fees-management/student-invoice/student-invoice.component';
+
 
 @NgModule({
   declarations: [
@@ -27,6 +32,11 @@ import { FeesEffects } from './pages_store/effects/fees.effects';
     HeaderComponent,
     FooterComponent,
     OneColumnLayoutComponent,
+    // FeesManagementDashboardComponent,
+    // FeesReportTableComponent,
+    // FeesReportsComponent,
+    // ClassWiseFeesReportsComponent,
+    // StudentPaymentsInfoComponent,
   ],
   imports: [
     CommonModule,

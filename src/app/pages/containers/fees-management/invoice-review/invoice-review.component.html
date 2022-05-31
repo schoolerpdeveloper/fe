@@ -1,0 +1,319 @@
+<div class="container-fluid">
+    <div class="row mt-3">
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button class="btn btn-sm btn-primary mb-2" (click)="back()" type="button">
+                <i class="fas fa-chevron-left tex-green smallfont"></i>
+                Back to Dashboard</button>
+        </div>
+
+        <div class="col-7">
+            <div class="card card_big p-3">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="row p-4">
+                            <div class="col-12 text-center">
+                                <img src="../../../../assets/images/students_photos.png" width="120px" alt=""
+                                    class="profPhoto">
+                            </div>
+                            <div class="col-12">
+                                <ul class="icon_design">
+                                    <li>
+                                        <button class="btn btn_colr "><i class="fas fa-comment-alt"></i></button>
+                                    </li>
+                                    <li>
+                                        <button class="btn btn_colr active"><i class="fas fa-phone"></i></button>
+                                    </li>
+                                    <li>
+                                        <button class="btn btn_colr"><i class="fas fa-print"></i></button>
+                                    </li>
+                                </ul>
+
+                            </div>
+                            <ng-container *ngIf="studentData">
+                                <table class="table small">
+                                    <tbody>
+                                        <tr>
+                                            <td>Admission No:</td>
+                                            <td>{{studentData.ADMN_NO}}</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>Name:</td>
+                                            <td>{{studentData.STUD_FIRST_NAME}} {{studentData.STUD_LAST_NAME}}</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>Gender</td>
+                                            <td>{{studentData.STUD_GNDR}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>DOB:</td>
+                                            <td>{{studentData.STUD_DOB |date}} </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>Bus Route</td>
+                                            <td>{{studentData.BUS_RUTE_CD}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Aadhar No:</td>
+                                            <td>{{studentData.STUD_AHAR_NO}}</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>EMI Due</td>
+                                            <td>{{studentData.STUD_EMIS_NO}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </ng-container>
+                        </div>
+                    </div>
+                    <div class="col-6 border-start">
+                        <!-- <div class="card p-2 card_md">
+                            <h4 class="text-center small"><b> Fees Structure</b></h4>
+                            <table class="table small" *ngIf="classWiseFeesStruct">
+
+                                <thead>
+                                    <tr>
+                                        <th>Fees description</th>
+                                        <th>Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="fw-bold">Class Name</td>
+                                        <td class="fw-bold">{{classWiseFeesStruct.CLASS_NAME}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold">Term 1</td>
+                                        <td class="fw-bold">{{classWiseFeesStruct.TERM1 |currency:"INR":"symbol":'3.0'}}
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="fw-bold">Term 2</td>
+                                        <td class="fw-bold">{{classWiseFeesStruct.TERM2 |currency:"INR":"symbol":'3.0'}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold">Term 3</td>
+                                        <td class="fw-bold">{{classWiseFeesStruct.TERM3 |currency:"INR":"symbol":'3.0'}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold">Transport 1</td>
+                                        <td class="fw-bold">{{classWiseFeesStruct.TRANSPORT_1
+                                            |currency:"INR":"symbol":'3.0'}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold">Transport 2</td>
+                                        <td class="fw-bold">{{classWiseFeesStruct.TRANSPORT_2
+                                            |currency:"INR":"symbol":'3.0'}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold">Transport 3</td>
+                                        <td class="fw-bold">{{classWiseFeesStruct.TRANSPORT_3
+                                            |currency:"INR":"symbol":'3.0'}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold">Miscellaneous</td>
+                                        <td class="fw-bold">{{classWiseFeesStruct.MISCELLANEOUS
+                                            |currency:"INR":"symbol":'3.0'}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold">Material</td>
+                                        <td class="fw-bold">{{classWiseFeesStruct.MATERIAL
+                                            |currency:"INR":"symbol":'3.0'}}</td>
+                                    </tr>
+                                    <tr class="ttlClr">
+                                        <td class="fw-bold">Total</td>
+                                        <td class="fw-bold">{{classWiseFeesStruct.TOTAL |currency:"INR":"symbol":'3.0'}}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div> -->
+                        <div class="card p-2 card_md" style="overflow-y: scroll;height: 90vh;">
+                            <h5 class="text-center fw-bold"><b> Fees History</b></h5>
+                            <!-- <pre> {{feesHistory |json}}</pre> -->
+                            <ul class="timeline" *ngIf="feesHistory && feesHistory.length>0">
+                                <ng-container *ngFor="let fees of feesHistory;">
+                                    <li>
+                                        <a class="float-right small" style="color: #61d439;">{{fees.FEES_DATE |date}}</a>
+                                        <table class="table table-hover" style="font-size: 12px;">
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row">Bill No:</th>
+                                                    <td>#{{fees.FEES_BILL_NO}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Fees Amt:</th>
+                                                    <td>{{fees.FEES_AMOUNT |currency:"INR":"symbol":'3.0'}}</td>
+                                                </tr>
+                                            
+                                                <tr>
+                                                    <th scope="row">Balance Amt</th>
+                                                    <td>{{fees.FEES_BALANCE |currency:"INR":"symbol":'3.0'}}</td>
+                                                </tr>
+                                            
+                                                <tr>
+                                                    <th scope="row">Discount</th>
+                                                    <td>{{fees.FEES_DISCOUNT |currency:"INR":"symbol":'3.0'}}</td>
+                                                </tr>
+                                            
+                                                <tr>
+                                                    <th scope="row">Notes</th>
+                                                    <td>{{fees.FEES_NOTES}}</td>
+                                                </tr>
+                                            
+                                                <tr>
+                                                    <th scope="row">Fees Deduction</th>
+                                                    <td>{{fees.FEES_DED |currency:"INR":"symbol":'3.0'}}</td>
+                                                </tr>
+                                            
+                                                <tr>
+                                                    <th scope="row">Fees Deduction Comments</th>
+                                                    <td>{{fees.FEES_DED_CMNT }}</td>
+                                                </tr>
+                                            
+                                                <tr>
+                                                    <th scope="row">Fees Addtion</th>
+                                                    <td>{{fees.FEES_ADDTION |currency:"INR":"symbol":'3.0'}}</td>
+                                                </tr>
+                                            
+                                                <tr>
+                                                    <th scope="row">Fees Addtion Comments</th>
+                                                    <td>{{fees.FEES_ADDTION_CMNT}}</td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </li>
+                                </ng-container>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-5">
+            <div class="card p-2 card_big p-2">
+                <div class="row m-0 p-0">
+                    <div class="col-12"
+                        *ngIf="studentData && studentData.fees_details && studentData.fees_details.length > 0">
+                        <!-- <h4 class="text-center small"><b>Pay fees </b> </h4> -->
+
+                        <div class="row mx-auto">
+                            <div class="col-4 mx-auto">
+                                <div class="card card_sm">
+                                    <span><img src="../../../../assets/images/salary.png" width="40px" alt=""></span>
+                                    <small>Total fees</small>
+                                    <h5 class="fw-bold small">{{studentData.fees_details[0].FEES_AMOUNT +
+                                        studentData.fees_details[0].FEES_BALANCE |currency:"INR":"symbol":'3.0'}}</h5>
+                                </div>
+                            </div>
+                            <div class="col-4 mx-auto">
+                                <div class="card card_sm">
+                                    <span>
+                                        <img src="../../../../assets/images/payment.png" width="40px" alt=""></span>
+                                    <small>Collected Fees</small>
+                                    <h5 class="fw-bold small">{{studentData.fees_details[0].FEES_AMOUNT
+                                        |currency:"INR":"symbol":'3.0'}}</h5>
+                                </div>
+                            </div>
+                            <div class="col-4 mx-auto">
+                                <div class="card card_sm">
+                                    <span>
+                                        <img src="../../../../assets/images/pendingpayment.png" width="40px"
+                                            alt=""></span>
+                                    <small>Pending fees</small>
+                                    <h5 class="fw-bold small">{{ studentData.fees_details[0].FEES_BALANCE
+                                        |currency:"INR":"symbol":'3.0'}}</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="p-0 m-0 mt-3">
+                    <div class="col-12 m-2">
+
+                        <h4 class="text-center small"><b> Review and Print</b></h4>
+                       
+                        <table class="table small" *ngIf="formData">
+
+                            <thead>
+                                <tr>
+                                    <th>Fees description</th>
+                                    <th>Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ng-container *ngFor="let key of formDataKeys">
+                                    <tr>
+                                    <td class="fw-bold text-uppercase">{{key}}</td>
+                                    <td class="fw-bold">{{formData[key]}}</td>
+                                    </tr>
+                                </ng-container>
+                                <!-- <tr>
+                                    <td class="fw-bold">Class Name</td>
+                                    <td class="fw-bold">{{classWiseFeesStruct.CLASS_NAME}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">Term 1</td>
+                                    <td class="fw-bold">{{classWiseFeesStruct.TERM1 |currency:"INR":"symbol":'3.0'}}
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="fw-bold">Term 2</td>
+                                    <td class="fw-bold">{{classWiseFeesStruct.TERM2 |currency:"INR":"symbol":'3.0'}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">Term 3</td>
+                                    <td class="fw-bold">{{classWiseFeesStruct.TERM3 |currency:"INR":"symbol":'3.0'}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">Transport 1</td>
+                                    <td class="fw-bold">{{classWiseFeesStruct.TRANSPORT_1
+                                        |currency:"INR":"symbol":'3.0'}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">Transport 2</td>
+                                    <td class="fw-bold">{{classWiseFeesStruct.TRANSPORT_2
+                                        |currency:"INR":"symbol":'3.0'}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">Transport 3</td>
+                                    <td class="fw-bold">{{classWiseFeesStruct.TRANSPORT_3
+                                        |currency:"INR":"symbol":'3.0'}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">Miscellaneous</td>
+                                    <td class="fw-bold">{{classWiseFeesStruct.MISCELLANEOUS
+                                        |currency:"INR":"symbol":'3.0'}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">Material</td>
+                                    <td class="fw-bold">{{classWiseFeesStruct.MATERIAL
+                                        |currency:"INR":"symbol":'3.0'}}</td>
+                                </tr>
+                                <tr class="ttlClr">
+                                    <td class="fw-bold">Total</td>
+                                    <td class="fw-bold">{{classWiseFeesStruct.TOTAL |currency:"INR":"symbol":'3.0'}}
+                                    </td>
+                                </tr> -->
+                            </tbody>
+                        </table>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn_submit_custom" type="button">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -37,7 +37,7 @@
                     [style.visibility]="node.expandable ? 'visible' : 'hidden'">
                     <span class="fs-6">
                         <mat-icon class="align-middle mx-1" fontSet="material-icons-outlined"
-                            [ngClass]="currentSelectedNode.name === node.name ? 'icon-color-active' : ''"
+                        [ngClass]="currentSelectedNode.name === node.name ? 'icon-color-active' : ''"
                             style="font-size: 18px;height:unset;width:unset" *ngIf="node.icon">{{node.icon}}</mat-icon>
                         {{node.name}}
                     </span>
@@ -47,8 +47,6 @@
     </div>
     <div class="main-pages-containers">
 
-        <!-- <router-outlet></router-outlet> -->
-        <router-outlet *appLoader="loading$ | async"></router-outlet>
-
+        <router-outlet></router-outlet>
     </div>
 </app-one-column-layout>
