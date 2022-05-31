@@ -1,0 +1,44 @@
+.table_bg {
+    background-color: #61d539;
+}
+
+.btn-primary{
+    background-color: #61d539;
+    color:white;
+    border: #61d539;
+}
+table thead {
+    color: white;
+}
+
+.input_group_icon{
+    color: #c8c4c8;
+}
+
+.custom_form_control:focus, .form_select_custom:focus { outline: none; }
+
+// td {
+//     border: 1px solid;
+// }
+
+
+.table>:not(:first-child) {
+    border-top: 1px solid #49bc21;
+}
+
+
+.green {
+    color: #49bc21;
+    font-weight: bolder;
+}
+
+.red {
+    color: #f80d0d;
+    font-weight: bolder;
+
+}
+
+.orenge {
+    color: #f6e421;
+    font-weight: bolder;
+}

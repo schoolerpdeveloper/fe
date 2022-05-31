@@ -1,0 +1,54 @@
+<div class="container-fluid">
+    <div class="row mt-3">
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button class="btn btn-sm btn-primary mb-2" (click)="back()" type="button">
+                <i class="fas fa-chevron-left tex-green smallfont"></i>
+                Back to Dashboard</button>
+        </div>
+        <div class="col-6">
+            <h1 class="h5 fw-bold my-2">Class wise fees details</h1>
+        </div>
+
+        <div class="col">
+            <div class="input-group mb-3">
+                <span class="input-group-text input_group_icon" id="basic-addon1"><i class="fas fa-search"></i></span>
+                <input type="text" class="form-control custom_form_control" [(ngModel)]="searchText"
+                    placeholder="Search" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row" *ngIf="classWiseFees && classWiseFees.length>0">
+        <div class="col-12">
+            {{classWiseFees.length}} Records found
+            <table class="table table-striped ">
+                <thead class="table_bg">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Class</th>
+                        <th scope="col">Total Strength</th>
+                        <th scope="col">Fees per Student</th>
+                        <th scope="col">Total Fees</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngFor="let class of classWiseFees | filter : searchText; let i = index;">
+                        <tr>
+                            <td>{{i+1}}</td>
+                            <td>{{class.CLASS_NAME}}</td>
+                            <td>{{class.TOTAL_STRENGTH}}</td>
+                            <td>{{class.FEES_AMOUNT |currency:"INR":"symbol":'3.0'}}</td>
+                            <td><span class="red"> {{class.FEES_AMOUNT*class.TOTAL_STRENGTH
+                                    |currency:"INR":"symbol":'3.0'}}</span></td>
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </table>
+        </div>
+    </div>
+<!-- {{classWiseFees.length |json}} -->
+    <div class="w-100 m-auto  text-center text-danger fw-bold" *ngIf="classWiseFees.length <= 0">
+        Loading... please wait
+    </div>
+</div>

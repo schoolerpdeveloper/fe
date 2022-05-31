@@ -1,0 +1,27 @@
+<div class="card table-card">
+    <div class="card-header">
+        <h5>Dynamic Table</h5>
+    </div>
+    <div class="pro-scroll" >
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover m-b-0">
+                    <thead>
+                        <th *ngFor="let col of columns; let i = index">{{setHeader(col, i)}}</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of data;let i = index">
+                            <td *ngFor="let column of columns; " [attr.id]="addClass('action', i, column)">
+                                {{setData(item[column], column,addClass('action', i, column))}}
+                                <!-- <ng-container *ngIf="!column">
+                                    <alight-icon [icon]="'fas fa-edit'" class="mr-2" [color]="'primary'" (btnclick)="btnEventTrigger(item, i)"></alight-icon>
+                                    <alight-icon [icon]="'fas fa-trash'" [color]="'danger'" (btnclick)="btnEventTrigger(item, i)"></alight-icon>
+                                </ng-container> -->
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

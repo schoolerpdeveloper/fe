@@ -1,0 +1,213 @@
+<div class="album py-3 bg-light">
+
+  <div class="container">
+    <h1 class="h5 fw-bold my-2">Fees Management Dashboard</h1>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
+      <ng-container *ngIf="SchoolFeesStats">
+        <div class="col">
+          <div class="card shadow">
+            <div class="card-body p-2 m-0">
+              <div class="row p-0 m-0">
+                <div class="col-8">
+                  <p class="small fw-bold text-muted m-0 p-0">Total Fees</p>
+                  <span class="nm30">{{SchoolFeesStats.total_school_fees |currency:"INR":"symbol":'3.0'}}</span>
+                  <p>
+                    <span class="lw18">{{SchoolFeesStats.school_strength}} <i class="fas fa-arrow-up tex-green smallfont"></i></span>
+                    <small class="smallfont"> Number of Students</small>
+                  </p>
+                </div>
+                <div class="col-4 my-auto">
+                  <img src="../../../../assets/images/salary.png" class="mx-auto" height="60" alt="pay">
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card shadow">
+            <div class="card-body p-2 m-0">
+              <div class="row p-0 m-0">
+                <div class="col-8">
+                  <p class="small fw-bold text-muted m-0 p-0">Fees Collected</p>
+                  <span class="nm30">{{SchoolFeesStats.total_school_fees_collection|currency:"INR":"symbol":'3.0'}}</span>
+                  <p>
+                    <span class="lw18">{{SchoolFeesStats.school_strength}}<i class="fas fa-arrow-up tex-green smallfont"></i></span>
+                    <small class="smallfont"> Number of Students</small>
+                  </p>
+                </div>
+                <div class="col-4 my-auto">
+                  <img src="../../../../assets/images/payment.png" class="mx-auto" height="60" alt="pay">
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card shadow">
+            <div class="card-body p-2 m-0">
+              <div class="row p-0 m-0">
+                <div class="col-8">
+                  <p class="small fw-bold text-muted m-0 p-0">Pending Fees</p>
+                  <span class="nm30">{{SchoolFeesStats.pending_fees |currency:"INR":"symbol":'3.0'}}</span>
+                  <p>
+                    <span class="lw18">{{SchoolFeesStats.school_strength}} <i class="fas fa-arrow-up tex-green smallfont"></i></span>
+                    <small class="smallfont"> Number of Students</small>
+                  </p>
+                </div>
+                <div class="col-4 my-auto">
+                  <img src="../../../../assets/images/pendingpayment.png" class="mx-auto" height="60" alt="pay">
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card shadow">
+            <div class="card-body p-2 m-0">
+              <div class="row p-0 m-0">
+                <div class="col-8">
+                  <p class="small fw-bold text-muted m-0 p-0">Fees Discount</p>
+                  <span class="nm30">{{SchoolFeesStats.total_school_fees_discount |currency:"INR":"symbol":'3.0'}}</span>
+                  <p>
+                    <span class="lw18">{{SchoolFeesStats.school_strength}} <i class="fas fa-arrow-up tex-green smallfont"></i></span>
+                    <small class="smallfont"> Number of Students</small>
+                  </p>
+                </div>
+                <div class="col-4 my-auto">
+                  <img src="../../../../assets/images/discount.png" class="mx-auto" height="60" alt="pay">
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+
+    <div class="row row-cols-1 row-cols-sm-1 row-cols-md-3 g-4 mt-2">
+      <!-- <ng-container *ngFor="let data of secondCardRow"> -->
+      <div class="col">
+        <div class="card shadow rounded_brdr">
+          <div class="card-body  p-0 m-0 ">
+            <div class="row p-2 m-0 ">
+              <div class="col-8 mx-auto my-auto p-2 ">
+                <p class="small fw-bold text-muted m-0 p-0">Class Wise Fees</p>
+                <span class="nm30">14K</span>
+                <span class="lw18" style="margin-left:10px">35% <i
+                    class="fas fa-arrow-up tex-green smallfont"></i></span>
+                <span class="{{SchoolFeesStats.school_strength}}x-2">
+                  <small class="smallfont"> Number of Students</small></span>
+              </div>
+              <div class="col-4 my-auto">
+                <img src="../../../../assets/images/business-presentation.png" width="70px" class="mx-auto" alt="pay">
+              </div>
+            </div>
+            <div class="row  p-0 m-0">
+              <div class="col-12 p-0 m-0 text-center clickToView py-2"
+                [routerLink]="'/pages/fees-management/class-report'">
+                Click to view details <i class="fas fa-long-arrow-alt-right"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card shadow rounded_brdr">
+          <div class="card-body  p-0 m-0 ">
+            <div class="row p-2 m-0 ">
+              <div class="col-8 mx-auto my-auto p-2 ">
+                <p class="small fw-bold text-muted m-0 p-0">Student Wise Fees</p>
+                <span class="nm30">14K</span>
+                <span class="lw18" style="margin-left:10px">35% <i
+                    class="fas fa-arrow-up tex-green smallfont"></i></span>
+                <span class="{{SchoolFeesStats.school_strength}}x-2">
+                  <small class="smallfont"> Number of Students</small></span>
+              </div>
+              <div class="col-4 my-auto">
+                <img src="../../../../assets/images/brother.png" width="70px" class="mx-auto" alt="pay">
+              </div>
+            </div>
+            <div class="row  p-0 m-0">
+              <div class="col-12 p-0 m-0 text-center clickToView py-2"
+                [routerLink]="'/pages/fees-management/student-report'">
+                Click to view details <i class="fas fa-long-arrow-alt-right"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col">
+        <div class="card shadow rounded_brdr">
+          <div class="card-body  p-0 m-0 ">
+            <div class="row p-2 m-0 ">
+              <div class="col-8 mx-auto my-auto p-2 ">
+                <p class="small fw-bold text-muted m-0 p-0">Download Fees Report</p>
+                <span class="nm30">14K</span>
+                <span class="lw18" style="margin-left:10px">35% <i
+                    class="fas fa-arrow-up tex-green smallfont"></i></span>
+                <span class="{{SchoolFeesStats.school_strength}}x-2">
+                  <small class="smallfont"> Number of Students</small></span>
+              </div>
+              <div class="col-4 my-auto">
+                <img src="../../../../assets/images/invoice.png" width="70px" class="mx-auto" alt="pay">
+              </div>
+            </div>
+            <div class="row  p-0 m-0">
+              <div class="col-12 p-0 m-0 text-center clickToView py-2"
+                [routerLink]="'/pages/fees-management/fees-report/100'">
+                Click to view details <i class="fas fa-long-arrow-alt-right"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="row mt-2 g-4" *ngIf="doughnutChartData && doughnutChartData.length>0">
+      <div class="col-3" >
+        <div class="card shadow rounded_brdr">
+          <div class="card-body  p-2 m-0 ">
+            <app-doughnutchart [label]="['Collected Fees', 'Pending Fees']" [data]="doughnutChartData"></app-doughnutchart>
+          </div>
+        </div>
+      </div>
+      <div class="col-6" *ngIf="barData && barData.length>0 && barLabels">
+        <div class="card shadow rounded_brdr">
+          <div class="card-body  p-2 m-0 " style="min-height: 240px;">
+            <app-barchart [data]="barData" [dataLabels]="barDataLabel" [label]="barLabels"></app-barchart>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-3">
+        <div class="card shadow rounded_brdr">
+          <div class="card-body  p-2 m-0 ">
+            <app-linechart></app-linechart>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="col">
+        <div class="card shadow rounded_brdr">
+          <div class="card-body  p-2 m-0 ">
+            <app-doughnutchart></app-doughnutchart>
+            
+          </div>
+        </div>
+      </div> -->
+
+    </div>
+  </div>
+
+
+</div>

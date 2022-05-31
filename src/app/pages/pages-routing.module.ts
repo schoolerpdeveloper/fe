@@ -15,6 +15,13 @@ const routes: Routes = [
             (m) => m.DashboardModule
           ),
       },
+      {
+        path: RouterEnum.FEES_MANAGEMENT,
+        loadChildren: () =>
+          import('./containers/fees-management/fees-management.module').then(
+            (m) => m.FeesManagementModule
+          ),
+      },
       // { path: '', redirectTo: `/${RouterEnum.CONTAINER}/${RouterEnum.DASHBOARD}`, pathMatch: 'full' }, // app -> pages -> dashboard
     ],
   },
