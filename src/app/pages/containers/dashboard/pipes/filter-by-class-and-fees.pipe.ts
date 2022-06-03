@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { IPaginator } from '@shared/models/paginator.model';
 import { IStudentDetails } from '@shared/models/studentDetails';
 import { IStudentList } from '@shared/models/studentDetails/student-details.interface';
 
@@ -10,7 +11,9 @@ export class FilterByClassAndFeesPipe implements PipeTransform {
     value: IStudentList[] | [],
     classes?: string[],
     fees?: string[],
-    name?: string
+    name?: string,
+    paginateData?:IPaginator,
+    paginateFlag?:boolean
   ) {
     let temp = [...value];
     if (classes && classes.length > 0) {
@@ -35,7 +38,7 @@ export class FilterByClassAndFeesPipe implements PipeTransform {
         return;
       });
     }
-    console.log(temp)
+
     return temp;
   }
 }

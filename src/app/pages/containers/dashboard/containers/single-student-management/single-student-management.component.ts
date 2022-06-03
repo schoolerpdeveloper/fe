@@ -3,7 +3,7 @@ import {
   MatDialog,
   MAT_DIALOG_DEFAULT_OPTIONS,
 } from '@angular/material/dialog';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, ActivationEnd, Router } from '@angular/router';
 import { AutoUnSubscribeService } from '@core/services/auto-unsubscribe/auto-un-subscribe.service';
 import { Store } from '@ngrx/store';
 import { IFeesDeatils } from '@shared/models/feesDetails';
@@ -13,7 +13,7 @@ import { IParentAddressDetails } from '@shared/models/parentDetailsAdress/parent
 import { ISiblingDetails } from '@shared/models/siblingDeatils';
 import { IStudentDetails } from '@shared/models/studentDetails';
 import { ITransportDeatils } from '@shared/models/transportDetails';
-import { takeUntil, map, tap } from 'rxjs/operators';
+import { takeUntil, map, tap, filter } from 'rxjs/operators';
 import { RouterEnum } from 'src/app/enums/router.enum';
 import { AddressActions } from 'src/app/pages/pages_store/actions/address.actions';
 import { FeesAction } from 'src/app/pages/pages_store/actions/fees.actions';
@@ -126,6 +126,7 @@ export class SingleStudentManagementComponent implements OnInit {
       });
     this.store.dispatch(UtilityActions.loadClassConfig());
     this.initAllSingleStudentDetails();
+
   }
   initAllSingleStudentDetails() {
     this.loadSingleStudents();
@@ -136,15 +137,18 @@ export class SingleStudentManagementComponent implements OnInit {
 
   captureAdmissionNo(e: any) {
     let val = e?.target.value;
-    this.router.navigate(
-      [
-        RouterEnum.CONTAINER,
-        RouterEnum.DASHBOARD,
-        RouterEnum.STUDENT_MANAGEMENT,
-        val,
-      ],
-      { replaceUrl: true }
-    );
+   
+    // this.router.navigate(
+    //   [
+    //     RouterEnum.CONTAINER,
+    //     RouterEnum.DASHBOARD,
+    //     RouterEnum.STUDENT_MANAGEMENT,
+    //     val,
+       
+    //   ],
+    // );
+    this.admissionNo = val;
+    this.initAllSingleStudentDetails();
   }
   loadSingleStudents() {
     this.store.dispatch(
