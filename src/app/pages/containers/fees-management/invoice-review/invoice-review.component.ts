@@ -97,4 +97,13 @@ export class InvoiceReviewComponent implements OnInit {
   }
 
 
+  submit(){
+    this.api.payFees(this.formData).subscribe((data) => {
+      console.log(data)
+      this.router.navigate([`/pages/fees-management/student-report`])
+
+    })
+  }
+
+
 }

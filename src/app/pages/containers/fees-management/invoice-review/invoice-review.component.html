@@ -250,7 +250,7 @@
                             </thead>
                             <tbody>
                                 <ng-container *ngFor="let key of formDataKeys">
-                                    <tr>
+                                    <tr *ngIf="formData[key] != ''">
                                     <td class="fw-bold text-uppercase">{{key}}</td>
                                     <td class="fw-bold">{{formData[key]}}</td>
                                     </tr>
@@ -308,7 +308,7 @@
                             </tbody>
                         </table>
                         <div class="d-grid gap-2">
-                            <button class="btn btn_submit_custom" type="button">Submit</button>
+                            <button class="btn btn_submit_custom" (click)="submit()" type="button">Submit</button>
                         </div>
                     </div>
                 </div>
