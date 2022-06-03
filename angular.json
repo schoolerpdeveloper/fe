@@ -44,7 +44,10 @@
               "src/styles.scss",
               "src/assets/fontawesome/css/all.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+
+            ]
           },
           "configurations": {
             
