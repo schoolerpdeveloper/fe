@@ -1,7 +1,17 @@
-<div class="card bg-transparent border-light shadow-sm p-2 custom-card-rounded" style="max-width:20rem">
+<div class="card bg-transparent border-light shadow-sm  p-2 custom-card-rounded" style="max-width:20rem">
 
-    <div class="card-text ps-3 border-0 rounded-pill text-secondary poppins-text small fw-bold d-flex justify-content-between" style="font-size: 14px;">
-        <div class="my-auto"> Parent Details</div>
+    <div class="card-text  ps-3 bg-light text-secondary poppins-text small fw-bold d-flex justify-content-between" style="font-size: 14px;">
+       
+            <div>
+                Parent Details
+            </div>
+            <div class="pointer">
+                <a class="bg-themed text-white text-decoration-none btn btn-sm rounded-pill shadow"
+                    role="button" (click)="addDetails(null)">
+                    <mat-icon fontSet="material-icons-outlined" class="text-white">add</mat-icon>
+                </a>
+            </div>
+        
             
         <div class="mt-1 pointer" *ngIf="_parentAddressDetails.length === 1">
             <a class="text-themed text-decoration-none btn btn-sm bg-themed rounded-circle shadow"
@@ -21,9 +31,9 @@
             </a>
         </div>
     </div>
-    <cdk-accordion class="bg-transparent">
+    <cdk-accordion class="">
         <cdk-accordion-item *ngFor="let item of _parentAddressDetails; let index = index;"
-            #accordionItem="cdkAccordionItem" class="card py-2 my-2 border border-light custom-card-rounded"
+            #accordionItem="cdkAccordionItem" class="card py-2 mt-3 border border-light themed-shadow custom-card-rounded"
             tabindex="0" [attr.id]="'accordion-header-' + index" [attr.aria-expanded]="accordionItem.expanded"
             [attr.aria-controls]="'accordion-body-' + index">
             <div class="example-accordion-item-header">
@@ -53,8 +63,8 @@
                            
                             <div class="mt-1 pointer">
                                 <a class="text-themed text-decoration-none btn btn-sm rounded-circle shadow"
-                                    role="button" (click)="addDetails(item)">
-                                    <mat-icon fontSet="material-icons-outlined" class="">add</mat-icon>
+                                    role="button" (click)="updateDetails(item)">
+                                    <mat-icon fontSet="material-icons-outlined" class="">edit</mat-icon>
                                 </a>
                             </div>
                             <div class="mt-1 pointer">
