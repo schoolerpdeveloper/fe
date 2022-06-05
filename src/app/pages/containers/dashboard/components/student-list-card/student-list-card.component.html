@@ -1,4 +1,4 @@
-<div class="card custom-card-rounded details-card shadow-sm border-shaded" [ngClass]="!toggleSwitch ? 'disabled':''">
+<div class="card custom-card-rounded details-card card-themed-shadow border-0" [ngClass]="!toggleSwitch ? 'disabled':''">
     <div class="card-body m-0 p-0 d-flex" style="width:15rem">
         <div class="slanting-banner poppins-text pointer" [ngClass]="payColorClass">
 
@@ -43,6 +43,10 @@
                                 (click)="openModalWindowEvent({modal:'route',busRoutecode:studentDetailsList?.BUS_RUTE_CD,studentDetails:studentDetailsList})">
                                 <mat-icon style="font-size:1rem;box-shadow:none !important;" class="border-0 bg-transparent">info</mat-icon>
                             </span></td>
+                    </table>
+                    <table class="table borderless m-0 p-0 text-secondary">
+                        <th class="fw-normal text" style="width:100px">Class</th>
+                        <td>{{studentDetailsList?.CLASS_NAME}}</td>
                     </table>
                 </div>
 
