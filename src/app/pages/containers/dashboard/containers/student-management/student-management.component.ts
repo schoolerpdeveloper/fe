@@ -143,6 +143,7 @@ export class StudentManagementComponent {
     this.currentViewAs = str;
   }
   paginatedEventCapture(e: any) {
+    console.log(e)
     this.paginated = e;
     this.startIndex = e?.startIndex;
     this.endIndex = e?.endIndex;
