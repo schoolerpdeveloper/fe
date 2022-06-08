@@ -9,7 +9,7 @@
             <!-- This is the tree node template for leaf nodes -->
             <cdk-tree-node *cdkTreeNodeDef="let node" cdkTreeNodePadding
                 [style.display]="shouldRender(node) ? 'flex' : 'none'" class="example-tree-node">
-                <div class="card nav-card bg-transparent rounded-0 w-100 border-0 my-0 ps-4 pointer"
+                <div class="card nav-card bg-transparent rounded-0 w-100 border-0 my-0 ps-4 pointer poppins-text"
                     [ngClass]="currentSelectedNode.name === node.name ? 'active' : ''" (click)="logNode(node)">
                     <!-- <ng-container *ngIf="currentSelectedNode.name === node.name ">
                         <span><mat-icon class="align-middle">chevron_right</mat-icon>{{node.name}}</span>
@@ -23,7 +23,10 @@
                             [ngClass]="currentSelectedNode.name === node.name ? 'icon-color-active' : ''">
                             {{node.icon}}
                         </mat-icon>
-                        {{node.name}}
+                        <span class="poppins-text" style="font-size: 12px;">
+
+                            {{node.name}}
+                        </span>
                     </span>
 
                 </div>
@@ -39,7 +42,10 @@
                         <mat-icon class="align-middle mx-1" fontSet="material-icons-outlined"
                         [ngClass]="currentSelectedNode.name === node.name ? 'icon-color-active' : ''"
                             style="font-size: 18px;height:unset;width:unset" *ngIf="node.icon">{{node.icon}}</mat-icon>
-                        {{node.name}}
+                            <span class="poppins-text">
+
+                                {{node.name}}
+                            </span>
                     </span>
                 </div>
             </cdk-tree-node>

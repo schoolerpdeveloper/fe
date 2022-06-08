@@ -56,6 +56,7 @@ export class LandingPageComponent implements OnInit {
     return null;
   }
 
+  
   logNode(node: any) {
     this.currentSelectedNode = { ...node };
     node.isExpanded = !node.isExpanded;

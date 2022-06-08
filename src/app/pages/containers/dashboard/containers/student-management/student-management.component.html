@@ -1,20 +1,20 @@
 <div class="card mb-0 border-0 bg-transparent">
   <div class="card-header border-0 my-0 py-2 position-sticky top-0 w-100" id="search_and_filters"
-    style="z-index:99;background-color: white;">
+    style="z-index:99;background-color: #f6f6f6;">
     <div class="d-flex flex-wrap justify-content-between">
-      <div class="px-2 align-middle my-auto fs-6 text-shaded">Student Lists</div>
+      <div class="px-2 align-middle my-auto fs-6 text-secondary poppins-text">Student Lists</div>
       <div class="d-flex flex-wrap justify-content-sm-between justify-content-md-end">
 
-        <div class="m-1" style="width:20rem">
+        <div class="m-1" style="max-width:20rem">
           <app-string-only-filter [stringsInput]="classes" [buttonText]="'Filter By Class'"
             (selectedValues)="selectedVal($event,'class')"></app-string-only-filter>
         </div>
-        <div class="m-1" style="width:20rem">
+        <div class="m-1" style="max-width:20rem">
           <app-string-only-filter [stringsInput]="feeses" [buttonText]="'Filter By Fees'"
             (selectedValues)="selectedVal($event,'fees')"></app-string-only-filter>
         </div>
         <div class="m-1">
-          <app-erp-input style="width:20rem" type="search" class="" [formControl]="search"></app-erp-input>
+          <app-erp-input style="max-width:20rem" type="search" class="" [formControl]="search"></app-erp-input>
         </div>
       </div>
     </div>
@@ -62,7 +62,7 @@
   <div class="card-body card-container" *ngIf="currentViewAs === 'list'">
     <div class="row">
       <ng-container
-        *ngFor="let grid of (grids|filterByClassFeesNames:filteredClasses:filteredFees:filteredName|slice:startIndex:endIndex )">
+        *ngFor="let grid of (grids|filterByClassFeesNames:filteredClasses:filteredFees:filteredName)">
         <div class="col-12 g-4">
           <ng-container *skeleton="isLoading;height: '160px';width: '100%';className:'skeleton-card'">
           <app-student-list-card (routeConfiguration)="routeConfigurationCaptured($event)"
