@@ -5,7 +5,7 @@
 
         <div class="col-sm-12 col-md-6">
             <div class="card border-0 mx-auto mt-4" style="width:25rem;" [formGroup]="loginForm">
-                <img src="assets/images/school-logo-placeholder.jpg" class="card-img-top" alt="logo">
+                <img src="assets/images/school-logo-placeholder.jpg" class="card-img-top" alt="logo" loading="lazy" width="200" height="400">
                 <div class="">
                     <input type="text" class="form-control border-0 input-themed rounded-pill px-3" placeholder="Username"
                         formControlName="username"
@@ -30,7 +30,8 @@
                 <div class="">
                     <button type="button" class="btn rounded-pill form-control btn-themed"
                         [disabled]="!loginForm.valid" [class.disabled]="!loginForm.valid" (click)="signin()">
-                        <span class="text-white">Login</span>
+                        <span class="spinner-border spinner-border-sm text-white" role="status" aria-hidden="true" *ngIf="loginLoader"></span>
+                        <span class="text-white ms-2">Login</span>
                     </button>
                     <div class="text-themed text-center small mt-2 text-condensed-bold pointer">Forgot Password</div>
                 </div>

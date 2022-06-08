@@ -2,6 +2,7 @@
     <div class="card-body">
         <div class="text-end">
             <button type="button"
+            (click)="backToDashboard()"
                 class="btn-accent-themed border-0 text-white text-condensed rounded-pill px-3 py-1 btn-small small">
                 <span>
                     <mat-icon class="my-auto align-middle">chevron_left</mat-icon>
@@ -19,7 +20,7 @@
                     <ng-template cdkStepLabel>
                         <div class="text-capitalize">{{stepper.label}} Details</div>
                         <small class="d-block text-center text-danger"
-                            *ngIf="!stepper.valid && stepper.interacted">Error</small>
+                            [ngClass]="!stepper.valid && stepper.interacted ? 'visible' : 'invisible'">Error</small>
                     </ng-template>
                     <div class="card-body m-0 p-0 animate__animated animate__fadeIn">
                         <ng-container [ngSwitch]="stepper.label">
@@ -34,12 +35,12 @@
                             <ng-container *ngSwitchCase="'parent'">
                                 <app-parent-form (parentDetailsFormStatus)="parentDetailsFormStatusHandle($event)">
                                 </app-parent-form>
-                            <details [open]="this.parentDetails.PRNT_CD">
-                                <summary class="small mx-2">Parent Address</summary>
-                                <app-address-form (addressFormStatus)="parentAddressFormStatusHandle($event)">
-                                </app-address-form>
-                            </details>
-                               
+                                <details [open]="this.parentDetails.PRNT_CD">
+                                    <summary class="small mx-2">Parent Address</summary>
+                                    <app-address-form (addressFormStatus)="parentAddressFormStatusHandle($event)">
+                                    </app-address-form>
+                                </details>
+
                             </ng-container>
                             <ng-container *ngSwitchCase="'transport'">
                                 <app-transport-form [routes]="routeDetails"

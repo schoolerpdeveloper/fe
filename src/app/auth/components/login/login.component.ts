@@ -15,6 +15,7 @@ import { LoginApiService } from '../../services/api.service';
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
+  loginLoader:boolean= false;
 
   constructor(
     private fb: FormBuilder,
@@ -41,14 +42,19 @@ export class LoginComponent implements OnInit {
   signin() {
     if (!this.loginForm.valid) return;
     else {
+      this.loginLoader = true
       this.api
         .login(this.loginForm.value)
         .pipe(takeUntil(this.destroy$))
         .subscribe((d) => {
+          this.loginLoader = false;
           if (d?.accessToken) {
             this.notifier.successNotification('Successfully logged in');
             this.router.navigateByUrl(`${RouterEnum.CONTAINER}/${RouterEnum.DASHBOARD}`)
           }
+        },(e)=>{
+          this.loginLoader = false;
+          this.notifier.errorNotification('Sorry, unable to login');
         });
     }
   }
