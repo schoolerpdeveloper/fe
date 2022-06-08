@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AutoUnSubscribeService } from '@core/services/auto-unsubscribe/auto-un-subscribe.service';
 import { Store } from '@ngrx/store';
 import {
@@ -9,6 +10,7 @@ import { ISiblingDetails } from '@shared/models/siblingDeatils';
 import { IStudentDetails } from '@shared/models/studentDetails';
 import { ITransportDeatils } from '@shared/models/transportDetails';
 import { takeUntil } from 'rxjs';
+import { RouterEnum } from 'src/app/enums/router.enum';
 import { TransportActions } from 'src/app/pages/pages_store/actions/transport.actions';
 import { selectAllStudents } from 'src/app/pages/pages_store/selectors/student.selectors';
 import { TransportSelector } from 'src/app/pages/pages_store/selectors/transport.selector';
@@ -53,7 +55,7 @@ export class StudentFormComponent {
     ];
 
   routeDetails: ITransportDeatils[] = [];
-  constructor(private store: Store, private destroy$: AutoUnSubscribeService) {}
+  constructor(private store: Store, private destroy$: AutoUnSubscribeService,private router:Router) {}
 
   ngOnInit() {
     // this.loadStudentDetails
@@ -145,5 +147,12 @@ export class StudentFormComponent {
       console.log(i);
       i++;
     }
+  }
+  backToDashboard(){
+    this.router.navigate([
+      RouterEnum.CONTAINER,
+      RouterEnum.DASHBOARD,
+      RouterEnum.STUDENT_MANAGEMENT
+    ])
   }
 }
