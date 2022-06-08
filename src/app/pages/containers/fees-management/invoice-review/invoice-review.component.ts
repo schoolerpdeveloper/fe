@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FeesManagementApiService } from '@shared/services/api/feesManagementApi/feesmanagement-api.service';
 import { StudentdetailsService } from '@shared/services/api/studentDetailsApi/studentdetails.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-invoice-review',
@@ -34,6 +35,8 @@ export class InvoiceReviewComponent implements OnInit {
     },
 
   ];
+  paramsSubscription :any;
+
   studentData: any = {}
   feesHistory: any = []
   searchText = '';
@@ -50,9 +53,14 @@ export class InvoiceReviewComponent implements OnInit {
 
   ngOnInit(): void {
     this.studentID = this.route.snapshot.paramMap.get('id');
-    this.route.queryParams.subscribe(params =>{ this.formData= JSON.parse(params['data']); this.formDataKeys = Object.keys(this.formData)});
+   this.paramsSubscription = this.route.queryParams.subscribe(params =>{ this.formData= JSON.parse(params['data']); this.formDataKeys = Object.keys(this.formData)});
     this.singleStudentFeesDetails()
     console.log('------------------->>>>>   ',this.formData)
+  }
+
+  ngOnDestroy() {
+    console.log("Component will be destroyed");
+    this.paramsSubscription.unsubscribe();
   }
 
   back() {
@@ -72,10 +80,8 @@ export class InvoiceReviewComponent implements OnInit {
               }
             })
           }
-
         })
       }
-
     })
   }
   getFeesPayHistory() {
@@ -87,6 +93,15 @@ export class InvoiceReviewComponent implements OnInit {
       if (feesHistory) {
         this.feesHistory = feesHistory;
       }
+    })
+  }
+
+
+  submit(){
+    this.api.payFees(this.formData).subscribe((data) => {
+      console.log(data)
+      this.router.navigate([`/pages/fees-management/student-report`])
+
     })
   }
 

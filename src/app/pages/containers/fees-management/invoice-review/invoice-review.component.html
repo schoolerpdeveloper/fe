@@ -13,7 +13,7 @@
                     <div class="col-6">
                         <div class="row p-4">
                             <div class="col-12 text-center">
-                                <img src="../../../../assets/images/students_photos.png" width="120px" alt=""
+                                <img src="assets/images/students_photos.png" width="120px" alt=""
                                     class="profPhoto">
                             </div>
                             <div class="col-12">
@@ -208,7 +208,7 @@
                         <div class="row mx-auto">
                             <div class="col-4 mx-auto">
                                 <div class="card card_sm">
-                                    <span><img src="../../../../assets/images/salary.png" width="40px" alt=""></span>
+                                    <span><img src="assets/images/salary.png" width="40px" alt=""></span>
                                     <small>Total fees</small>
                                     <h5 class="fw-bold small">{{studentData.fees_details[0].FEES_AMOUNT +
                                         studentData.fees_details[0].FEES_BALANCE |currency:"INR":"symbol":'3.0'}}</h5>
@@ -217,7 +217,7 @@
                             <div class="col-4 mx-auto">
                                 <div class="card card_sm">
                                     <span>
-                                        <img src="../../../../assets/images/payment.png" width="40px" alt=""></span>
+                                        <img src="assets/images/payment.png" width="40px" alt=""></span>
                                     <small>Collected Fees</small>
                                     <h5 class="fw-bold small">{{studentData.fees_details[0].FEES_AMOUNT
                                         |currency:"INR":"symbol":'3.0'}}</h5>
@@ -226,7 +226,7 @@
                             <div class="col-4 mx-auto">
                                 <div class="card card_sm">
                                     <span>
-                                        <img src="../../../../assets/images/pendingpayment.png" width="40px"
+                                        <img src="assets/images/pendingpayment.png" width="40px"
                                             alt=""></span>
                                     <small>Pending fees</small>
                                     <h5 class="fw-bold small">{{ studentData.fees_details[0].FEES_BALANCE
@@ -250,7 +250,7 @@
                             </thead>
                             <tbody>
                                 <ng-container *ngFor="let key of formDataKeys">
-                                    <tr>
+                                    <tr *ngIf="formData[key] != ''">
                                     <td class="fw-bold text-uppercase">{{key}}</td>
                                     <td class="fw-bold">{{formData[key]}}</td>
                                     </tr>
@@ -308,7 +308,7 @@
                             </tbody>
                         </table>
                         <div class="d-grid gap-2">
-                            <button class="btn btn_submit_custom" type="button">Submit</button>
+                            <button class="btn btn_submit_custom" (click)="submit()" type="button">Submit</button>
                         </div>
                     </div>
                 </div>
