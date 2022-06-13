@@ -67,6 +67,7 @@
     <div class="row">
       <ng-container
         *ngFor="let grid of (grids|filterByClassFeesNames:filteredClasses:filteredFees:filteredName:'array')">
+
         <div class="col-12 g-4">
           <ng-container *skeleton="isLoading;height: '160px';width: '100%';className:'skeleton-card'">
             <app-student-list-card (routeConfiguration)="routeConfigurationCaptured($event)"
