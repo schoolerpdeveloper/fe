@@ -56,7 +56,7 @@ export class FeesManagementApiService {
   
 
   allStudentsFeesDetails(): Observable<any> {
-    return this.http.get(`${this.url}/studentfeesdtl/student/all`);
+    return this.http.get(`${this.url}/studentfeesdtl/studentfeesdetailsdisplay/all`);
   }
   
 }
