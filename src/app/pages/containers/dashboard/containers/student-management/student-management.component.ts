@@ -143,20 +143,25 @@ export class StudentManagementComponent {
     this.currentViewAs = str;
   }
   paginatedEventCapture(e: any) {
-    console.log(e)
     this.paginated = e;
     this.startIndex = e?.startIndex;
     this.endIndex = e?.endIndex;
   }
 
   routeConfigurationCaptured(event: any) {
-    if (event.routeTo === 'student_view' && event.studentDetails.ADMN_NO)
-      this.router.navigate([
-        RouterEnum.CONTAINER,
-        RouterEnum.DASHBOARD,
-        RouterEnum.STUDENT_MANAGEMENT,
-        event.studentDetails.ADMN_NO,
-      ]);
+    
+    setTimeout(() => {
+      if (event?.studentDetails?.ADMN_NO || event?.ADMN_NO){
+        let adNo = event?.studentDetails?.ADMN_NO || event?.ADMN_NO
+        this.router.navigate([
+          RouterEnum.CONTAINER,
+          RouterEnum.DASHBOARD,
+          RouterEnum.STUDENT_MANAGEMENT,
+          adNo
+        ]);
+      }
+    }, 0);
+   
   }
 
   openModalWindowCapture(event: any) {
