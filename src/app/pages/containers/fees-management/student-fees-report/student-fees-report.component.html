@@ -29,10 +29,10 @@
                         <th scope="col">Name</th>
                         <th scope="col">Admission No</th>
                         <th scope="col">Class</th>
+                        <th scope="col">Bus Route</th>
                         <th scope="col">Total Fees</th>
-                        <th scope="col">Discount Amount</th>
-                        <th scope="col">Pending Fees</th>
-                        <th class="text-center" scope="col">View Invoice</th>
+                        <th scope="col">Paid Amount</th>
+                        <th class="text-center" scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -41,14 +41,17 @@
                             <td>{{i+1}}</td>
                             <td>{{student.STUD_FIRST_NAME }} {{student.STUD_LAST_NAME }}</td>
                             <td>{{student.ADMN_NO}}</td>
-                            <td>{{student.STUD_CLASS}}</td>
-                            <td><ng-container *ngIf="student.fees_details.length>0">{{ student.fees_details[0].FEES_AMOUNT |currency:"INR":"symbol":'3.0'}} </ng-container> </td>
-                            <td><ng-container *ngIf="student.fees_details.length>0">{{student.fees_details[0].FEES_DISCOUNT|currency:"INR":"symbol":'3.0'}} </ng-container></td>
-                            <td><ng-container *ngIf="student.fees_details.length>0"> <span class="red">{{student.fees_details[0].FEES_BALANCE |currency:"INR":"symbol":'3.0'}} </span></ng-container></td>
+                            <td>{{student.CLASS_NAME}}</td>
+                            <td>{{student.BUS_RUTE_CD}}</td>
+                            <td><ng-container>{{ student.TOTAL_FEES_AMOUNT |currency:"INR":"symbol":'3.0'}} </ng-container> </td>
+                            <td><ng-container>{{student.FEES_PAID|currency:"INR":"symbol":'3.0'}} </ng-container></td>
                             <td align="center">
+                                <button class="btn btn-sm btn-secondary mb-2" style="margin-right:10px ;" (click)="feesHistory(student.ADMN_NO)" type="button">
+                                    <i class="fas fa-indian-rupee-sign"></i>
+                                    View History</button>
                                 <button class="btn btn-sm btn-primary mb-2" (click)="viewInvoice(student.ADMN_NO)" type="button">
                                     <i class="fas fa-indian-rupee-sign"></i>
-                                    View Invoice</button>
+                                    Pay Fees</button>
                                 </td>
                         </tr>
                     </ng-container>

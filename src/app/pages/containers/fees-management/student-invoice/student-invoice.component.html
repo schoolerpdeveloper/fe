@@ -13,8 +13,7 @@
                     <div class="col-6">
                         <div class="row p-4">
                             <div class="col-12 text-center">
-                                <img src="../../../../assets/images/students_photos.png" width="120px" alt=""
-                                    class="profPhoto">
+                                <img src="assets/images/students_photos.png" width="120px" alt="" class="profPhoto">
                             </div>
                             <div class="col-12">
                                 <ul class="icon_design">
@@ -153,7 +152,7 @@
                         <div class="row mx-auto">
                             <div class="col-4 mx-auto">
                                 <div class="card card_sm">
-                                    <span><img src="../../../../assets/images/salary.png" width="40px" alt=""></span>
+                                    <span><img src="assets/images/salary.png" width="40px" alt=""></span>
                                     <small>Total fees</small>
                                     <h5 class="fw-bold small">{{studentData.fees_details[0].FEES_AMOUNT +
                                         studentData.fees_details[0].FEES_BALANCE |currency:"INR":"symbol":'3.0'}}</h5>
@@ -162,7 +161,7 @@
                             <div class="col-4 mx-auto">
                                 <div class="card card_sm">
                                     <span>
-                                        <img src="../../../../assets/images/payment.png" width="40px" alt=""></span>
+                                        <img src="assets/images/payment.png" width="40px" alt=""></span>
                                     <small>Collected Fees</small>
                                     <h5 class="fw-bold small">{{studentData.fees_details[0].FEES_AMOUNT
                                         |currency:"INR":"symbol":'3.0'}}</h5>
@@ -171,8 +170,7 @@
                             <div class="col-4 mx-auto">
                                 <div class="card card_sm">
                                     <span>
-                                        <img src="../../../../assets/images/pendingpayment.png" width="40px"
-                                            alt=""></span>
+                                        <img src="assets/images/pendingpayment.png" width="40px" alt=""></span>
                                     <small>Pending fees</small>
                                     <h5 class="fw-bold small">{{ studentData.fees_details[0].FEES_BALANCE
                                         |currency:"INR":"symbol":'3.0'}}</h5>
@@ -182,6 +180,13 @@
                     </div>
                     <hr class="p-0 m-0 mt-3">
                     <div class="col-12 m-2">
+                        <!-- <select class="form-select form-select-sm" (change)="onChangeTickets($event)">
+                            <option selected>Open this select menu</option>
+                            <option value="Transport">Transport Fees</option>
+                            <option value="Material">Material Fees</option>
+                            <option value="Other">Other Fees</option>
+                        </select> -->
+
                         <form [formGroup]="feesPayForm" (ngSubmit)="onSubmit()">
 
                             <label for="exampleFormControlInput1" class="form-label">Fees Amount *</label>
@@ -201,7 +206,106 @@
                             <div *ngIf="submitted && f.feesNotes.errors" class="invalid-feedback">
                                 <div *ngIf="f.feesNotes.errors.required">Comments is required</div>
                             </div>
+                            <!-- <div formArrayName="otherCharges"  *ngFor="let addressGroup of feesPayForm.get('otherCharges').controls;let i = index">
+                                    <div [formGroupName]="i">
+                                    <div>
+                                        Fees Description <input  type="text" class="form-control form-control-sm form_custom my-auto" formControlName="desc">
+                                    </div>
+                                    <div>
+                                        Fees <input type="number" class="form-control form-control-sm form_custom my-auto"
+                                        placeholder="Fees Amount" formControlName="fees" >
+                                    </div>
+                                    <button (click)="deleteAddressGroup(i)" class="btn btn_submit_custom">Remove</button>
+                                    </div>
+                                </div> -->
+                            
+                            <div class="d-grid gap-2 mt-2">
+                                <button class="btn btn-block btn-sm btn-light shadow" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseExample" aria-expanded="false"
+                                    aria-controls="collapseExample">
+                                    Expend for more
+                                </button>
+                            </div>
+                            <div class="collapse pb-3" id="collapseExample">
+                                    <label for="exampleFormControlInput1" class="form-label">Discount Amount</label>
 
+                                    <input type="number" class="form-control form-control-sm form_custom my-auto"
+                                        placeholder="Deduction amount" formControlName="feesDiscount"
+                                        [ngClass]="{ 'is-invalid': submitted && f.feesDiscount.errors }" />
+                                    <div *ngIf="submitted && f.feesDiscount.errors" class="invalid-feedback">
+                                        <div *ngIf="f.feesDiscount.errors.required">Fees Discount is required</div>
+                                    </div>
+
+                                    <label for="exampleFormControlInput1" class="form-label">Deduction Amount</label>
+
+                                    <input type="number" class="form-control form-control-sm form_custom my-auto"
+                                        placeholder="Deduction amount" formControlName="deductionAmt"
+                                        [ngClass]="{ 'is-invalid': submitted && f.deductionAmt.errors }" />
+                                    <div *ngIf="submitted && f.deductionAmt.errors" class="invalid-feedback">
+                                        <div *ngIf="f.deductionAmt.errors.required">Deduction amount is required</div>
+                                    </div>
+
+                                    <label for="exampleFormControlInput1" class="form-label">Deduction Comments</label>
+
+                                    <textarea class="form-control form-control-sm form_custom my-auto"
+                                        placeholder="Deduction Comments" aria-label="Username"
+                                        aria-describedby="basic-addon1" formControlName="deductionCmts"
+                                        [ngClass]="{ 'is-invalid': submitted && f.deductionCmts.errors }">
+                                    </textarea>
+                                    <div *ngIf="submitted && f.deductionCmts.errors" class="invalid-feedback">
+                                        <div *ngIf="f.deductionCmts.errors.required">Deduction comments is required
+                                        </div>
+                                    </div>
+                                    <label for="exampleFormControlInput1" class="form-label">Miscellaneous Amount
+                                        *</label>
+
+                                    <input type="number" class="form-control form-control-sm form_custom my-auto"
+                                        placeholder="Miscellaneous amount" formControlName="miscellaneousAmt"
+                                        [ngClass]="{ 'is-invalid': submitted && f.miscellaneousAmt.errors }" />
+                                    <div *ngIf="submitted && f.miscellaneousAmt.errors" class="invalid-feedback">
+                                        <div *ngIf="f.miscellaneousAmt.errors.required">Miscellaneous is required</div>
+                                    </div>
+                                    <label for="exampleFormControlInput1" class="form-label">Miscellaneous
+                                        Comments</label>
+
+                                    <textarea class="form-control form-control-sm form_custom my-auto"
+                                        placeholder="Miscellaneous Comments" formControlName="miscellaneousCmts"
+                                        [ngClass]="{ 'is-invalid': submitted && f.miscellaneousCmts.errors }">
+                                </textarea>
+                                    <div *ngIf="submitted && f.miscellaneousCmts.errors" class="invalid-feedback">
+                                        <div *ngIf="f.miscellaneousCmts.errors.required">miscellaneous comments is
+                                            required
+                                        </div>
+                                    </div>
+                            </div>
+
+
+                            <!-- <div *ngFor="let ticket of t; let i = index" class="list-group list-group-flush">
+                                <div class="list-group-item">
+                                    <h5 class="card-title">Ticket {{i + 1}}</h5>
+                                    <div [formGroup]="ticket" class="form-row">
+                                        <div class="form-group col-6">
+                                            <label>Name</label>
+                                            <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && ticket.controls.name.errors }" />
+                                            <div *ngIf="submitted && ticket.controls.name.errors" class="invalid-feedback">
+                                                <div *ngIf="ticket.controls.name.errors.required">Name is required</div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label>Email</label>
+                                            <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && ticket.controls.email.errors }" />
+                                            <div *ngIf="submitted && ticket.controls.email.errors" class="invalid-feedback">
+                                                <div *ngIf="ticket.controls.email.errors.required">Email is required</div>
+                                                <div *ngIf="ticket.controls.email.errors.email">Email must be a valid email address</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> -->
+
+
+
+                            <!-- 
                             <label for="exampleFormControlInput1" class="form-label">Discount Amount</label>
 
                             <input type="number" class="form-control form-control-sm form_custom my-auto"
@@ -247,11 +351,11 @@
                             <div *ngIf="submitted && f.miscellaneousCmts.errors" class="invalid-feedback">
                                 <div *ngIf="f.miscellaneousCmts.errors.required">miscellaneous comments is required
                                 </div>
-                            </div>
+                            </div> -->
 
 
                             <div class="d-grid gap-2">
-                                <button class="btn btn_submit_custom">Review</button>
+                                <button class="btn btn_submit_custom btn-sm">Review</button>
                             </div>
                         </form>
                     </div>

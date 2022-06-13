@@ -21,7 +21,11 @@
 
   </div>
   <div class="card-body my-0 py-2 mx-3 position-sticky" id="view_change_slot">
-    <div class="d-flex flex-wrap justify-content-end">
+    <div class="d-flex flex-wrap">
+      <div class="me-auto">
+        <button mat-button class="text-themed shadow-sm px-3 mb-2 rounded-3" [matMenuTriggerFor]="grid_menu">Total : {{grids|filterByClassFeesNames:filteredClasses:filteredFees:filteredName:'count'}}</button>
+      </div>
+
       <div class="my-auto pointer">
         <button type="button" class="btn btn-sm btn-outline-themed" (click)="newAdmission()">
           <mat-icon class="align-middle">add</mat-icon> New Admission
@@ -50,7 +54,7 @@
   <div class="card-body card-container" *ngIf="currentViewAs === 'grid'">
     <div class="grid-container mx-auto">
       <ng-container
-        *ngFor="let grid of (grids| filterByClassFeesNames:filteredClasses:filteredFees:filteredName)">
+        *ngFor="let grid of (grids| filterByClassFeesNames:filteredClasses:filteredFees:filteredName:'array')">
         <ng-container *skeleton="isLoading;height: '160px';width: '18rem';className:'skeleton-card'">
           <app-student-list-card (routeConfiguration)="routeConfigurationCaptured($event)"
             (openModalWindow)="openModalWindowCapture($event)" [_studentDetailsList]="grid"
@@ -62,13 +66,14 @@
   <div class="card-body card-container" *ngIf="currentViewAs === 'list'">
     <div class="row">
       <ng-container
-        *ngFor="let grid of (grids|filterByClassFeesNames:filteredClasses:filteredFees:filteredName)">
+        *ngFor="let grid of (grids|filterByClassFeesNames:filteredClasses:filteredFees:filteredName:'array')">
+
         <div class="col-12 g-4">
           <ng-container *skeleton="isLoading;height: '160px';width: '100%';className:'skeleton-card'">
-          <app-student-list-card (routeConfiguration)="routeConfigurationCaptured($event)"
-            (openModalWindow)="openModalWindowCapture($event)" [_studentDetailsList]="grid"
-            (disableStudentDetails)="studentDisableEventCapture($event)"></app-student-list-card>
-            </ng-container>
+            <app-student-list-card (routeConfiguration)="routeConfigurationCaptured($event)"
+              (openModalWindow)="openModalWindowCapture($event)" [_studentDetailsList]="grid"
+              (disableStudentDetails)="studentDisableEventCapture($event)"></app-student-list-card>
+          </ng-container>
         </div>
       </ng-container>
     </div>
@@ -81,3 +86,9 @@
     </ng-container>
   </div> -->
 </div>
+<mat-menu #grid_menu="matMenu" style="height:250px;">
+  <ng-container *ngFor="let grid of (grids| filterByClassFeesNames:filteredClasses:filteredFees:filteredName:'array')">
+    <button mat-menu-item (click)="routeConfigurationCaptured(grid)">{{grid.STUD_FIRST_NAME}} {{grid.STUD_LAST_NAME}}</button>
+  </ng-container>
+
+</mat-menu>

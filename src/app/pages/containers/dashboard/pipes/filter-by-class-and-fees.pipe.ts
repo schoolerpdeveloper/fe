@@ -12,9 +12,8 @@ export class FilterByClassAndFeesPipe implements PipeTransform {
     classes?: string[],
     fees?: string[],
     name?: string,
-    paginateData?:IPaginator,
-    paginateFlag?:boolean
-  ) {
+    res:'count'|'array'='array'
+  ): any {
     let temp = [...value];
     if (classes && classes.length > 0) {
       temp = temp.filter((i: IStudentList) => {
@@ -39,6 +38,10 @@ export class FilterByClassAndFeesPipe implements PipeTransform {
       });
     }
 
-    return temp;
+    if(res === 'count') return temp.length as number;
+    if(res === 'array')  return (temp as IStudentList[]);
+    return value;
+
+   
   }
 }

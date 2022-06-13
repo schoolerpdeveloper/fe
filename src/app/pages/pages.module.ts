@@ -17,13 +17,15 @@ import { SibilingEffects } from './pages_store/effects/sibiling.effects';
 import { ParentEffects } from './pages_store/effects/parents.effects';
 import { TransportEffects } from './pages_store/effects/transport.effects';
 import { AddressEffects } from './pages_store/effects/address.effects';
-import { UtilEffects } from './pages_store/effects/util.effects';
 import { FeesEffects } from './pages_store/effects/fees.effects';
-import { FeesManagementDashboardComponent } from './containers/fees-management/fees-dashboard/fees-dashboard.component';
-import { FeesReportTableComponent } from './containers/fees-management/student-fees-report/student-fees-report.component';
-import { FeesReportsComponent } from './containers/fees-management/fees-reports/fees-reports.component';
-import { ClassWiseFeesReportsComponent } from './containers/fees-management/class-fees-report/class-fees-report.component';
-import { StudentPaymentsInfoComponent } from './containers/fees-management/student-invoice/student-invoice.component';
+import { UtilEffects } from './pages_store/effects/util.effects';
+// import { FeesManagementDashboardComponent } from './containers/fees-management/fees-dashboard/fees-dashboard.component';
+// import { FeesReportTableComponent } from './containers/fees-management/student-fees-report/student-fees-report.component';
+// import { FeesReportsComponent } from './containers/fees-management/fees-reports/fees-reports.component';
+// import { ClassWiseFeesReportsComponent } from './containers/fees-management/class-fees-report/class-fees-report.component';
+// import { StudentPaymentsInfoComponent } from './containers/fees-management/student-invoice/student-invoice.component';
+
+
 
 
 @NgModule({

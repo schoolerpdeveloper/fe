@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FeesManagementApiService } from '@shared/services/api/feesManagementApi/feesmanagement-api.service';
 import { StudentdetailsService } from '@shared/services/api/studentDetailsApi/studentdetails.service';
@@ -51,6 +51,7 @@ export class StudentPaymentsInfoComponent implements OnInit {
     private studentApi: StudentdetailsService) { }
 
   ngOnInit(): void {
+
     this.studentID = this.route.snapshot.paramMap.get('id');
     this.loadFeesForm()
     this.api.getSingleStudentFeesDetails(this.studentID).subscribe((studentData: any) => {
@@ -83,9 +84,40 @@ export class StudentPaymentsInfoComponent implements OnInit {
       feesNotes: ['', Validators.required],
       miscellaneousAmt: [''],
       miscellaneousCmts: [''],
+      // otherCharges: this.fb.array([])
     })
   }
   get f() { return this.feesPayForm.controls; }
+  // get t() { return (this.feesPayForm.get('tickets') as FormArray).controls; }
+
+  onChangeTickets(e: any) {
+    const field = e.target.value || 0;
+
+    const add = this.feesPayForm.get('otherCharges') as FormArray;
+    add.push(this.fb.group({
+      [field]: [],
+      // fees: []
+    }))
+
+    console.log(this.feesPayForm.value)
+    // if (this.t.length < numberOfTickets) {
+    //     for (let i = this.t.length; i < numberOfTickets; i++) {
+    //         this.t.push(this.fb.group({
+    //             name: ['', Validators.required],
+    //             email: ['', [Validators.required, Validators.email]]
+    //         }));
+    //     }
+    // } else {
+    //     for (let i = this.t.length; i >= numberOfTickets; i--) {
+    //         this.t.removeAt(i);
+    //     }
+    // }
+  }
+
+  deleteAddressGroup(index: number) {
+    const add = this.feesPayForm.get('tickets') as FormArray;
+    add.removeAt(index)
+  }
 
   onSubmit() {
     this.submitted = true;
@@ -94,20 +126,24 @@ export class StudentPaymentsInfoComponent implements OnInit {
     if (this.feesPayForm.valid) {
       let obj = {
         ADMN_NO: this.studentID,
-        FEES_AMOUNT: this.feesPayForm.feesAmt,
-        FEES_DISCOUNT: this.feesPayForm.feesDiscount,
-        FEES_NOTES: this.feesPayForm.feesNotes,
-        FEES_DED: this.feesPayForm.deductionAmt,
-        FEES_DED_CMNT: this.feesPayForm.deductionCmts,
-        FEES_ADDTION: this.feesPayForm.miscellaneousAmt,
-        FEES_ADDTION_CMNT: this.feesPayForm.miscellaneousCmts
+        FEES_AMOUNT: Number(this.feesPayForm.value.feesAmt),
+        FEES_DISCOUNT: Number(this.feesPayForm.value.feesDiscount),
+        FEES_NOTES: this.feesPayForm.value.feesNotes,
+        FEES_DED: Number(this.feesPayForm.value.deductionAmt),
+        FEES_DED_CMNT: this.feesPayForm.value.deductionCmts,
+        FEES_ADDTION: Number(this.feesPayForm.value.miscellaneousAmt),
+        FEES_ADDTION_CMNT: this.feesPayForm.value.miscellaneousCmts
       }
-      this.api.payFees(obj).subscribe((data) => {
-        console.log(data)
-        alert('SUCCESS!! :-)\n\n' + JSON.stringify(data))
-        this.router.navigate([`/pages/fees-management/fees-report/${this.studentID}/review`], {queryParams: {'data':JSON.stringify(this.feesPayForm.value)}, skipLocationChange: true})
 
-      })
+      console.log(obj)
+      this.router.navigate([`/pages/fees-management/fees-report/${this.studentID}/review`], { queryParams: { 'data': JSON.stringify(obj) }, skipLocationChange: true })
+
+      // this.api.payFees(obj).subscribe((data) => {
+      //   console.log(data)
+      //   alert('SUCCESS!! :-)\n\n' + JSON.stringify(data))
+      //   this.router.navigate([`/pages/fees-management/fees-report/${this.studentID}/review`], {queryParams: {'data':JSON.stringify(this.feesPayForm.value)}, skipLocationChange: true})
+
+      // })
     } else {
       return
     }

@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { RouterEnum } from 'src/app/enums/router.enum';
 import { ClassWiseFeesReportsComponent } from './class-fees-report/class-fees-report.component';
 import { FeesManagementDashboardComponent } from './fees-dashboard/fees-dashboard.component';
+import { FeesHistoryComponent } from './fees-history/fees-history.component';
 import { FeesManagementComponent } from './fees-management.component';
 import { InvoiceReviewComponent } from './invoice-review/invoice-review.component';
 import { FeesReportTableComponent } from './student-fees-report/student-fees-report.component';
@@ -20,6 +21,7 @@ const routes: Routes = [
       { path: 'student-report', component: FeesReportTableComponent },
       // { path: 'fees-report', component: StudentPaymentsInfoComponent },
       { path: 'fees-report/:id', component: StudentPaymentsInfoComponent },
+      { path: 'fees-history/:id', component: FeesHistoryComponent },
       { path: 'fees-report/:id/review', component: InvoiceReviewComponent },
       
     ],
