@@ -14,7 +14,7 @@ export class FeesReportTableComponent implements OnInit {
   constructor(public router:Router, public api:FeesManagementApiService, private _location: Location) { }
 
   ngOnInit(): void {
-    this.api.getAllstudentWiseFeesReport().subscribe((data)=>{
+    this.api.allStudentsFeesDetails().subscribe((data)=>{
       console.log('data', data)
       this.studentWiseFeesReport = data
     })
@@ -25,5 +25,8 @@ export class FeesReportTableComponent implements OnInit {
   }
   viewInvoice(id:number){
     this.router.navigate([`/pages/fees-management/fees-report/${id}`])
+  }
+  feesHistory(id:number){
+    this.router.navigate([`/pages/fees-management/fees-history/${id}`])
   }
 }
