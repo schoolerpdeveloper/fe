@@ -17,7 +17,7 @@ export class SibilingApiService {
   }
 
   getStudentsiblingdetails(admissionNumber: number | string): Observable<any> {
-    return this.http.get(`${this.url}/siblingdetails/${admissionNumber}`);
+    return this.http.get(`${this.url}/siblingdetails/admission/${admissionNumber}`);
   }
 
   getsiblingdetails(id: number | string): Observable<any> {
@@ -27,5 +27,13 @@ export class SibilingApiService {
   updatesiblingdetails(details: ISiblingDetails): Observable<any> {
     let id = details.ID;
     return this.http.put(`${this.url}/siblingdetails/${id}`, details);
+  }
+  deletesiblingdetails(details: ISiblingDetails): Observable<any> {
+    let id = details.ID;
+    return this.http.delete(`${this.url}/siblingdetails/${id}`);
+  }
+  addsiblingdetails(details: ISiblingDetails): Observable<any> {
+    console.log(details)
+    return this.http.post(`${this.url}/siblingdetails`, details);
   }
 }

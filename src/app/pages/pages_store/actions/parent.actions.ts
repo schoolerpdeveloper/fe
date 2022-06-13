@@ -1,5 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { IParentDetails } from '@shared/models/parentDetails';
+import { IParentDetailsAddress } from '@shared/models/parentDetailsAdress';
+import { IParentAddressDetails } from '@shared/models/parentDetailsAdress/parent-details-address.interface';
 
 export namespace ParentActions {
   // get all parents
@@ -24,7 +26,7 @@ export namespace ParentActions {
 
   export const loadAdmissionBasedParentsSucess = createAction(
     '[Pages] Load Admission Based Parents Success',
-    props<{ data: any }>()
+    props<{ data: IParentDetails[] }>()
   );
 
   export const loadAdmissionBasedParentsFailure = createAction(
@@ -51,6 +53,29 @@ export namespace ParentActions {
 
   export const updateParentDetails = createAction(
     '[Pages] Update ParentDetails',
-    props<{data:IParentDetails}>()
-  )
+    props<{ data: IParentDetails }>()
+  );
+  export const addParentDetails = createAction(
+    '[Pages] Add ParentDetails',
+    props<{ data: IParentDetails }>()
+  );
+  export const deleteParentDetails = createAction(
+    '[Pages] Delete ParentDetails',
+    props<{ data: IParentDetails }>()
+  );
+  export const loadParentDetailAddress = createAction(
+    '[Pages] Parent Detail Address',
+    props<{ admissionNo: number | string }>()
+  );
+
+  export const loadParentDetailAddressSuccess = createAction(
+    '[Pages] Parent Detail Address Success',
+    props<{ data : IParentAddressDetails[]}>()
+  );
+
+  export const loadParentDetailAddressFailure = createAction(
+    '[Pages] Parent Detail Address Failure',
+    props<{ data : IParentAddressDetails[]}>()
+  );
+  
 }

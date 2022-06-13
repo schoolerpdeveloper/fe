@@ -1,7 +1,9 @@
 <div class="py-0">
   <ng-container *ngIf="label">
     <label [for]="label" class="ps-2 text-capitalize"
-      [ngClass]="formField?.invalid && formField?.touched ? 'text-danger' : ''">{{ label }}</label>
+      [ngClass]="formField?.invalid && formField?.touched ? 'text-danger' : ''">
+      {{ label }} <span class="text-danger" *ngIf="_localRequiredState">*</span>
+    </label>
   </ng-container>
   
   <ng-container *ngIf="(type === 'text')||(type === 'number') || (type === 'tel')">
@@ -11,8 +13,8 @@
     <!-- [ngClass]="useMaskedInput ? 'maskPlaceHolderStyle' :''" -->
   </ng-container>
   <ng-container *ngIf="(type === 'select')">
-    <select class="form-select rounded-pill shadow-sm border-0" [ngModel]="value" [name]="fieldName"
-      (input)="onChange($event)" (blur)="touched()"
+    <select class="form-select rounded-pill shadow-sm border-0" [(ngModel)]="value" (ngModelChange)="onChange($event)" [name]="fieldName"
+      (changed)="onChange($event)" (blur)="touched()"
       [ngClass]="formField?.invalid && formField?.touched ? 'border-error' : ''">
       <option value=""></option>
       <option *ngFor="let item of _selectData" value="{{item?.value}}">
@@ -49,7 +51,7 @@
     </div>
   </ng-container>
   <ng-container *ngIf="(type === 'textarea')">
-    <textarea class="form-control rounded-pill shadow-sm border-0" [ngModel]="value" [name]="fieldName"
+    <textarea class="form-control rounded-pill shadow-sm border-0" [(ngModel)]="value" (ngModelChange)="onChange($event)" [name]="fieldName"
       [mask]="maskedString" [id]="label" [disabled]="isDisabled" (input)="onChange($event)" [showMaskTyped]="true"
       [placeHolderCharacter]="maskPlaceHolder" (blur)="touched()" [placeholder]="label"
       [ngClass]="formField?.invalid && formField?.touched ? 'border-error' : ''"></textarea>

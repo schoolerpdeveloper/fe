@@ -1,0 +1,24 @@
+
+[data-letters]:before {
+    width: 3.5rem;
+    height: 3.5rem;
+    line-height: 3.5rem;
+    }
+    
+    .custom-card-rounded {
+        border-radius: var(--custom-border-radius) !important;
+    }
+    mat-icon {
+        padding: 0.5rem 0.5rem;
+        display: inline;
+        color: var(--primary-color);
+        font-size: 18px;
+    }
+    table tr{
+    
+     line-height: 1.8;
+    
+    }
+    table th+td{
+    padding-left: 5px;
+    }

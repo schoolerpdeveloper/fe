@@ -1,0 +1,57 @@
+<app-stepper #cdkStepper [orientation]="'vertical'" (selectionChange)="selected($event)">
+    <cdk-step (interacted)="interactedStreamStepper($event)">
+        <ng-template cdkStepLabel>
+            Student Details
+            <small class="d-block text-center text-danger">Error</small>
+        </ng-template>
+        <div class="card-body m-0 p-0 animate__animated animate__fadeIn ">
+            <app-admission-form (studentDetailsFormStatus)="studentDetailsFormStatusHandle($event)">
+            </app-admission-form>
+        </div>
+    </cdk-step>
+    <cdk-step (interacted)="interactedStreamStepper($event)">
+        <ng-template cdkStepLabel>
+            Parent Details
+            <small class="d-block text-center text-danger">Error</small>
+        </ng-template>
+        <div class="card-body m-0 p-0 animate__animated animate__fadeIn ">
+            <app-parent-form (parentDetailsFormStatus)="parentDetailsFormStatusHandle($event)">
+            </app-parent-form>
+            <app-address-form (addressFormStatus)="parentAddressFormStatusHandle($event)">
+            </app-address-form>
+
+        </div>
+    </cdk-step>
+    <cdk-step (interacted)="interactedStreamStepper($event)">
+        <ng-template cdkStepLabel>
+            Sibling Details
+            <small class="d-block text-center text-danger">Error</small>
+        </ng-template>
+        <div class="card-body m-0 p-0 animate__animated animate__fadeIn ">
+            <app-sibiling-form (sibDetailsFormStatus)="sibDetailsFormStatusHandle($event)">
+            </app-sibiling-form>
+        </div>
+    </cdk-step>
+    <cdk-step (interacted)="interactedStreamStepper($event)">
+        <ng-template cdkStepLabel>
+            Transport Details
+            <small class="d-block text-center text-danger">Error</small>
+        </ng-template>
+        <div class="card-body m-0 p-0 animate__animated animate__fadeIn ">
+            <app-transport-form [routes]="routeDetails"
+                (transportDetailFormStatus)="busDetailsFormStatusHandle($event)"></app-transport-form>
+
+        </div>
+    </cdk-step>
+    <!-- <cdk-step>
+        <ng-template cdkStepLabel> 
+            Fees Details
+        </ng-template>
+        <div class="card-body m-0 p-0 animate__animated animate__fadeIn ">
+            <app-fees-form [_studentDetails]="loadStudentDetails"></app-fees-form>
+
+        </div>
+    </cdk-step> -->
+
+
+</app-stepper>

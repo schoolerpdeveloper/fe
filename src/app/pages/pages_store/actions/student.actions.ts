@@ -29,10 +29,17 @@ export const loadSingleStudentFailure = createAction(
 );
 
 export const updateStudentDetails = createAction(
-  '[Page] Load Single Student Update',
+  '[Page] Update Single Student details',
   props<{ data: any }>()
 );
-
+export const addStudentDetails = createAction(
+  '[Page] Add Single Student details',
+  props<{ data: any }>()
+);
+export const deleteStudentDetails = createAction(
+  '[Page] Delete Single Student details',
+  props<{ data: any }>()
+);
 export const loadStudentList = createAction(
   '[Page] Load Student List Features'
 );

@@ -5,6 +5,8 @@ export const enum RouterEnum {
     FORGOTPASSWORD = 'forgot-password',
     DASHBOARD = 'dashboard',
     STUDENTFORM = 'student-form',
+    STUDENTADMISSION = 'admission',
+
     CONTAINER = 'pages',
     DASHBOARD_MAIN= 'main',
     STUDENT_MANAGEMENT='student-management',

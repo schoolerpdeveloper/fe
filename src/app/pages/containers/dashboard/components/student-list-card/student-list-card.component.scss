@@ -1,7 +1,5 @@
-
-
 .details-card {
-    height: 160px;
+    height: 170px;
 }
 .card{
     background-color: white !important;
@@ -15,95 +13,102 @@
 }
 
 .slanting-banner {
-    clip-path: polygon(60px 0, 0 0, 0 60px);
-    height: 85px;
-    width: 60px;
-    border-top-left-radius: var(--custom-border-radius) !important;
-    word-break: break-all;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    z-index: 2;
-
+  clip-path: polygon(60px 0, 0 0, 0 60px);
+  height: 85px;
+  width: 60px;
+  border-top-left-radius: var(--custom-border-radius) !important;
+  word-break: break-all;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  z-index: 2;
 }
-.themed-primary{
-    background: var(--primary-color);
+.themed-primary {
+  background: var(--primary-color);
 }
-.themed-accent{
-    background: var(--secondary-accent-color);
+.themed-accent {
+  background: var(--secondary-accent-color);
 }
-.themed-danger{
-    background: #f50057;
+.themed-danger {
+  background: #f50057;
 }
-.card.disabled .themed-primary,.card.disabled .themed-accent,.card.disabled .themed-danger{
-    background: var(--placeholder-color);
-
+.card.disabled .themed-primary,
+.card.disabled .themed-accent,
+.card.disabled .themed-danger {
+  background: var(--placeholder-color);
 }
 
 .custom-card-rounded {
-    border-radius: var(--custom-border-radius) !important;
+  border-radius: var(--custom-border-radius) !important;
 }
 
 .paid-rotate {
-    font-size: 12px;
-    transform-origin: 0 0;
-    transform: rotate(314deg);
-    margin-top: -20px;
-    margin-left: 5px;
+  font-size: 12px;
+  transform-origin: 0 0;
+  transform: rotate(314deg);
+  margin-top: -20px;
+  margin-left: 5px;
 }
 
 .paid-rotate-str {
-    font-size: 12px;
-    transform-origin: 0 0;
-    transform: rotate(314deg);
-    margin-top: 5px;
-    margin-left: -2px;
-    margin-left: 0px;
-    font-family:ERP Condensed;
-    letter-spacing: 0.045rem;
+  font-size: 12px;
+  transform-origin: 0 0;
+  transform: rotate(314deg);
+  margin-top: 5px;
+  margin-left: -2px;
+  margin-left: 0px;
+  font-family: ERP Condensed;
+  letter-spacing: 0.045rem;
 }
 
 .borderless td,
 .borderless th {
-    border: none;
-    font-size: 12px !important;
-    padding: unset;
+  border: none;
+  font-size: 12px !important;
+  padding: unset;
 }
 .borderless th {
-    width: 150px;
-    word-break: break-all;
+  width: 150px;
+  word-break: break-all;
 }
 
-
 [data-letters]:before {
-    content: attr(data-letters);
-    display: inline-block;
-    font-size: 1.8rem;
-    width: 40px;
-    height: 40px;
-    line-height: 1.4 !important;
-    margin-top: 2rem;
-    text-transform: capitalize;
-    text-align: center;
-    vertical-align: middle;
-    color: white;
-    border-radius: 50%;
+  content: attr(data-letters);
+  display: inline-block;
+  font-size: 1.8rem;
+  width: 40px;
+  height: 40px;
+  line-height: 1.4 !important;
+  margin-top: 2rem;
+  text-transform: capitalize;
+  text-align: center;
+  vertical-align: middle;
+  color: white;
+  border-radius: 50%;
 }
 
 mat-icon {
-    padding: 0.5rem 0.5rem;
-    display: inline;
-    color: var(--primary-color);
-    font-size: 18px;
+  padding: 0.5rem 0.5rem;
+  display: inline;
+  color: var(--primary-color);
+  font-size: 18px;
 }
-.card.disabled,.card.disabled mat-icon,.card.disabled [data-letters]:before,.card.disabled .paid-rotate-str{
-    color:var(--placeholder-color);
-    background-color: var(--placeholder-color)/50%;
-    border:1px solid rgba(var(--placeholder-color),1);
-    transition: all 1s ease-in-out;
+.card.disabled,
+.card.disabled mat-icon,
+.card.disabled [data-letters]:before,
+.card.disabled .paid-rotate-str {
+  color: var(--placeholder-color);
+  background-color: var(--placeholder-color) / 50%;
+  border: 1px solid rgba(var(--placeholder-color), 1);
+  transition: all 1s ease-in-out;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 40%) !important;
 }
 .details-content {
-    line-height: 1.5;
-    // font-size: 12px !important;
-    font: normal normal normal 10px/15px;
+  line-height: 1.5;
+  // font-size: 12px !important;
+  font: normal normal normal 10px/15px;
+}
+
+:host ::ng-deep .card-themed-shadow{
+  box-shadow:1px 7px 15px -10px rgb(138 245 102 / 61%) !important
 }

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { RouterEnum } from 'src/app/enums/router.enum';
 import { loadStudents } from '../pages_store/actions/student.actions';
+import { UtilityActions } from '../pages_store/actions/util.actions';
 import { ExampleFlatNode, TREE_DATA } from './menu';
 
 @Component({
@@ -20,6 +21,7 @@ export class LandingPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.initToDashboard();
+    this.initClasses();
     this.initAllStudentDetails();
   }
 
@@ -54,6 +56,7 @@ export class LandingPageComponent implements OnInit {
     return null;
   }
 
+  
   logNode(node: any) {
     this.currentSelectedNode = { ...node };
     node.isExpanded = !node.isExpanded;
@@ -73,4 +76,9 @@ export class LandingPageComponent implements OnInit {
   initAllStudentDetails(){
     this.store.dispatch((loadStudents()))
   }
+  initClasses(){
+
+    this.store.dispatch(UtilityActions.loadClassConfig());
+  }
+
 }

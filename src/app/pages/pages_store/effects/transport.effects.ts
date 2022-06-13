@@ -27,6 +27,23 @@ export class TransportEffects {
       })
     );
   });
+  loadAllBusRoute$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(TransportActions.loadAllBusRoute),
+      
+      switchMap((data) => {
+        return this.api.allBusRouteDetails().pipe(
+          map((d) => {
+            return TransportActions.loadAllBusRouteSuccess({ data: d });
+          }),
+          catchError((error) => {
+            this.errorNotifier(error);
+            return of(TransportActions.loadAllBusRouteFailure({ error }));
+          })
+        );
+      })
+    );
+  });
 
   constructor(
     private actions$: Actions,

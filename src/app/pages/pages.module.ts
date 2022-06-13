@@ -8,7 +8,9 @@ import { OneColumnLayoutComponent } from './components/one-column-layout/one-col
 import { SharedModule } from '@shared/shared.module';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import { pageReducer, pagesFeatureKey } from './pages_store/reducers/index.reducer';
+import { pageReducer } from './pages_store/reducers/index.reducer';
+import { pagesFeatureKey } from './pages_store/reducers/app.state';
+
 import { StudentEffects } from './pages_store/effects/students.effects';
 import { StudentdetailsService } from '@shared/services/api/studentDetailsApi/studentdetails.service';
 import { SibilingEffects } from './pages_store/effects/sibiling.effects';
@@ -19,6 +21,8 @@ import { TransportEffects } from './pages_store/effects/transport.effects';
 // import { FeesReportsComponent } from './containers/fees-management/fees-reports/fees-reports.component';
 // import { ClassWiseFeesReportsComponent } from './containers/fees-management/class-fees-report/class-fees-report.component';
 // import { StudentPaymentsInfoComponent } from './containers/fees-management/student-invoice/student-invoice.component';
+
+
 
 
 @NgModule({
@@ -38,13 +42,16 @@ import { TransportEffects } from './pages_store/effects/transport.effects';
     PagesRoutingModule,
     SharedModule,
     StoreModule.forFeature(pagesFeatureKey, pageReducer),
-    EffectsModule.forFeature([StudentEffects,SibilingEffects,ParentEffects,TransportEffects])
-  ],providers:[
-    StudentdetailsService
-  ]
+    EffectsModule.forFeature([
+      StudentEffects,
+      SibilingEffects,
+      ParentEffects,
+      TransportEffects,
+      AddressEffects,
+      UtilEffects,
+      FeesEffects,
+    ]),
+  ],
+  providers: [StudentdetailsService],
 })
-export class PagesModule {
- 
- }
-
-
+export class PagesModule {}

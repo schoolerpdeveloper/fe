@@ -18,4 +18,9 @@ export class TransportApiService {
     return this.http.get(`${this.url}/busroutedetails/${busRouteCode}`);
 
   }
+
+  allBusRouteDetails(){
+    return this.http.get(`${this.url}/busroutedetails`);
+
+  }
 }

@@ -12,4 +12,5 @@ export const transportDetailModel: ITransportDeatils = {
   BUS_RUTE_INCH_NO: null,
   BUS_RUTE_INS_DTL: null,
   LAST_UPDT_TS: null,
+  RUTE_STOP_NO:null
 };

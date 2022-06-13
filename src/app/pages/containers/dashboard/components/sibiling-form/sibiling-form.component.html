@@ -2,15 +2,23 @@
 <form [formGroup]="sibilingDetailsForm" class="card border-0 mt-4">
     <div class="row g-3 card-body">
         <div class="col-12 col-sm-12 col-md-12 col-xl-4">
-            <label>Student Admission</label>
-            <app-student-search [ngSelectData]="_studentDetails" [searchDisabled]="false"
-                (selectedValueEvent)="captureAdmissionNo($event)"></app-student-search>
-        </div>
-        <div class="col-12 col-sm-12 col-md-12 col-xl-4">
-
-            <app-erp-input label="Sibiling Admission Number" formControlName="SBLN_ADMN_NO" fieldName="SBLN_ADMN_NO"
+            <app-erp-input label="Admission Number" formControlName="ADMN_NO" fieldName="ADMN_NO" [isDisabled]="true"
                 [parentForm]="sibilingDetailsForm">
             </app-erp-input>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+            <!-- <div class="" *ngIf="studentDetailsAutosuggestion.length">
+                <ng-container *ngFor="let item of studentDetailsAutosuggestion">
+                    <span>{{item}}</span>
+                </ng-container>
+            </div> -->
+            <!-- <ng-container *ngIf="studentDetailsAutosuggestion.length === 0" > -->
+
+                <app-erp-input label="Sibiling Admission Number" formControlName="SBLN_ADMN_NO" fieldName="SBLN_ADMN_NO"
+                    [parentForm]="sibilingDetailsForm">
+                </app-erp-input>
+                <!-- to do add loading text -->
+            <!-- </ng-container> -->
         </div>
         <div class="col-12 col-sm-12 col-md-12 col-xl-4">
             <app-erp-input label="Sibiling Relation" type="select" [selectData]="sibling" formControlName="SBLN_RELA"
