@@ -12,7 +12,10 @@ import { environment } from '../environments/environment';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { NgChartsModule } from 'ng2-charts';
 import { NgCircleProgressModule } from 'ng-circle-progress';
+
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -22,6 +25,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
     CoreModule.forRoot(),
     StoreModule.forRoot({},{}),
     EffectsModule.forRoot([]),

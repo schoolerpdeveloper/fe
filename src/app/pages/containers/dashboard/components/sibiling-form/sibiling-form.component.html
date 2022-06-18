@@ -7,10 +7,18 @@
             </app-erp-input>
         </div>
         <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+            <!-- <div class="" *ngIf="studentDetailsAutosuggestion.length">
+                <ng-container *ngFor="let item of studentDetailsAutosuggestion">
+                    <span>{{item}}</span>
+                </ng-container>
+            </div> -->
+            <!-- <ng-container *ngIf="studentDetailsAutosuggestion.length === 0" > -->
 
-            <app-erp-input label="Sibiling Admission Number" formControlName="SBLN_ADMN_NO" fieldName="SBLN_ADMN_NO"
-                [parentForm]="sibilingDetailsForm">
-            </app-erp-input>
+                <app-erp-input label="Sibiling Admission Number" formControlName="SBLN_ADMN_NO" fieldName="SBLN_ADMN_NO"
+                    [parentForm]="sibilingDetailsForm">
+                </app-erp-input>
+                <!-- to do add loading text -->
+            <!-- </ng-container> -->
         </div>
         <div class="col-12 col-sm-12 col-md-12 col-xl-4">
             <app-erp-input label="Sibiling Relation" type="select" [selectData]="sibling" formControlName="SBLN_RELA"

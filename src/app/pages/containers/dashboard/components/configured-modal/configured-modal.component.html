@@ -28,9 +28,12 @@
 <ng-template #parentInfo>
   <app-parent-form [parentDetail]="data?.data" (parentDetailsFormStatus)="parentDetailsFormStatusHandle($event)">
   </app-parent-form>
-  <app-address-form [addressDetails]="data?.data?.address_details"
-    (addressFormStatus)="parentAddressFormStatusHandle($event)">
-  </app-address-form>
+  <details [open]="data?.data?.PRNT_CD">
+    <summary>Address</summary>
+    <app-address-form [addressDetails]="data?.data?.address_details"
+      (addressFormStatus)="parentAddressFormStatusHandle($event)">
+    </app-address-form>
+  </details>
 </ng-template>
 
 <ng-template #sibInfo>

@@ -15,7 +15,7 @@ export const TREE_DATA: ExampleFlatNode[] = [
     expandable: true,
     level: 0,
     icon:'home',
-    url:`${RouterEnum.CONTAINER}/${RouterEnum.DASHBOARD}`
+    // url:`${RouterEnum.CONTAINER}/${RouterEnum.DASHBOARD}`
   },
   {
     name: 'Student Management',

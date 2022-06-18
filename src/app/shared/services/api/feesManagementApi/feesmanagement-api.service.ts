@@ -54,5 +54,14 @@ export class FeesManagementApiService {
     return this.http.post(`${this.url}/feesdetails`, data);
   }
   
+
+  allStudentsFeesDetails(): Observable<any> {
+    return this.http.get(`${this.url}/studentfeesdtl/studentfeesdetailsdisplay/all`);
+  }
+
+  getSingleStudentDetailsAndFeesStruct(params:any){
+    return this.http.get(`${this.url}/studentfeesdtl/studentwisecomplete/${params}`);
+
+  }
   
 }

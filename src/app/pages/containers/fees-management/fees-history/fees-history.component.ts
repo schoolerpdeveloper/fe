@@ -6,35 +6,13 @@ import { StudentdetailsService } from '@shared/services/api/studentDetailsApi/st
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-invoice-review',
-  templateUrl: './invoice-review.component.html',
-  styleUrls: ['./invoice-review.component.scss']
+  selector: 'app-fees-history',
+  templateUrl: './fees-history.component.html',
+  styleUrls: ['./fees-history.component.scss']
 })
-export class InvoiceReviewComponent implements OnInit {
+export class FeesHistoryComponent implements OnInit {
   studentID: any;
-  feesStrDetails = [
-    {
-      description: 'Meterial fees',
-      ammount: 20000
-    },
-    {
-      description: 'Term1 fees',
-      ammount: 20000
-    },
-    {
-      description: 'Term2 fees',
-      ammount: 20000
-    },
-    {
-      description: 'Transport fees',
-      ammount: 20000
-    },
-    {
-      description: 'Term3 fees',
-      ammount: 20000
-    },
 
-  ];
   paramsSubscription :any;
 
   studentData: any = {}

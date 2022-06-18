@@ -1,40 +1,52 @@
 <div class="card mb-0 border-0 bg-transparent">
-  <div class="card-header border-0 my-0 py-2 position-sticky top-0 w-100" id="search_and_filters" style="z-index:99;background-color: white;">
+  <div class="card-header border-0 my-0 py-2 position-sticky top-0 w-100" id="search_and_filters"
+    style="z-index:99;background-color: #f6f6f6;">
     <div class="d-flex flex-wrap justify-content-between">
-      <div class="px-2 align-middle my-auto fs-6 text-shaded">Student Lists</div>
+      <div class="px-2 align-middle my-auto fs-6 text-secondary poppins-text">Student Lists</div>
       <div class="d-flex flex-wrap justify-content-sm-between justify-content-md-end">
 
-        <div class="m-1" style="width:20rem">
-          <app-string-only-filter [stringsInput]="classes" [buttonText]="'Filter By Class'" (selectedValues)="selectedVal($event,'class')"></app-string-only-filter>
+        <div class="m-1" style="max-width:20rem">
+          <app-string-only-filter [stringsInput]="classes" [buttonText]="'Filter By Class'"
+            (selectedValues)="selectedVal($event,'class')"></app-string-only-filter>
         </div>
-        <div class="m-1" style="width:20rem">
-          <app-string-only-filter [stringsInput]="feeses" [buttonText]="'Filter By Fees'" (selectedValues)="selectedVal($event,'fees')"></app-string-only-filter>
+        <div class="m-1" style="max-width:20rem">
+          <app-string-only-filter [stringsInput]="feeses" [buttonText]="'Filter By Fees'"
+            (selectedValues)="selectedVal($event,'fees')"></app-string-only-filter>
         </div>
         <div class="m-1">
-          <app-erp-input style="width:20rem" type="search" class="" [formControl]="search"></app-erp-input>
+          <app-erp-input style="max-width:20rem" type="search" class="" [formControl]="search"></app-erp-input>
         </div>
       </div>
     </div>
 
   </div>
   <div class="card-body my-0 py-2 mx-3 position-sticky" id="view_change_slot">
-    <div class="d-flex flex-wrap justify-content-end">
+    <div class="d-flex flex-wrap">
+      <div class="me-auto">
+        <button mat-button class="text-themed shadow-sm px-3 mb-2 rounded-3" [matMenuTriggerFor]="grid_menu">Total : {{grids|filterByClassFeesNames:filteredClasses:filteredFees:filteredName:'count'}}</button>
+      </div>
+
       <div class="my-auto pointer">
         <button type="button" class="btn btn-sm btn-outline-themed" (click)="newAdmission()">
           <mat-icon class="align-middle">add</mat-icon> New Admission
         </button>
       </div>
-      <div class="my-auto pointer mx-3">
+      <div class="my-auto pointer ms-3">
         <button type="button" class="btn btn-sm btn-outline-themed" (click)="viewAs('grid')">
 
           <mat-icon class="fs-4 align-middle">dashboard</mat-icon>
         </button>
       </div>
-      <div class="my-auto pointer">
+      <div class="my-auto pointer ms-3">
         <button type="button" class="btn btn-sm btn-outline-themed" (click)="viewAs('list')">
           <mat-icon class="fs-4 align-middle">list</mat-icon>
         </button>
 
+      </div>
+      <div class="my-auto pointer ms-3">
+        <button type="button" class="btn btn-sm btn-outline-themed" (click)="loadData()">
+          <mat-icon class="fs-4 align-middle">autorenew</mat-icon>
+        </button>
       </div>
 
     </div>
@@ -42,29 +54,41 @@
   <div class="card-body card-container" *ngIf="currentViewAs === 'grid'">
     <div class="grid-container mx-auto">
       <ng-container
-        *ngFor="let grid of (grids| filterByClassFeesNames:filteredClasses:filteredFees:filteredName | slice:startIndex:endIndex)">
-
-        <app-student-list-card (routeConfiguration)="routeConfigurationCaptured($event)"
-          (openModalWindow)="openModalWindowCapture($event)" [_studentDetailsList]="grid"
-          (disableStudentDetails)="studentDisableEventCapture($event)"></app-student-list-card>
-
+        *ngFor="let grid of (grids| filterByClassFeesNames:filteredClasses:filteredFees:filteredName:'array')">
+        <ng-container *skeleton="isLoading;height: '160px';width: '18rem';className:'skeleton-card'">
+          <app-student-list-card (routeConfiguration)="routeConfigurationCaptured($event)"
+            (openModalWindow)="openModalWindowCapture($event)" [_studentDetailsList]="grid"
+            (disableStudentDetails)="studentDisableEventCapture($event)"></app-student-list-card>
+        </ng-container>
       </ng-container>
     </div>
   </div>
   <div class="card-body card-container" *ngIf="currentViewAs === 'list'">
     <div class="row">
       <ng-container
-        *ngFor="let grid of (grids|filterByClassFeesNames:filteredClasses:filteredFees:filteredName|slice:startIndex:endIndex )">
-        <div class="col-12 g-4">
+        *ngFor="let grid of (grids|filterByClassFeesNames:filteredClasses:filteredFees:filteredName:'array')">
 
-          <app-student-list-card (routeConfiguration)="routeConfigurationCaptured($event)"
-            (openModalWindow)="openModalWindowCapture($event)" [_studentDetailsList]="grid"
-            (disableStudentDetails)="studentDisableEventCapture($event)"></app-student-list-card>
+        <div class="col-12 g-4">
+          <ng-container *skeleton="isLoading;height: '160px';width: '100%';className:'skeleton-card'">
+            <app-student-list-card (routeConfiguration)="routeConfigurationCaptured($event)"
+              (openModalWindow)="openModalWindowCapture($event)" [_studentDetailsList]="grid"
+              (disableStudentDetails)="studentDisableEventCapture($event)"></app-student-list-card>
+          </ng-container>
         </div>
       </ng-container>
     </div>
   </div>
-  <div class="card-footer bg-transparent border-0 d-flex justify-content-end py-0 my-0" *ngIf="grids.length">
-    <app-erp-paginator [erpPaging]="initPaginator" (paginated)="paginatedEventCapture($event)"></app-erp-paginator>
-  </div>
+  <!-- <div class="card-footer bg-transparent border-0 d-flex justify-content-end py-0 my-0" *ngIf="grids.length">
+    <ng-container *ngIf="(grids| filterByClassFeesNames:filteredClasses:filteredFees:filteredName) as tot">
+      <ng-container *ngIf="tot.length">
+        <app-erp-paginator [erpPaging]="paginate(tot.length)" (paginated)="paginatedEventCapture($event)"></app-erp-paginator>
+      </ng-container>
+    </ng-container>
+  </div> -->
 </div>
+<mat-menu #grid_menu="matMenu" style="height:250px;">
+  <ng-container *ngFor="let grid of (grids| filterByClassFeesNames:filteredClasses:filteredFees:filteredName:'array')">
+    <button mat-menu-item (click)="routeConfigurationCaptured(grid)">{{grid.STUD_FIRST_NAME}} {{grid.STUD_LAST_NAME}}</button>
+  </ng-container>
+
+</mat-menu>

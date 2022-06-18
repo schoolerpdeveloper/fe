@@ -1,6 +1,5 @@
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   EventEmitter,
   Input,
@@ -28,10 +27,7 @@ export class TransportFormComponent implements OnInit {
   @Input() _studentDetails: IStudentDetails[] = [];
   _routes: ITransportDeatils[] = [];
   _routesSelect: any = [];
-  @Input() set admissionNo(value: string|number |undefined |null) {
-    if (value) this.transportDetailsForm.patchValue({ ADMN_NO: value });
-    this.cdr.markForCheck();
-  }
+
   @Input() set routes(value: ITransportDeatils[]) {
     if (value && Array.isArray(value) && value.length) {
       this._routes = [...value];
@@ -54,7 +50,6 @@ export class TransportFormComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private cdr: ChangeDetectorRef,
     private destroy$: AutoUnSubscribeService
   ) {
     this.transportDetails = { ...transportDetailModel };

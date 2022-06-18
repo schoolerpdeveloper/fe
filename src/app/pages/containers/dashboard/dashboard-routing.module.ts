@@ -6,6 +6,7 @@ import { StudentManagementComponent } from './containers/student-management/stud
 import { MainDashboardComponent } from './containers/main-dashboard/main-dashboard.component';
 import { RouterEnum } from 'src/app/enums/router.enum';
 import { SingleStudentManagementComponent } from './containers/single-student-management/single-student-management.component';
+import { IsAuthenticatedGuard } from '@core/gaurds/is-authenticated.guard';
 
 const routes: Routes = [
   {
@@ -13,34 +14,34 @@ const routes: Routes = [
     component: DashboardComponent,
     children: [
       {
-        path: RouterEnum.STUDENT_MANAGEMENT,
-        component: StudentManagementComponent,
-        data: { 
-          // animation: 'isRight' 
-        },
-      },
-      {
         path: RouterEnum.DASHBOARD_MAIN,
         component: MainDashboardComponent,
         data: {
           // animation: 'isRight',
         },
       },
-     
+      {
+        path: RouterEnum.STUDENT_MANAGEMENT,
+        component: StudentManagementComponent,
+        data: {
+          // animation: 'isRight'
+        },
+        canActivate: [IsAuthenticatedGuard],
+      },
       {
         path: `${RouterEnum.STUDENT_MANAGEMENT}/:admissionNo`,
         component: SingleStudentManagementComponent,
         data: {
           //  animation: 'isRight'
-           },
+        },
       },
       // { path: 'admission/:action', component: StudentFormComponent },
       {
         path: 'admission/new',
         component: StudentFormComponent,
-        data: { 
+        data: {
           // animation: 'isRight'
-         },
+        },
       },
       { path: 'admission/edit/:id', component: StudentFormComponent },
       {

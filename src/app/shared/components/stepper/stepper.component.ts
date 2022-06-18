@@ -24,13 +24,6 @@ export class StepperComponent extends CdkStepper {
   @Output() formIndex = new EventEmitter();
 
 
-  get last(){
-    return this.steps.length-1 === this.selectedIndex ? true :false
-  }
-  
-  get first(){
-    return this.selectedIndex === 0 ? true :false;
-  }
 
 
   rippleColor:string = 'rgba(150,217,79,0.2)'
@@ -38,6 +31,5 @@ export class StepperComponent extends CdkStepper {
   selectStepByIndex(index: number): void {
     this.selectedIndex = index;
   }
-
-
+  
 }

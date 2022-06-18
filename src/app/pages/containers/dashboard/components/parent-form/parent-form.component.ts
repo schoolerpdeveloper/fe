@@ -6,7 +6,6 @@ import {
   Output,
   Self,
   EventEmitter,
-  ChangeDetectorRef,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AutoUnSubscribeService } from '@core/services/auto-unsubscribe/auto-un-subscribe.service';
@@ -31,12 +30,10 @@ import { debounceTime, delay, startWith, takeUntil } from 'rxjs/operators';
 })
 export class ParentFormComponent implements OnInit {
   parentDetailsForm!: FormGroup;
+
   @Input() _studentDetails: IStudentDetails[] = [];
   parentDetailModel: IParentDetails = {};
-  @Input() set admissionNo(value: string|number |undefined |null) {
-    if (value) this.parentDetailsForm.patchValue({ ADMN_NO: value });
-    this.cdr.markForCheck()
-  }
+
   @Input() set parentDetail(value: IParentDetails) {
     this.parentDetailModel = value
       ? {
@@ -71,8 +68,7 @@ export class ParentFormComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    @Self() private destroy$: AutoUnSubscribeService,
-    private cdr:ChangeDetectorRef
+    @Self() private destroy$: AutoUnSubscribeService
   ) {
     this.parentDetailModel = { ...parentDetailsModel };
   }

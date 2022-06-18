@@ -3,7 +3,7 @@ import { Component, ElementRef, OnInit } from '@angular/core';
 @Component({
   selector: 'app-skeleton-loader',
   host: {
-    'class': 'pulse'
+    'class': 'animate__animated animate__zoomIn animate__slow animate__infinite'
   },
   template: ``,
   styles: [`

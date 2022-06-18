@@ -5,11 +5,13 @@ import { FeesManagementRoutingModule } from './fees-management-routing.module';
 import { FeesManagementComponent } from './fees-management.component';
 import { StudentPaymentsInfoComponent } from './student-invoice/student-invoice.component';
 import { ClassWiseFeesReportsComponent } from './class-fees-report/class-fees-report.component';
-import { FeesReportsComponent } from './fees-reports/fees-reports.component';
+// import { FeesReportsComponent } from './fees-reports/fees-reports.component';
 import { FeesReportTableComponent } from './student-fees-report/student-fees-report.component';
 import { FeesManagementDashboardComponent } from './fees-dashboard/fees-dashboard.component';
 import { SharedModule } from '@shared/shared.module';
 import { InvoiceReviewComponent } from './invoice-review/invoice-review.component';
+import { FeesHistoryComponent } from './fees-history/fees-history.component';
+import { FeesStructureComponent } from './fees-structures/fees-structures.component';
 
 
 @NgModule({
@@ -17,10 +19,14 @@ import { InvoiceReviewComponent } from './invoice-review/invoice-review.componen
     FeesManagementComponent,
     FeesManagementDashboardComponent,
     FeesReportTableComponent,
-    FeesReportsComponent,
+    // FeesReportsComponent,
     ClassWiseFeesReportsComponent,
     StudentPaymentsInfoComponent,
-    InvoiceReviewComponent
+    InvoiceReviewComponent,
+
+    FeesHistoryComponent,
+    FeesStructureComponent
+
   ],
   imports: [
     CommonModule,

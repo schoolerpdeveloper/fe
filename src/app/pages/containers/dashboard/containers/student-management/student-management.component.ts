@@ -4,6 +4,7 @@ import {
   distinctUntilChanged,
   filter,
   map,
+  startWith,
   takeUntil,
   tap,
 } from 'rxjs/operators';
@@ -17,6 +18,7 @@ import {
   updateStudentDetails,
 } from 'src/app/pages/pages_store/actions/student.actions';
 import {
+  
   selectStudentLists,
   studentDataLoading,
 } from 'src/app/pages/pages_store/selectors/student.selectors';
@@ -68,13 +70,21 @@ export class StudentManagementComponent {
     private route: ActivatedRoute
   ) {}
 
+
+  paginate(len:number){
+    // if(len !== this.initPaginator.totalItems){
+      return {...this.initPaginator,...len && {totalItems:len}}
+    // }
+    // return this.initPaginator
+  }
+
   ngOnInit() {
+ 
     this.store
       .select(studentDataLoading)
       .pipe(
         takeUntil(this.destroy$),
-        tap((d: boolean) => (this.isLoading = d))
-      )
+        tap((d: boolean) => (this.isLoading = d)))
       .subscribe();
     this.search.valueChanges
       .pipe(
@@ -117,9 +127,9 @@ export class StudentManagementComponent {
         this.grids = [];
         this.initPaginator = { ...this.initPaginator, totalItems: d.length };
         if (d?.length) {
-          this.grids = [...d];
           this.classes = Array.from(new Set(this.classes));
           this.feeses = Array.from(new Set(this.feeses));
+          this.grids = [...d];
         }
       });
 
@@ -139,13 +149,19 @@ export class StudentManagementComponent {
   }
 
   routeConfigurationCaptured(event: any) {
-    if (event.routeTo === 'student_view' && event.studentDetails.ADMN_NO)
-      this.router.navigate([
-        RouterEnum.CONTAINER,
-        RouterEnum.DASHBOARD,
-        RouterEnum.STUDENT_MANAGEMENT,
-        event.studentDetails.ADMN_NO,
-      ]);
+    
+    setTimeout(() => {
+      if (event?.studentDetails?.ADMN_NO || event?.ADMN_NO){
+        let adNo = event?.studentDetails?.ADMN_NO || event?.ADMN_NO
+        this.router.navigate([
+          RouterEnum.CONTAINER,
+          RouterEnum.DASHBOARD,
+          RouterEnum.STUDENT_MANAGEMENT,
+          adNo
+        ]);
+      }
+    }, 0);
+   
   }
 
   openModalWindowCapture(event: any) {
@@ -161,6 +177,9 @@ export class StudentManagementComponent {
         data: { IS_ACTIVE: event.status, ADMN_NO: event.id },
       })
     );
+  }
+  loadData() {
+    this.store.dispatch(loadStudentList());
   }
   newAdmission(){
     this.router.navigate([
