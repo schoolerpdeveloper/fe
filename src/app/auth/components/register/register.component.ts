@@ -14,58 +14,43 @@ import { RouterEnum } from 'src/app/enums/router.enum';
   styleUrls: ['./register.component.scss'],
   providers: [AutoUnSubscribeService],
 })
-export class RegisterComponent implements OnInit {
-  regForm!: FormGroup;
+export class RegisterComponent implements OnInit  {
+  loginForm!: FormGroup;
 
   constructor(
     private fb: FormBuilder,
     private api: LoginApiService,
+    private destroy$: AutoUnSubscribeService,
     private router: Router,
-    private notifier:NotificationService,
-    private destroy$: AutoUnSubscribeService
+    private notifier: NotificationService
   ) {
-    this.regForm = this.fb.group({
+    this.loginForm = this.fb.group({
       username: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
-      confirm_password: ['', [Validators.required]],
-      roles: ['', [Validators.required]],
-    }, {
-      // validator: 
-      // ConfirmedValidator('password', 'confirm_password'),
-    } as AbstractControlOptions);
+    });
   }
 
   get usernamef() {
-    return this.regForm.get('username');
-  }
-  get emailf() {
-    return this.regForm.get('email');
-  }
-  get confirm_passwordf() {
-    return this.regForm.get('confirm_password');
-  }
-  get rolesf() {
-    return this.regForm.get('roles');
+    return this.loginForm.get('username');
   }
   get passwordf() {
-    return this.regForm.get('password');
+    return this.loginForm.get('password');
   }
-  routeToLogin(){
-    this.router.navigateByUrl(`${RouterEnum.AUTH}/${RouterEnum.LOGIN}`)
-  }
+
   ngOnInit(): void {}
-  register() {
-    if(!this.regForm.valid) return;
-    else{
-      let {username,email,password,roles} = this.regForm.value;
-      roles = [roles]
-      this.api.register({username,email,password,roles}).pipe(takeUntil(this.destroy$)).subscribe((d:any)=>{
-        if(d?.message && d?.message.toLowercase().includes('user was registered successfully')){
-          this.notifier.successNotification(`${d.message}, please login once again`)
-          this.routeToLogin();
-        }
-      });
+
+  signin() {
+    if (!this.loginForm.valid) return;
+    else {
+      this.api
+        .login(this.loginForm.value)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe((d) => {
+          if (d?.accessToken) {
+            this.notifier.successNotification('Successfully logged in');
+            this.router.navigateByUrl(`${RouterEnum.CONTAINER}/${RouterEnum.DASHBOARD}`)
+          }
+        });
     }
   }
 }

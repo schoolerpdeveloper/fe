@@ -12,7 +12,10 @@ import { environment } from '../environments/environment';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { NgChartsModule } from 'ng2-charts';
 import { NgCircleProgressModule } from 'ng-circle-progress';
+
+import { ServiceWorkerModule } from '@angular/service-worker';
 import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -38,6 +41,12 @@ import { ReactiveFormsModule } from '@angular/forms';
       innerStrokeColor: "#C7E596",
       animationDuration: 300,
       
+    }),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
     }) 
   ],
   providers: [],
