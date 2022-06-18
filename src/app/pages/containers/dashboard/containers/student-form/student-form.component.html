@@ -14,7 +14,7 @@
 
     <div class="card-body">
 
-        <app-stepper #cdkStepper [orientation]="'vertical'" (selectionChange)="selected($event)">
+        <app-stepper #cdkStepper linear [orientation]="'vertical'" (selectionChange)="selected($event)">
             <ng-container *ngFor="let stepper of stepperLocalState">
                 <cdk-step (interacted)="interactedStreamStepper($event)">
                     <ng-template cdkStepLabel>
@@ -29,21 +29,24 @@
                                 </app-admission-form>
                             </ng-container>
                             <ng-container *ngSwitchCase="'sibiling'">
-                                <app-sibiling-form (sibDetailsFormStatus)="sibDetailsFormStatusHandle($event)">
+                                <app-sibiling-form [admissionNo]="this.studentDetails.ADMN_NO"
+                                    (sibDetailsFormStatus)="sibDetailsFormStatusHandle($event)">
                                 </app-sibiling-form>
                             </ng-container>
                             <ng-container *ngSwitchCase="'parent'">
-                                <app-parent-form (parentDetailsFormStatus)="parentDetailsFormStatusHandle($event)">
+                                <app-parent-form [admissionNo]="this.studentDetails.ADMN_NO"
+                                    (parentDetailsFormStatus)="parentDetailsFormStatusHandle($event)">
                                 </app-parent-form>
                                 <details [open]="this.parentDetails.PRNT_CD">
                                     <summary class="small mx-2">Parent Address</summary>
-                                    <app-address-form (addressFormStatus)="parentAddressFormStatusHandle($event)">
+                                    <app-address-form [admissionNo]="this.studentDetails.ADMN_NO"
+                                        (addressFormStatus)="parentAddressFormStatusHandle($event)">
                                     </app-address-form>
                                 </details>
 
                             </ng-container>
                             <ng-container *ngSwitchCase="'transport'">
-                                <app-transport-form [routes]="routeDetails"
+                                <app-transport-form [admissionNo]="this.studentDetails.ADMN_NO" [routes]="routeDetails"
                                     (transportDetailFormStatus)="busDetailsFormStatusHandle($event)">
                                 </app-transport-form>
                             </ng-container>
@@ -51,6 +54,18 @@
                     </div>
                 </cdk-step>
             </ng-container>
+            <cdk-step (interacted)="interactedStreamStepper($event)">
+                <ng-template cdkStepLabel>
+                    <div class="text-capitalize">Done</div>
+                </ng-template>
+                <div class="card-body m-0 p-0 my-2 animate__animated animate__fadeIn">
+                    <p class="text-center text-themed">
+                        <button class="btn btn-themed-outline text-themed" (click)="navigateToStudentList()">
+                            <mat-icon class="align-middle">check_circle</mat-icon> <span class="align-middle"> Done</span>
+                        </button>
+                    </p>
+                </div>
+            </cdk-step>
         </app-stepper>
 
 

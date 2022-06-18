@@ -14,13 +14,6 @@ const routes: Routes = [
     component: DashboardComponent,
     children: [
       {
-        path: RouterEnum.DASHBOARD_MAIN,
-        component: MainDashboardComponent,
-        data: {
-          // animation: 'isRight',
-        },
-      },
-      {
         path: RouterEnum.STUDENT_MANAGEMENT,
         component: StudentManagementComponent,
         data: {
@@ -28,6 +21,14 @@ const routes: Routes = [
         },
         canActivate: [IsAuthenticatedGuard],
       },
+      {
+        path: RouterEnum.DASHBOARD_MAIN,
+        component: MainDashboardComponent,
+        data: {
+          // animation: 'isRight',
+        },
+      },
+     
       {
         path: `${RouterEnum.STUDENT_MANAGEMENT}/:admissionNo`,
         component: SingleStudentManagementComponent,

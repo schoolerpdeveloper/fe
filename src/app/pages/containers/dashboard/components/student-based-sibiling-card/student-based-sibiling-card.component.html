@@ -22,19 +22,6 @@
                         <div class="fs-6 fw-bold poppins-text">{{item?.SBLN_NAME ? item?.SBLN_NAME : 'Need to Add Name' }}</div>
                         <small class="d-block">{{item?.SBLN_RELA ? item?.SBLN_RELA : 'Need to Add Relation'}}</small>
                         <div class="grid-container small my-2">
-                            <div class="my-auto">
-                                <!-- <a class="text-themed" role="button" >More</a> -->
-                                <a class="text-themed text-decoration-none btn btn-sm rounded-circle shadow"
-                                    role="button" (click)="accordionItem.toggle()">
-                                    <mat-icon fontSet="material-icons-outlined" class="">more_horiz</mat-icon>
-                                </a>
-                            </div>
-                            <div class="mt-1 pointer">
-                                <a class="text-themed text-decoration-none btn btn-sm rounded-circle shadow"
-                                    role="button" (click)="updateDetails(item)">
-                                    <mat-icon fontSet="material-icons-outlined" class="">edit</mat-icon>
-                                </a>
-                            </div>
                             <div class="mt-1 pointer">
                                 <a class="text-themed text-decoration-none btn btn-sm rounded-circle shadow"
                                     role="button" (click)="addDetails(null)">
@@ -43,8 +30,22 @@
                             </div>
                             <div class="mt-1 pointer">
                                 <a class="text-themed text-decoration-none btn btn-sm rounded-circle shadow"
+                                    role="button" (click)="updateDetails(item)">
+                                    <mat-icon fontSet="material-icons-outlined" class="">edit</mat-icon>
+                                </a>
+                            </div>
+                           
+                            <div class="mt-1 pointer">
+                                <a class="text-themed text-decoration-none btn btn-sm rounded-circle shadow"
                                     role="button" (click)="deleteDetails(item)">
                                     <mat-icon fontSet="material-icons-outlined" class="">delete</mat-icon>
+                                </a>
+                            </div>
+                            <div class="my-auto">
+                                <!-- <a class="text-themed" role="button" >More</a> -->
+                                <a class="text-themed text-decoration-none btn btn-sm rounded-circle shadow"
+                                    role="button" (click)="accordionItem.toggle()">
+                                    <mat-icon fontSet="material-icons-outlined" class="">more_horiz</mat-icon>
                                 </a>
                             </div>
                         </div>

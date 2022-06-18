@@ -241,7 +241,6 @@
                         <h4 class="text-center small"><b> Review and Print</b></h4>
                        
                         <table class="table small" *ngIf="formData">
-
                             <thead>
                                 <tr>
                                     <th>Fees description</th>
@@ -249,62 +248,46 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <ng-container *ngFor="let key of formDataKeys">
+                                <!-- <ng-container *ngFor="let key of formDataKeys">
                                     <tr *ngIf="formData[key] != ''">
                                     <td class="fw-bold text-uppercase">{{key}}</td>
                                     <td class="fw-bold">{{formData[key]}}</td>
                                     </tr>
-                                </ng-container>
-                                <!-- <tr>
-                                    <td class="fw-bold">Class Name</td>
-                                    <td class="fw-bold">{{classWiseFeesStruct.CLASS_NAME}}</td>
-                                </tr>
+                                </ng-container> -->
                                 <tr>
-                                    <td class="fw-bold">Term 1</td>
-                                    <td class="fw-bold">{{classWiseFeesStruct.TERM1 |currency:"INR":"symbol":'3.0'}}
-                                    </td>
+                                    <td class="fw-bold" colspan="2">Admission No: {{formData.ADMN_NO}}</td>
                                 </tr>
+                                <tr *ngIf="formData.FEES_AMOUNT != 0">
+                                    <td class="fw-bold">Fees Amount</td>
+                                    <td class="fw-bold">{{formData.FEES_AMOUNT |currency:"INR":"symbol":'3.0'}}</td>
+                                </tr>
+                                <tr *ngIf="formData.FEES_DED != 0">
+                                    <td class="fw-bold">Fees Deduction</td>
+                                    <td class="fw-bold">{{formData.FEES_DED |currency:"INR":"symbol":'3.0'}}</td>
+                                </tr>
+                                <tr *ngIf="formData.FEES_DED_CMNT != ''">
+                                    <td class="fw-bold">Fees Deduction Comments</td>
+                                    <td class="fw-bold">{{formData.FEES_DED_CMNT}}</td>
+                                </tr>
+                                <tr *ngIf="formData.FEES_DISCOUNT != 0">
+                                    <td class="fw-bold">Fees Discount</td>
+                                    <td class="fw-bold">{{formData.FEES_DISCOUNT |currency:"INR":"symbol":'3.0'}}</td>
+                                </tr>
+                                <tr  *ngIf="formData.FEES_ADDTION != 0">
+                                    <td class="fw-bold">Fees Addition</td>
+                                    <td class="fw-bold">{{formData.FEES_ADDTION |currency:"INR":"symbol":'3.0'}}</td>
+                                </tr>
+                                <tr *ngIf="formData.FEES_ADDTION_CMNT != ''">
+                                    <td class="fw-bold">Fees Addition Comments</td>
+                                    <td class="fw-bold">{{formData.FEES_ADDTION_CMNT}}</td>
+                                </tr>
+                                <tr *ngIf="formData.FEES_NOTES != ''">
+                                    <td class="fw-bold">Fees Notes</td>
+                                    <td class="fw-bold">{{formData.FEES_NOTES}}</td>
+                                </tr>
+                                
+                                
 
-                                <tr>
-                                    <td class="fw-bold">Term 2</td>
-                                    <td class="fw-bold">{{classWiseFeesStruct.TERM2 |currency:"INR":"symbol":'3.0'}}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="fw-bold">Term 3</td>
-                                    <td class="fw-bold">{{classWiseFeesStruct.TERM3 |currency:"INR":"symbol":'3.0'}}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="fw-bold">Transport 1</td>
-                                    <td class="fw-bold">{{classWiseFeesStruct.TRANSPORT_1
-                                        |currency:"INR":"symbol":'3.0'}}</td>
-                                </tr>
-                                <tr>
-                                    <td class="fw-bold">Transport 2</td>
-                                    <td class="fw-bold">{{classWiseFeesStruct.TRANSPORT_2
-                                        |currency:"INR":"symbol":'3.0'}}</td>
-                                </tr>
-                                <tr>
-                                    <td class="fw-bold">Transport 3</td>
-                                    <td class="fw-bold">{{classWiseFeesStruct.TRANSPORT_3
-                                        |currency:"INR":"symbol":'3.0'}}</td>
-                                </tr>
-                                <tr>
-                                    <td class="fw-bold">Miscellaneous</td>
-                                    <td class="fw-bold">{{classWiseFeesStruct.MISCELLANEOUS
-                                        |currency:"INR":"symbol":'3.0'}}</td>
-                                </tr>
-                                <tr>
-                                    <td class="fw-bold">Material</td>
-                                    <td class="fw-bold">{{classWiseFeesStruct.MATERIAL
-                                        |currency:"INR":"symbol":'3.0'}}</td>
-                                </tr>
-                                <tr class="ttlClr">
-                                    <td class="fw-bold">Total</td>
-                                    <td class="fw-bold">{{classWiseFeesStruct.TOTAL |currency:"INR":"symbol":'3.0'}}
-                                    </td>
-                                </tr> -->
                             </tbody>
                         </table>
                         <div class="d-grid gap-2">

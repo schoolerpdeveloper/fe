@@ -38,10 +38,10 @@
                     *skeleton="(sibLoading$ | async);height: '160px';width: '18rem';className:'skeleton-card'">
                 </app-student-based-sibiling-card>
                 <app-student-based-fees-card [feesDetails]="feesdetails"
-                *skeleton="(sibLoading$ | async);height: '160px';width: '18rem';className:'skeleton-card'">
+                *skeleton="(feesLoading$ | async);height: '160px';width: '18rem';className:'skeleton-card'">
                 </app-student-based-fees-card>
                 <app-student-based-transport-card [transportDetails]="transportdetails" [admissionNo]="admissionNo" [stoppageNo]="stoppageNo"
-                *skeleton="(sibLoading$ | async);height: '160px';width: '18rem';className:'skeleton-card'">
+                *skeleton="(transLoading$ | async);height: '160px';width: '18rem';className:'skeleton-card'">
                 </app-student-based-transport-card>
                 <!-- 
                      [parentDetails]="parentdetails"

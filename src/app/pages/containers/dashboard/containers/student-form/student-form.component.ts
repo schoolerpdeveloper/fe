@@ -10,10 +10,14 @@ import { ISiblingDetails } from '@shared/models/siblingDeatils';
 import { IStudentDetails } from '@shared/models/studentDetails';
 import { ITransportDeatils } from '@shared/models/transportDetails';
 import { takeUntil } from 'rxjs';
-import { RouterEnum } from 'src/app/enums/router.enum';
 import { TransportActions } from 'src/app/pages/pages_store/actions/transport.actions';
 import { selectAllStudents } from 'src/app/pages/pages_store/selectors/student.selectors';
 import { TransportSelector } from 'src/app/pages/pages_store/selectors/transport.selector';
+import * as StudentAction from 'src/app/pages/pages_store/actions/student.actions';
+import { ParentActions } from 'src/app/pages/pages_store/actions/parent.actions';
+import { SibilingActions } from 'src/app/pages/pages_store/actions/sibiling.actions';
+import { AddressActions } from 'src/app/pages/pages_store/actions/address.actions';
+import { RouterEnum } from 'src/app/enums/router.enum';
 
 @Component({
   selector: 'app-student-form',
@@ -28,34 +32,46 @@ export class StudentFormComponent {
 
   parentDetails: IParentDetails = {};
   addressDetails = {};
-  transportDetails = {};
+  transportDetail: any = {};
 
-  stepperLocalState: { label: string; valid: boolean; interacted: boolean }[] =
-    [
-      {
-        label: 'student',
-        valid: true,
-        interacted: false,
-      },
-      {
-        label: 'parent',
-        valid: true,
-        interacted: false,
-      },
-      {
-        label: 'sibiling',
-        valid: true,
-        interacted: false,
-      },
-      {
-        label: 'transport',
-        valid: true,
-        interacted: false,
-      },
-    ];
+  stepperLocalState: {
+    label: string;
+    valid: boolean;
+    interacted: boolean;
+    isSubmitted: boolean;
+  }[] = [
+    {
+      label: 'student',
+      valid: true,
+      interacted: false,
+      isSubmitted: false,
+    },
+    {
+      label: 'parent',
+      valid: true,
+      interacted: false,
+      isSubmitted: false,
+    },
+    {
+      label: 'sibiling',
+      valid: true,
+      interacted: false,
+      isSubmitted: false,
+    },
+    {
+      label: 'transport',
+      valid: true,
+      interacted: false,
+      isSubmitted: false,
+    },
+  ];
 
   routeDetails: ITransportDeatils[] = [];
-  constructor(private store: Store, private destroy$: AutoUnSubscribeService,private router:Router) {}
+  constructor(
+    private store: Store,
+    private destroy$: AutoUnSubscribeService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     // this.loadStudentDetails
@@ -77,7 +93,58 @@ export class StudentFormComponent {
   }
 
   selected(e: any) {
-    console.log(e, this.stepperLocalState[e?.previouslySelectedIndex]);
+    const currentForm: any = this.stepperLocalState[e?.previouslySelectedIndex];
+    if (
+      currentForm.valid &&
+      !currentForm.isSubmitted &&
+      this.studentDetails.ADMN_NO
+    ) {
+      switch (currentForm?.label) {
+        case 'student':
+          {
+            let data = {
+              ...this.studentDetails,
+              ...{ SCHOOL_ID: 2, ACADEMIC_ID: 20 },
+            };
+            this.store.dispatch(StudentAction.addStudentDetails({ data }));
+            this.stepperLocalState[e?.previouslySelectedIndex]['isSubmitted'] =
+              true;
+          }
+          break;
+        case 'parent':
+          {
+            this.store.dispatch(
+              ParentActions.addParentDetails({ data: this.parentDetails })
+            );
+            this.store.dispatch(
+              AddressActions.addAddressDetails({ data: this.addressDetails })
+            );
+            this.stepperLocalState[e?.previouslySelectedIndex]['isSubmitted'] =
+              true;
+          }
+          break;
+        case 'sibiling':
+          {
+            this.store.dispatch(
+              SibilingActions.addSibiling({ data: this.sibDetails })
+            );
+            this.stepperLocalState[e?.previouslySelectedIndex]['isSubmitted'] =
+              true;
+          }
+          break;
+        case 'transport':
+          {
+            this.store.dispatch(
+              StudentAction.updateStudentDetails({ data: this.transportDetail })
+            );
+            this.stepperLocalState[e?.previouslySelectedIndex]['isSubmitted'] =
+              true;
+          }
+          break;
+        default:
+          break;
+      }
+    }
   }
   interactedStreamStepper(e: any) {
     let flags = e?._stepper?.steps?._results
@@ -124,7 +191,7 @@ export class StudentFormComponent {
     });
   }
   busDetailsFormStatusHandle(e: any) {
-    this.transportDetails = {
+    this.transportDetail = {
       ...e?.transportDetail.data,
       ADMN_NO: this.studentDetails.ADMN_NO,
     };
@@ -140,13 +207,13 @@ export class StudentFormComponent {
       if (i.label === 'student') i.valid = e.studentDetail.valid;
       return i;
     });
-
-    let i = 0;
-
-    while (i < 5) {
-      console.log(i);
-      i++;
-    }
+  }
+  navigateToStudentList() {
+    this.router.navigate([
+      RouterEnum.CONTAINER,
+      RouterEnum.DASHBOARD,
+      RouterEnum.STUDENT_MANAGEMENT,
+    ]);
   }
   backToDashboard(){
     this.router.navigate([

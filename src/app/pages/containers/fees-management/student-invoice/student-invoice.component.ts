@@ -54,19 +54,26 @@ export class StudentPaymentsInfoComponent implements OnInit {
 
     this.studentID = this.route.snapshot.paramMap.get('id');
     this.loadFeesForm()
-    this.api.getSingleStudentFeesDetails(this.studentID).subscribe((studentData: any) => {
-      if (studentData) {
-        this.studentData = studentData && studentData.length > 0 ? studentData[0] : {}
-        this.api.getAllClassFeesStructure().subscribe((data) => {
-          if (data && data.length > 0) {
-            data.forEach((item: any, idx: any) => {
-              if (item.CLASS_ID == this.studentData.STUD_CLASS) {
-                this.classWiseFeesStruct = item
-              }
-            })
-          }
+    
+    // this.api.getSingleStudentFeesDetails(this.studentID).subscribe((studentData: any) => {
+    //   if (studentData) {
+    //     this.studentData = studentData && studentData.length > 0 ? studentData[0] : {}
+    //     // this.api.getAllClassFeesStructure().subscribe((data) => {
+    //     //   if (data && data.length > 0) {
+    //     //     data.forEach((item: any, idx: any) => {
+    //     //       if (item.CLASS_ID == this.studentData.STUD_CLASS) {
+    //     //         this.classWiseFeesStruct = item
+    //     //       }
+    //     //     })
+    //     //   }
 
-        })
+    //     // })
+    //   }
+    // })
+    this.api.getSingleStudentDetailsAndFeesStruct(this.studentID).subscribe((studentData: any) => {
+      if (studentData) {
+        console.log('newData', studentData)
+        this.studentData = studentData && studentData.length > 0 ? studentData[0] : {}
       }
     })
   }
