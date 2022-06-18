@@ -65,6 +65,8 @@ export class SingleStudentManagementComponent implements OnInit {
   parentLoading$ = this.store.select(parentDataLoading);
   sibLoading$ = this.store.select(selectSibilingDataLoading);
   feesLoading$ = this.store.select(selectFeesDataLoading);
+  transLoading$ = this.store.select(TransportSelector.TransportDataLoading);
+
 
   selectAllStudents$ = this.store.select(selectAllStudents).pipe(
     tap((d) => console.log(d)),

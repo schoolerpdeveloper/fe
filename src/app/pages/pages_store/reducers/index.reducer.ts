@@ -172,6 +172,7 @@ export const pageReducer = createReducer(
   })),
   on(FeesAction.loadStudentBasedFeesSuccess, (state, { data }) => ({
     ...state,
+    feesLoading: false,
     feesDetails: data,
   }))
 );

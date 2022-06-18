@@ -58,7 +58,6 @@ export class AdmissionFormComponent implements OnInit {
       )
 
       .subscribe((data) => {
-        console.log(data);
         let temp = {
           studentDetail: {
             data: data,
