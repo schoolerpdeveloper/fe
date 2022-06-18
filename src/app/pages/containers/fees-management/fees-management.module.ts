@@ -23,8 +23,10 @@ import { FeesStructureComponent } from './fees-structures/fees-structures.compon
     ClassWiseFeesReportsComponent,
     StudentPaymentsInfoComponent,
     InvoiceReviewComponent,
+
     FeesHistoryComponent,
     FeesStructureComponent
+
   ],
   imports: [
     CommonModule,
