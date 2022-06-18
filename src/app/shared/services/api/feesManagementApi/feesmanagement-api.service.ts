@@ -61,7 +61,6 @@ export class FeesManagementApiService {
 
   getSingleStudentDetailsAndFeesStruct(params:any){
     return this.http.get(`${this.url}/studentfeesdtl/studentwisecomplete/${params}`);
-
   }
   
 }
