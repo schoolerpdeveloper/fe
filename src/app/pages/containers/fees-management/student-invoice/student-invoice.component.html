@@ -43,31 +43,31 @@
                                         </tr>
                                         <tr>
                                             <td>Name:</td>
-                                            <td>{{studentData.STUD_FIRST_NAME}} {{studentData.STUD_LAST_NAME}}</td>
+                                            <td>{{studentData.FIRST_NAME}} {{studentData.LAST_NAME}}</td>
 
                                         </tr>
-                                        <tr>
+                                        <!-- <tr>
                                             <td>Gender</td>
                                             <td>{{studentData.STUD_GNDR}}</td>
-                                        </tr>
-                                        <tr>
+                                        </tr> -->
+                                        <!-- <tr>
                                             <td>DOB:</td>
                                             <td>{{studentData.STUD_DOB |date}} </td>
 
-                                        </tr>
+                                        </tr> -->
                                         <tr>
                                             <td>Bus Route</td>
-                                            <td>{{studentData.BUS_RUTE_CD}}</td>
+                                            <td>{{studentData.BUS_ROUTE_NUMBER}}</td>
                                         </tr>
                                         <tr>
                                             <td>Aadhar No:</td>
-                                            <td>{{studentData.STUD_AHAR_NO}}</td>
+                                            <td>{{studentData.BUS_STOP_NAME}}</td>
 
                                         </tr>
-                                        <tr>
+                                        <!-- <tr>
                                             <td>EMI Due</td>
                                             <td>{{studentData.STUD_EMIS_NO}}</td>
-                                        </tr>
+                                        </tr> -->
                                     </tbody>
                                 </table>
                             </ng-container>
@@ -76,7 +76,7 @@
                     <div class="col-6 border-start">
                         <div class="card p-2 card_md">
                             <h4 class="text-center small"><b> Fees Structure</b></h4>
-                            <table class="table small" *ngIf="classWiseFeesStruct">
+                            <table class="table small" *ngIf="studentData">
 
                                 <thead>
                                     <tr>
@@ -87,52 +87,52 @@
                                 <tbody>
                                     <tr>
                                         <td class="fw-bold">Class Name</td>
-                                        <td class="fw-bold">{{classWiseFeesStruct.CLASS_NAME}}</td>
+                                        <td class="fw-bold">{{studentData.class_name}}</td>
                                     </tr>
                                     <tr>
                                         <td class="fw-bold">Term 1</td>
-                                        <td class="fw-bold">{{classWiseFeesStruct.TERM1 |currency:"INR":"symbol":'3.0'}}
+                                        <td class="fw-bold">{{studentData.TERM_1 |currency:"INR":"symbol":'3.0'}}
                                         </td>
                                     </tr>
 
                                     <tr>
                                         <td class="fw-bold">Term 2</td>
-                                        <td class="fw-bold">{{classWiseFeesStruct.TERM2 |currency:"INR":"symbol":'3.0'}}
+                                        <td class="fw-bold">{{studentData.TERM_2 |currency:"INR":"symbol":'3.0'}}
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="fw-bold">Term 3</td>
-                                        <td class="fw-bold">{{classWiseFeesStruct.TERM3 |currency:"INR":"symbol":'3.0'}}
+                                        <td class="fw-bold">{{studentData.TERM_3 |currency:"INR":"symbol":'3.0'}}
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="fw-bold">Transport 1</td>
-                                        <td class="fw-bold">{{classWiseFeesStruct.TRANSPORT_1
+                                        <td class="fw-bold">{{studentData.BUS_FEES_TERM_1
                                             |currency:"INR":"symbol":'3.0'}}</td>
                                     </tr>
                                     <tr>
                                         <td class="fw-bold">Transport 2</td>
-                                        <td class="fw-bold">{{classWiseFeesStruct.TRANSPORT_2
+                                        <td class="fw-bold">{{studentData.BUS_FEES_TERM_2
                                             |currency:"INR":"symbol":'3.0'}}</td>
                                     </tr>
                                     <tr>
                                         <td class="fw-bold">Transport 3</td>
-                                        <td class="fw-bold">{{classWiseFeesStruct.TRANSPORT_3
+                                        <td class="fw-bold">{{studentData.BUS_FEES_TERM_3
                                             |currency:"INR":"symbol":'3.0'}}</td>
                                     </tr>
-                                    <tr>
+                                    <!-- <tr>
                                         <td class="fw-bold">Miscellaneous</td>
-                                        <td class="fw-bold">{{classWiseFeesStruct.MISCELLANEOUS
+                                        <td class="fw-bold">{{studentData.MISCELLANEOUS
                                             |currency:"INR":"symbol":'3.0'}}</td>
-                                    </tr>
+                                    </tr> -->
                                     <tr>
                                         <td class="fw-bold">Material</td>
-                                        <td class="fw-bold">{{classWiseFeesStruct.MATERIAL
+                                        <td class="fw-bold">{{studentData.MATERIAL
                                             |currency:"INR":"symbol":'3.0'}}</td>
                                     </tr>
                                     <tr class="ttlClr">
                                         <td class="fw-bold">Total</td>
-                                        <td class="fw-bold">{{classWiseFeesStruct.TOTAL |currency:"INR":"symbol":'3.0'}}
+                                        <td class="fw-bold">{{studentData.TOTAL_FEES |currency:"INR":"symbol":'3.0'}}
                                         </td>
                                     </tr>
                                 </tbody>

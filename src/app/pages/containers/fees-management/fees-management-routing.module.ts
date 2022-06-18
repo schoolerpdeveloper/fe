@@ -5,6 +5,7 @@ import { ClassWiseFeesReportsComponent } from './class-fees-report/class-fees-re
 import { FeesManagementDashboardComponent } from './fees-dashboard/fees-dashboard.component';
 import { FeesHistoryComponent } from './fees-history/fees-history.component';
 import { FeesManagementComponent } from './fees-management.component';
+import { FeesStructureComponent } from './fees-structures/fees-structures.component';
 import { InvoiceReviewComponent } from './invoice-review/invoice-review.component';
 import { FeesReportTableComponent } from './student-fees-report/student-fees-report.component';
 // import { FeesReportsComponent } from './fees-reports/fees-reports.component';
@@ -23,6 +24,7 @@ const routes: Routes = [
       { path: 'fees-report/:id', component: StudentPaymentsInfoComponent },
       { path: 'fees-history/:id', component: FeesHistoryComponent },
       { path: 'fees-report/:id/review', component: InvoiceReviewComponent },
+      { path: 'fees-structure', component: FeesStructureComponent },
       
     ],
   },

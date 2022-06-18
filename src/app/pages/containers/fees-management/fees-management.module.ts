@@ -11,6 +11,7 @@ import { FeesManagementDashboardComponent } from './fees-dashboard/fees-dashboar
 import { SharedModule } from '@shared/shared.module';
 import { InvoiceReviewComponent } from './invoice-review/invoice-review.component';
 import { FeesHistoryComponent } from './fees-history/fees-history.component';
+import { FeesStructureComponent } from './fees-structures/fees-structures.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { FeesHistoryComponent } from './fees-history/fees-history.component';
     ClassWiseFeesReportsComponent,
     StudentPaymentsInfoComponent,
     InvoiceReviewComponent,
-    FeesHistoryComponent
+    FeesHistoryComponent,
+    FeesStructureComponent
   ],
   imports: [
     CommonModule,
