@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 })
 export class FeesManagementApiService {
   private url = environment.apiEndPoint;
-  constructor(public http: HttpClient, private storage: StorageService) {}
+  constructor(public http: HttpClient, private storage: StorageService) { }
 
   getAllFeesDetails(): Observable<any> {
     return this.http.get(`${this.url}/studentfeesdtl/feestotaldetails/all`);
@@ -26,16 +26,16 @@ export class FeesManagementApiService {
     return this.http.get(`${this.url}/studentfeesdtl/classfeesStructure/all`);
   }
 
-  getStudentParentDetails(admissionNumber:number|string): Observable<any> {
+  getStudentParentDetails(admissionNumber: number | string): Observable<any> {
     return this.http.get(`${this.url}/parentdetails/${admissionNumber}`);
   }
-  getSingleStudentFeesDetails(admissionNumber:number|string): Observable<any> {
+  getSingleStudentFeesDetails(admissionNumber: number | string): Observable<any> {
     return this.http.get(`${this.url}/studentfeesdtl/admission/${admissionNumber}`);
   }
   feesPay(): Observable<any> {
     return this.http.get(`${this.url}/studentfeesdtl/feespay/all`);
   }
-  feesPayHistory(params:any): Observable<any> {
+  feesPayHistory(params: any): Observable<any> {
     // const headerDict = {
     //   'Content-Type': 'application/json',
     //   'Accept': 'application/json',
@@ -53,15 +53,17 @@ export class FeesManagementApiService {
   payFees(data: any): Observable<any> {
     return this.http.post(`${this.url}/feesdetails`, data);
   }
-  
+
 
   allStudentsFeesDetails(): Observable<any> {
     return this.http.get(`${this.url}/studentfeesdtl/studentfeesdetailsdisplay/all`);
   }
 
-  getSingleStudentDetailsAndFeesStruct(params:any){
+  getSingleStudentDetailsAndFeesStruct(params: any) {
     return this.http.get(`${this.url}/studentfeesdtl/studentwisecomplete/${params}`);
-
   }
-  
+
+  feesReport(): Observable<any>{
+    return this.http.get(`${this.url}/studentfeesdtl/student/all`);
+  }
 }

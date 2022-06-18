@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RouterEnum } from 'src/app/enums/router.enum';
 import { ClassWiseFeesReportsComponent } from './class-fees-report/class-fees-report.component';
+import { DownloadFeesReportComponent } from './download-fees-report/download-fees-report.component';
 import { FeesManagementDashboardComponent } from './fees-dashboard/fees-dashboard.component';
 import { FeesHistoryComponent } from './fees-history/fees-history.component';
 import { FeesManagementComponent } from './fees-management.component';
@@ -25,6 +26,7 @@ const routes: Routes = [
       { path: 'fees-history/:id', component: FeesHistoryComponent },
       { path: 'fees-report/:id/review', component: InvoiceReviewComponent },
       { path: 'fees-structure', component: FeesStructureComponent },
+      { path: 'download-report', component: DownloadFeesReportComponent },
       
     ],
   },

@@ -1,0 +1,67 @@
+<div class="container-fluid">
+
+    <div class="row mt-3">
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button class="btn btn-sm btn-primary mb-2" (click)="back()" type="button">
+                <i class="fas fa-chevron-left tex-green smallfont"></i>
+                Back to Dashboard</button>
+        </div>
+        <div class="col-md-12">
+            <h1 class="h5 fw-bold my-2">Fees Report</h1>
+            <!-- <button (click)="exportexcel()">Export to Excel</button> -->
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button class="btn btn-sm btn-primary mb-2" (click)="exportexcel()" type="button">
+                   
+                    Export to Excel  <i class="fas fa-file-excel tex-green smallfont"></i></button>
+            </div>
+        </div>
+
+        <!-- <div class="col">
+            <div class="input-group mb-3">
+                <span class="input-group-text input_group_icon" id="basic-addon1"><i class="fas fa-search"></i></span>
+                <input type="text" class="form-control custom_form_control" [(ngModel)]="searchText"
+                    placeholder="Search" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+        </div> -->
+    </div>
+
+    <div class="row" *ngIf="feesReport.length>0">
+        <div class="col-12">
+            <table class="table table-striped" id="excel-table">
+                <thead class="table_bg">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Admission No</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Class</th>
+                        <th scope="col">Bus Route</th>
+                        <th scope="col">Total Fees</th>
+                        <th scope="col">Paid Fees</th>
+                        <th scope="col">Pending Fees</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- {{feesReport |json}} -->
+                    <ng-container *ngIf="feesReport.length>0">
+                        <tr *ngFor="let fees of feesReport; let i = index">
+                            <td>{{i+1}}</td>
+                            <td>{{fees.ADMN_NO }} </td>
+                            <td>{{fees.STUD_FIRST_NAME}} {{fees.STUD_LAST_NAME}}</td>
+                            <td>{{fees.CLASS_NAME}}</td>
+                            <td>{{fees.BUS_RUTE_CD}}</td>
+                            <td>{{fees.TOTAL_FEES_AMOUNT |currency:"INR":"symbol":'3.0'}}</td>
+                            <td>{{fees.FEES_PAID |currency:"INR":"symbol":'3.0'}}</td>
+                            <td class="text-danger">{{fees.TOTAL_FEES_AMOUNT - fees.FEES_PAID |currency:"INR":"symbol":'3.0'}}</td>
+                            <td class="fw-bold" [ngClass]="{'text-success':fees.IS_ACTIVE === 'A'}">{{fees.IS_ACTIVE}}</td>
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="w-100 m-auto  text-center text-danger fw-bold" *ngIf="feesReport.length <= 0">
+        No records found... please wait
+    </div>
+</div>

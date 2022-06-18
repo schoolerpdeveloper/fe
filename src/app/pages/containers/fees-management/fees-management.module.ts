@@ -12,6 +12,7 @@ import { SharedModule } from '@shared/shared.module';
 import { InvoiceReviewComponent } from './invoice-review/invoice-review.component';
 import { FeesHistoryComponent } from './fees-history/fees-history.component';
 import { FeesStructureComponent } from './fees-structures/fees-structures.component';
+import { DownloadFeesReportComponent } from './download-fees-report/download-fees-report.component';
 
 
 @NgModule({
@@ -25,8 +26,8 @@ import { FeesStructureComponent } from './fees-structures/fees-structures.compon
     InvoiceReviewComponent,
 
     FeesHistoryComponent,
-    FeesStructureComponent
-
+    FeesStructureComponent,
+    DownloadFeesReportComponent
   ],
   imports: [
     CommonModule,
