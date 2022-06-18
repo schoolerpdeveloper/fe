@@ -10,7 +10,6 @@ import { ISiblingDetails } from '@shared/models/siblingDeatils';
 import { IStudentDetails } from '@shared/models/studentDetails';
 import { ITransportDeatils } from '@shared/models/transportDetails';
 import { takeUntil } from 'rxjs';
-import { RouterEnum } from 'src/app/enums/router.enum';
 import { TransportActions } from 'src/app/pages/pages_store/actions/transport.actions';
 import { selectAllStudents } from 'src/app/pages/pages_store/selectors/student.selectors';
 import { TransportSelector } from 'src/app/pages/pages_store/selectors/transport.selector';
@@ -18,7 +17,6 @@ import * as StudentAction from 'src/app/pages/pages_store/actions/student.action
 import { ParentActions } from 'src/app/pages/pages_store/actions/parent.actions';
 import { SibilingActions } from 'src/app/pages/pages_store/actions/sibiling.actions';
 import { AddressActions } from 'src/app/pages/pages_store/actions/address.actions';
-import { Router } from '@angular/router';
 import { RouterEnum } from 'src/app/enums/router.enum';
 
 @Component({
