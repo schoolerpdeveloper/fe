@@ -31,4 +31,11 @@ export const TREE_DATA: ExampleFlatNode[] = [
     icon:'chevron_right',
     url:`${RouterEnum.CONTAINER}/${RouterEnum.FEES_MANAGEMENT}`
   },
+  {
+    name: 'Bus Management',
+    expandable: false,
+    level: 1,
+    icon:'chevron_right',
+    url:`${RouterEnum.CONTAINER}/${RouterEnum.BUS_MANAGEMENT}`
+  },
 ];

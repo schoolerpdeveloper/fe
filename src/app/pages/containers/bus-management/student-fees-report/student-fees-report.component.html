@@ -1,0 +1,66 @@
+<div class="container-fluid">
+
+    <div class="row mt-3">
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button class="btn btn-sm btn-primary mb-2" (click)="back()" type="button">
+                <i class="fas fa-chevron-left tex-green smallfont"></i>
+                Back to Dashboard</button>
+        </div>
+        <div class="col-6">
+            <h1 class="h5 fw-bold my-2">Students fees details</h1>
+        </div>
+
+        <div class="col">
+            <div class="input-group mb-3">
+                <span class="input-group-text input_group_icon" id="basic-addon1"><i class="fas fa-search"></i></span>
+                <input type="text" class="form-control custom_form_control" [(ngModel)]="searchText"
+                    placeholder="Search" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="studentWiseFeesReport && studentWiseFeesReport.length>0">
+        <div class="col-12">
+            {{studentWiseFeesReport.length}} Records found
+            <table class="table table-striped">
+                <thead class="table_bg">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Admission No</th>
+                        <th scope="col">Class</th>
+                        <th scope="col">Bus Route</th>
+                        <th scope="col">Total Fees</th>
+                        <th scope="col">Paid Amount</th>
+                        <th class="text-center" scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngFor="let student of studentWiseFeesReport | filter : searchText; let i = index;">
+                        <tr>
+                            <td>{{i+1}}</td>
+                            <td>{{student.STUD_FIRST_NAME }} {{student.STUD_LAST_NAME }}</td>
+                            <td>{{student.ADMN_NO}}</td>
+                            <td>{{student.CLASS_NAME}}</td>
+                            <td>{{student.BUS_RUTE_CD}}</td>
+                            <td><ng-container>{{ student.TOTAL_FEES_AMOUNT |currency:"INR":"symbol":'3.0'}} </ng-container> </td>
+                            <td><ng-container>{{student.FEES_PAID|currency:"INR":"symbol":'3.0'}} </ng-container></td>
+                            <td align="center">
+                                <button class="btn btn-sm btn-secondary mb-2" style="margin-right:10px ;" (click)="feesHistory(student.ADMN_NO)" type="button">
+                                    <i class="fas fa-indian-rupee-sign"></i>
+                                    View History</button>
+                                <button class="btn btn-sm btn-primary mb-2" (click)="viewInvoice(student.ADMN_NO)" type="button">
+                                    <i class="fas fa-indian-rupee-sign"></i>
+                                    Pay Fees</button>
+                                </td>
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="w-100 m-auto  text-center text-danger fw-bold" *ngIf="studentWiseFeesReport.length <= 0">
+        No records found... please wait
+    </div>
+</div>

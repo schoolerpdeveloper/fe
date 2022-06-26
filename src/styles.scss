@@ -29,6 +29,7 @@ body {
 }
 .btn-themed {
   background-color: var(--primary-color-dark) !important;
+  border:#46a625;
 }
 .btn-outline-themed:active {
   background-color: var(--primary-color-dark) !important;
@@ -182,4 +183,16 @@ label,
 .form_select_custom {
   border: 1px solid #ffffff;
   border-radius: 1.25rem;
+}
+
+.modal {
+  background: rgba(0, 0, 0, 0.5); 
+  z-index: 999;
+}
+.modal-backdrop {
+  display: none;
+}
+
+.mat-drawer.mat-drawer-side{
+  z-index: 1 !important;
 }

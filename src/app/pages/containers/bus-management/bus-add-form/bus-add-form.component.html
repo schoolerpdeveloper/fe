@@ -1,0 +1,216 @@
+<div class="container-fluid">
+    <div class="card">
+        <div class="container-fluid mt-3">
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button class="btn btn-sm btn-primary btn-themed mb-2" (click)="back()" type="button">
+                    <i class="fas fa-chevron-left tex-green smallfont"></i>
+                    Back to Dashboard</button>
+            </div>
+            <div class="col-6">
+                <h1 class="h5 fw-bold my-2">Add New Bus</h1>
+            </div>
+    
+        </div>
+        <form [formGroup]="busDetailsForm" class="card border-0 mt-4" (ngSubmit)="onSubmit()">
+            <div class="row g-3 card-body">
+                <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+                    <app-erp-input label="Bus Route" formControlName="BUS_RUTE_CD" fieldName="BUS_RUTE_CD"
+                        [parentForm]="busDetailsForm">
+                    </app-erp-input>
+                </div>
+
+                <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+                    <app-erp-input label="Bus Number" formControlName="BUS_RUTE_NO" fieldName="BUS_RUTE_NO"
+                        [parentForm]="busDetailsForm">
+                    </app-erp-input>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+                    <app-erp-input label="Driver Name" formControlName="BUS_RUTE_DRIVER_NAME"
+                        fieldName="BUS_RUTE_DRIVER_NAME" [parentForm]="busDetailsForm">
+                    </app-erp-input>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+                    <app-erp-input label="Driver Mobile" formControlName="BUS_RUTE_DRIVER_NO"
+                        fieldName="BUS_RUTE_DRIVER_NO" [parentForm]="busDetailsForm">
+                    </app-erp-input>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+                    <app-erp-input label="Route In-charge" formControlName="BUS_RUTE_INCH_NAME"
+                        fieldName="BUS_RUTE_INCH_NAME" [parentForm]="busDetailsForm">
+                    </app-erp-input>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+                    <app-erp-input label="Route In-charge Mobile" formControlName="BUS_RUTE_INCH_NO"
+                        fieldName="BUS_RUTE_INCH_NO" [parentForm]="busDetailsForm">
+                    </app-erp-input>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+                    <app-erp-input label="Insurance Details" formControlName="BUS_RUTE_INS_DTL"
+                        fieldName="BUS_RUTE_INS_DTL" [parentForm]="busDetailsForm">
+                    </app-erp-input>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+                    <app-erp-input label="FC Details" formControlName="BUS_FC_DETAILS" fieldName="BUS_FC_DETAILS"
+                        [parentForm]="busDetailsForm">
+                    </app-erp-input>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+                    <app-erp-input label="Cleaner Name" formControlName="BUS_CLEANER_NAME" fieldName="BUS_CLEANER_NAME"
+                        [parentForm]="busDetailsForm">
+                    </app-erp-input>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+                    <app-erp-input label="Cleaner Mobile" formControlName="BUS_CLEANER_MOBILE_NO"
+                        fieldName="BUS_CLEANER_MOBILE_NO" [parentForm]="busDetailsForm">
+                    </app-erp-input>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+                    <app-erp-input label="Camera Details" formControlName="BUS_CAMERA_DETAILS"
+                        fieldName="BUS_CAMERA_DETAILS" [parentForm]="busDetailsForm">
+                    </app-erp-input>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+                    <app-erp-input label="GPRS Details" formControlName="BUS_GPRS_DETAILS" fieldName="BUS_GPRS_DETAILS"
+                        [parentForm]="busDetailsForm">
+                    </app-erp-input>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+                    <app-erp-input label="Seat Capacity" formControlName="BUS_SEAT_CAPACITY"
+                        fieldName="BUS_SEAT_CAPACITY" [parentForm]="busDetailsForm">
+                    </app-erp-input>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+                    <app-erp-input label="Comments" formControlName="COMMENTS" fieldName="COMMENTS"
+                        [parentForm]="busDetailsForm">
+                    </app-erp-input>
+                </div>
+
+                <div class="form-group">
+                    <button
+                    class="btn btn-accent-themed border-0 text-white text-condensed rounded-pill px-3 py-1 btn-small small"
+                    type="submit">Create Bus</button>
+                </div>
+
+            </div>
+            <!-- <div class="row g-3 card-body">
+                <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+                    <app-erp-input label="Student First Name" formControlName="STUD_FIRST_NAME"
+                        fieldName="STUD_FIRST_NAME" [parentForm]="busDetailsForm">
+                    </app-erp-input>
+
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+                    <app-erp-input label="Student Last Name" formControlName="STUD_LAST_NAME" fieldName="STUD_LAST_NAME"
+                        [parentForm]="busDetailsForm">
+                    </app-erp-input>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+                    <app-erp-input label="Class" type="select" [selectData]="classStud" formControlName="STUD_CLASS"
+                        fieldName="STUD_CLASS" [parentForm]="busDetailsForm">
+                    </app-erp-input>
+                </div>
+
+            </div>
+            <div class="row g-3 card-body">
+                <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+                    <app-erp-input label="Father name" formControlName="STUD_FATH_NAME" fieldName="STUD_FATH_NAME"
+                        [parentForm]="busDetailsForm">
+                    </app-erp-input>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+                    <app-erp-input label="Mother name" formControlName="STUD_MTHR_NAME" fieldName="STUD_MTHR_NAME"
+                        [parentForm]="busDetailsForm">
+                    </app-erp-input>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+                    <app-erp-input label="Gender" type="select" [selectData]="gender" formControlName="STUD_GNDR"
+                        fieldName="STUD_GNDR" [parentForm]="busDetailsForm">
+                    </app-erp-input>
+                </div>
+            </div>
+            <div class="row g-3 card-body">
+                <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+                    <app-erp-input type="dateTime" label="Date of Birth" formControlName="STUD_DOB" fieldName="STUD_DOB"
+                        [parentForm]="busDetailsForm">
+                    </app-erp-input>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+                    <app-erp-input label="Caste" formControlName="STUD_CASTE" fieldName="STUD_CASTE"
+                        [parentForm]="busDetailsForm">
+                    </app-erp-input>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+                    <app-erp-input label="Sub Caste" formControlName="STUD_SUB_CASTE" fieldName="STUD_SUB_CASTE"
+                        [parentForm]="busDetailsForm">
+                    </app-erp-input>
+                </div>
+            </div>
+            <div class="row g-3 card-body">
+                <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+                    <app-erp-input type="text" label="Community" formControlName="STUD_CMTY" fieldName="STUD_CMTY"
+                        [parentForm]="busDetailsForm">
+                    </app-erp-input>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+                    <app-erp-input label="Religion" formControlName="STUD_RLIG" fieldName="STUD_RLIG"
+                        [parentForm]="busDetailsForm">
+                    </app-erp-input>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+                    <app-erp-input label="Nationality" formControlName="STUD_NTLY" fieldName="STUD_NTLY"
+                        [parentForm]="busDetailsForm">
+                    </app-erp-input>
+                </div>
+            </div>
+            <div class="row g-3 card-body">
+
+                <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+                    <app-erp-input label="Mother Toungue" formControlName="STUD_MTHR_TNGE" fieldName="STUD_MTHR_TNGE"
+                        [parentForm]="busDetailsForm">
+                    </app-erp-input>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+                    <app-erp-input label="Language Known" formControlName="STUD_LNG_KNWN" fieldName="STUD_LNG_KNWN"
+                        [parentForm]="busDetailsForm">
+                    </app-erp-input>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+                    <app-erp-input label="Blood Group" formControlName="STUD_BLD_GRUP" fieldName="STUD_BLD_GRUP"
+                        [parentForm]="busDetailsForm">
+                    </app-erp-input>
+                </div>
+            </div>
+            <div class="row g-3 card-body">
+                <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+
+                    <app-erp-input label="Aadhar Number" [maskPlaceHolder]="'x'" formControlName="STUD_AHAR_NO"
+                        [useMaskedInput]="true" maskedString="XXXX - XXXX - XXXX" fieldName="STUD_AHAR_NO"
+                        [parentForm]="busDetailsForm">
+                    </app-erp-input>
+                </div>
+
+                <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+                    <app-erp-input label="Student EMI Number" formControlName="STUD_EMIS_NO" fieldName="STUD_EMIS_NO"
+                        [parentForm]="busDetailsForm">
+                    </app-erp-input>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+                    <app-erp-input label="Student Previous School" formControlName="STUD_PREV_SCHL"
+                        fieldName="STUD_PREV_SCHL" [parentForm]="busDetailsForm">
+                    </app-erp-input>
+                </div>
+            </div>
+            <div class="row g-3 card-body">
+
+                <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+                    <app-erp-input label="Student Discount" formControlName="STUD_DISCOUNT" fieldName="STUD_DISCOUNT"
+                        [parentForm]="busDetailsForm">
+                    </app-erp-input>
+                </div>
+               
+            </div> -->
+
+
+        </form>
+    </div>
+</div>

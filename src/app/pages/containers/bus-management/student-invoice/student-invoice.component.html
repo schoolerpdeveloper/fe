@@ -1,0 +1,367 @@
+<div class="container-fluid">
+    <div class="row mt-3">
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button class="btn btn-sm btn-primary mb-2" (click)="back()" type="button">
+                <i class="fas fa-chevron-left tex-green smallfont"></i>
+                Back to Dashboard</button>
+        </div>
+
+        <div class="col-7">
+            <div class="card card_big p-3">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="row p-4">
+                            <div class="col-12 text-center">
+                                <img src="assets/images/students_photos.png" width="120px" alt="" class="profPhoto">
+                            </div>
+                            <div class="col-12">
+                                <ul class="icon_design">
+                                    <li>
+                                        <button class="btn btn_colr "><i class="fas fa-comment-alt"></i></button>
+                                    </li>
+                                    <li>
+                                        <button class="btn btn_colr active"><i class="fas fa-phone"></i></button>
+                                    </li>
+                                    <li>
+                                        <button class="btn btn_colr"><i class="fas fa-print"></i></button>
+                                    </li>
+                                </ul>
+
+                            </div>
+                            <ng-container *ngIf="studentData">
+                                <!-- {{studentData |json}} -->
+                                <!-- <div class="col-8 text-center">{{sdata.idkeys}} :</div>
+                                <div class="col">{{sdata.value}}</div> -->
+
+                                <table class="table small">
+                                    <tbody>
+                                        <tr>
+                                            <td>Admission No:</td>
+                                            <td>{{studentData.ADMN_NO}}</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>Name:</td>
+                                            <td>{{studentData.FIRST_NAME}} {{studentData.LAST_NAME}}</td>
+
+                                        </tr>
+                                        <!-- <tr>
+                                            <td>Gender</td>
+                                            <td>{{studentData.STUD_GNDR}}</td>
+                                        </tr> -->
+                                        <!-- <tr>
+                                            <td>DOB:</td>
+                                            <td>{{studentData.STUD_DOB |date}} </td>
+
+                                        </tr> -->
+                                        <tr>
+                                            <td>Bus Route</td>
+                                            <td>{{studentData.BUS_ROUTE_NUMBER}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Bus Stop Name:</td>
+                                            <td>{{studentData.BUS_STOP_NAME}}</td>
+
+                                        </tr>
+                                        <!-- <tr>
+                                            <td>EMI Due</td>
+                                            <td>{{studentData.STUD_EMIS_NO}}</td>
+                                        </tr> -->
+                                    </tbody>
+                                </table>
+                            </ng-container>
+                        </div>
+                    </div>
+                    <div class="col-6 border-start">
+                        <div class="card p-2 card_md">
+                            <h4 class="text-center small"><b> Fees Structure</b></h4>
+                            <table class="table small" *ngIf="studentData">
+
+                                <thead>
+                                    <tr>
+                                        <th>Fees description</th>
+                                        <th>Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="fw-bold">Class Name</td>
+                                        <td class="fw-bold">{{studentData.class_name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold">Term 1</td>
+                                        <td class="fw-bold">{{studentData.TERM_1 |currency:"INR":"symbol":'3.0'}}
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="fw-bold">Term 2</td>
+                                        <td class="fw-bold">{{studentData.TERM_2 |currency:"INR":"symbol":'3.0'}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold">Term 3</td>
+                                        <td class="fw-bold">{{studentData.TERM_3 |currency:"INR":"symbol":'3.0'}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold">Transport 1</td>
+                                        <td class="fw-bold">{{studentData.BUS_FEES_TERM_1
+                                            |currency:"INR":"symbol":'3.0'}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold">Transport 2</td>
+                                        <td class="fw-bold">{{studentData.BUS_FEES_TERM_2
+                                            |currency:"INR":"symbol":'3.0'}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold">Transport 3</td>
+                                        <td class="fw-bold">{{studentData.BUS_FEES_TERM_3
+                                            |currency:"INR":"symbol":'3.0'}}</td>
+                                    </tr>
+                                    <!-- <tr>
+                                        <td class="fw-bold">Miscellaneous</td>
+                                        <td class="fw-bold">{{studentData.MISCELLANEOUS
+                                            |currency:"INR":"symbol":'3.0'}}</td>
+                                    </tr> -->
+                                    <tr>
+                                        <td class="fw-bold">Material</td>
+                                        <td class="fw-bold">{{studentData.MATERIAL
+                                            |currency:"INR":"symbol":'3.0'}}</td>
+                                    </tr>
+                                    <tr class="ttlClr">
+                                        <td class="fw-bold">Total</td>
+                                        <td class="fw-bold">{{studentData.TOTAL_FEES |currency:"INR":"symbol":'3.0'}}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-5">
+            <div class="card p-2 card_big p-2">
+                <div class="row m-0 p-0">
+                    <div class="col-12"
+                        *ngIf="studentData && studentData.fees_details && studentData.fees_details.length>0">
+                        <!-- <h4 class="text-center small"><b>Pay fees </b> </h4> -->
+
+                        <div class="row mx-auto">
+                            <div class="col-4 mx-auto">
+                                <div class="card card_sm">
+                                    <span><img src="assets/images/salary.png" width="40px" alt=""></span>
+                                    <small>Total fees</small>
+                                    <h5 class="fw-bold small">{{studentData.fees_details[0].FEES_AMOUNT +
+                                        studentData.fees_details[0].FEES_BALANCE |currency:"INR":"symbol":'3.0'}}</h5>
+                                </div>
+                            </div>
+                            <div class="col-4 mx-auto">
+                                <div class="card card_sm">
+                                    <span>
+                                        <img src="assets/images/payment.png" width="40px" alt=""></span>
+                                    <small>Collected Fees</small>
+                                    <h5 class="fw-bold small">{{studentData.fees_details[0].FEES_AMOUNT
+                                        |currency:"INR":"symbol":'3.0'}}</h5>
+                                </div>
+                            </div>
+                            <div class="col-4 mx-auto">
+                                <div class="card card_sm">
+                                    <span>
+                                        <img src="assets/images/pendingpayment.png" width="40px" alt=""></span>
+                                    <small>Pending fees</small>
+                                    <h5 class="fw-bold small">{{ studentData.fees_details[0].FEES_BALANCE
+                                        |currency:"INR":"symbol":'3.0'}}</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="p-0 m-0 mt-3">
+                    <div class="col-12 m-2">
+                        <!-- <select class="form-select form-select-sm" (change)="onChangeTickets($event)">
+                            <option selected>Open this select menu</option>
+                            <option value="Transport">Transport Fees</option>
+                            <option value="Material">Material Fees</option>
+                            <option value="Other">Other Fees</option>
+                        </select> -->
+
+                        <form [formGroup]="feesPayForm" (ngSubmit)="onSubmit()">
+
+                            <label for="exampleFormControlInput1" class="form-label">Fees Amount *</label>
+
+                            <input type="number" class="form-control form-control-sm form_custom my-auto"
+                                placeholder="Fees Amount" formControlName="feesAmt"
+                                [ngClass]="{ 'is-invalid': submitted && f.feesAmt.errors }" />
+                            <div *ngIf="submitted && f.feesAmt.errors" class="invalid-feedback">
+                                <div *ngIf="f.feesAmt.errors.required">Fees amount is required</div>
+                            </div>
+
+                            <label for="exampleFormControlInput1" class="form-label">Notes *</label>
+                            <textarea class="form-control form-control-sm form_custom my-auto" placeholder="Notes"
+                                aria-label="Username" aria-describedby="basic-addon1" formControlName="feesNotes"
+                                [ngClass]="{ 'is-invalid': submitted && f.feesNotes.errors }">
+                                </textarea>
+                            <div *ngIf="submitted && f.feesNotes.errors" class="invalid-feedback">
+                                <div *ngIf="f.feesNotes.errors.required">Comments is required</div>
+                            </div>
+                            <!-- <div formArrayName="otherCharges"  *ngFor="let addressGroup of feesPayForm.get('otherCharges').controls;let i = index">
+                                    <div [formGroupName]="i">
+                                    <div>
+                                        Fees Description <input  type="text" class="form-control form-control-sm form_custom my-auto" formControlName="desc">
+                                    </div>
+                                    <div>
+                                        Fees <input type="number" class="form-control form-control-sm form_custom my-auto"
+                                        placeholder="Fees Amount" formControlName="fees" >
+                                    </div>
+                                    <button (click)="deleteAddressGroup(i)" class="btn btn_submit_custom">Remove</button>
+                                    </div>
+                                </div> -->
+                            
+                            <div class="d-grid gap-2 mt-2">
+                                <button class="btn btn-block btn-sm btn-light shadow" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseExample" aria-expanded="false"
+                                    aria-controls="collapseExample">
+                                    Expend for more
+                                </button>
+                            </div>
+                            <div class="collapse pb-3" id="collapseExample">
+                                    <label for="exampleFormControlInput1" class="form-label">Discount Amount</label>
+
+                                    <input type="number" class="form-control form-control-sm form_custom my-auto"
+                                        placeholder="Deduction amount" formControlName="feesDiscount"
+                                        [ngClass]="{ 'is-invalid': submitted && f.feesDiscount.errors }" />
+                                    <div *ngIf="submitted && f.feesDiscount.errors" class="invalid-feedback">
+                                        <div *ngIf="f.feesDiscount.errors.required">Fees Discount is required</div>
+                                    </div>
+
+                                    <label for="exampleFormControlInput1" class="form-label">Deduction Amount</label>
+
+                                    <input type="number" class="form-control form-control-sm form_custom my-auto"
+                                        placeholder="Deduction amount" formControlName="deductionAmt"
+                                        [ngClass]="{ 'is-invalid': submitted && f.deductionAmt.errors }" />
+                                    <div *ngIf="submitted && f.deductionAmt.errors" class="invalid-feedback">
+                                        <div *ngIf="f.deductionAmt.errors.required">Deduction amount is required</div>
+                                    </div>
+
+                                    <label for="exampleFormControlInput1" class="form-label">Deduction Comments</label>
+
+                                    <textarea class="form-control form-control-sm form_custom my-auto"
+                                        placeholder="Deduction Comments" aria-label="Username"
+                                        aria-describedby="basic-addon1" formControlName="deductionCmts"
+                                        [ngClass]="{ 'is-invalid': submitted && f.deductionCmts.errors }">
+                                    </textarea>
+                                    <div *ngIf="submitted && f.deductionCmts.errors" class="invalid-feedback">
+                                        <div *ngIf="f.deductionCmts.errors.required">Deduction comments is required
+                                        </div>
+                                    </div>
+                                    <label for="exampleFormControlInput1" class="form-label">Miscellaneous Amount
+                                        *</label>
+
+                                    <input type="number" class="form-control form-control-sm form_custom my-auto"
+                                        placeholder="Miscellaneous amount" formControlName="miscellaneousAmt"
+                                        [ngClass]="{ 'is-invalid': submitted && f.miscellaneousAmt.errors }" />
+                                    <div *ngIf="submitted && f.miscellaneousAmt.errors" class="invalid-feedback">
+                                        <div *ngIf="f.miscellaneousAmt.errors.required">Miscellaneous is required</div>
+                                    </div>
+                                    <label for="exampleFormControlInput1" class="form-label">Miscellaneous
+                                        Comments</label>
+
+                                    <textarea class="form-control form-control-sm form_custom my-auto"
+                                        placeholder="Miscellaneous Comments" formControlName="miscellaneousCmts"
+                                        [ngClass]="{ 'is-invalid': submitted && f.miscellaneousCmts.errors }">
+                                </textarea>
+                                    <div *ngIf="submitted && f.miscellaneousCmts.errors" class="invalid-feedback">
+                                        <div *ngIf="f.miscellaneousCmts.errors.required">miscellaneous comments is
+                                            required
+                                        </div>
+                                    </div>
+                            </div>
+
+
+                            <!-- <div *ngFor="let ticket of t; let i = index" class="list-group list-group-flush">
+                                <div class="list-group-item">
+                                    <h5 class="card-title">Ticket {{i + 1}}</h5>
+                                    <div [formGroup]="ticket" class="form-row">
+                                        <div class="form-group col-6">
+                                            <label>Name</label>
+                                            <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && ticket.controls.name.errors }" />
+                                            <div *ngIf="submitted && ticket.controls.name.errors" class="invalid-feedback">
+                                                <div *ngIf="ticket.controls.name.errors.required">Name is required</div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label>Email</label>
+                                            <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && ticket.controls.email.errors }" />
+                                            <div *ngIf="submitted && ticket.controls.email.errors" class="invalid-feedback">
+                                                <div *ngIf="ticket.controls.email.errors.required">Email is required</div>
+                                                <div *ngIf="ticket.controls.email.errors.email">Email must be a valid email address</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> -->
+
+
+
+                            <!-- 
+                            <label for="exampleFormControlInput1" class="form-label">Discount Amount</label>
+
+                            <input type="number" class="form-control form-control-sm form_custom my-auto"
+                                placeholder="Deduction amount" formControlName="feesDiscount"
+                                [ngClass]="{ 'is-invalid': submitted && f.feesDiscount.errors }" />
+                            <div *ngIf="submitted && f.feesDiscount.errors" class="invalid-feedback">
+                                <div *ngIf="f.feesDiscount.errors.required">Fees Discount is required</div>
+                            </div>
+
+                            <label for="exampleFormControlInput1" class="form-label">Deduction Amount</label>
+
+                            <input type="number" class="form-control form-control-sm form_custom my-auto"
+                                placeholder="Deduction amount" formControlName="deductionAmt"
+                                [ngClass]="{ 'is-invalid': submitted && f.deductionAmt.errors }" />
+                            <div *ngIf="submitted && f.deductionAmt.errors" class="invalid-feedback">
+                                <div *ngIf="f.deductionAmt.errors.required">Deduction amount is required</div>
+                            </div>
+
+                            <label for="exampleFormControlInput1" class="form-label">Deduction Comments</label>
+
+                            <textarea class="form-control form-control-sm form_custom my-auto"
+                                placeholder="Deduction Comments" aria-label="Username" aria-describedby="basic-addon1"
+                                formControlName="deductionCmts"
+                                [ngClass]="{ 'is-invalid': submitted && f.deductionCmts.errors }">
+                            </textarea>
+                            <div *ngIf="submitted && f.deductionCmts.errors" class="invalid-feedback">
+                                <div *ngIf="f.deductionCmts.errors.required">Deduction comments is required</div>
+                            </div>
+                            <label for="exampleFormControlInput1" class="form-label">Miscellaneous Amount *</label>
+
+                            <input type="number" class="form-control form-control-sm form_custom my-auto"
+                                placeholder="Miscellaneous amount" formControlName="miscellaneousAmt"
+                                [ngClass]="{ 'is-invalid': submitted && f.miscellaneousAmt.errors }" />
+                            <div *ngIf="submitted && f.miscellaneousAmt.errors" class="invalid-feedback">
+                                <div *ngIf="f.miscellaneousAmt.errors.required">Miscellaneous is required</div>
+                            </div>
+                            <label for="exampleFormControlInput1" class="form-label">Miscellaneous Comments</label>
+
+                            <textarea class="form-control form-control-sm form_custom my-auto"
+                                placeholder="Miscellaneous Comments" formControlName="miscellaneousCmts"
+                                [ngClass]="{ 'is-invalid': submitted && f.miscellaneousCmts.errors }">
+                        </textarea>
+                            <div *ngIf="submitted && f.miscellaneousCmts.errors" class="invalid-feedback">
+                                <div *ngIf="f.miscellaneousCmts.errors.required">miscellaneous comments is required
+                                </div>
+                            </div> -->
+
+
+                            <div class="d-grid gap-2">
+                                <button class="btn btn_submit_custom btn-sm">Review</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
