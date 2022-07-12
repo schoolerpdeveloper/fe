@@ -1,0 +1,193 @@
+
+    <div class="container-fluid" >
+    <div class="card">
+        <div class="container-fluid mt-3">
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button class="btn btn-sm btn-primary btn-themed mb-2" (click)="back()" type="button">
+                    <i class="fas fa-chevron-left tex-green smallfont"></i>
+                    Back</button>
+            </div>
+            <div class="col-6">
+                <h1 class="h5 fw-bold my-2">Add New Route</h1>
+            </div>
+    
+        </div>
+        
+        <ng-container *ngIf="routeList">
+            <form [formGroup]="routeDetailsForm" class="card border-0 mt-4" (ngSubmit)="onSubmit()" >
+                <div class="row g-3 card-body">
+                    <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+                       
+                        <div class="form-group">
+                            <label>Bus Route</label>
+                            <select placeholder="Bus Route" formControlName="BUS_RUTE_CD" class="form-control bg-light rounded_input" [ngClass]="{ 'is-invalid': submitted && f.BUS_RUTE_CD.errors }" >
+                                <ng-container *ngFor="let route of routeList">
+                                    <option [value]="route.value">{{route.label}}</option>
+                                </ng-container>
+                              </select>
+                            <!-- <input placeholder="Bus Route" type="text" formControlName="BUS_RUTE_CD" class="form-control rounded_input" [ngClass]="{ 'is-invalid': submitted && f.BUS_RUTE_CD.errors }" /> -->
+                            <div *ngIf="submitted && f.BUS_RUTE_CD.errors" class="invalid-feedback">
+                                <div *ngIf="f.BUS_RUTE_CD.errors.required">Bus Route is required</div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+                       
+                        <div class="form-group">
+                            <label>Academic ID</label>
+                            <input placeholder="Academic ID" type="number" formControlName="ACADEMIC_ID" class="form-control rounded_input" [ngClass]="{ 'is-invalid': submitted && f.ACADEMIC_ID.errors }" />
+                            <div *ngIf="submitted && f.ACADEMIC_ID.errors" class="invalid-feedback">
+                                <div *ngIf="f.ACADEMIC_ID.errors.required">Academic ID is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+                       
+                        <div class="form-group">
+                            <label>Bus Number</label>
+                            <input placeholder="Bus Number" type="text" formControlName="BUS_RUTE_NO" class="form-control rounded_input" [ngClass]="{ 'is-invalid': submitted && f.BUS_RUTE_NO.errors }" />
+                            <div *ngIf="submitted && f.BUS_RUTE_NO.errors" class="invalid-feedback">
+                                <div *ngIf="f.BUS_RUTE_NO.errors.required">Bus Number is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+                      
+    
+                        <div class="form-group">
+                            <label>Driver Name</label>
+                            <input placeholder="Driver Name" type="text" formControlName="BUS_RUTE_DRIVER_NAME" class="form-control rounded_input" [ngClass]="{ 'is-invalid': submitted && f.BUS_RUTE_DRIVER_NAME.errors }" />
+                            <div *ngIf="submitted && f.BUS_RUTE_DRIVER_NAME.errors" class="invalid-feedback">
+                                <div *ngIf="f.BUS_RUTE_DRIVER_NAME.errors.required">Driver Name is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+                       
+                        <div class="form-group">
+                            <label>Driver Mobile</label>
+                            <input placeholder="Driver Mobile" type="number" formControlName="BUS_RUTE_DRIVER_NO" class="form-control rounded_input" [ngClass]="{ 'is-invalid': submitted && f.BUS_RUTE_DRIVER_NO.errors }" />
+                            <div *ngIf="submitted && f.BUS_RUTE_DRIVER_NO.errors" class="invalid-feedback">
+                                <div *ngIf="f.BUS_RUTE_DRIVER_NO.errors.required">Driver Mobile is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+                     
+                        <div class="form-group">
+                            <label>Route In-charge</label>
+                            <input placeholder="Route In-charge" type="text" formControlName="BUS_RUTE_INCH_NAME" class="form-control rounded_input" [ngClass]="{ 'is-invalid': submitted && f.BUS_RUTE_INCH_NAME.errors }" />
+                            <div *ngIf="submitted && f.BUS_RUTE_INCH_NAME.errors" class="invalid-feedback">
+                                <div *ngIf="f.BUS_RUTE_INCH_NAME.errors.required">Route In-charge is required</div>
+                            </div>
+                        </div>
+    
+    
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+                       
+                        <div class="form-group">
+                            <label>Route In-charge Mobile</label>
+                            <input placeholder="Route In-charge Mobile"  type="number" formControlName="BUS_RUTE_INCH_NO" class="form-control rounded_input" [ngClass]="{ 'is-invalid': submitted && f.BUS_RUTE_INCH_NO.errors }" />
+                            <div *ngIf="submitted && f.BUS_RUTE_INCH_NO.errors" class="invalid-feedback">
+                                <div *ngIf="f.BUS_RUTE_INCH_NO.errors.required">Route In-charge Mobile is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+                      
+                        <div class="form-group">
+                            <label>Insurance Details</label>
+                            <input placeholder="Insurance Details" type="text" formControlName="BUS_RUTE_INS_DTL" class="form-control rounded_input" [ngClass]="{ 'is-invalid': submitted && f.BUS_RUTE_INS_DTL.errors }" />
+                            <div *ngIf="submitted && f.BUS_RUTE_INS_DTL.errors" class="invalid-feedback">
+                                <div *ngIf="f.BUS_RUTE_INS_DTL.errors.required">Insurance Details is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+                     
+                        <div class="form-group">
+                            <label>FC Details</label>
+                            <input placeholder="FC Details" type="text" formControlName="BUS_FC_DETAILS" class="form-control rounded_input" [ngClass]="{ 'is-invalid': submitted && f.BUS_FC_DETAILS.errors }" />
+                            <div *ngIf="submitted && f.BUS_FC_DETAILS.errors" class="invalid-feedback">
+                                <div *ngIf="f.BUS_FC_DETAILS.errors.required">FC Details is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+                     
+                        <div class="form-group">
+                            <label>Cleaner Name</label>
+                            <input placeholder="Cleaner Name"  type="text" formControlName="BUS_CLEANER_NAME" class="form-control rounded_input" [ngClass]="{ 'is-invalid': submitted && f.BUS_CLEANER_NAME.errors }" />
+                            <div *ngIf="submitted && f.BUS_CLEANER_NAME.errors" class="invalid-feedback">
+                                <div *ngIf="f.BUS_CLEANER_NAME.errors.required">Cleaner Name is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+                      
+                        <div class="form-group">
+                            <label>Cleaner Mobile</label>
+                            <input placeholder="Cleaner Mobile"  type="number" formControlName="BUS_CLEANER_MOBILE_NO" class="form-control rounded_input" [ngClass]="{ 'is-invalid': submitted && f.BUS_CLEANER_MOBILE_NO.errors }" />
+                            <div *ngIf="submitted && f.BUS_CLEANER_MOBILE_NO.errors" class="invalid-feedback">
+                                <div *ngIf="f.BUS_CLEANER_MOBILE_NO.errors.required">Cleaner Mobile is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+                  
+                        <div class="form-group">
+                            <label>Camera Details</label>
+                            <input placeholder="Camera Details" type="text" formControlName="BUS_CAMERA_DETAILS" class="form-control rounded_input" [ngClass]="{ 'is-invalid': submitted && f.BUS_CAMERA_DETAILS.errors }" />
+                            <div *ngIf="submitted && f.BUS_CAMERA_DETAILS.errors" class="invalid-feedback">
+                                <div *ngIf="f.BUS_CAMERA_DETAILS.errors.required">Camera Details is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+                    
+                        <div class="form-group">
+                            <label>GPRS Details</label>
+                            <input placeholder="GPRS Details" type="text" formControlName="BUS_GPRS_DETAILS" class="form-control rounded_input" [ngClass]="{ 'is-invalid': submitted && f.BUS_GPRS_DETAILS.errors }" />
+                            <div *ngIf="submitted && f.BUS_GPRS_DETAILS.errors" class="invalid-feedback">
+                                <div *ngIf="f.BUS_GPRS_DETAILS.errors.required">GPRS Details is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+                       
+                        <div class="form-group">
+                            <label>Seat Capacity</label>
+                            <input placeholder="Seat Capacity"  type="number" formControlName="BUS_SEAT_CAPACITY" class="form-control rounded_input" [ngClass]="{ 'is-invalid': submitted && f.BUS_SEAT_CAPACITY.errors }" />
+                            <div *ngIf="submitted && f.BUS_SEAT_CAPACITY.errors" class="invalid-feedback">
+                                <div *ngIf="f.BUS_SEAT_CAPACITY.errors.required">Seat Capacity is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+                        
+                        <div class="form-group">
+                            <label>Comments</label>
+                            <input placeholder="Comments"  type="text" formControlName="COMMENTS" class="form-control rounded_input" [ngClass]="{ 'is-invalid': submitted && f.COMMENTS.errors }" />
+                            <div *ngIf="submitted && f.COMMENTS.errors" class="invalid-feedback">
+                                <div *ngIf="f.COMMENTS.errors.required">Comments is required</div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="form-group">
+                        <button
+                        class="btn btn-accent-themed border-0 text-white text-condensed rounded-pill px-3 py-1 btn-small small"
+                        type="submit">Create Bus</button>
+                    </div>
+    
+                </div>
+                
+    
+    
+            </form>
+        </ng-container>
+        
+    </div>
+</div>

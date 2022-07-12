@@ -3,13 +3,13 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { BusdetailsService } from '@shared/services/api/busDetailsApi/busdetails.service';
 @Component({
-  selector: 'app-bus-list',
-  templateUrl: './bus-list.component.html',
-  styleUrls: ['./bus-list.component.scss']
+  selector: 'app-route-list',
+  templateUrl: './route-list.component.html',
+  styleUrls: ['./route-list.component.scss']
 })
-export class BusListComponent {
+export class RouteListComponent {
   searchText = '';
-  busList:any [] =[]
+  routeList:any [] =[]
   displayStyle = "none";
   isAction:Boolean = false;
   selectedItem:number = 0;
@@ -17,8 +17,8 @@ export class BusListComponent {
   constructor(public router:Router, public api:BusdetailsService, private _location: Location) { }
 
   ngOnInit(): void {
-    this.api.getAllBusDetails().subscribe((data)=>{
-      this.busList = data
+    this.api.getAllRouteDetails().subscribe((data)=>{
+      this.routeList = data
     })
   }
 

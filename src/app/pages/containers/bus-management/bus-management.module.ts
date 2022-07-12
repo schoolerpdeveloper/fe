@@ -14,6 +14,9 @@ import { FeesStructureComponent } from './fees-structures/fees-structures.compon
 import { DownloadFeesReportComponent } from './download-fees-report/download-fees-report.component';
 import { BusAddFormComponent } from './bus-add-form/bus-add-form.component';
 import { BusListComponent } from './bus-list/bus-list.component';
+import { NewBusAddFormComponent } from './new-bus-add-form/new-bus-add-form.component';
+import { RouteListComponent } from './routes-list/route-list.component';
+import { NewRouteAddFormComponent } from './new-route-add-form/new-route-add-form.component';
 
 
 @NgModule({
@@ -28,7 +31,10 @@ import { BusListComponent } from './bus-list/bus-list.component';
     FeesHistoryComponent,
     FeesStructureComponent,
     DownloadFeesReportComponent,
-    BusListComponent
+    BusListComponent,
+    NewBusAddFormComponent,
+    RouteListComponent,
+    NewRouteAddFormComponent
   ],
   imports: [
     CommonModule,

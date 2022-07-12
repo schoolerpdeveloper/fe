@@ -52,6 +52,7 @@ import { CdkAccordionModule } from '@angular/cdk/accordion';
 import { SimpleAccordianComponent } from './components/simple-accordian/simple-accordian.component';
 import { SkeletonLoaderComponent } from './components/skeleton-loader/skeleton-loader.component';
 import { SkeletonLoaderDirective } from './directives/skeleton-loader.directive';
+import { OutsideClickDirective } from './directives/outerclick.directive';
 FullCalendarModule.registerPlugins([
   // register FullCalendar plugins
   dayGridPlugin,
@@ -103,7 +104,8 @@ const SHARED_DECL = [
   BarchartComponent,
   DoughnutchartComponent,
   TableComponent,
-  FilterPipe
+  FilterPipe,
+  OutsideClickDirective
   // CircleProgressComponent
 ];
 

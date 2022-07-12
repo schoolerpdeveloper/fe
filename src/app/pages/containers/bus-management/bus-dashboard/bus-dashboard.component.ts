@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { BusdetailsService } from '@shared/services/api/busDetailsApi/busdetails.service';
 import { FeesManagementApiService } from '@shared/services/api/feesManagementApi/feesmanagement-api.service';
 
 @Component({
@@ -15,37 +16,37 @@ export class BusManagementDashboardComponent implements OnInit {
   barData:any[] = []
   barDataLabel:any[] = []
 
-  constructor(public router: Router, public api: FeesManagementApiService) { }
+  constructor(public router: Router, public api:BusdetailsService) { }
 
   ngOnInit(): void {
-    this.api.getAllFeesDetails().subscribe((data) => {
+    this.api.getBusDashboardDtl().subscribe((data) => {
       console.log('data', data)
-      this.SchoolFeesStats = data[0]
-      this.doughnutChartData = [this.SchoolFeesStats.total_school_fees_collection, this.SchoolFeesStats.pending_fees]
+      // this.SchoolFeesStats = data[0]
+      // this.doughnutChartData = [this.SchoolFeesStats.total_school_fees_collection, this.SchoolFeesStats.pending_fees]
 
     })
 
-    this.getClassWiseReport()
+    // this.getClassWiseReport()
   }
 
-  getClassWiseReport() {
-    this.api.getAllClassWiseFees().subscribe((data) => {
-      console.log('data', data)
-      this.classWiseFeesStats = data
+  // getClassWiseReport() {
+  //   this.api.getBusDashboardDtl().subscribe((data) => {
+  //     console.log('data', data)
+  //     this.classWiseFeesStats = data
 
-      if(data && data.length>0){
-        let totFees:any[] = []
-        let pendingFees:any[] = []
-        data.forEach((item:any) => {  
-          this.barLabels.push(item.CLASS_NAME)
-          totFees.push(item.TOTAL_FEES_CLASS_WISE)
-          pendingFees.push(item.TOTAL_FEES_CLASS_WISE - item.FEES_AMOUNT)
-      });
-      this.barData = [totFees, pendingFees]
-      this.barDataLabel = ['Total Fees', 'Pending Fees']
-      }
-    })
-  }
+  //     if(data && data.length>0){
+  //       let totFees:any[] = []
+  //       let pendingFees:any[] = []
+  //       data.forEach((item:any) => {  
+  //         this.barLabels.push(item.CLASS_NAME)
+  //         totFees.push(item.TOTAL_FEES_CLASS_WISE)
+  //         pendingFees.push(item.TOTAL_FEES_CLASS_WISE - item.FEES_AMOUNT)
+  //     });
+  //     this.barData = [totFees, pendingFees]
+  //     this.barDataLabel = ['Total Fees', 'Pending Fees']
+  //     }
+  //   })
+  // }
 
   // clickToView(data:any){
   //   console.log(data)

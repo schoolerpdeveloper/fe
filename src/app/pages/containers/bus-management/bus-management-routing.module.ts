@@ -13,6 +13,9 @@ import { FeesReportTableComponent } from './student-fees-report/student-fees-rep
 import { StudentPaymentsInfoComponent } from './student-invoice/student-invoice.component';
 import { BusAddFormComponent } from './bus-add-form/bus-add-form.component';
 import { BusListComponent } from './bus-list/bus-list.component';
+import { NewBusAddFormComponent } from './new-bus-add-form/new-bus-add-form.component';
+import { RouteListComponent } from './routes-list/route-list.component';
+import { NewRouteAddFormComponent } from './new-route-add-form/new-route-add-form.component';
 
 const routes: Routes = [
   {
@@ -29,8 +32,10 @@ const routes: Routes = [
       { path: 'fees-report/:id/review', component: InvoiceReviewComponent },
       { path: 'fees-structure', component: FeesStructureComponent },
       { path: 'download-report', component: DownloadFeesReportComponent },
-      { path: 'add-bus', component: BusAddFormComponent },
+      { path: 'add-bus', component: NewBusAddFormComponent },
       { path: 'list-bus', component: BusListComponent },
+      { path: 'list-routes', component: RouteListComponent },
+      { path: 'add-route', component: NewRouteAddFormComponent },
       
     ],
   },

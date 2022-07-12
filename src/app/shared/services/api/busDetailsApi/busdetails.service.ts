@@ -13,14 +13,21 @@ export class BusdetailsService {
 
   constructor(public http: HttpClient, private storage: StorageService) {}
 
+  getBusDashboardDtl(): Observable<any> {
+    return this.http.get(`${this.url}/busmgmt`);
+  }
+
   getAllBusDetails(): Observable<any> {
     return this.http.get(`${this.url}/busdetails`);
   }
   getAllBusRouteDetails(): Observable<any> {
     return this.http.get(`${this.url}/busroutedetails`);
   }
-  createStudentDetails(data: IStudentDetails) {
-    return this.http.post(`${this.url}/studentdetails`, data);
+  getAllRouteDetails(): Observable<any> {
+    return this.http.get(`${this.url}/busroutedetails`);
+  }
+  addBusDetails(data:any) {
+    return this.http.post(`${this.url}/busdetails`, data);
   }
 
   getSingleStudentDetails(id: string | number): Observable<IStudentDetails> {

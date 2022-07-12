@@ -7,7 +7,7 @@
         Back</button>
     </div>
     <div class="col-6">
-      <h1 class="h5 fw-bold my-2">Bus List</h1>
+      <h1 class="h5 fw-bold my-2">Route List</h1>
     </div>
 
     <div class="col">
@@ -23,15 +23,15 @@
   <div class="row">
 
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-      <button class="btn btn-sm btn-primary btn-themed mb-2" [routerLink]="'/pages/bus-management/add-bus'"
+      <button class="btn btn-sm btn-primary btn-themed mb-2" [routerLink]="'/pages/bus-management/add-route'"
         type="button">
         <i class="fas fa-bus-alt tex-green smallfont"></i>
-        Add New Bus</button>
+        Add New Route</button>
     </div>
   </div>
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
 
-    <ng-container *ngFor="let bus of busList  | filter : searchText;; let i = index;">
+    <ng-container *ngFor="let route of routeList  | filter : searchText;; let i = index;">
       <div class="col">
         <div class="card shadow">
           <div class="card-body p-2 m-0">
@@ -43,7 +43,7 @@
                     <div>
                       <p class="h5 fw-bold text-bold-condensed text-themed m-0 p-0">
                         <i class="fas fa-bus-alt tex-green small"></i>
-                        {{bus.BUS_RUTE_NO}}
+                        {{route.BUS_RUTE_CD}}
                       </p>
                     </div>
                     <span class="text-muted smallfont pointer"  [matMenuTriggerFor]="menu">  <i
@@ -51,7 +51,7 @@
 
                     <mat-menu #menu="matMenu" class="p-0 m-0">
                       <div class="list-group pointer">
-                        <a class="list-group-item list-group-item-action small" (click)="openPopup(bus)" data-bs-toggle="modal"
+                        <a class="list-group-item list-group-item-action small" (click)="openPopup(route)" data-bs-toggle="modal"
                         data-bs-target="#staticBackdrop" >View</a>
                         <a class="list-group-item list-group-item-action small">Edit</a>
                         <a class="list-group-item list-group-item-action small">Delete</a>
@@ -62,21 +62,21 @@
                   </li>
                   <li class="d-flex justify-content-between lh-sm">
                     <div>
-                      <small class="text-muted smallfont">In-charge</small>
+                      <small class="text-muted smallfont">Bus No:</small>
                     </div>
-                    <span class="text-muted smallfont">{{bus.BUS_RUTE_INCH_NAME}}</span>
-                  </li>
-                  <li class="d-flex justify-content-between lh-sm">
-                    <div>
-                      <small class="text-muted smallfont">Bus Route</small>
-                    </div>
-                    <span class="text-muted smallfont">{{bus.BUS_RUTE_CD}}</span>
+                    <span class="text-muted smallfont">{{route.BUS_RUTE_NO}}</span>
                   </li>
                   <li class="d-flex justify-content-between lh-sm">
                     <div>
                       <small class="text-muted smallfont">Driver Name</small>
                     </div>
-                    <span class="text-muted smallfont">{{bus.BUS_RUTE_DRIVER_NAME}}</span>
+                    <span class="text-muted smallfont">{{route.BUS_RUTE_DRIVER_NAME}}</span>
+                  </li>
+                  <li class="d-flex justify-content-between lh-sm">
+                    <div>
+                      <small class="text-muted smallfont">Total Stops</small>
+                    </div>
+                    <span class="text-muted smallfont">{{route.bus_route_details.length}}</span>
                   </li>
 
                 </ul>
@@ -101,7 +101,7 @@
                     </button>
                   </div>
                   <div class="col-3">
-                    <button type="button" (click)="openPopup(bus)" data-bs-toggle="modal"
+                    <button type="button" (click)="openPopup(route)" data-bs-toggle="modal"
                       data-bs-target="#staticBackdrop" class="btn btn-sm btn-primary btn-light text-themed shadow"
                       style=" width:2rem; height:2rem;">
                       <i class="fas fa-eye small"></i>
@@ -129,13 +129,36 @@
 <!-- Modal -->
 <div class="modal fade" id="staticBackdrop" [ngStyle]="{'display':displayStyle}" data-bs-backdrop="static"
   data-bs-keyboard="false" tabindex="1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+  <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
         <h6 class="modal-title" id="staticBackdropLabel">Detail View</h6>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body" *ngIf="modalData">
+        <!-- <pre>-------------{{modalData.bus_route_details |json}}</pre> -->
+
+
+ 
+<!-- The Timeline -->
+
+<ul class="timeline" *ngIf="modalData && modalData.bus_route_details && modalData.bus_route_details.length>0">
+
+	<!-- Item 1 -->
+	<li *ngFor="let item of modalData.bus_route_details; let i = index;">
+		<div  [ngClass]="{'direction-r': 0 === i % 2, 'direction-l': 0 != i % 2}">
+			<div class="flag-wrapper">
+				<span class="flag">{{item.rute_stop_name}}</span>
+				<span class="time-wrapper"><span class="time">Stop No: {{item.rute_stop_no}}</span></span>
+			</div>
+			<!-- <div class="desc">My current employment. Way better than the position before!</div> -->
+		</div>
+	</li>  
+</ul>
+
+<p *ngIf="modalData && modalData.bus_route_details && modalData.bus_route_details.length == 0">No Stops found</p>
+
+
         <table class="table table-striped table-hover">
 
           <tbody>
@@ -220,5 +243,5 @@
 <!-- 
 <pre>
 
-  {{busList |json}}
+  {{routeList |json}}
 </pre> -->
